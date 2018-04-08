@@ -36,9 +36,9 @@ void Game::run() {
         tick();
 
         auto now = std::chrono::system_clock::now();
-        auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart).count();
+        auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart);
         if(loopTime < minimumLoopTime){
-            sf::sleep(sf::microseconds(minimumLoopTime-loopTime));
+            sf::sleep(sf::microseconds(minimumLoopTime.count() - loopTime.count()));
         }
     }
 }
@@ -69,7 +69,7 @@ void Game::update() {
 
 void Game::tick() {
     auto now = std::chrono::system_clock::now();
-    auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick).count();
+    auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick);
 
     if (time_elapsed >= tick_period) {
 

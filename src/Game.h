@@ -28,7 +28,7 @@ public:
     void run();
 
 private:
-    int minimumLoopTime = 1000;
+    std::chrono::microseconds minimumLoopTime = std::chrono::microseconds(120);
 
     void render();
     sf::RenderWindow renderWindow;
@@ -40,7 +40,7 @@ private:
 
     void tick();
     std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();
-    int tick_period = 1000000;
+    std::chrono::microseconds tick_period = std::chrono::microseconds(1000000);
 };
 
 
