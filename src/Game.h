@@ -30,6 +30,8 @@ public:
 private:
     void render();
     sf::RenderWindow renderWindow;
+    std::chrono::system_clock::time_point previous_frame = std::chrono::system_clock::now();
+    int frame_per_second = 120;
 
     void update();
     std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();

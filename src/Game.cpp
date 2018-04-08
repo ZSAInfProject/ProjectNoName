@@ -34,8 +34,16 @@ void Game::run() {
 }
 
 void Game::render() {
-    if (!states.empty()) {
-        getState().render(&renderWindow);
+    auto now = std::chrono::system_clock::now();
+    auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_frame).count();
+
+    if (time_elapsed >= 1000000/frame_per_second) {
+
+        previous_frame = now - std::chrono::microseconds(time_elapsed - 1000000/frame_per_second);
+
+        if (!states.empty()) {
+            getState().render(&renderWindow);
+        }
     }
 }
 
