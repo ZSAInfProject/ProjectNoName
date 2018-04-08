@@ -15,6 +15,7 @@ State& Game::getState() {
 
 void Game::run() {
     renderWindow.create({800, 600}, "ProjectNoName");
+
     while (renderWindow.isOpen())
     {
 
@@ -26,12 +27,39 @@ void Game::run() {
 
         render();
 
-        ////TODO: Implement update and tick
+        update();
+
+        tick();
     }
 }
 
 void Game::render() {
     if (!states.empty()) {
         getState().render(&renderWindow);
+    }
+}
+
+void Game::update() {
+    auto now = std::chrono::system_clock::now();
+    auto deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_time);
+    previous_time = now;
+
+    if (!states.empty()) {
+        getState().update(deltaTime);
+    }
+}
+
+void Game::tick() {
+    auto now = std::chrono::system_clock::now();
+    auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick).count();
+
+    if (time_elapsed >= tick_period) {
+
+        previous_tick = now - std::chrono::microseconds(time_elapsed - tick_period);
+
+        if (!states.empty()) {
+            getState().tick();
+        }
+
     }
 }

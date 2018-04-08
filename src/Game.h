@@ -29,8 +29,14 @@ public:
 
 private:
     void render();
-
     sf::RenderWindow renderWindow;
+
+    void update();
+    std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();
+
+    void tick();
+    std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();
+    int tick_period = 1000000;
 };
 
 
