@@ -28,6 +28,8 @@ public:
     void run();
 
 private:
+    int minimumLoopTime = 1000;
+
     void render();
     sf::RenderWindow renderWindow;
     std::chrono::system_clock::time_point previous_frame = std::chrono::system_clock::now();

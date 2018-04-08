@@ -1,4 +1,5 @@
 #include <SFML/Window/Event.hpp>
+#include <SFML/System.hpp>
 #include "Game.h"
 
 void Game::pushState(std::unique_ptr<State> state) {
@@ -16,8 +17,11 @@ State& Game::getState() {
 void Game::run() {
     renderWindow.create({800, 600}, "ProjectNoName");
 
+    std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
     {
+
+        loopStart = std::chrono::system_clock::now();
 
         sf::Event event{};
         while (renderWindow.pollEvent(event)) {
@@ -30,6 +34,12 @@ void Game::run() {
         update();
 
         tick();
+
+        auto now = std::chrono::system_clock::now();
+        auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart).count();
+        if(loopTime < minimumLoopTime){
+            sf::sleep(sf::microseconds(minimumLoopTime-loopTime));
+        }
     }
 }
 
