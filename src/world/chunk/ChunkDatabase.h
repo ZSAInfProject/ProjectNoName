@@ -2,11 +2,12 @@
 #define NONAME_CHUNKDATABASE_H
 
 
-#include <map>
+#include <unordered_map>
 #include "Chunk.h"
 #include "ChunkGenerator.h"
 
 class ChunkDatabase {
+    std::unordered_map<std::tuple<int, int>, Chunk> chunkCache;
     std::unique_ptr<ChunkGenerator> chunkGenerator;
 public:
     Chunk* getChunk(int x, int y);
