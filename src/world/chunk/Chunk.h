@@ -9,14 +9,14 @@
 
 class Chunk {
     std::vector<int> tiles;
-    std::vector<Object> objects;
+    std::vector<std::unique_ptr<Object>> objects;
 
 public:
     void render(sf::RenderWindow);
     void update(std::chrono::microseconds deltaTime);
 
     Chunk();
-    Chunk(const std::vector<int>& _tiles, const std::vector<Object>& _objects);
+    Chunk(const std::vector<int>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
 };
 
 

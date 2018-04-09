@@ -12,7 +12,7 @@ Chunk::Chunk() {
 
 }
 
-Chunk::Chunk(const std::vector<int>& _tiles, const std::vector<Object>& _objects) {
+Chunk::Chunk(const std::vector<int>& _tiles, std::vector<std::unique_ptr<Object>> _objects) {
     tiles = _tiles;
-    objects = _objects;
+    objects = std::move(_objects);
 }
