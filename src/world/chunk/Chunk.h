@@ -8,7 +8,7 @@
 #include "../object/Object.h"
 
 class Chunk {
-    std::vector<int> tiles;
+    std::array<int, 4096> tiles;
     std::vector<std::unique_ptr<Object>> objects;
 
 public:
