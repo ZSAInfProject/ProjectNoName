@@ -11,12 +11,15 @@ class Chunk {
     std::array<int, 4096> tiles;
     std::vector<std::unique_ptr<Object>> objects;
 
+    Chunk(Chunk const&) = delete;
+    void operator= (Chunk const&) = delete;
+
 public:
     void render(sf::RenderWindow);
     void update(std::chrono::microseconds deltaTime);
 
     Chunk();
-    Chunk(const std::vector<int>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
+    Chunk(const std::array<int, 4096>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
 };
 
 
