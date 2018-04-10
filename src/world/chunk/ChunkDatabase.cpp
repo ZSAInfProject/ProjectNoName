@@ -17,9 +17,10 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
         if(fileExists){
             chunkIt = insertChunkIntoCache(x, y, std::move(fileChunk));
         }
-
-        //if chunk does not exist generate one
-        chunkIt = insertChunkIntoCache(x, y, chunkGenerator->generateChunk(x, y));
+        else {
+            //if chunk does not exist generate one
+            chunkIt = insertChunkIntoCache(x, y, chunkGenerator->generateChunk(x, y));
+        }
     }
 
     cleanUpCache();
