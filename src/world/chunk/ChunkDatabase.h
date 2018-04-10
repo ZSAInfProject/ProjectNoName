@@ -19,6 +19,7 @@ public:
 
     explicit ChunkDatabase(std::unique_ptr<ChunkGenerator>);
 
+    //Returns string representation of cache (what chunks are loaded) x and y are used to set top-left corner chunk coordinates
     std::string cacheDebug(int x, int y);
 private:
     std::map<std::tuple<int, int>, CacheEntry>::iterator insertChunkIntoCache(int x, int y, std::unique_ptr<Chunk> chunk);

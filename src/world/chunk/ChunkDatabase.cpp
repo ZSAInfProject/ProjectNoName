@@ -73,7 +73,7 @@ std::string ChunkDatabase::cacheDebug(int x, int y) {
 
     for (int i=0; i<80; i++) {
         for (int j=0; j<80; j++) {
-            if (vector[j][i]) string += " ";
+            if (vector[j][i]) string += "X";
             else string += " ";
         }
         string += "\n";
