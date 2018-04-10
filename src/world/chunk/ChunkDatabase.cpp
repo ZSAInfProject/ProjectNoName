@@ -12,7 +12,11 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
     }
     else {
         //If chunk is not in cache load it from file
-        //TODO: load from file
+        std::unique_ptr<Chunk> fileChunk = std::make_unique<Chunk>();
+        bool fileExists = fileChunk->load(getChunkFilename(x,y));
+        if(fileExists){
+            chunkIt = insertChunkIntoCache(x, y, std::move(fileChunk));
+        }
 
         //if chunk does not exist generate one
         chunkIt = insertChunkIntoCache(x, y, chunkGenerator->generateChunk(x, y));
@@ -46,9 +50,32 @@ void ChunkDatabase::cleanUpCache() {
                 auto sinceLastHit = std::chrono::duration_cast<std::chrono::microseconds>(now - cacheEntry.first);
                 if(sinceLastHit < minimumCacheTime)
                     return;
+                cacheEntry.second->second.chunk->save(
+                        getChunkFilename(std::get<0>(cacheEntry.second->first), std::get<1>(cacheEntry.second->first)));
                 chunkCache.erase(cacheEntry.second);
                 chunksToRelease--;
             }
         }
     }
+}
+
+std::string ChunkDatabase::getChunkFilename(int x, int y) {
+    std::string filename = "chunks/";
+    if(x < 0){
+        filename += "1";
+    }else{
+        filename += "0";
+    }
+    if(y < 0){
+        filename += "1";
+    }else{
+        filename += "0";
+    }
+
+    filename += "_";
+    filename += std::to_string(std::abs(x));
+    filename += "_";
+    filename += std::to_string(std::abs(y));
+
+    return filename;
 }

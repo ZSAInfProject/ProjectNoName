@@ -20,11 +20,14 @@ public:
     void render(sf::RenderWindow);
     void update(std::chrono::microseconds deltaTime);
 
+    void save(const std::string& filename);
+    bool load(const std::string& filename);
+
     int getTile(int x, int y);
     void setTile(int x, int y, int value);
 
     Chunk();
-    Chunk(const std::array<int, SIDE_LENGTH*SIDE_LENGTH>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
+    explicit Chunk(const std::array<int, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
 };
 
 
