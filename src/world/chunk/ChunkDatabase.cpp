@@ -52,3 +52,25 @@ void ChunkDatabase::cleanUpCache() {
         }
     }
 }
+
+std::string ChunkDatabase::cacheDebug(int x, int y) {
+    std::vector<std::vector<bool>> vector(80, std::vector<bool>(80, false));
+
+    for (auto const& chunk :chunkCache){
+        if (x<std::get<0>(chunk.first)<x+80 and y<std::get<1>(chunk.first)<y+80) {
+            vector[std::get<0>(chunk.first)][std::get<1>(chunk.first)] = true;
+        }
+    }
+
+    std::string string;
+
+    for (int i=0; i<80; i++) {
+        for (int j=0; j<80; j++) {
+            if (vector[j][i]) string += " ";
+            else string += " ";
+        }
+        string += "\n";
+    }
+
+    return string;
+}
