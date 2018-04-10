@@ -8,18 +8,22 @@
 #include "../object/Object.h"
 
 class Chunk {
-    std::array<int, 4096> tiles;
+    const int SIDE_LENGTH = 32;
+    std::array<int, SIDE_LENGTH*SIDE_LENGTH> tiles;
     std::vector<std::unique_ptr<Object>> objects;
 
+public:
     Chunk(Chunk const&) = delete;
     void operator= (Chunk const&) = delete;
 
-public:
     void render(sf::RenderWindow);
     void update(std::chrono::microseconds deltaTime);
 
+    int getTile(int x, int y);
+    void setTile(int x, int y, int value);
+
     Chunk();
-    Chunk(const std::array<int, 4096>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
+    Chunk(const std::array<int, SIDE_LENGTH*SIDE_LENGTH>& _tiles, std::vector<std::unique_ptr<Object>> _objects);
 };
 
 
