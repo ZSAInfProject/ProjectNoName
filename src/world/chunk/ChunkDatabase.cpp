@@ -17,9 +17,38 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
         //if chunk does not exist generate one
         chunkIt = insertChunkIntoCache(x, y, chunkGenerator->generateChunk(x, y));
     }
+
+    cleanUpCache();
+
     return chunkIt->second.chunk.get();
 }
 std::map<std::tuple<int, int>, CacheEntry>::iterator ChunkDatabase::insertChunkIntoCache(int x, int y, std::unique_ptr<Chunk> chunk) {
     return chunkCache.insert(std::pair<std::tuple<int, int>, CacheEntry>(
             std::make_tuple(x, y), CacheEntry{std::move(chunk), std::chrono::system_clock::now()})).first;
+}
+
+void ChunkDatabase::cleanUpCache() {
+    auto now = std::chrono::system_clock::now();
+    auto sinceLastCleanup = std::chrono::duration_cast<std::chrono::microseconds>(now - lastCacheCleanUp);
+    if(sinceLastCleanup > cleanUpPeriod){
+        lastCacheCleanUp = std::chrono::system_clock::now();
+        if(chunkCache.size() > maxNumOfChunksBeforeCleanup) {
+            std::map<std::chrono::system_clock::time_point,
+                    std::map<std::tuple<int, int>, CacheEntry>::iterator> cacheEntries;
+            int chunksToRelease = (int)chunkCache.size() - maxNumOfChunksBeforeCleanup;
+
+            for(auto it = chunkCache.begin(); it != chunkCache.end(); it++){
+                cacheEntries[it->second.lastHit] = it;
+            }
+            for(auto cacheEntry : cacheEntries){
+                if(chunksToRelease <= 0)
+                    return;
+                auto sinceLastHit = std::chrono::duration_cast<std::chrono::microseconds>(now - cacheEntry.first);
+                if(sinceLastHit < minimumCacheTime)
+                    return;
+                chunkCache.erase(cacheEntry.second);
+                chunksToRelease--;
+            }
+        }
+    }
 }
