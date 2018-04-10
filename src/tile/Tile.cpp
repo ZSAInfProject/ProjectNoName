@@ -4,14 +4,6 @@
 #include "Tile.h"
 
 Tile::Tile(nlohmann::json json) {
-    if (json.find("id") != json.end()) {
-        id = json["id"].get<int>();
-    }
-    else {
-        std::cout<<"No tile id specified in JSON"<<std::endl;
-        exit(1);
-    }
-
     if (json.find("name") != json.end()) {
         name = json["name"].get<std::string>();
     }
@@ -35,7 +27,7 @@ Tile::Tile(nlohmann::json json) {
     }
 }
 
-Tile::Tile(int id, std::string name, float hardness, std::string terminal_representation) : id(id), name(std::move(name)),
+Tile::Tile(std::string name, float hardness, std::string terminal_representation) : name(std::move(name)),
                                                                                  hardness(hardness),
                                                                                  terminal_representation(std::move(
                                                                                          terminal_representation)) {}

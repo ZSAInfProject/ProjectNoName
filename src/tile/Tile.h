@@ -8,13 +8,9 @@
 class Tile {
 public:
     explicit Tile(nlohmann::json json);
-    Tile(int id, std::string name, float hardness, std::string terminal_representation);
+    Tile(std::string name, float hardness, std::string terminal_representation);
     Tile() = delete;
 
-    Tile(Tile const&) = delete;
-    void operator= (Tile const&) = delete;
-
-    int id;
     std::string name;
     float hardness;
     std::string terminal_representation;
