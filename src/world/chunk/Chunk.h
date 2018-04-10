@@ -8,10 +8,11 @@
 #include "../object/Object.h"
 
 class Chunk {
-    const int SIDE_LENGTH = 32;
+public:
+    static const int SIDE_LENGTH = 32;
+private:
     std::array<int, SIDE_LENGTH*SIDE_LENGTH> tiles;
     std::vector<std::unique_ptr<Object>> objects;
-
 public:
     Chunk(Chunk const&) = delete;
     void operator= (Chunk const&) = delete;
