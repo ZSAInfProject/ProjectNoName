@@ -19,6 +19,7 @@ public:
 
     explicit ChunkDatabase(std::unique_ptr<ChunkGenerator>);
 
+    std::string cacheDebug(int x, int y);
 private:
     std::map<std::tuple<int, int>, CacheEntry>::iterator insertChunkIntoCache(int x, int y, std::unique_ptr<Chunk> chunk);
 
