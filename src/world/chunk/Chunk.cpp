@@ -4,8 +4,10 @@
 #include <fstream>
 #include <iostream>
 
-void Chunk::render(sf::RenderWindow& window) {
+void Chunk::render(sf::RenderWindow& window, const sf::Vector2f& translation, const sf::Vector2f& scale) {
     sf::RenderStates states;
+    states.transform.translate(translation);
+    states.transform.scale(scale);
     states.texture = &TileDatabase::get().texture;
 
     window.draw(vertices, states);
@@ -93,7 +95,7 @@ void Chunk::changeQuad(int x, int y) {
         sf::Vertex *quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
         int tile_id = getTile(x, y);
-        std::cout<<tile_id<<std::endl;
+
         int tx = TileDatabase::get()[tile_id].texture_x;
         int ty = TileDatabase::get()[tile_id].texture_y;
 

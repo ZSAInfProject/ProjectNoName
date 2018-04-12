@@ -23,7 +23,7 @@ public:
     Chunk(Chunk const&) = delete;
     void operator= (Chunk const&) = delete;
 
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window, const sf::Vector2f& translation, const sf::Vector2f& scale);
     void update(std::chrono::microseconds deltaTime);
 
     void save(const std::string& filename);
