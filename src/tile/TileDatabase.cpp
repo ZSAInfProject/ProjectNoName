@@ -8,7 +8,7 @@
 
 void TileDatabase::loadTiles(std::string file) {
     tiles.clear();
-    tiles.emplace_back("Default", 1.0, "X");
+    tiles.emplace_back("Default", 1.0, "X", 0, 0);
     std::ifstream ifs("res/" + file);
     nlohmann::json j = nlohmann::json::parse(ifs);
     std::vector<nlohmann::json> vect = j;
@@ -26,7 +26,7 @@ void TileDatabase::loadTile(nlohmann::json json) {
         int id = json["id"];
         Tile tile(std::move(json));
         if (tiles.size() < id + 1) {
-            tiles.resize(id + 1, Tile("Default", 1.0, "X"));
+            tiles.resize(id + 1, Tile("Default", 1.0, "X", 0, 0));
             tiles[id] = tile;
         }
     }
@@ -39,5 +39,11 @@ Tile &TileDatabase::operator[](int index){
     }
     else {
         return tiles[index];
+    }
+}
+
+void TileDatabase::loadTexture(std::string file) {
+    if (!texture.loadFromFile("res/" + file)) {
+        std::cout<<"Could not load textures"<<"\n";
     }
 }

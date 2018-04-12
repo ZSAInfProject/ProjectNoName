@@ -8,12 +8,15 @@
 class Tile {
 public:
     explicit Tile(nlohmann::json json);
-    Tile(std::string name, float hardness, std::string terminal_representation);
+    Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y);
     Tile() = delete;
+
 
     std::string name;
     float hardness;
     std::string terminal_representation;
+    int texture_x;
+    int texture_y;
 };
 
 
