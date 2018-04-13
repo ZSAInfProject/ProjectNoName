@@ -1,8 +1,16 @@
 [
   {
-    "id": 1,
-    "name": "Stone",
+    "id": 0,
+    "name": "Default",
     "terminal": "O",
-    "hardness": 1.1
+    "hardness": 1,
+    "texture": [0, 0]
+  },
+  {
+    "id": 2,
+    "name": "Grass",
+    "terminal": "X",
+    "hardness": 0.5,
+    "texture": [1, 0]
   }
 ]

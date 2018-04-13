@@ -25,9 +25,16 @@ Tile::Tile(nlohmann::json json) {
     else {
         hardness = 1;
     }
+
+    if (json.find("texture") != json.end()) {
+        texture_x = json["texture"][0].get<int>();
+        texture_y = json["texture"][1].get<int>();
+    }
+    else {
+        texture_x = 0;
+        texture_y = 0;
+    }
 }
 
-Tile::Tile(std::string name, float hardness, std::string terminal_representation) : name(std::move(name)),
-                                                                                 hardness(hardness),
-                                                                                 terminal_representation(std::move(
-                                                                                         terminal_representation)) {}
+Tile::Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y)
+        : name(std::move(name)), hardness(hardness), terminal_representation(std::move(terminal_representation)), texture_x(texture_x), texture_y(texture_y) {}
