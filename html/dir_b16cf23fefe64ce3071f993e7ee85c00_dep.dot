@@ -1,0 +1,9 @@
+digraph "src/world/object" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_2069bf6d6dd6e414796f3f544bacd284 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="world" fontname="Helvetica", fontsize="10", URL="dir_2069bf6d6dd6e414796f3f544bacd284.html"]
+  dir_b16cf23fefe64ce3071f993e7ee85c00 [shape=box, label="object", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b16cf23fefe64ce3071f993e7ee85c00.html"];
+  }
+}
