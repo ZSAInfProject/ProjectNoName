@@ -5,13 +5,12 @@
 #include <fstream>
 #include <string>
 
-#define MODE_ERROR 0
-#define MODE_DEBUG 1
-#define MODE_VERBOSE 2
-#define MODE_NOLOG 3
 
-#define ERRORLOG(message) std::cerr<<"ERROR from "<<__PRETTY_FUNCTION__<<" ["<<__LINE__<<"] "<<message<<std::endl
-#define LOG(message) std::clog<<"INFO from "<<__PRETTY_FUNCTION__<<" ["<<__LINE__<<"] "<<message<<std::endl
+
+#define ERRORLOG(message) Log::get().error(message, __PRETTY_FUNCTION__)
+#define LOG(message) Log::get().info(message, __PRETTY_FUNCTION__)
+
+enum Mode{ debug, verbose, nolog, error};
 
 class Log {
 public:
@@ -23,17 +22,17 @@ public:
     Log(Log const&) = delete;
     void operator=(Log const&) = delete;
 
-    void setLogFile(std::string, int);
-    void error(std::string);
-    void info(std::string);
-    void debug(std::string);
+    void setLogFile(std::string, Mode);
+    void error(std::string, std::string);
+    void info(std::string, std::string);
+    void debug(std::string, std::string);
     void getMode();
 
 private:
 
     std::string logFileName;
     std::fstream logFile;
-    int loggingMode = MODE_NOLOG;
+    Mode loggingMode = nolog;
 
     Log() = default;
     ~Log();
