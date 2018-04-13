@@ -19,3 +19,11 @@ before_install:
 
 script:
   - cmake . && make
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: 
+  keep-history: true
+  on:
+    branch: master
