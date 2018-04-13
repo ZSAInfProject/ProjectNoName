@@ -11,6 +11,7 @@ matrix:
             - g++-7
             - cmake
             - libsfml-dev
+            - doxygen
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -19,11 +20,13 @@ before_install:
 
 script:
   - cmake . && make
+  - doxygen
 
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: 
+  github-token: $GITHUB_TOKEN
   keep-history: true
   on:
     branch: master
+  local-dir: "docs"
