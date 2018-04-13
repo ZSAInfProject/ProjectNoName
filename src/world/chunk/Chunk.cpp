@@ -5,6 +5,9 @@
 #include <iostream>
 
 void Chunk::render(sf::RenderWindow& window, const sf::Vector2f& translation, const sf::Vector2f& scale) {
+    if(vertices.getVertexCount() == 0){
+        generateVertices();
+    }
     sf::RenderStates states;
     states.transform.translate(translation);
     states.transform.scale(scale);

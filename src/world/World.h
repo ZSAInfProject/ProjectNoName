@@ -7,6 +7,8 @@
 class World {
     ChunkDatabase chunkDatabase;
 public:
+    void render(sf::RenderWindow& window, sf::View camera);
+
     explicit World(int seed);
 };
 
