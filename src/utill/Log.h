@@ -10,7 +10,7 @@
 #define ERRORLOG(message) Log::get().error(message, __PRETTY_FUNCTION__)
 #define LOG(message) Log::get().info(message, __PRETTY_FUNCTION__)
 
-enum Mode{ debug, verbose, nolog, error};
+enum Mode{ DEBUG, VERBOSE, NOLOG, ERROR};
 
 class Log {
 public:
@@ -32,7 +32,7 @@ private:
 
     std::string logFileName;
     std::fstream logFile;
-    Mode loggingMode = nolog;
+    Mode loggingMode = NOLOG;
 
     Log() = default;
     ~Log();

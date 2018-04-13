@@ -13,21 +13,21 @@ void Log::getMode(){
 }
 
 void Log::error(std::string message, std::string tag) {
-    if(loggingMode != nolog){
+    if(loggingMode != NOLOG){
         std::cerr<< "ERROR  in "+tag +" "+message+'\n';
         logFile << "ERROR in "+tag+" "+message+'\n';
     }
 }
 
 void Log::debug(std::string message, std::string tag) {
-    if(loggingMode == verbose || loggingMode == Mode::debug){
+    if(loggingMode == VERBOSE || loggingMode == Mode::DEBUG){
         std::cerr<< "DEBUG from "+tag+" "+message+'\n';
         logFile << "DEBUG from "+tag+" "+message+'\n';
     }
 }
 
 void Log::info(std::string message,std::string tag) {
-    if(loggingMode == verbose){
+    if(loggingMode == VERBOSE){
         std::cerr<< "INFO from "+tag+" "+message+'\n';
         logFile << "INFO from "+tag+" "+message+'\n';
     }
