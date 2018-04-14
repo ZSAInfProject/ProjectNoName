@@ -2,7 +2,7 @@
 #include "../tile/TileDatabase.h"
 
 GameState::GameState() : State(), world(10){
-    camera.reset(sf::FloatRect(0, 0, 1000, 1000));
+    camera.reset(sf::FloatRect(0, 0, 2000, -2000));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
 }
