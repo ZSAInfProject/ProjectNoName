@@ -1,14 +1,10 @@
-//
-// Created by zakrent on 4/6/18.
-//
-
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 #include "Game.h"
-#include "world/chunk/ChunkDatabase.h"
+#include "utils/Log.h"
 
 int main()
 {
+    Log::get().setLogFile("Log.txt", DEBUG);
+    Log::info("Main", "Program started");
     Game::get().run();
     return EXIT_SUCCESS;
 }
