@@ -14,7 +14,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
                 tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 0;
         }
     }
-    Log::verbose(TAG, "Generated new chunk");
+    Log::verbose(TAG, "Generated new chunk at X = " + std::to_string(x) + " Y = " + std::to_string(y));
     return std::make_unique<Chunk>(tiles);
 }
 
