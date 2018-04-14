@@ -7,6 +7,7 @@
 
 enum Mode{ VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5};
 
+//! Singleton responsible for logging and saving logs.
 class Log {
 public:
     static Log& get(){
@@ -23,6 +24,7 @@ public:
     static void debug(std::string tag, std::string message);
     static void verbose(std::string tag, std::string message);
 
+    //! Sets file to save logs to and logging level.
     void setLogFile(std::string, Mode);
     void getMode();
 
