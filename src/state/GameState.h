@@ -4,6 +4,10 @@
 #include "State.h"
 #include "../world/World.h"
 
+//! State when actual gameplay is present
+/*!
+ * Contains World, Entities etc. Get's player input. Runs physics.
+ */
 class GameState : public State{
     sf::View camera;
     World world;
