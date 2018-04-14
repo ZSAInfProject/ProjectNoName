@@ -2,12 +2,15 @@
 #include <SFML/System.hpp>
 #include "state/GameState.h"
 #include "Game.h"
+#include "utils/Log.h"
 
 void Game::pushState(std::unique_ptr<State> state) {
+    Log::info(TAG , "New state pushed on stack");
     states.push(std::move(state));
 }
 
 void Game::popState() {
+    Log::info(TAG ,"State popped from stack");
     states.pop();
 }
 
@@ -16,6 +19,7 @@ State& Game::getState() {
 }
 
 void Game::run() {
+    Log::info(TAG ,"Main loop started");
     renderWindow.create({800, 600}, "ProjectNoName");
     pushState(std::make_unique<GameState>());
 
@@ -72,6 +76,7 @@ void Game::update() {
 }
 
 void Game::tick() {
+    Log::verbose(TAG, "tick");
     auto now = std::chrono::system_clock::now();
     auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick);
 
