@@ -1,5 +1,6 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/System.hpp>
+#include "state/GameState.h"
 #include "Game.h"
 
 void Game::pushState(std::unique_ptr<State> state) {
@@ -16,6 +17,7 @@ State& Game::getState() {
 
 void Game::run() {
     renderWindow.create({800, 600}, "ProjectNoName");
+    pushState(std::make_unique<GameState>());
 
     std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
@@ -50,10 +52,12 @@ void Game::render() {
     if (time_elapsed >= 1000000/frame_per_second) {
 
         previous_frame = now - std::chrono::microseconds(time_elapsed - 1000000/frame_per_second);
+        ChunkGenerator chunkGenerator(10);
 
         if (!states.empty()) {
             getState().render(&renderWindow);
         }
+        renderWindow.display();
     }
 }
 

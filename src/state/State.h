@@ -5,6 +5,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class State {
+protected:
+    State() = default;
 public:
     virtual void update(std::chrono::microseconds deltaTime) = 0;
     virtual void render(sf::RenderWindow* renderWindow) = 0;
