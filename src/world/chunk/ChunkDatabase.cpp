@@ -1,4 +1,5 @@
 #include "ChunkDatabase.h"
+#include "../../utils/Log.h"
 
 ChunkDatabase::ChunkDatabase(std::unique_ptr<ChunkGenerator> _chunkGenerator) {
     chunkGenerator = std::move(_chunkGenerator);
@@ -11,6 +12,7 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
         chunkIt->second.lastHit = std::chrono::system_clock::now();
     }
     else {
+        Log::verbose(TAG, "Cache miss X = " + std::to_string(x) + " Y = " + std::to_string(y));
         //If chunk is not in cache load it from file
         std::unique_ptr<Chunk> fileChunk = std::make_unique<Chunk>();
         bool fileExists = fileChunk->load(getChunkFilename(x,y));
@@ -41,20 +43,21 @@ void ChunkDatabase::cleanUpCache() {
             std::map<std::chrono::system_clock::time_point,
                     std::map<std::tuple<int, int>, CacheEntry>::iterator> cacheEntries;
             int chunksToRelease = (int)chunkCache.size() - maxNumOfChunksBeforeCleanup;
+            int releasedChunks = 0;
 
             for(auto it = chunkCache.begin(); it != chunkCache.end(); it++){
                 cacheEntries[it->second.lastHit] = it;
             }
             for(auto cacheEntry : cacheEntries){
-                if(chunksToRelease <= 0)
-                    return;
                 auto sinceLastHit = std::chrono::duration_cast<std::chrono::microseconds>(now - cacheEntry.first);
-                if(sinceLastHit < minimumCacheTime)
+                if(sinceLastHit < minimumCacheTime || releasedChunks >= chunksToRelease) {
+                    Log::verbose(TAG, "Cache cleanup - removed " + std::to_string(releasedChunks) + " entries");
                     return;
+                }
                 cacheEntry.second->second.chunk->save(
                         getChunkFilename(std::get<0>(cacheEntry.second->first), std::get<1>(cacheEntry.second->first)));
                 chunkCache.erase(cacheEntry.second);
-                chunksToRelease--;
+                releasedChunks++;
             }
         }
     }

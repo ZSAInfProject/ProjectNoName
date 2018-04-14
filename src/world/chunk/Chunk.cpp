@@ -1,5 +1,6 @@
 #include "Chunk.h"
 #include "../../tile/TileDatabase.h"
+#include "../../utils/Log.h"
 
 #include <fstream>
 #include <iostream>
@@ -41,27 +42,32 @@ void Chunk::save(const std::string &fileName) {
     //Save tiles
     std::ofstream tileData(fileName+".td");
     for(int tile : tiles) {
-        tileData.write(reinterpret_cast<const char *>(&tile), sizeof(int));
-        if(tileData.fail()){
-            std::cout<<"Saving to file failed!\n";
+        if(tileData.good()) {
+            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(int));
+        }
+        else{
+            Log::error(TAG, "Saving to " + fileName + ".td file failed!");
         }
     }
     tileData.close();
 }
 
 bool Chunk::load(const std::string &filename) {
-    std::ifstream tileData(filename+".td");
+    std::ifstream tileData;
+    tileData.open(filename+".td", std::ifstream::in | std::ifstream::binary);
     if(!tileData.is_open()){
-        tileData.close();
         return false;
     }
     //TODO: load objects
 
     //Load tiles
     for(int& tile : tiles){
-        tileData.read(reinterpret_cast<char *>(&tile), sizeof(int));
-        if(tileData.fail()){
-            std::cout<<"Reading from file failed!\n";
+        if(tileData.good()) {
+            tileData.read(reinterpret_cast<char *>(&tile), sizeof(int));
+        }
+        else{
+            Log::error(TAG, "Loading from " + filename + ".td failed!");
+            return false;
         }
     }
     tileData.close();
@@ -72,7 +78,6 @@ bool Chunk::load(const std::string &filename) {
 }
 
 void Chunk::generateVertices() {
-
     vertices.setPrimitiveType(sf::Quads);
     vertices.resize(SIDE_LENGTH*SIDE_LENGTH*4);
 
@@ -88,6 +93,7 @@ void Chunk::generateVertices() {
             changeQuad(i, j);
         }
     }
+    Log::verbose(TAG, "Generated new vertices");
 }
 
 void Chunk::changeQuad(int x, int y) {
@@ -107,6 +113,7 @@ void Chunk::changeQuad(int x, int y) {
         quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, (ty+1)*TILE_SIZE);
         quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE);
     }
+    Log::verbose(TAG, "Changed quad at X = " + std::to_string(x) + " Y = " + std::to_string(y));
 }
 
 
