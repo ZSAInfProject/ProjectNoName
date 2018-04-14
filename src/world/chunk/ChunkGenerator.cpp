@@ -12,6 +12,10 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
             int currentHeight = Chunk::SIDE_LENGTH*y + tileY;
             if(currentHeight > worldHeightAtX)
                 tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 1;
+            else if (worldHeightAtX - currentHeight < 1)
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 4;
+            else if (currentHeight > -20)
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 3;
             else
                 tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 2;
         }
