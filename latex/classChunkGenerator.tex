@@ -1,15 +1,53 @@
 \hypertarget{classChunkGenerator}{\section{Chunk\-Generator Class Reference}
 \label{classChunkGenerator}\index{Chunk\-Generator@{Chunk\-Generator}}
 }
+
+
+\hyperlink{classChunk}{Chunk} generator class.  
+
+
+
+
+{\ttfamily \#include $<$Chunk\-Generator.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}{std\-::unique\-\_\-ptr$<$ \hyperlink{classChunk}{Chunk} $>$ {\bfseries generate\-Chunk} (int x, int y)}\label{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}
-
-\item 
+std\-::unique\-\_\-ptr$<$ \hyperlink{classChunk}{Chunk} $>$ \hyperlink{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}{generate\-Chunk} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Method used to generate new chunks. \end{DoxyCompactList}\item 
 \hypertarget{classChunkGenerator_a97d6306195054b3132c0230a0c092a80}{{\bfseries Chunk\-Generator} (int \-\_\-seed)}\label{classChunkGenerator_a97d6306195054b3132c0230a0c092a80}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classChunk}{Chunk} generator class. 
+
+This class generates new chunks based on chunk's position and world seed. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}{\index{Chunk\-Generator@{Chunk\-Generator}!generate\-Chunk@{generate\-Chunk}}
+\index{generate\-Chunk@{generate\-Chunk}!ChunkGenerator@{Chunk\-Generator}}
+\subsubsection[{generate\-Chunk}]{\setlength{\rightskip}{0pt plus 5cm}std\-::unique\-\_\-ptr$<$ {\bf Chunk} $>$ Chunk\-Generator\-::generate\-Chunk (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}
+
+
+Method used to generate new chunks. 
+
+\hyperlink{classChunkGenerator_acb1e4d2b1d2d620a92fd3e311ddd42cf}{generate\-Chunk()} is used to procedurally generate new chunks based on it's world cords and seed 
+\begin{DoxyParams}{Parameters}
+{\em x} & X coordinate of new chunk \\
+\hline
+{\em y} & Y coordinate of new chunk \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a newly created chunk 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
