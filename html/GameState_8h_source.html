@@ -67,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,21 +92,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;State.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../world/World.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classGameState.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGameState.html">GameState</a> : <span class="keyword">public</span> <a class="code" href="classState.html">State</a>{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    sf::View camera;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classWorld.html">World</a> world;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> update(std::chrono::microseconds deltaTime) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span> render(sf::RenderWindow* renderWindow) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> tick() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classGameState.html">GameState</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif //NONAME_GAMESTATE_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classGameState.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGameState.html">GameState</a> : <span class="keyword">public</span> <a class="code" href="classState.html">State</a>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    sf::View camera;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classWorld.html">World</a> world;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">update</a>(std::chrono::microseconds deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#acdfc29603b6075750555fba6ee216907">render</a>(sf::RenderWindow* renderWindow) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">tick</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classGameState.html">GameState</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif //NONAME_GAMESTATE_H</span></div>
 <div class="ttc" id="classWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdef"><b>Definition:</b> World.h:7</div></div>
-<div class="ttc" id="classState_html"><div class="ttname"><a href="classState.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:7</div></div>
-<div class="ttc" id="classGameState_html"><div class="ttname"><a href="classGameState.html">GameState</a></div><div class="ttdef"><b>Definition:</b> GameState.h:7</div></div>
+<div class="ttc" id="classGameState_html_acdfc29603b6075750555fba6ee216907"><div class="ttname"><a href="classGameState.html#acdfc29603b6075750555fba6ee216907">GameState::render</a></div><div class="ttdeci">void render(sf::RenderWindow *renderWindow) override</div><div class="ttdoc">Function called every screen refresh. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:16</div></div>
+<div class="ttc" id="classGameState_html_ae9ff24d75f36ef56daa6a180d4b38a09"><div class="ttname"><a href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">GameState::tick</a></div><div class="ttdeci">void tick() override</div><div class="ttdoc">Function called periodicaly. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:21</div></div>
+<div class="ttc" id="classState_html"><div class="ttname"><a href="classState.html">State</a></div><div class="ttdoc">Base class for program states. </div><div class="ttdef"><b>Definition:</b> State.h:11</div></div>
+<div class="ttc" id="classGameState_html_aba059d7ab1a53b8f5d795292ed37abac"><div class="ttname"><a href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">GameState::update</a></div><div class="ttdeci">void update(std::chrono::microseconds deltaTime) override</div><div class="ttdoc">Function called every loop iteration. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:10</div></div>
+<div class="ttc" id="classGameState_html"><div class="ttname"><a href="classGameState.html">GameState</a></div><div class="ttdoc">State when actual gameplay is present. </div><div class="ttdef"><b>Definition:</b> GameState.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

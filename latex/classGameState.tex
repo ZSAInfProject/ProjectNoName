@@ -3,6 +3,15 @@
 }
 
 
+\hyperlink{classState}{State} when actual gameplay is present.  
+
+
+
+
+{\ttfamily \#include $<$Game\-State.\-h$>$}
+
+
+
 Inheritance diagram for Game\-State\-:
 
 
@@ -10,15 +19,75 @@ Collaboration diagram for Game\-State\-:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{void {\bfseries update} (std\-::chrono\-::microseconds delta\-Time) override}\label{classGameState_aba059d7ab1a53b8f5d795292ed37abac}
+void \hyperlink{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{update} (std\-::chrono\-::microseconds delta\-Time) override
+\begin{DoxyCompactList}\small\item\em Function called every loop iteration. \end{DoxyCompactList}\item 
+void \hyperlink{classGameState_acdfc29603b6075750555fba6ee216907}{render} (sf\-::\-Render\-Window $\ast$render\-Window) override
+\begin{DoxyCompactList}\small\item\em Function called every screen refresh. \end{DoxyCompactList}\item 
+void \hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick} () override
+\begin{DoxyCompactList}\small\item\em Function called periodicaly. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{classGameState_acdfc29603b6075750555fba6ee216907}{void {\bfseries render} (sf\-::\-Render\-Window $\ast$render\-Window) override}\label{classGameState_acdfc29603b6075750555fba6ee216907}
 
-\item 
-\hypertarget{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{void {\bfseries tick} () override}\label{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}
+\subsection{Detailed Description}
+\hyperlink{classState}{State} when actual gameplay is present. 
 
-\end{DoxyCompactItemize}
+Contains \hyperlink{classWorld}{World}, Entities etc. Get's player input. Runs physics. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classGameState_acdfc29603b6075750555fba6ee216907}{\index{Game\-State@{Game\-State}!render@{render}}
+\index{render@{render}!GameState@{Game\-State}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::render (
+\begin{DoxyParamCaption}
+\item[{sf\-::\-Render\-Window $\ast$}]{render\-Window}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_acdfc29603b6075750555fba6ee216907}
+
+
+Function called every screen refresh. 
+
+\hyperlink{classGameState_acdfc29603b6075750555fba6ee216907}{render()} is called every screen refresh. Should be used for rendering. 
+\begin{DoxyParams}{Parameters}
+{\em render\-Window} & S\-F\-M\-L render window reference \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classState_abea822ddf8d4a55439a0040eba979afb}{State}.
+
+\hypertarget{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{\index{Game\-State@{Game\-State}!tick@{tick}}
+\index{tick@{tick}!GameState@{Game\-State}}
+\subsubsection[{tick}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::tick (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}
+
+
+Function called periodicaly. 
+
+\hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick()} is called periodicaly. Period is set in \hyperlink{classGame}{Game} singleton. Can be used for stuff that doesn't need to run very often, for example recalculating A\-I path. 
+
+Implements \hyperlink{classState_a1cdec36e9ffad91ba7af560770601017}{State}.
+
+\hypertarget{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{\index{Game\-State@{Game\-State}!update@{update}}
+\index{update@{update}!GameState@{Game\-State}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::update (
+\begin{DoxyParamCaption}
+\item[{std\-::chrono\-::microseconds}]{delta\-Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_aba059d7ab1a53b8f5d795292ed37abac}
+
+
+Function called every loop iteration. 
+
+\hyperlink{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{update()} is called every main loop iteration. Should be used for implementing stuff like physics etc. 
+\begin{DoxyParams}{Parameters}
+{\em delta\-Time} & Time which passed between \hyperlink{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{update()} calls \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classState_af2121f8eb52144b7a789214f15e3601a}{State}.
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

@@ -4,5 +4,5 @@ digraph "State"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="State",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGameState.html"];
+  Node2 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGameState.html",tooltip="State when actual gameplay is present. "];
 }

@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li class="current"><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,12 +93,12 @@ This inheritance list is sorted roughly, but not completely, alphabetically:</di
 <tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classChunk.html" target="_self">Chunk</a></td><td class="desc"></td></tr>
 <tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classChunkDatabase.html" target="_self">ChunkDatabase</a></td><td class="desc"></td></tr>
 <tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classChunkGenerator.html" target="_self">ChunkGenerator</a></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classGame.html" target="_self">Game</a></td><td class="desc"></td></tr>
+<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classGame.html" target="_self">Game</a></td><td class="desc">Main program class </td></tr>
 <tr id="row_5_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classObject.html" target="_self">Object</a></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><img id="arr_6_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('6_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classState.html" target="_self">State</a></td><td class="desc"></td></tr>
-<tr id="row_6_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classGameState.html" target="_self">GameState</a></td><td class="desc"></td></tr>
-<tr id="row_7_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classTile.html" target="_self">Tile</a></td><td class="desc"></td></tr>
-<tr id="row_8_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classTileDatabase.html" target="_self">TileDatabase</a></td><td class="desc"></td></tr>
+<tr id="row_6_" class="even"><td class="entry"><img id="arr_6_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('6_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classState.html" target="_self">State</a></td><td class="desc">Base class for program states </td></tr>
+<tr id="row_6_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classGameState.html" target="_self">GameState</a></td><td class="desc"><a class="el" href="classState.html" title="Base class for program states. ">State</a> when actual gameplay is present </td></tr>
+<tr id="row_7_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classTile.html" target="_self">Tile</a></td><td class="desc">Represents <a class="el" href="classTile.html" title="Represents Tile - 1x1 game block. ">Tile</a> - 1x1 game block </td></tr>
+<tr id="row_8_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classTileDatabase.html" target="_self">TileDatabase</a></td><td class="desc">Singleton mapping ids to tiles </td></tr>
 <tr id="row_9_" class="even"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classWorld.html" target="_self">World</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->

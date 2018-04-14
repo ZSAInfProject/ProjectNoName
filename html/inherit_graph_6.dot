@@ -3,7 +3,7 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="State",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classState.html"];
+  Node1 [label="State",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classState.html",tooltip="Base class for program states. "];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGameState.html"];
+  Node2 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGameState.html",tooltip="State when actual gameplay is present. "];
 }

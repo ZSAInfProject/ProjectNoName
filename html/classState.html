@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,6 +88,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">State Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for program states.  
+ <a href="classState.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="State_8h_source.html">State.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for State:</div>
 <div class="dyncontent">
@@ -97,14 +103,14 @@ Inheritance diagram for State:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af2121f8eb52144b7a789214f15e3601a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2121f8eb52144b7a789214f15e3601a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (std::chrono::microseconds deltaTime)=0</td></tr>
+<tr class="memitem:af2121f8eb52144b7a789214f15e3601a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classState.html#af2121f8eb52144b7a789214f15e3601a">update</a> (std::chrono::microseconds deltaTime)=0</td></tr>
+<tr class="memdesc:af2121f8eb52144b7a789214f15e3601a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every loop iteration.  <a href="#af2121f8eb52144b7a789214f15e3601a">More...</a><br/></td></tr>
 <tr class="separator:af2121f8eb52144b7a789214f15e3601a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abea822ddf8d4a55439a0040eba979afb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abea822ddf8d4a55439a0040eba979afb"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow *renderWindow)=0</td></tr>
+<tr class="memitem:abea822ddf8d4a55439a0040eba979afb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classState.html#abea822ddf8d4a55439a0040eba979afb">render</a> (sf::RenderWindow *renderWindow)=0</td></tr>
+<tr class="memdesc:abea822ddf8d4a55439a0040eba979afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every screen refresh.  <a href="#abea822ddf8d4a55439a0040eba979afb">More...</a><br/></td></tr>
 <tr class="separator:abea822ddf8d4a55439a0040eba979afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cdec36e9ffad91ba7af560770601017"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1cdec36e9ffad91ba7af560770601017"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>tick</b> ()=0</td></tr>
+<tr class="memitem:a1cdec36e9ffad91ba7af560770601017"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classState.html#a1cdec36e9ffad91ba7af560770601017">tick</a> ()=0</td></tr>
+<tr class="memdesc:a1cdec36e9ffad91ba7af560770601017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called periodicaly.  <a href="#a1cdec36e9ffad91ba7af560770601017">More...</a><br/></td></tr>
 <tr class="separator:a1cdec36e9ffad91ba7af560770601017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fba10b9995ce898339f3b0d39234788"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fba10b9995ce898339f3b0d39234788"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (<a class="el" href="classState.html">State</a> &amp;other)=delete</td></tr>
@@ -113,6 +119,108 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>tick</b> ()=0
 <a class="el" href="classState.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classState.html">State</a> &amp;other)=delete</td></tr>
 <tr class="separator:a7ac6cc4de6723746df3dfb183b8eb84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for program states. </p>
+<p>Represents a program state like menu or game. Kept on stack by <a class="el" href="classGame.html" title="Main program class. ">Game</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abea822ddf8d4a55439a0040eba979afb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void State::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow *&#160;</td>
+          <td class="paramname"><em>renderWindow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function called every screen refresh. </p>
+<p><a class="el" href="classState.html#abea822ddf8d4a55439a0040eba979afb" title="Function called every screen refresh. ">render()</a> is called every screen refresh. Should be used for rendering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderWindow</td><td>SFML render window reference </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classGameState.html#acdfc29603b6075750555fba6ee216907">GameState</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1cdec36e9ffad91ba7af560770601017"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void State::tick </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function called periodicaly. </p>
+<p><a class="el" href="classState.html#a1cdec36e9ffad91ba7af560770601017" title="Function called periodicaly. ">tick()</a> is called periodicaly. Period is set in <a class="el" href="classGame.html" title="Main program class. ">Game</a> singleton. Can be used for stuff that doesn't need to run very often, for example recalculating AI path. </p>
+
+<p>Implemented in <a class="el" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">GameState</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af2121f8eb52144b7a789214f15e3601a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void State::update </td>
+          <td>(</td>
+          <td class="paramtype">std::chrono::microseconds&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function called every loop iteration. </p>
+<p><a class="el" href="classState.html#af2121f8eb52144b7a789214f15e3601a" title="Function called every loop iteration. ">update()</a> is called every main loop iteration. Should be used for implementing stuff like physics etc. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Time which passed between <a class="el" href="classState.html#af2121f8eb52144b7a789214f15e3601a" title="Function called every loop iteration. ">update()</a> calls </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">GameState</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/state/<a class="el" href="State_8h_source.html">State.h</a></li>
 </ul>

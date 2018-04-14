@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,6 +89,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Tile Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents <a class="el" href="classTile.html" title="Represents Tile - 1x1 game block. ">Tile</a> - 1x1 game block.  
+ <a href="classTile.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Tile_8h_source.html">Tile.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -95,28 +101,36 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Tile</b> (nlohmann::json json)</td></tr>
 <tr class="separator:a135790fef385f3021dccf9dde464432c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90a811c18a411dda0c4add4567fba857"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a90a811c18a411dda0c4add4567fba857"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Tile</b> (std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Tile</b> (std::string <a class="el" href="classTile.html#aa5408d0f0f4a60f25796f651db2f84ac">name</a>, float <a class="el" href="classTile.html#accd68364f51cf745c5c95717a164b2e9">hardness</a>, std::string <a class="el" href="classTile.html#a4792f343c63f2b7c1bf1a7321ba60206">terminal_representation</a>, int <a class="el" href="classTile.html#ac1b8010b027d438ee826af235dc00fe1">texture_x</a>, int <a class="el" href="classTile.html#addde9f80a365eae65b1f4bc156f18722">texture_y</a>)</td></tr>
 <tr class="separator:a90a811c18a411dda0c4add4567fba857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa5408d0f0f4a60f25796f651db2f84ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5408d0f0f4a60f25796f651db2f84ac"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#aa5408d0f0f4a60f25796f651db2f84ac">name</a></td></tr>
+<tr class="memdesc:aa5408d0f0f4a60f25796f651db2f84ac"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classTile.html" title="Represents Tile - 1x1 game block. ">Tile</a> name showed to player. <br/></td></tr>
 <tr class="separator:aa5408d0f0f4a60f25796f651db2f84ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accd68364f51cf745c5c95717a164b2e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accd68364f51cf745c5c95717a164b2e9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>hardness</b></td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#accd68364f51cf745c5c95717a164b2e9">hardness</a></td></tr>
+<tr class="memdesc:accd68364f51cf745c5c95717a164b2e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardness of a material. Correlates to time needed to destroy. <br/></td></tr>
 <tr class="separator:accd68364f51cf745c5c95717a164b2e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4792f343c63f2b7c1bf1a7321ba60206"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4792f343c63f2b7c1bf1a7321ba60206"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>terminal_representation</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#a4792f343c63f2b7c1bf1a7321ba60206">terminal_representation</a></td></tr>
+<tr class="memdesc:a4792f343c63f2b7c1bf1a7321ba60206"><td class="mdescLeft">&#160;</td><td class="mdescRight">String used to represent tile in terminal for debug. <br/></td></tr>
 <tr class="separator:a4792f343c63f2b7c1bf1a7321ba60206"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1b8010b027d438ee826af235dc00fe1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1b8010b027d438ee826af235dc00fe1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>texture_x</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#ac1b8010b027d438ee826af235dc00fe1">texture_x</a></td></tr>
+<tr class="memdesc:ac1b8010b027d438ee826af235dc00fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer x coordinate of texture on texture map. <br/></td></tr>
 <tr class="separator:ac1b8010b027d438ee826af235dc00fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addde9f80a365eae65b1f4bc156f18722"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addde9f80a365eae65b1f4bc156f18722"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>texture_y</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTile.html#addde9f80a365eae65b1f4bc156f18722">texture_y</a></td></tr>
+<tr class="memdesc:addde9f80a365eae65b1f4bc156f18722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer y coordinate of texture on texture map. <br/></td></tr>
 <tr class="separator:addde9f80a365eae65b1f4bc156f18722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents <a class="el" href="classTile.html" title="Represents Tile - 1x1 game block. ">Tile</a> - 1x1 game block. </p>
+<p><a class="el" href="classTile.html" title="Represents Tile - 1x1 game block. ">Tile</a> can be created passing all fields (for debug) or using a JSON object </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/tile/<a class="el" href="Tile_8h_source.html">Tile.h</a></li>
 <li>src/tile/Tile.cpp</li>
 </ul>

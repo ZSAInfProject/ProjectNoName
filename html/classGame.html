@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,11 +84,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classGame-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Game Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main program class.  
+ <a href="classGame.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Game_8h_source.html">Game.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -98,24 +105,90 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classGame.html">Game</a> const &amp;)=delete</td></tr>
 <tr class="separator:aa4c0eacd8656e54ec4e94877c453e531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa808b50e4c19c3ca8907d6a3ab1f473e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa808b50e4c19c3ca8907d6a3ab1f473e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushState</b> (std::unique_ptr&lt; <a class="el" href="classState.html">State</a> &gt; state)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#aa808b50e4c19c3ca8907d6a3ab1f473e">pushState</a> (std::unique_ptr&lt; <a class="el" href="classState.html">State</a> &gt; state)</td></tr>
+<tr class="memdesc:aa808b50e4c19c3ca8907d6a3ab1f473e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push state on stack. <br/></td></tr>
 <tr class="separator:aa808b50e4c19c3ca8907d6a3ab1f473e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b33dd67adef59bebadba8a234282c88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b33dd67adef59bebadba8a234282c88"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>popState</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a4b33dd67adef59bebadba8a234282c88">popState</a> ()</td></tr>
+<tr class="memdesc:a4b33dd67adef59bebadba8a234282c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop state from stack. <br/></td></tr>
 <tr class="separator:a4b33dd67adef59bebadba8a234282c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa742f626e4b8a5dac8677ef40263716c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa742f626e4b8a5dac8677ef40263716c"></a>
-<a class="el" href="classState.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> ()</td></tr>
+<a class="el" href="classState.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#aa742f626e4b8a5dac8677ef40263716c">getState</a> ()</td></tr>
+<tr class="memdesc:aa742f626e4b8a5dac8677ef40263716c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get reference to state on top of the stack. <br/></td></tr>
 <tr class="separator:aa742f626e4b8a5dac8677ef40263716c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ab78f5ed0d5ea879157357cf2fb2afa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa">run</a> ()</td></tr>
+<tr class="memdesc:a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start main loop. <br/></td></tr>
 <tr class="separator:a1ab78f5ed0d5ea879157357cf2fb2afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac69a0c5e25c7acb811f4a7b86a2ceb74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac69a0c5e25c7acb811f4a7b86a2ceb74"></a>
-static <a class="el" href="classGame.html">Game</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
+static <a class="el" href="classGame.html">Game</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac69a0c5e25c7acb811f4a7b86a2ceb74">get</a> ()</td></tr>
+<tr class="memdesc:ac69a0c5e25c7acb811f4a7b86a2ceb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns reference to singleton object. <br/></td></tr>
 <tr class="separator:ac69a0c5e25c7acb811f4a7b86a2ceb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af9f24863bbe8102d1bf5d97aaa449d14"><td class="memItemLeft" align="right" valign="top">std::chrono::microseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#af9f24863bbe8102d1bf5d97aaa449d14">minimumLoopTime</a> = std::chrono::microseconds(120)</td></tr>
+<tr class="memdesc:af9f24863bbe8102d1bf5d97aaa449d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum time for main loop iteration.  <a href="#af9f24863bbe8102d1bf5d97aaa449d14">More...</a><br/></td></tr>
+<tr class="separator:af9f24863bbe8102d1bf5d97aaa449d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57ebbcb3e9f6add9b4bf066c900c0db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db">frame_per_second</a> = 120</td></tr>
+<tr class="memdesc:ac57ebbcb3e9f6add9b4bf066c900c0db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum frame rate of a game.  <a href="#ac57ebbcb3e9f6add9b4bf066c900c0db">More...</a><br/></td></tr>
+<tr class="separator:ac57ebbcb3e9f6add9b4bf066c900c0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65800b8c8afee406d719b404a4a78877"><td class="memItemLeft" align="right" valign="top">std::chrono::microseconds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a65800b8c8afee406d719b404a4a78877">tick_period</a> = std::chrono::microseconds(1000000)</td></tr>
+<tr class="memdesc:a65800b8c8afee406d719b404a4a78877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Period between consecutive tick() calls.  <a href="#a65800b8c8afee406d719b404a4a78877">More...</a><br/></td></tr>
+<tr class="separator:a65800b8c8afee406d719b404a4a78877"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Main program class. </p>
+<p>This class is a singleton. Contains main game loop. Stores all states on stack and calls update(), render() and tick() on top state. Call rate for each can be setup separately. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac57ebbcb3e9f6add9b4bf066c900c0db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::frame_per_second = 120</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum frame rate of a game. </p>
+<p><a class="el" href="classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa" title="Start main loop. ">run()</a> will be called with maximum frequency equal to value of this variable. </p>
+
+</div>
+</div>
+<a class="anchor" id="af9f24863bbe8102d1bf5d97aaa449d14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::microseconds Game::minimumLoopTime = std::chrono::microseconds(120)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum time for main loop iteration. </p>
+<p>If main loop runs faster than the set up limit it will be slowed down to save CPU usage. </p>
+
+</div>
+</div>
+<a class="anchor" id="a65800b8c8afee406d719b404a4a78877"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::microseconds Game::tick_period = std::chrono::microseconds(1000000)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Period between consecutive tick() calls. </p>
+<p>tick() will be called periodically with a given period </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="Game_8h_source.html">Game.h</a></li>
 <li>src/Game.cpp</li>
