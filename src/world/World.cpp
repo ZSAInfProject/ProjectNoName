@@ -20,5 +20,4 @@ void World::render(sf::RenderWindow &window, sf::View camera) {
         }
     }
     ChunkGenerator chunkGenerator(10);
-    chunkGenerator.generateChunk(0,0)->render(window, sf::Vector2f(0,0), sf::Vector2f(1,1));
 }
