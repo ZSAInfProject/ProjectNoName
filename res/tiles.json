@@ -2,15 +2,36 @@
   {
     "id": 0,
     "name": "Default",
-    "terminal": "O",
+    "terminal": "?",
     "hardness": 1,
     "texture": [0, 0]
   },
   {
-    "id": 2,
-    "name": "Grass",
-    "terminal": "X",
-    "hardness": 0.5,
+    "id": 1,
+    "name": "Sky",
+    "terminal": " ",
+    "hardness" : 0,
     "texture": [1, 0]
+  },
+  {
+    "id": 2,
+    "name": "Stone",
+    "terminal": "X",
+    "hardness" : 2.0,
+    "texture": [2, 0]
+  },
+  {
+    "id": 3,
+    "name": "Dirt",
+    "terminal": "O",
+    "hardness" : 1.0,
+    "texture": [3, 0]
+  },
+  {
+    "id": 4,
+    "name": "Grass",
+    "terminal": "G",
+    "hardness": 1.0,
+    "texture": [4, 0]
   }
 ]
