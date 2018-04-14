@@ -18,3 +18,5 @@ add_executable(NoName ${SOURCE_FILES})
 
 target_link_libraries(NoName ${SFML_LIBRARIES})
 
+file(COPY res/ DESTINATION res/)
+file(MAKE_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/chunks/)
