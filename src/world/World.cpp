@@ -9,8 +9,8 @@ void World::render(sf::RenderWindow &window, sf::View camera) {
     int chunkSideLengthInWorldCord = Chunk::SIDE_LENGTH*Chunk::TILE_SIZE;
     auto minXChunk = static_cast<int>(camera.getCenter().x - camera.getSize().x / 2)/chunkSideLengthInWorldCord-1;
     auto maxXChunk = static_cast<int>(camera.getCenter().x + camera.getSize().x / 2)/chunkSideLengthInWorldCord+1;
-    auto minYChunk = static_cast<int>(camera.getCenter().y - camera.getSize().y / 2)/chunkSideLengthInWorldCord-1;
-    auto maxYChunk = static_cast<int>(camera.getCenter().y + camera.getSize().y / 2)/chunkSideLengthInWorldCord+1;
+    auto minYChunk = static_cast<int>(camera.getCenter().y + camera.getSize().y / 2)/chunkSideLengthInWorldCord-2;
+    auto maxYChunk = static_cast<int>(camera.getCenter().y - camera.getSize().y / 2)/chunkSideLengthInWorldCord;
     for(int x = minXChunk; x <= maxXChunk;x++){
         for(int y = minYChunk; y <= maxYChunk; y++){
             chunkDatabase.getChunk(x, y)->render(window,
