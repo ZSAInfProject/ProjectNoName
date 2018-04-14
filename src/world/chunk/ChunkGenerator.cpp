@@ -11,7 +11,13 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
         for(int tileY = 0; tileY < Chunk::SIDE_LENGTH; tileY++){
             int currentHeight = Chunk::SIDE_LENGTH*y + tileY;
             if(currentHeight > worldHeightAtX)
-                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 0;
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 1;
+            else if (worldHeightAtX - currentHeight < 1)
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 4;
+            else if (currentHeight > -20)
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 3;
+            else
+                tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 2;
         }
     }
     Log::verbose(TAG, "Generated new chunk at X = " + std::to_string(x) + " Y = " + std::to_string(y));

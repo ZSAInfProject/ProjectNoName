@@ -80,10 +80,10 @@ void Chunk::generateVertices() {
         for (unsigned int j=0; j<SIDE_LENGTH; j++) {
             sf::Vertex* quad = &vertices[(i+j*SIDE_LENGTH) * 4];
 
-            quad[0].position = sf::Vector2f(i*TILE_SIZE, j*TILE_SIZE);
-            quad[1].position = sf::Vector2f((i+1)*TILE_SIZE, j*TILE_SIZE);
-            quad[2].position = sf::Vector2f((i+1)*TILE_SIZE, (j+1)*TILE_SIZE);
-            quad[3].position = sf::Vector2f(i*TILE_SIZE, (j+1)*TILE_SIZE);
+            quad[2].position = sf::Vector2f(i*TILE_SIZE, j*TILE_SIZE);
+            quad[3].position = sf::Vector2f((i+1)*TILE_SIZE, j*TILE_SIZE);
+            quad[0].position = sf::Vector2f((i+1)*TILE_SIZE, (j+1)*TILE_SIZE);
+            quad[1].position = sf::Vector2f(i*TILE_SIZE, (j+1)*TILE_SIZE);
 
             changeQuad(i, j);
         }
