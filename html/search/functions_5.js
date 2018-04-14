@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update',['update',['../classGameState.html#aba059d7ab1a53b8f5d795292ed37abac',1,'GameState::update()'],['../classState.html#af2121f8eb52144b7a789214f15e3601a',1,'State::update()']]]
+  ['save',['save',['../classChunk.html#ac3e70286e057eb0f93accec639047097',1,'Chunk']]],
+  ['settile',['setTile',['../classChunk.html#a2027949ed92132d341f4e7c778ce9ebd',1,'Chunk']]]
 ];

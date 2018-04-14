@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['render',['render',['../classGameState.html#acdfc29603b6075750555fba6ee216907',1,'GameState::render()'],['../classState.html#abea822ddf8d4a55439a0040eba979afb',1,'State::render()']]],
-  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
+  ['popstate',['popState',['../classGame.html#a4b33dd67adef59bebadba8a234282c88',1,'Game']]],
+  ['pushstate',['pushState',['../classGame.html#aa808b50e4c19c3ca8907d6a3ab1f473e',1,'Game']]]
 ];
