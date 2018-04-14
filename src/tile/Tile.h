@@ -13,7 +13,7 @@ class Tile {
 public:
     explicit Tile(nlohmann::json json);
     Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y);
-    Tile() = delete;
+    Tile();
 
 
     //! Tile name showed to player
@@ -26,6 +26,9 @@ public:
     int texture_x;
     //! Integer y coordinate of texture on texture map
     int texture_y;
+
+private:
+    static constexpr auto TAG = "Tile";
 };
 
 

@@ -41,6 +41,8 @@ public:
 private:
     std::vector<Tile> tiles;
     void loadTile(nlohmann::json json);
+
+    static constexpr auto TAG = "TileDatabase";
 };
 
 
