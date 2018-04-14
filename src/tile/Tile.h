@@ -5,6 +5,10 @@
 
 #include "../utils/json.hpp"
 
+//! Represents Tile - 1x1 game block
+/*!
+ * Tile can be created passing all fields (for debug) or using a JSON object
+ */
 class Tile {
 public:
     explicit Tile(nlohmann::json json);
@@ -12,10 +16,15 @@ public:
     Tile() = delete;
 
 
+    //! Tile name showed to player
     std::string name;
+    //! Hardness of a material. Correlates to time needed to destroy.
     float hardness;
+    //! String used to represent tile in terminal for debug.
     std::string terminal_representation;
+    //! Integer x coordinate of texture on texture map
     int texture_x;
+    //! Integer y coordinate of texture on texture map
     int texture_y;
 };
 
