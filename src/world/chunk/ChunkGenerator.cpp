@@ -1,5 +1,6 @@
 #include <cmath>
 #include "ChunkGenerator.h"
+#include "../../utils/Log.h"
 
 std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
     std::array<int, Chunk::SIDE_LENGTH*Chunk::SIDE_LENGTH> tiles{};
@@ -13,6 +14,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
                 tiles[Chunk::SIDE_LENGTH*tileY+tileX] = 0;
         }
     }
+    Log::verbose(TAG, "Generated new chunk");
     return std::make_unique<Chunk>(tiles);
 }
 

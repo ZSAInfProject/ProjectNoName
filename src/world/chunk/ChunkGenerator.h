@@ -14,8 +14,16 @@ class ChunkGenerator {
      * generateChunk() will use this value for chunk generation
      */
     int seed;
+
+    static constexpr auto TAG = "ChunkGenerator";
 public:
-    //! Return chunk generated for given coordinates.
+    //! Method used to generate new chunks
+    /*!
+     * generateChunk() is used to procedurally generate new chunks based on it's world cords and seed
+     * @param x X coordinate of new chunk
+     * @param y Y coordinate of new chunk
+     * @return a newly created chunk
+     */
     std::unique_ptr<Chunk> generateChunk(int x, int y);
 
     explicit ChunkGenerator(int _seed);
