@@ -38,7 +38,7 @@ void TileDatabase::loadTile(nlohmann::json json) {
 
 Tile &TileDatabase::operator[](int index){
     if (index >= tiles.size()) {
-        Log::debug(Tag, "Id too big. Returning default tile");
+        Log::debug(TAG, "Id too big. Returning default tile");
         return tiles[0];
     }
     else {
