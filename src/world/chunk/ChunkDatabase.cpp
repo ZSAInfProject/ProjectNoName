@@ -105,3 +105,15 @@ std::string ChunkDatabase::getChunkFilename(int x, int y) {
 
     return filename;
 }
+
+ChunkDatabase::~ChunkDatabase() {
+    saveCache();
+}
+
+void ChunkDatabase::saveCache() {
+    for (auto &entry : chunkCache) {
+        entry.second.chunk->save(
+                getChunkFilename(std::get<0>(entry.first), std::get<1>(entry.first))
+                );
+    }
+}
