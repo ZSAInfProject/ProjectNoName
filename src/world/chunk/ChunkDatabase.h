@@ -49,7 +49,9 @@ private:
     std::chrono::microseconds minimumCacheTime = std::chrono::microseconds(100000);
     const int maxNumOfChunksBeforeCleanup = 10;
     void cleanUpCache();
-    void saveCache();
+    std::chrono::system_clock::time_point lastAutoSave = std::chrono::system_clock::now();
+    std::chrono::seconds autoSavePeriod = std::chrono::seconds(10);
+    void saveCache(bool ignoreAutoSavePeriod = false);
 
     std::string getChunkFilename(int x, int y);
 
