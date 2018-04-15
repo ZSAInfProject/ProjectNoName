@@ -26,6 +26,7 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
     }
 
     cleanUpCache();
+    saveCache();
 
     return chunkIt->second.chunk.get();
 }
@@ -104,4 +105,22 @@ std::string ChunkDatabase::getChunkFilename(int x, int y) {
     filename += std::to_string(std::abs(y));
 
     return filename;
+}
+
+ChunkDatabase::~ChunkDatabase() {
+    saveCache(true);
+}
+
+void ChunkDatabase::saveCache(bool ignoreAutoSavePeriod) {
+    auto now = std::chrono::system_clock::now();
+    auto sinceLastAutoSave = std::chrono::duration_cast<std::chrono::seconds>(now - lastAutoSave);
+    if(sinceLastAutoSave > autoSavePeriod || ignoreAutoSavePeriod) {
+        lastAutoSave = now;
+        for (auto &entry : chunkCache) {
+            entry.second.chunk->save(
+                    getChunkFilename(std::get<0>(entry.first), std::get<1>(entry.first))
+            );
+        }
+        Log::debug(TAG, "Cache saved");
+    }
 }

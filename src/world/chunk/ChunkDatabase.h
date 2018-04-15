@@ -40,6 +40,7 @@ public:
     std::string cacheDebug(int x, int y);
 
     explicit ChunkDatabase(std::unique_ptr<ChunkGenerator>);
+    ~ChunkDatabase();
 private:
     std::map<std::tuple<int, int>, CacheEntry>::iterator insertChunkIntoCache(int x, int y, std::unique_ptr<Chunk> chunk);
 
@@ -48,6 +49,9 @@ private:
     std::chrono::microseconds minimumCacheTime = std::chrono::microseconds(100000);
     const int maxNumOfChunksBeforeCleanup = 10;
     void cleanUpCache();
+    std::chrono::system_clock::time_point lastAutoSave = std::chrono::system_clock::now();
+    std::chrono::seconds autoSavePeriod = std::chrono::seconds(10);
+    void saveCache(bool ignoreAutoSavePeriod = false);
 
     std::string getChunkFilename(int x, int y);
 
