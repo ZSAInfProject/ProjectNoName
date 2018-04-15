@@ -22,12 +22,8 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
-        position.y = Game::get().getRenderWindow().getSize().y - position.y;
-        position -= sf::Vector2f(Game::get().getRenderWindow().getSize())/2.0f;
-        position.x *= camera.getSize().x / Game::get().getRenderWindow().getSize().x;
-        position.y *= -camera.getSize().y / Game::get().getRenderWindow().getSize().y;
-        position += currentCameraPos;
 
+        position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
         if (position.x < 0) tile.x -= 1;
         if (position.y < 0) tile.y -= 1;
@@ -36,12 +32,8 @@ void GameState::update(std::chrono::microseconds deltaTime) {
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
-        position.y = Game::get().getRenderWindow().getSize().y - position.y;
-        position -= sf::Vector2f(Game::get().getRenderWindow().getSize())/2.0f;
-        position.x *= camera.getSize().x / Game::get().getRenderWindow().getSize().x;
-        position.y *= -camera.getSize().y / Game::get().getRenderWindow().getSize().y;
-        position += currentCameraPos;
 
+        position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
         if (position.x < 0) tile.x -= 1;
         if (position.y < 0) tile.y -= 1;
@@ -57,6 +49,16 @@ void GameState::render(sf::RenderWindow *renderWindow) {
     renderWindow->setView(renderWindow->getDefaultView());
 }
 void GameState::tick() {
+}
+
+sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {
+    auto out = in;
+    out.y = Game::get().getRenderWindow().getSize().y - in.y;
+    out -= sf::Vector2f(Game::get().getRenderWindow().getSize())/2.0f;
+    out.x *= camera.getSize().x / Game::get().getRenderWindow().getSize().x;
+    out.y *= -camera.getSize().y / Game::get().getRenderWindow().getSize().y;
+    out += camera.getCenter();
+    return out;
 }
 
 
