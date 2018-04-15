@@ -17,6 +17,10 @@ public:
     void tick() override;
 
     GameState();
+
+private:
+    //! Converts screen to world coordinates
+    sf::Vector2f screen_to_global_offset(sf::Vector2f in);
 };
 
 #endif //NONAME_GAMESTATE_H
