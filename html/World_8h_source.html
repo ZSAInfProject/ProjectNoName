@@ -91,18 +91,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;chunk/ChunkDatabase.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classWorld.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWorld.html">World</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classChunkDatabase.html">ChunkDatabase</a> chunkDatabase;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">void</span> render(sf::RenderWindow&amp; window, sf::View camera);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWorld.html">World</a>(<span class="keywordtype">int</span> seed);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;};</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif //NONAME_WORLD_H</span></div>
-<div class="ttc" id="classWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdef"><b>Definition:</b> World.h:7</div></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../tile/Tile.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classWorld.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classWorld.html">World</a> {</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classChunkDatabase.html">ChunkDatabase</a> chunkDatabase;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> render(sf::RenderWindow&amp; window, sf::View camera);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classWorld.html#add11c876b51a55c267f6b30b72e3b741">getTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWorld.html#a475311731cded97f05e81cb0f056a7ac">setTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWorld.html">World</a>(<span class="keywordtype">int</span> seed);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;World&quot;</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif //NONAME_WORLD_H</span></div>
+<div class="ttc" id="classWorld_html_a475311731cded97f05e81cb0f056a7ac"><div class="ttname"><a href="classWorld.html#a475311731cded97f05e81cb0f056a7ac">World::setTile</a></div><div class="ttdeci">void setTile(int x, int y, int id)</div><div class="ttdoc">Sets tile id using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:45</div></div>
+<div class="ttc" id="classWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdef"><b>Definition:</b> World.h:8</div></div>
+<div class="ttc" id="classWorld_html_add11c876b51a55c267f6b30b72e3b741"><div class="ttname"><a href="classWorld.html#add11c876b51a55c267f6b30b72e3b741">World::getTile</a></div><div class="ttdeci">int getTile(int x, int y)</div><div class="ttdoc">Gets tile id using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:27</div></div>
 <div class="ttc" id="classChunkDatabase_html"><div class="ttname"><a href="classChunkDatabase.html">ChunkDatabase</a></div><div class="ttdoc">Class that manages Chunk storage, loading and generation. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
