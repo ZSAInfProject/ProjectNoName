@@ -111,26 +111,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string <a class="code" href="classChunkDatabase.html#a859a5a44d31f8fa40fe8d7936b27b5f5">cacheDebug</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classChunkDatabase.html">ChunkDatabase</a>(std::unique_ptr&lt;ChunkGenerator&gt;);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::map&lt;std::tuple&lt;int, int&gt;, <a class="code" href="structCacheEntry.html">CacheEntry</a>&gt;::iterator insertChunkIntoCache(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, std::unique_ptr&lt;Chunk&gt; chunk);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::chrono::system_clock::time_point lastCacheCleanUp = std::chrono::system_clock::now();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::chrono::microseconds cleanUpPeriod = std::chrono::microseconds(50000);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::chrono::microseconds minimumCacheTime = std::chrono::microseconds(100000);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> maxNumOfChunksBeforeCleanup = 10;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> cleanUpCache();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::string getChunkFilename(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;ChunkDatabase&quot;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    ~<a class="code" href="classChunkDatabase.html">ChunkDatabase</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::map&lt;std::tuple&lt;int, int&gt;, <a class="code" href="structCacheEntry.html">CacheEntry</a>&gt;::iterator insertChunkIntoCache(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, std::unique_ptr&lt;Chunk&gt; chunk);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::chrono::system_clock::time_point lastCacheCleanUp = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::chrono::microseconds cleanUpPeriod = std::chrono::microseconds(50000);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::chrono::microseconds minimumCacheTime = std::chrono::microseconds(100000);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> maxNumOfChunksBeforeCleanup = 10;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> cleanUpCache();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::chrono::system_clock::time_point lastAutoSave = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::chrono::seconds autoSavePeriod = std::chrono::seconds(10);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> saveCache(<span class="keywordtype">bool</span> ignoreAutoSavePeriod = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::string getChunkFilename(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif //NONAME_CHUNKDATABASE_H</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;ChunkDatabase&quot;</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif //NONAME_CHUNKDATABASE_H</span></div>
 <div class="ttc" id="structCacheEntry_html"><div class="ttname"><a href="structCacheEntry.html">CacheEntry</a></div><div class="ttdef"><b>Definition:</b> ChunkDatabase.h:9</div></div>
 <div class="ttc" id="classChunk_html"><div class="ttname"><a href="classChunk.html">Chunk</a></div><div class="ttdef"><b>Definition:</b> Chunk.h:11</div></div>
 <div class="ttc" id="classChunkDatabase_html_abcf683d90bbfc79651f0ccc377037c64"><div class="ttname"><a href="classChunkDatabase.html#abcf683d90bbfc79651f0ccc377037c64">ChunkDatabase::getChunk</a></div><div class="ttdeci">Chunk * getChunk(int x, int y)</div><div class="ttdoc">Gets Chunk from database. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.cpp:8</div></div>
-<div class="ttc" id="classChunkDatabase_html_a859a5a44d31f8fa40fe8d7936b27b5f5"><div class="ttname"><a href="classChunkDatabase.html#a859a5a44d31f8fa40fe8d7936b27b5f5">ChunkDatabase::cacheDebug</a></div><div class="ttdeci">std::string cacheDebug(int x, int y)</div><div class="ttdoc">Method for debugging cache. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.cpp:66</div></div>
+<div class="ttc" id="classChunkDatabase_html_a859a5a44d31f8fa40fe8d7936b27b5f5"><div class="ttname"><a href="classChunkDatabase.html#a859a5a44d31f8fa40fe8d7936b27b5f5">ChunkDatabase::cacheDebug</a></div><div class="ttdeci">std::string cacheDebug(int x, int y)</div><div class="ttdoc">Method for debugging cache. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.cpp:67</div></div>
 <div class="ttc" id="classChunkDatabase_html"><div class="ttname"><a href="classChunkDatabase.html">ChunkDatabase</a></div><div class="ttdoc">Class that manages Chunk storage, loading and generation. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
