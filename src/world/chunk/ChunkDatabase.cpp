@@ -121,6 +121,6 @@ void ChunkDatabase::saveCache(bool ignoreAutoSavePeriod) {
                     getChunkFilename(std::get<0>(entry.first), std::get<1>(entry.first))
             );
         }
+        Log::debug(TAG, "Cache saved");
     }
-    Log::debug(TAG, "Cache saved");
 }
