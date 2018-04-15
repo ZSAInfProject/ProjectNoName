@@ -39,6 +39,9 @@ public:
     //! Start main loop
     void run();
 
+    //! Returns a reference to main render window
+    const sf::RenderWindow& getRenderWindow();
+
     //! Minimum time for main loop iteration
     /*!
      * If main loop runs faster than the set up limit it will be slowed down to save CPU usage.

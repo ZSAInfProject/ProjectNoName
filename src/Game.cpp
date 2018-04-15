@@ -90,3 +90,7 @@ void Game::tick() {
 
     }
 }
+
+const sf::RenderWindow &Game::getRenderWindow() {
+    return renderWindow;
+}
