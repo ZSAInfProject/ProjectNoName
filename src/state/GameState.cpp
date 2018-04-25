@@ -18,7 +18,7 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
     auto currentCameraPos = camera.getCenter();
     //camera.setRotation(static_cast<float>(sin(camera.getCenter().x / 2000) * 360.0));
-    //camera.setCenter(currentCameraPos+sf::Vector2f(1*deltaTime.count()/10000.0,0.0));
+    camera.setCenter(currentCameraPos+sf::Vector2f(1*deltaTime.count()/1500.0,0.0));
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
