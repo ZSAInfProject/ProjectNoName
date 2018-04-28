@@ -24,7 +24,7 @@ void World::render(sf::RenderWindow &window, sf::View camera) {
     ChunkGenerator chunkGenerator(10);
 }
 
-int World::getTile(int x, int y) {
+chunkTile World::getTile(int x, int y) {
     sf::Vector2i tile;
     tile.x = abs(x);
     tile.y = abs(y);
@@ -42,8 +42,8 @@ int World::getTile(int x, int y) {
     return chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y);
 }
 
-void World::setTile(int x, int y, int id) {
-    Log::verbose(TAG, "Tile set at: " + std::to_string(x) + " " + std::to_string(y) + " to: " + std::to_string(id));
+void World::setTile(int x, int y, chunkTile value) {
+    Log::verbose(TAG, "Tile set at: " + std::to_string(x) + " " + std::to_string(y) + " to: " + std::to_string(value.tileId));
     sf::Vector2i tile;
     tile.x = abs(x);
     tile.y = abs(y);
@@ -58,5 +58,18 @@ void World::setTile(int x, int y, int id) {
         chunk.y = -chunk.y - 1;
         tile.y = Chunk::SIDE_LENGTH - tile.y;
     }
-    chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, id);
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
+}
+
+short World::mineTile(int x, int y) {
+    chunkTile tile = getTile(x,y);
+    short id = tile.tileId;
+    if(tile.tileId != 1){
+        tile.amount--;
+        if(tile.amount <= 0){
+            tile.tileId = 1;
+        }
+        setTile(x, y, tile);
+    }
+    return id;
 }

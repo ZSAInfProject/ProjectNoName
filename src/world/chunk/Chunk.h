@@ -8,12 +8,17 @@
 #include <chrono>
 #include "../object/Object.h"
 
+struct chunkTile{
+    short tileId;
+    uint amount;
+};
+
 class Chunk {
 public:
     static const int SIDE_LENGTH = 32;
     static const int TILE_SIZE = 16;
 private:
-    std::array<int, SIDE_LENGTH*SIDE_LENGTH> tiles;
+    std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
     std::vector<std::unique_ptr<Object>> objects;
 
     void generateVertices();
@@ -57,12 +62,12 @@ public:
 
     //! Get tile from chunk
     /*!
-     * getTile() return an ID of chunk located at given x and y coordinates
+     * getTile() return a struct representation of chunk located at given x and y coordinates
      * @param x X coordinate (in chunk coordinates)
      * @param y Y coordinate (in chunk coordinates)
-     * @return tile ID
+     * @return chunkTile
      */
-    int getTile(int x, int y);
+    chunkTile getTile(int x, int y);
 
     //! Set tile to given ID
     /*!
@@ -72,10 +77,10 @@ public:
      * @param y Y coordinate (in chunk coordinates)
      * @param value a new value of the tile
      */
-    void setTile(int x, int y, int value);
+    void setTile(int x, int y, chunkTile value);
 
     Chunk();
-    explicit Chunk(const std::array<int, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
+    explicit Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
 };
 
 
