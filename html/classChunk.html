@@ -110,15 +110,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a cla
 <tr class="memitem:afa9fe7d9713cbf4fbe75520dd760880a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a">load</a> (const std::string &amp;filename)</td></tr>
 <tr class="memdesc:afa9fe7d9713cbf4fbe75520dd760880a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used for loading <a class="el" href="classChunk.html">Chunk</a> from files.  <a href="#afa9fe7d9713cbf4fbe75520dd760880a">More...</a><br/></td></tr>
 <tr class="separator:afa9fe7d9713cbf4fbe75520dd760880a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e4673d23721ffed257c11499179a4b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a0e4673d23721ffed257c11499179a4b3">getTile</a> (int x, int y)</td></tr>
-<tr class="memdesc:a0e4673d23721ffed257c11499179a4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get tile from chunk.  <a href="#a0e4673d23721ffed257c11499179a4b3">More...</a><br/></td></tr>
-<tr class="separator:a0e4673d23721ffed257c11499179a4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2027949ed92132d341f4e7c778ce9ebd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a2027949ed92132d341f4e7c778ce9ebd">setTile</a> (int x, int y, int value)</td></tr>
-<tr class="memdesc:a2027949ed92132d341f4e7c778ce9ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tile to given ID.  <a href="#a2027949ed92132d341f4e7c778ce9ebd">More...</a><br/></td></tr>
-<tr class="separator:a2027949ed92132d341f4e7c778ce9ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a140f2fc8f419f8f5f6cf5483abbb365a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a140f2fc8f419f8f5f6cf5483abbb365a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (const std::array&lt; int, SIDE_LENGTH *SIDE_LENGTH &gt; &amp;_tiles)</td></tr>
-<tr class="separator:a140f2fc8f419f8f5f6cf5483abbb365a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4536eb6a455208974eb86919f3bee594"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structchunkTile.html">chunkTile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a4536eb6a455208974eb86919f3bee594">getTile</a> (int x, int y)</td></tr>
+<tr class="memdesc:a4536eb6a455208974eb86919f3bee594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get tile from chunk.  <a href="#a4536eb6a455208974eb86919f3bee594">More...</a><br/></td></tr>
+<tr class="separator:a4536eb6a455208974eb86919f3bee594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0eaf39751a73718b7903e2138deb64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64">setTile</a> (int x, int y, <a class="el" href="structchunkTile.html">chunkTile</a> value)</td></tr>
+<tr class="memdesc:a7f0eaf39751a73718b7903e2138deb64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tile to given ID.  <a href="#a7f0eaf39751a73718b7903e2138deb64">More...</a><br/></td></tr>
+<tr class="separator:a7f0eaf39751a73718b7903e2138deb64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab157196a12abf9024ea638104c70fa97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab157196a12abf9024ea638104c70fa97"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (const std::array&lt; <a class="el" href="structchunkTile.html">chunkTile</a>, SIDE_LENGTH *SIDE_LENGTH &gt; &amp;_tiles)</td></tr>
+<tr class="separator:ab157196a12abf9024ea638104c70fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -130,12 +130,12 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
 <tr class="separator:a49f5a883393d976a0d8bbc0123e751d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0e4673d23721ffed257c11499179a4b3"></a>
+<a class="anchor" id="a4536eb6a455208974eb86919f3bee594"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Chunk::getTile </td>
+          <td class="memname"><a class="el" href="structchunkTile.html">chunkTile</a> Chunk::getTile </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -155,7 +155,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
 </div><div class="memdoc">
 
 <p>Get tile from chunk. </p>
-<p><a class="el" href="classChunk.html#a0e4673d23721ffed257c11499179a4b3" title="Get tile from chunk. ">getTile()</a> return an ID of chunk located at given x and y coordinates </p>
+<p><a class="el" href="classChunk.html#a4536eb6a455208974eb86919f3bee594" title="Get tile from chunk. ">getTile()</a> return a struct representation of chunk located at given x and y coordinates </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>X coordinate (in chunk coordinates) </td></tr>
@@ -163,7 +163,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>tile ID </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structchunkTile.html">chunkTile</a> </dd></dl>
 
 </div>
 </div>
@@ -260,7 +260,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
 
 </div>
 </div>
-<a class="anchor" id="a2027949ed92132d341f4e7c778ce9ebd"></a>
+<a class="anchor" id="a7f0eaf39751a73718b7903e2138deb64"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -279,7 +279,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype"><a class="el" href="structchunkTile.html">chunkTile</a>&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -291,7 +291,7 @@ static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE
 </div><div class="memdoc">
 
 <p>Set tile to given ID. </p>
-<p><a class="el" href="classChunk.html#a2027949ed92132d341f4e7c778ce9ebd" title="Set tile to given ID. ">setTile()</a> sets a tile located at given x and y coordinates to given value </p>
+<p><a class="el" href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64" title="Set tile to given ID. ">setTile()</a> sets a tile located at given x and y coordinates to given value </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>X coordinate (in chunk coordinates) </td></tr>

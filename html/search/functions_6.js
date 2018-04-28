@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tick',['tick',['../classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09',1,'GameState::tick()'],['../classState.html#a1cdec36e9ffad91ba7af560770601017',1,'State::tick()']]]
+  ['save',['save',['../classChunk.html#ac3e70286e057eb0f93accec639047097',1,'Chunk']]],
+  ['settile',['setTile',['../classChunk.html#a7f0eaf39751a73718b7903e2138deb64',1,'Chunk::setTile()'],['../classWorld.html#a7d1aeeafb60622886696ac01d7cbef34',1,'World::setTile()']]]
 ];

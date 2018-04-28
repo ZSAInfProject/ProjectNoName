@@ -7,12 +7,14 @@
 \hypertarget{classWorld_ad41d823a21794ad47ac4478677b0ae7f}{void {\bfseries render} (sf\-::\-Render\-Window \&window, sf\-::\-View camera)}\label{classWorld_ad41d823a21794ad47ac4478677b0ae7f}
 
 \item 
-\hypertarget{classWorld_add11c876b51a55c267f6b30b72e3b741}{int \hyperlink{classWorld_add11c876b51a55c267f6b30b72e3b741}{get\-Tile} (int x, int y)}\label{classWorld_add11c876b51a55c267f6b30b72e3b741}
+\hypertarget{classWorld_a6bba777d3b8230e5d84333b14ff9a559}{\hyperlink{structchunkTile}{chunk\-Tile} \hyperlink{classWorld_a6bba777d3b8230e5d84333b14ff9a559}{get\-Tile} (int x, int y)}\label{classWorld_a6bba777d3b8230e5d84333b14ff9a559}
 
-\begin{DoxyCompactList}\small\item\em Gets tile id using global coordinates of the world. \end{DoxyCompactList}\item 
-\hypertarget{classWorld_a475311731cded97f05e81cb0f056a7ac}{void \hyperlink{classWorld_a475311731cded97f05e81cb0f056a7ac}{set\-Tile} (int x, int y, int id)}\label{classWorld_a475311731cded97f05e81cb0f056a7ac}
+\begin{DoxyCompactList}\small\item\em Gets \hyperlink{structchunkTile}{chunk\-Tile} using global coordinates of the world. \end{DoxyCompactList}\item 
+\hypertarget{classWorld_a7d1aeeafb60622886696ac01d7cbef34}{void \hyperlink{classWorld_a7d1aeeafb60622886696ac01d7cbef34}{set\-Tile} (int x, int y, \hyperlink{structchunkTile}{chunk\-Tile} value)}\label{classWorld_a7d1aeeafb60622886696ac01d7cbef34}
 
-\begin{DoxyCompactList}\small\item\em Sets tile id using global coordinates of the world. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets tile to given value using global coordinates of the world. \end{DoxyCompactList}\item 
+short \hyperlink{classWorld_a1bbfac1b517a991c30aa96b57d04d265}{mine\-Tile} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Mines given tile. \end{DoxyCompactList}\item 
 \hypertarget{classWorld_a4598832293e050abba792d1b4367a368}{{\bfseries World} (int seed)}\label{classWorld_a4598832293e050abba792d1b4367a368}
 
 \end{DoxyCompactItemize}
@@ -22,6 +24,31 @@
 \hypertarget{classWorld_a9ebf0ccc9a330d5f3e4ed8401d64e5f6}{static constexpr auto {\bfseries T\-A\-G} = \char`\"{}World\char`\"{}}\label{classWorld_a9ebf0ccc9a330d5f3e4ed8401d64e5f6}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classWorld_a1bbfac1b517a991c30aa96b57d04d265}{\index{World@{World}!mine\-Tile@{mine\-Tile}}
+\index{mine\-Tile@{mine\-Tile}!World@{World}}
+\subsubsection[{mine\-Tile}]{\setlength{\rightskip}{0pt plus 5cm}short World\-::mine\-Tile (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y}
+\end{DoxyParamCaption}
+)}}\label{classWorld_a1bbfac1b517a991c30aa96b57d04d265}
+
+
+Mines given tile. 
+
+Mines tile at given coord 
+\begin{DoxyParams}{Parameters}
+{\em x} & X world coordinate \\
+\hline
+{\em y} & Y world coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tile id B\-E\-F\-O\-R\-E mining 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

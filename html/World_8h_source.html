@@ -98,19 +98,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> render(sf::RenderWindow&amp; window, sf::View camera);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classWorld.html#add11c876b51a55c267f6b30b72e3b741">getTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWorld.html#a475311731cded97f05e81cb0f056a7ac">setTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="structchunkTile.html">chunkTile</a> <a class="code" href="classWorld.html#a6bba777d3b8230e5d84333b14ff9a559">getTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classWorld.html#a7d1aeeafb60622886696ac01d7cbef34">setTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code" href="structchunkTile.html">chunkTile</a> value);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWorld.html">World</a>(<span class="keywordtype">int</span> seed);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;World&quot;</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif //NONAME_WORLD_H</span></div>
-<div class="ttc" id="classWorld_html_a475311731cded97f05e81cb0f056a7ac"><div class="ttname"><a href="classWorld.html#a475311731cded97f05e81cb0f056a7ac">World::setTile</a></div><div class="ttdeci">void setTile(int x, int y, int id)</div><div class="ttdoc">Sets tile id using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:45</div></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">short</span> <a class="code" href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">mineTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classWorld.html">World</a>(<span class="keywordtype">int</span> seed);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;World&quot;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif //NONAME_WORLD_H</span></div>
 <div class="ttc" id="classWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdef"><b>Definition:</b> World.h:8</div></div>
-<div class="ttc" id="classWorld_html_add11c876b51a55c267f6b30b72e3b741"><div class="ttname"><a href="classWorld.html#add11c876b51a55c267f6b30b72e3b741">World::getTile</a></div><div class="ttdeci">int getTile(int x, int y)</div><div class="ttdoc">Gets tile id using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:27</div></div>
+<div class="ttc" id="structchunkTile_html"><div class="ttname"><a href="structchunkTile.html">chunkTile</a></div><div class="ttdef"><b>Definition:</b> Chunk.h:11</div></div>
+<div class="ttc" id="classWorld_html_a6bba777d3b8230e5d84333b14ff9a559"><div class="ttname"><a href="classWorld.html#a6bba777d3b8230e5d84333b14ff9a559">World::getTile</a></div><div class="ttdeci">chunkTile getTile(int x, int y)</div><div class="ttdoc">Gets chunkTile using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:27</div></div>
+<div class="ttc" id="classWorld_html_a7d1aeeafb60622886696ac01d7cbef34"><div class="ttname"><a href="classWorld.html#a7d1aeeafb60622886696ac01d7cbef34">World::setTile</a></div><div class="ttdeci">void setTile(int x, int y, chunkTile value)</div><div class="ttdoc">Sets tile to given value using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:45</div></div>
+<div class="ttc" id="classWorld_html_a1bbfac1b517a991c30aa96b57d04d265"><div class="ttname"><a href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">World::mineTile</a></div><div class="ttdeci">short mineTile(int x, int y)</div><div class="ttdoc">Mines given tile. </div><div class="ttdef"><b>Definition:</b> World.cpp:64</div></div>
 <div class="ttc" id="classChunkDatabase_html"><div class="ttname"><a href="classChunkDatabase.html">ChunkDatabase</a></div><div class="ttdoc">Class that manages Chunk storage, loading and generation. </div><div class="ttdef"><b>Definition:</b> ChunkDatabase.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

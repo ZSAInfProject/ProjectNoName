@@ -5,5 +5,5 @@ var searchData=
   ['getchunk',['getChunk',['../classChunkDatabase.html#abcf683d90bbfc79651f0ccc377037c64',1,'ChunkDatabase']]],
   ['getrenderwindow',['getRenderWindow',['../classGame.html#a8cd3e699a3ff2b7ca864cf0509817a9d',1,'Game']]],
   ['getstate',['getState',['../classGame.html#aa742f626e4b8a5dac8677ef40263716c',1,'Game']]],
-  ['gettile',['getTile',['../classChunk.html#a0e4673d23721ffed257c11499179a4b3',1,'Chunk::getTile()'],['../classWorld.html#add11c876b51a55c267f6b30b72e3b741',1,'World::getTile()']]]
+  ['gettile',['getTile',['../classChunk.html#a4536eb6a455208974eb86919f3bee594',1,'Chunk::getTile()'],['../classWorld.html#a6bba777d3b8230e5d84333b14ff9a559',1,'World::getTile()']]]
 ];

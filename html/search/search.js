@@ -9,7 +9,7 @@ var indexSectionsWithContent =
 {
   0: "cfghlmnoprstuw",
   1: "cgostw",
-  2: "cglprstu",
+  2: "cglmprstu",
   3: "fhmnt"
 };
 
