@@ -23,15 +23,15 @@ void Chunk::update(std::chrono::microseconds deltaTime) {
 
 Chunk::Chunk() = default;
 
-Chunk::Chunk(const std::array<int, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
+Chunk::Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
     tiles = _tiles;
 }
 
-int Chunk::getTile(int x, int y) {
+chunkTile Chunk::getTile(int x, int y) {
     return tiles[y*SIDE_LENGTH + x];
 }
 
-void Chunk::setTile(int x, int y, int value) {
+void Chunk::setTile(int x, int y, chunkTile value) {
     tiles[y*SIDE_LENGTH + x] = value;
     changeQuad(x, y);
 }
@@ -41,9 +41,9 @@ void Chunk::save(const std::string &fileName) {
 
     //Save tiles
     std::ofstream tileData(fileName+".td");
-    for(int tile : tiles) {
+    for(chunkTile tile : tiles) {
         if(tileData.good()) {
-            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(int));
+            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(typeof(tile)));
         }
         else{
             Log::error(TAG, "Saving to " + fileName + ".td file failed!");
@@ -61,9 +61,9 @@ bool Chunk::load(const std::string &filename) {
     //TODO: load objects
 
     //Load tiles
-    for(int& tile : tiles){
+    for(chunkTile& tile : tiles){
         if(tileData.good()) {
-            tileData.read(reinterpret_cast<char *>(&tile), sizeof(int));
+            tileData.read(reinterpret_cast<char *>(&tile), sizeof(typeof(tile)));
         }
         else{
             Log::error(TAG, "Loading from " + filename + ".td failed!");
@@ -103,7 +103,7 @@ void Chunk::changeQuad(int x, int y) {
     else {
         sf::Vertex *quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
-        int tile_id = getTile(x, y);
+        int tile_id = getTile(x, y).tileId;
 
         int tx = TileDatabase::get()[tile_id].texture_x;
         int ty = TileDatabase::get()[tile_id].texture_y;

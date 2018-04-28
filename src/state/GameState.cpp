@@ -18,7 +18,7 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
     auto currentCameraPos = camera.getCenter();
     //camera.setRotation(static_cast<float>(sin(camera.getCenter().x / 2000) * 360.0));
-    camera.setCenter(currentCameraPos+sf::Vector2f(1*deltaTime.count()/1500.0,0.0));
+    //camera.setCenter(currentCameraPos+sf::Vector2f(1*deltaTime.count()/1500.0,0.0));
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
@@ -27,7 +27,7 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
         if (position.x < 0) tile.x -= 1;
         if (position.y < 0) tile.y -= 1;
-        world.setTile(tile.x, tile.y, 1);
+        world.mineTile(tile.x, tile.y);
 
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
@@ -37,7 +37,7 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
         if (position.x < 0) tile.x -= 1;
         if (position.y < 0) tile.y -= 1;
-        world.setTile(tile.x, tile.y, 2);
+        world.setTile(tile.x, tile.y, {2,1});
 
     }
 

@@ -10,10 +10,19 @@ class World {
 public:
     void render(sf::RenderWindow& window, sf::View camera);
 
-    //!Gets tile id using global coordinates of the world
-    int getTile(int x, int y);
-    //!Sets tile id using global coordinates of the world
-    void setTile(int x, int y, int id);
+    //!Gets chunkTile using global coordinates of the world
+    chunkTile getTile(int x, int y);
+    //!Sets tile to given value using global coordinates of the world
+    void setTile(int x, int y, chunkTile value);
+
+    //!Mines given tile
+    /*!
+     * Mines tile at given coord
+     * @param x X world coordinate
+     * @param y Y world coordinate
+     * @return tile id BEFORE mining
+     */
+    short mineTile(int x, int y);
 
     explicit World(int seed);
 
