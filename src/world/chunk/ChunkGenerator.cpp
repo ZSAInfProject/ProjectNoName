@@ -3,7 +3,7 @@
 #include "../../utils/Log.h"
 #include "../../utils/PerlinNoise.h"
 
-chunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingNoise, float materialNoise) {
+chunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise) {
     chunkTile retTile = {2,1};
     bool isAboveGround = tileHeight > height;
     if(isAboveGround){
@@ -28,8 +28,16 @@ chunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingN
             material = 3;
         }
 
-        bool isSmallCave = carvingNoise < 0.3;
-        bool isLargeCave = carvingNoise < 0.4 && tileHeight < height - 50;
+        bool isOreVein = oreNoise > 0.83;
+        if(isOreVein){
+            if(oreTypeNoise > -999){
+                material = 0;
+                amount = (uint)(10.0f*oreNoise);
+            }
+        }
+
+        bool isSmallCave = carvingNoise < 0.2;
+        bool isLargeCave = carvingNoise < 0.3 && tileHeight < height - 50;
         if(isSmallCave || isLargeCave){
             material = 1;
             amount = 1;
@@ -46,6 +54,9 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
     siv::PerlinNoise detailNoise2((uint32_t)(seed / 3));
     siv::PerlinNoise carvingNoise((uint32_t)seed*2);
     siv::PerlinNoise materialNoise((uint32_t)(seed * 3));
+    siv::PerlinNoise oreNoise((uint32_t)(seed*4));
+    siv::PerlinNoise oreNoise2((uint32_t)(seed*5));
+    siv::PerlinNoise oreTypeNoise((uint32_t)(seed*6));
 
     std::array<chunkTile, Chunk::SIDE_LENGTH*Chunk::SIDE_LENGTH> tiles{};
     tiles.fill({2,1});
@@ -55,6 +66,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
         auto worldHeightAtX =
                 (float)heightNoise.noise(worldX/100.5f)*50.5f +
                 (float)detailNoise.noise(worldX/10.5)*(float)detailNoise2.noise0_1(worldX/1000.5)*10.5f;
+        auto oreTypeNoiseVal = (float)oreTypeNoise.noise(worldX/100.5);
 
         for(int tileY = 0; tileY < Chunk::SIDE_LENGTH; tileY++){
             float worldY = tileY+y*Chunk::SIDE_LENGTH;
@@ -63,9 +75,14 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
             auto carvingNoiseVal = (float)carvingNoise.noise0_1(worldX/20.5, worldY/10.5);
             auto materialNoiseVal = (float)materialNoise.noise0_1(worldX/10.5, worldY/10.5);
 
+            auto oreNoiseVal = (float)(1-fabs(oreNoise.noise(worldX/100.5, worldY/100.5)));
+            oreNoiseVal *= 1-oreNoise2.noise0_1(worldX/1000.5, worldY/1000.5)/3;
+
             tiles[Chunk::SIDE_LENGTH*tileY+tileX] = getTile(currentHeight, worldHeightAtX,
                                                                 carvingNoiseVal,
-                                                                materialNoiseVal);
+                                                                materialNoiseVal,
+                                                                oreNoiseVal,
+                                                                oreTypeNoiseVal);
         }
     }
     Log::verbose(TAG, "Generated new chunk at X = " + std::to_string(x) + " Y = " + std::to_string(y));

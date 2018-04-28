@@ -17,7 +17,7 @@ class ChunkGenerator {
 
     static constexpr auto TAG = "ChunkGenerator";
 
-    chunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise);
+    chunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
 public:
     //! Method used to generate new chunks
     /*!
