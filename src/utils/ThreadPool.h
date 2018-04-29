@@ -9,6 +9,12 @@
 #include <atomic>
 #include <condition_variable>
 
+//! Class representing thread pool
+/*!
+ * This class can be used when you want to
+ * easily execute jobs in parallel or reuse
+ * threads.
+ */
 class ThreadPool {
     std::vector<std::thread> threads;
     std::queue<std::function<void(void)>> jobs;
@@ -24,7 +30,14 @@ class ThreadPool {
 
     static constexpr auto TAG = "ThreadPool";
 public:
+    //! Add job to job queue
+    /*!
+     * addJob() adds a job to the job queue where
+     * it waits to be executed by any free thread.
+     * @param job
+     */
     void addJob(std::function<void(void)> job);
+    //! Waits until all jobs are completed.
     void wait();
 
     explicit ThreadPool(int numberOfThreads);
