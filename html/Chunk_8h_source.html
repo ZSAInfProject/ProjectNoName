@@ -111,45 +111,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> generateVertices();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> changeQuad(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    sf::VertexArray vertices;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;Chunk&quot;</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classChunk.html">Chunk</a>(<a class="code" href="classChunk.html">Chunk</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> operator= (<a class="code" href="classChunk.html">Chunk</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#a0353e35c14d4f576542660bb762db51f">render</a>(sf::RenderWindow&amp; window, <span class="keyword">const</span> sf::Vector2f&amp; translation, <span class="keyword">const</span> sf::Vector2f&amp; scale);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#aa794fcda8fe859680cbfe4a2bcd5d097">update</a>(std::chrono::microseconds deltaTime);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#ac3e70286e057eb0f93accec639047097">save</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a">load</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="structchunkTile.html">chunkTile</a> <a class="code" href="classChunk.html#a4536eb6a455208974eb86919f3bee594">getTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64">setTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code" href="structchunkTile.html">chunkTile</a> value);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classChunk.html">Chunk</a>();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classChunk.html">Chunk</a>(<span class="keyword">const</span> std::array&lt;chunkTile, SIDE_LENGTH*SIDE_LENGTH&gt;&amp; _tiles);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> updateQuads();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    sf::VertexArray vertices = sf::VertexArray(sf::Quads, SIDE_LENGTH * SIDE_LENGTH * 4);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;Chunk&quot;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classChunk.html">Chunk</a>(<a class="code" href="classChunk.html">Chunk</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> operator= (<a class="code" href="classChunk.html">Chunk</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#a0353e35c14d4f576542660bb762db51f">render</a>(sf::RenderWindow&amp; window, <span class="keyword">const</span> sf::Vector2f&amp; translation, <span class="keyword">const</span> sf::Vector2f&amp; scale);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#aa794fcda8fe859680cbfe4a2bcd5d097">update</a>(std::chrono::microseconds deltaTime);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#ac3e70286e057eb0f93accec639047097">save</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a">load</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="structchunkTile.html">chunkTile</a> <a class="code" href="classChunk.html#a4536eb6a455208974eb86919f3bee594">getTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64">setTile</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <a class="code" href="structchunkTile.html">chunkTile</a> value);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="classChunk.html">Chunk</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classChunk.html">Chunk</a>(<span class="keyword">const</span> std::array&lt;chunkTile, SIDE_LENGTH*SIDE_LENGTH&gt;&amp; _tiles);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;};</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif //NONAME_CHUNK_H</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#endif //NONAME_CHUNK_H</span></div>
 <div class="ttc" id="structchunkTile_html"><div class="ttname"><a href="structchunkTile.html">chunkTile</a></div><div class="ttdef"><b>Definition:</b> Chunk.h:11</div></div>
-<div class="ttc" id="classChunk_html_a7f0eaf39751a73718b7903e2138deb64"><div class="ttname"><a href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64">Chunk::setTile</a></div><div class="ttdeci">void setTile(int x, int y, chunkTile value)</div><div class="ttdoc">Set tile to given ID. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:34</div></div>
+<div class="ttc" id="classChunk_html_a7f0eaf39751a73718b7903e2138deb64"><div class="ttname"><a href="classChunk.html#a7f0eaf39751a73718b7903e2138deb64">Chunk::setTile</a></div><div class="ttdeci">void setTile(int x, int y, chunkTile value)</div><div class="ttdoc">Set tile to given ID. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:43</div></div>
 <div class="ttc" id="classChunk_html_a0353e35c14d4f576542660bb762db51f"><div class="ttname"><a href="classChunk.html#a0353e35c14d4f576542660bb762db51f">Chunk::render</a></div><div class="ttdeci">void render(sf::RenderWindow &amp;window, const sf::Vector2f &amp;translation, const sf::Vector2f &amp;scale)</div><div class="ttdoc">Method used to render Chunk. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:8</div></div>
 <div class="ttc" id="classChunk_html"><div class="ttname"><a href="classChunk.html">Chunk</a></div><div class="ttdef"><b>Definition:</b> Chunk.h:16</div></div>
-<div class="ttc" id="classChunk_html_afa9fe7d9713cbf4fbe75520dd760880a"><div class="ttname"><a href="classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a">Chunk::load</a></div><div class="ttdeci">bool load(const std::string &amp;filename)</div><div class="ttdoc">Method used for loading Chunk from files. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:55</div></div>
-<div class="ttc" id="classChunk_html_a4536eb6a455208974eb86919f3bee594"><div class="ttname"><a href="classChunk.html#a4536eb6a455208974eb86919f3bee594">Chunk::getTile</a></div><div class="ttdeci">chunkTile getTile(int x, int y)</div><div class="ttdoc">Get tile from chunk. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:30</div></div>
-<div class="ttc" id="classChunk_html_ac3e70286e057eb0f93accec639047097"><div class="ttname"><a href="classChunk.html#ac3e70286e057eb0f93accec639047097">Chunk::save</a></div><div class="ttdeci">void save(const std::string &amp;filename)</div><div class="ttdoc">Method used for saving Chunk to files. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:39</div></div>
-<div class="ttc" id="classChunk_html_aa794fcda8fe859680cbfe4a2bcd5d097"><div class="ttname"><a href="classChunk.html#aa794fcda8fe859680cbfe4a2bcd5d097">Chunk::update</a></div><div class="ttdeci">void update(std::chrono::microseconds deltaTime)</div><div class="ttdoc">Method used to update chunk. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:20</div></div>
+<div class="ttc" id="classChunk_html_afa9fe7d9713cbf4fbe75520dd760880a"><div class="ttname"><a href="classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a">Chunk::load</a></div><div class="ttdeci">bool load(const std::string &amp;filename)</div><div class="ttdoc">Method used for loading Chunk from files. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:68</div></div>
+<div class="ttc" id="classChunk_html_a4536eb6a455208974eb86919f3bee594"><div class="ttname"><a href="classChunk.html#a4536eb6a455208974eb86919f3bee594">Chunk::getTile</a></div><div class="ttdeci">chunkTile getTile(int x, int y)</div><div class="ttdoc">Get tile from chunk. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:35</div></div>
+<div class="ttc" id="classChunk_html_ac3e70286e057eb0f93accec639047097"><div class="ttname"><a href="classChunk.html#ac3e70286e057eb0f93accec639047097">Chunk::save</a></div><div class="ttdeci">void save(const std::string &amp;filename)</div><div class="ttdoc">Method used for saving Chunk to files. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:52</div></div>
+<div class="ttc" id="classChunk_html_aa794fcda8fe859680cbfe4a2bcd5d097"><div class="ttname"><a href="classChunk.html#aa794fcda8fe859680cbfe4a2bcd5d097">Chunk::update</a></div><div class="ttdeci">void update(std::chrono::microseconds deltaTime)</div><div class="ttdoc">Method used to update chunk. </div><div class="ttdef"><b>Definition:</b> Chunk.cpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
