@@ -1,5 +1,6 @@
 #include <SFML/Window/Mouse.hpp>
 #include <iostream>
+#include <SFML/Window/Keyboard.hpp>
 #include "GameState.h"
 #include "../tile/TileDatabase.h"
 #include "../Game.h"
@@ -39,6 +40,19 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         if (position.y < 0) tile.y -= 1;
         world.setTile(tile.x, tile.y, {2,1});
 
+    }
+    const float MOVEMENT_DIV = 500.0f;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+        camera.setCenter(camera.getCenter()+sf::Vector2f(0.0f , deltaTime.count()/MOVEMENT_DIV));
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+        camera.setCenter(camera.getCenter()+sf::Vector2f(0.0f, -deltaTime.count()/MOVEMENT_DIV));
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+        camera.setCenter(camera.getCenter()+sf::Vector2f(-deltaTime.count()/MOVEMENT_DIV, 0.0f));
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        camera.setCenter(camera.getCenter()+sf::Vector2f(deltaTime.count()/MOVEMENT_DIV, 0.0f));
     }
 
 }
