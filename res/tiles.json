@@ -33,5 +33,26 @@
     "terminal": "G",
     "hardness": 1.0,
     "texture": [4, 0]
+  },
+  {
+    "id": 5,
+    "name": "CopperOre",
+    "terminal": "G",
+    "hardness": 1.0,
+    "texture": [5, 0]
+  },
+  {
+    "id": 6,
+    "name": "CoalOre",
+    "terminal": "G",
+    "hardness": 1.0,
+    "texture": [6, 0]
+  },
+  {
+    "id": 7,
+    "name": "IronOre",
+    "terminal": "G",
+    "hardness": 1.0,
+    "texture": [7, 0]
   }
 ]

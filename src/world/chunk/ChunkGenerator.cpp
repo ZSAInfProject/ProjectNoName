@@ -32,7 +32,7 @@ const chunkTile ChunkGenerator::getTile(float tileHeight, float height, float ca
         bool isOreVein = oreNoise > 0.84;
         if(isOreVein){
             if(oreTypeNoise > -999){
-                material = 0;
+                material = 7;
                 amount = (uint)(10.0f);
             }
         }
