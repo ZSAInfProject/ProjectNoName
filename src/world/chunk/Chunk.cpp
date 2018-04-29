@@ -33,10 +33,18 @@ Chunk::Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
 }
 
 chunkTile Chunk::getTile(int x, int y) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile get out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return tiles[0];
+    }
     return tiles[y*SIDE_LENGTH + x];
 }
 
 void Chunk::setTile(int x, int y, chunkTile value) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return;
+    }
     tiles[y*SIDE_LENGTH + x] = value;
     changeQuad(x, y);
 }
