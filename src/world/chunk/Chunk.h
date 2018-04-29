@@ -23,7 +23,8 @@ private:
 
     void generateVertices();
     void changeQuad(int x, int y);
-    sf::VertexArray vertices;
+    void updateQuads();
+    sf::VertexArray vertices = sf::VertexArray(sf::Quads, SIDE_LENGTH * SIDE_LENGTH * 4);
 
     static constexpr auto TAG = "Chunk";
 public:

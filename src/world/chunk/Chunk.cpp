@@ -8,6 +8,7 @@
 void Chunk::render(sf::RenderWindow& window, const sf::Vector2f& translation, const sf::Vector2f& scale) {
     if(vertices.getVertexCount() == 0){
         generateVertices();
+        updateQuads();
     }
     sf::RenderStates states;
     states.transform.translate(translation);
@@ -21,17 +22,29 @@ void Chunk::update(std::chrono::microseconds deltaTime) {
 
 }
 
-Chunk::Chunk() = default;
+Chunk::Chunk() {
+    generateVertices();
+}
 
 Chunk::Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
     tiles = _tiles;
+    generateVertices();
+    updateQuads();
 }
 
 chunkTile Chunk::getTile(int x, int y) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile get out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return tiles[0];
+    }
     return tiles[y*SIDE_LENGTH + x];
 }
 
 void Chunk::setTile(int x, int y, chunkTile value) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return;
+    }
     tiles[y*SIDE_LENGTH + x] = value;
     changeQuad(x, y);
 }
@@ -72,15 +85,12 @@ bool Chunk::load(const std::string &filename) {
     }
     tileData.close();
 
-    generateVertices();
+    updateQuads();
 
     return true;
 }
 
 void Chunk::generateVertices() {
-    vertices.setPrimitiveType(sf::Quads);
-    vertices.resize(SIDE_LENGTH*SIDE_LENGTH*4);
-
     for (unsigned int i=0; i<SIDE_LENGTH; i++) {
         for (unsigned int j=0; j<SIDE_LENGTH; j++) {
             sf::Vertex* quad = &vertices[(i+j*SIDE_LENGTH) * 4];
@@ -89,31 +99,31 @@ void Chunk::generateVertices() {
             quad[3].position = sf::Vector2f((i+1)*TILE_SIZE, j*TILE_SIZE);
             quad[0].position = sf::Vector2f((i+1)*TILE_SIZE, (j+1)*TILE_SIZE);
             quad[1].position = sf::Vector2f(i*TILE_SIZE, (j+1)*TILE_SIZE);
-
-            changeQuad(i, j);
         }
     }
     Log::verbose(TAG, "Generated new vertices");
 }
 
+void Chunk::updateQuads() {
+    for (unsigned int i=0; i<SIDE_LENGTH; i++) {
+        for (unsigned int j=0; j<SIDE_LENGTH; j++) {
+            changeQuad(i, j);
+        }
+    }
+}
+
 void Chunk::changeQuad(int x, int y) {
-    if (vertices.getVertexCount() == 0) {
-        generateVertices();
-    }
-    else {
-        sf::Vertex *quad = &vertices[(x + y * SIDE_LENGTH) * 4];
+    sf::Vertex *quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
-        int tile_id = getTile(x, y).tileId;
+    int tile_id = getTile(x, y).tileId;
 
-        int tx = TileDatabase::get()[tile_id].texture_x;
-        int ty = TileDatabase::get()[tile_id].texture_y;
+    int tx = TileDatabase::get()[tile_id].texture_x;
+    int ty = TileDatabase::get()[tile_id].texture_y;
 
-        quad[0].texCoords = sf::Vector2f(tx*TILE_SIZE, ty*TILE_SIZE);
-        quad[1].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, ty*TILE_SIZE);
-        quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, (ty+1)*TILE_SIZE);
-        quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE);
-    }
-    Log::verbose(TAG, "Changed quad at X = " + std::to_string(x) + " Y = " + std::to_string(y));
+    quad[0].texCoords = sf::Vector2f(tx*TILE_SIZE, ty*TILE_SIZE);
+    quad[1].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, ty*TILE_SIZE);
+    quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, (ty+1)*TILE_SIZE);
+    quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE);
 }
 
 
