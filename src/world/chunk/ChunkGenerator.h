@@ -4,6 +4,7 @@
 
 #include "Chunk.h"
 #include "../../utils/PerlinNoise.h"
+#include "../../utils/ThreadPool.h"
 
 //! Chunk generator class
 /*!
@@ -24,6 +25,8 @@ class ChunkGenerator {
     siv::PerlinNoise oreNoise;
     siv::PerlinNoise oreNoise2;
     siv::PerlinNoise oreTypeNoise;
+
+    ThreadPool threadPool;
 
     static constexpr auto TAG = "ChunkGenerator";
 

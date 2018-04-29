@@ -83,18 +83,20 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
         }
     };
 
-    std::vector<std::thread> threads;
+
     for(int tileX = 0; tileX < Chunk::SIDE_LENGTH; tileX++){
-        threads.emplace_back(rowFunc, tileX);
+        auto job = [tileX, &rowFunc](){rowFunc(tileX);};
+        threadPool.addJob(job);
     }
-    for(auto& thread : threads){
-        thread.join();
-    }
+
+    while(!threadPool.finished())
+        [](){};
+
     Log::verbose(TAG, "Generated new chunk at X = " + std::to_string(x) + " Y = " + std::to_string(y));
     return std::make_unique<Chunk>(tiles);
 }
 
-ChunkGenerator::ChunkGenerator(int _seed) {
+ChunkGenerator::ChunkGenerator(int _seed) : threadPool(Chunk::SIDE_LENGTH) {
     seed = _seed;
     heightNoise.reseed(static_cast<uint32_t>(seed));
     detailNoise.reseed(static_cast<uint32_t>(seed * 2));

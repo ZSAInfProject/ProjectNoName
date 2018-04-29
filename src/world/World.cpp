@@ -21,7 +21,6 @@ void World::render(sf::RenderWindow &window, sf::View camera) {
                                                  sf::Vector2f(1.0, 1.0));
         }
     }
-    ChunkGenerator chunkGenerator(10);
 }
 
 chunkTile World::getTile(int x, int y) {
