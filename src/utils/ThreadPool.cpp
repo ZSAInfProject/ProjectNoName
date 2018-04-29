@@ -7,7 +7,7 @@ void ThreadPool::threadMain() {
         {
             std::unique_lock<std::mutex> lock(jobsMut);
             while (jobs.empty() && !shouldTerminate)
-                cond.wait(lock);
+                jobsCV.wait(lock);
 
             if(jobs.empty()){
                 Log::verbose(TAG, "Thread terminating...");
@@ -18,7 +18,9 @@ void ThreadPool::threadMain() {
             jobs.pop();
         }
         job();
+        std::unique_lock<std::mutex> lock(scheduledJobsMut);
         scheduledJobs--;
+        scheduledJobsCV.notify_all();
     }
 
 }
@@ -26,11 +28,13 @@ void ThreadPool::threadMain() {
 void ThreadPool::addJob(std::function<void(void)> job) {
     std::unique_lock <std::mutex> lock(jobsMut);
     jobs.emplace(std::move(job));
+    std::unique_lock<std::mutex> lock2(scheduledJobsMut);
     scheduledJobs++;
-    cond.notify_one();
+    jobsCV.notify_one();
 }
 
 ThreadPool::ThreadPool(int numberOfThreads) {
+    scheduledJobs = 0;
     shouldTerminate = false;
     for(int i = 0; i < numberOfThreads; i++){
         threads.emplace_back([this](){threadMain();});
@@ -41,11 +45,14 @@ ThreadPool::ThreadPool(int numberOfThreads) {
 ThreadPool::~ThreadPool() {
     shouldTerminate = true;
     Log::debug(TAG, "Terminating...");
-    cond.notify_all();
+    jobsCV.notify_all();
     for(auto& thread: threads)
         thread.join();
 }
 
-bool ThreadPool::finished() {
-    return scheduledJobs.load() == 0;
+void ThreadPool::wait() {
+    std::unique_lock<std::mutex> lock(scheduledJobsMut);
+    while(scheduledJobs > 0){
+        scheduledJobsCV.wait(lock);
+    }
 }

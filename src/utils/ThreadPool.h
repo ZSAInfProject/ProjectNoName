@@ -13,15 +13,19 @@ class ThreadPool {
     std::vector<std::thread> threads;
     std::queue<std::function<void(void)>> jobs;
     std::mutex jobsMut;
-    std::atomic<int> scheduledJobs;
-    std::condition_variable cond;
+    std::condition_variable jobsCV;
+
+    int scheduledJobs;
+    std::mutex scheduledJobsMut;
+    std::condition_variable scheduledJobsCV;
+
     bool shouldTerminate;
     void threadMain();
 
     static constexpr auto TAG = "ThreadPool";
 public:
     void addJob(std::function<void(void)> job);
-    bool finished();
+    void wait();
 
     explicit ThreadPool(int numberOfThreads);
     ~ThreadPool();

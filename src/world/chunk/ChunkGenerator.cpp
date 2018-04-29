@@ -89,8 +89,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
         threadPool.addJob(job);
     }
 
-    while(!threadPool.finished())
-        [](){};
+    threadPool.wait();
 
     Log::verbose(TAG, "Generated new chunk at X = " + std::to_string(x) + " Y = " + std::to_string(y));
     return std::make_unique<Chunk>(tiles);

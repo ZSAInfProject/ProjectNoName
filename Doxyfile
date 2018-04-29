@@ -645,7 +645,7 @@ GENERATE_BUGLIST       = YES
 GENERATE_DEPRECATEDLIST= YES
 
 # The ENABLED_SECTIONS tag can be used to enable conditional documentation
-# sections, marked by \if <section_label> ... \endif and \cond <section_label>
+# sections, marked by \if <section_label> ... \endif and \jobsCV <section_label>
 # ... \endcond blocks.
 
 ENABLED_SECTIONS       =
