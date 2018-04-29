@@ -4,6 +4,22 @@
 #include "../../utils/Log.h"
 #include "../../utils/PerlinNoise.h"
 
+#define COPPER 5
+#define COAL 6
+#define IRON 7
+
+const short ChunkGenerator::getOreType(float depth, float oreTypeNoise) {
+    if(oreTypeNoise < 0.6){
+        return COAL;
+    }
+    else if(oreTypeNoise<0.8){
+        return IRON;
+    }
+    else{
+        return COPPER;
+    }
+}
+
 const chunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise) {
     chunkTile retTile = {2,1};
     bool isAboveGround = tileHeight > height;
@@ -31,10 +47,8 @@ const chunkTile ChunkGenerator::getTile(float tileHeight, float height, float ca
 
         bool isOreVein = oreNoise > 0.84;
         if(isOreVein){
-            if(oreTypeNoise > -999){
-                material = 7;
-                amount = (uint)(10.0f);
-            }
+            material = getOreType(height-tileHeight, oreTypeNoise);
+            amount = 10;
         }
 
         bool isSmallCave = carvingNoise < 0.2;
@@ -59,7 +73,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
         auto worldHeightAtX =
                 (float) heightNoise.noise(worldX / 100.5f) * 50.5f +
                 (float) detailNoise.noise(worldX / 10.5) * (float) detailNoise2.noise0_1(worldX / 1000.5) * 10.5f;
-        auto oreTypeNoiseVal = (float) oreTypeNoise.noise(worldX / 100.5);
+        auto xOreTypeNoiseVal = (float) oreTypeNoise.noise(worldX / 2000.5);
 
 
         for (int tileY = 0; tileY < Chunk::SIDE_LENGTH; tileY++) {
@@ -71,6 +85,8 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
 
             auto oreNoiseVal = (float) (1 - fabs(oreNoise.octaveNoise(worldX / 80.5, worldY / 80.5, 6)));
             oreNoiseVal *= 1 - oreNoise2.noise0_1(worldX / 1000.5, worldY / 1000.5) / 3;
+
+            auto oreTypeNoiseVal = (float)oreTypeNoise2.noise0_1(tileY/2000.5)+xOreTypeNoiseVal;
 
             chunkTile tile = getTile(currentHeight, worldHeightAtX,
                                      carvingNoiseVal,
@@ -105,5 +121,7 @@ ChunkGenerator::ChunkGenerator(int _seed) : threadPool(Chunk::SIDE_LENGTH) {
     oreNoise.reseed(static_cast<uint32_t>(seed * 6));
     oreNoise2.reseed(static_cast<uint32_t>(seed * 7));
     oreTypeNoise.reseed(static_cast<uint32_t>(seed * 8));
+    oreTypeNoise2.reseed(static_cast<uint32_t>(seed * 9));
 }
+
 

@@ -25,12 +25,14 @@ class ChunkGenerator {
     siv::PerlinNoise oreNoise;
     siv::PerlinNoise oreNoise2;
     siv::PerlinNoise oreTypeNoise;
+    siv::PerlinNoise oreTypeNoise2;
 
     ThreadPool threadPool;
 
     static constexpr auto TAG = "ChunkGenerator";
 
     const chunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
+    const short getOreType(float depth, float oreTypeNoise);
 public:
     //! Method used to generate new chunks
     /*!
