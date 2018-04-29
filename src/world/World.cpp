@@ -26,38 +26,24 @@ void World::render(sf::RenderWindow &window, sf::View camera) {
 
 chunkTile World::getTile(int x, int y) {
     sf::Vector2i tile;
-    tile.x = abs(x);
-    tile.y = abs(y);
-    sf::Vector2i chunk = tile / Chunk::SIDE_LENGTH;
-    tile.x = tile.x % Chunk::SIDE_LENGTH;
-    tile.y = tile.y % Chunk::SIDE_LENGTH;
-    if (x<0) {
-        chunk.x = -chunk.x - 1;
-        tile.x = Chunk::SIDE_LENGTH - tile.x;
-    }
-    if (y<0) {
-        chunk.y = -chunk.y - 1;
-        tile.y = Chunk::SIDE_LENGTH - tile.y;
-    }
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
     return chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y);
 }
 
 void World::setTile(int x, int y, chunkTile value) {
     Log::verbose(TAG, "Tile set at: " + std::to_string(x) + " " + std::to_string(y) + " to: " + std::to_string(value.tileId));
     sf::Vector2i tile;
-    tile.x = abs(x);
-    tile.y = abs(y);
-    sf::Vector2i chunk = tile / Chunk::SIDE_LENGTH;
-    tile.x = tile.x % Chunk::SIDE_LENGTH;
-    tile.y = tile.y % Chunk::SIDE_LENGTH;
-    if (x<0) {
-        chunk.x = -chunk.x - 1;
-        tile.x = Chunk::SIDE_LENGTH - tile.x;
-    }
-    if (y<0) {
-        chunk.y = -chunk.y - 1;
-        tile.y = Chunk::SIDE_LENGTH - tile.y;
-    }
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
 }
 
