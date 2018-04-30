@@ -4,5 +4,5 @@ var searchData=
   ['chunk',['Chunk',['../classChunk.html',1,'']]],
   ['chunkdatabase',['ChunkDatabase',['../classChunkDatabase.html',1,'']]],
   ['chunkgenerator',['ChunkGenerator',['../classChunkGenerator.html',1,'']]],
-  ['chunktile',['chunkTile',['../structchunkTile.html',1,'']]]
+  ['chunktile',['ChunkTile',['../structChunkTile.html',1,'']]]
 ];

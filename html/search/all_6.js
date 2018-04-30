@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['name',['name',['../classTile.html#aa5408d0f0f4a60f25796f651db2f84ac',1,'Tile']]]
+  ['minetile',['mineTile',['../classWorld.html#a1bbfac1b517a991c30aa96b57d04d265',1,'World']]],
+  ['minimumlooptime',['minimumLoopTime',['../classGame.html#af9f24863bbe8102d1bf5d97aaa449d14',1,'Game']]]
 ];

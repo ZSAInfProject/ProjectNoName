@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frame_5fper_5fsecond',['frame_per_second',['../classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db',1,'Game']]]
+  ['amount',['amount',['../structChunkTile.html#a29ac3a16c7075941a5c483f1a3372364',1,'ChunkTile']]]
 ];
