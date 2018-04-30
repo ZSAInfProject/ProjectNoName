@@ -3,6 +3,8 @@
 
 
 #include "Chunk.h"
+#include "../../utils/PerlinNoise.h"
+#include "../../utils/ThreadPool.h"
 
 //! Chunk generator class
 /*!
@@ -15,9 +17,22 @@ class ChunkGenerator {
      */
     int seed;
 
+    siv::PerlinNoise heightNoise;
+    siv::PerlinNoise detailNoise;
+    siv::PerlinNoise detailNoise2;
+    siv::PerlinNoise carvingNoise;
+    siv::PerlinNoise materialNoise;
+    siv::PerlinNoise oreNoise;
+    siv::PerlinNoise oreNoise2;
+    siv::PerlinNoise oreTypeNoise;
+    siv::PerlinNoise oreTypeNoise2;
+
+    ThreadPool threadPool;
+
     static constexpr auto TAG = "ChunkGenerator";
 
-    chunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise);
+    const ChunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
+    const short getOreType(float depth, float oreTypeNoise);
 public:
     //! Method used to generate new chunks
     /*!

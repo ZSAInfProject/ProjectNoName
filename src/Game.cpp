@@ -56,7 +56,6 @@ void Game::render() {
     if (time_elapsed >= 1000000/frame_per_second) {
 
         previous_frame = now - std::chrono::microseconds(time_elapsed - 1000000/frame_per_second);
-        ChunkGenerator chunkGenerator(10);
 
         if (!states.empty()) {
             getState().render(&renderWindow);

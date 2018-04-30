@@ -10,7 +10,7 @@ long mod(long a, long b)
 { return (a%b+b)%b; }
 
 GameState::GameState() : State(), world(10){
-    camera.setSize(sf::Vector2f(800, -600));
+    camera.setSize(sf::Vector2f(6000, -6000));
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
@@ -19,7 +19,7 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
     auto currentCameraPos = camera.getCenter();
     //camera.setRotation(static_cast<float>(sin(camera.getCenter().x / 2000) * 360.0));
-    //camera.setCenter(currentCameraPos+sf::Vector2f(1*deltaTime.count()/1500.0,0.0));
+    camera.setCenter(currentCameraPos+sf::Vector2f(-1*deltaTime.count()/250.0,-1*deltaTime.count()/2500.0));
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
