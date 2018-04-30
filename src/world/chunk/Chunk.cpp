@@ -26,13 +26,13 @@ Chunk::Chunk() {
     generateVertices();
 }
 
-Chunk::Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
+Chunk::Chunk(const std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
     tiles = _tiles;
     generateVertices();
     updateQuads();
 }
 
-chunkTile Chunk::getTile(int x, int y) {
+ChunkTile Chunk::getTile(int x, int y) {
     if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
         Log::error(TAG, "Tile get out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
         return tiles[0];
@@ -40,7 +40,7 @@ chunkTile Chunk::getTile(int x, int y) {
     return tiles[y*SIDE_LENGTH + x];
 }
 
-void Chunk::setTile(int x, int y, chunkTile value) {
+void Chunk::setTile(int x, int y, ChunkTile value) {
     if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
         Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
         return;
@@ -54,7 +54,7 @@ void Chunk::save(const std::string &fileName) {
 
     //Save tiles
     std::ofstream tileData(fileName+".td");
-    for(chunkTile tile : tiles) {
+    for(ChunkTile tile : tiles) {
         if(tileData.good()) {
             tileData.write(reinterpret_cast<const char *>(&tile), sizeof(typeof(tile)));
         }
@@ -74,7 +74,7 @@ bool Chunk::load(const std::string &filename) {
     //TODO: load objects
 
     //Load tiles
-    for(chunkTile& tile : tiles){
+    for(ChunkTile& tile : tiles){
         if(tileData.good()) {
             tileData.read(reinterpret_cast<char *>(&tile), sizeof(typeof(tile)));
         }

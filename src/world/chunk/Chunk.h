@@ -8,8 +8,11 @@
 #include <chrono>
 #include "../object/Object.h"
 
-struct chunkTile{
+//! Representation of a tile in a chunk
+struct ChunkTile{
+    //! Tile id pointing to data in TileDatabase
     short tileId;
+    //! Amount of material in one tile
     uint amount;
 };
 
@@ -18,7 +21,7 @@ public:
     static const int SIDE_LENGTH = 32;
     static const int TILE_SIZE = 16;
 private:
-    std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
+    std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
     std::vector<std::unique_ptr<Object>> objects;
 
     void generateVertices();
@@ -68,7 +71,7 @@ public:
      * @param y Y coordinate (in chunk coordinates)
      * @return chunkTile
      */
-    chunkTile getTile(int x, int y);
+    ChunkTile getTile(int x, int y);
 
     //! Set tile to given ID
     /*!
@@ -78,10 +81,10 @@ public:
      * @param y Y coordinate (in chunk coordinates)
      * @param value a new value of the tile
      */
-    void setTile(int x, int y, chunkTile value);
+    void setTile(int x, int y, ChunkTile value);
 
     Chunk();
-    explicit Chunk(const std::array<chunkTile, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
+    explicit Chunk(const std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
 };
 
 

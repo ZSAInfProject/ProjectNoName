@@ -11,9 +11,9 @@ public:
     void render(sf::RenderWindow& window, sf::View camera);
 
     //!Gets chunkTile using global coordinates of the world
-    chunkTile getTile(int x, int y);
+    ChunkTile getTile(int x, int y);
     //!Sets tile to given value using global coordinates of the world
-    void setTile(int x, int y, chunkTile value);
+    void setTile(int x, int y, ChunkTile value);
 
     //!Mines given tile
     /*!

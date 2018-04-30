@@ -20,8 +20,8 @@ const short ChunkGenerator::getOreType(float depth, float oreTypeNoise) {
     }
 }
 
-const chunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise) {
-    chunkTile retTile = {2,1};
+const ChunkTile ChunkGenerator::getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise) {
+    ChunkTile retTile = {2,1};
     bool isAboveGround = tileHeight > height;
     if(isAboveGround){
         retTile = {1, 1};
@@ -64,7 +64,7 @@ const chunkTile ChunkGenerator::getTile(float tileHeight, float height, float ca
 }
 
 std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
-    std::array<chunkTile, Chunk::SIDE_LENGTH*Chunk::SIDE_LENGTH> tiles{};
+    std::array<ChunkTile, Chunk::SIDE_LENGTH*Chunk::SIDE_LENGTH> tiles{};
     std::mutex tileMut;
 
     auto rowFunc = [this, x, y, &tiles, &tileMut](float tileX) {
@@ -88,7 +88,7 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
 
             auto oreTypeNoiseVal = (float)oreTypeNoise2.noise0_1(tileY/2000.5)+xOreTypeNoiseVal;
 
-            chunkTile tile = getTile(currentHeight, worldHeightAtX,
+            ChunkTile tile = getTile(currentHeight, worldHeightAtX,
                                      carvingNoiseVal,
                                      materialNoiseVal,
                                      oreNoiseVal,

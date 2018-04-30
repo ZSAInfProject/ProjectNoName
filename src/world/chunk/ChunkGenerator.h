@@ -31,7 +31,7 @@ class ChunkGenerator {
 
     static constexpr auto TAG = "ChunkGenerator";
 
-    const chunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
+    const ChunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
     const short getOreType(float depth, float oreTypeNoise);
 public:
     //! Method used to generate new chunks
