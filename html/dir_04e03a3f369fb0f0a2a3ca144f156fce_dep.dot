@@ -1,9 +1,0 @@
-digraph "src/world/chunk" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_2069bf6d6dd6e414796f3f544bacd284 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="world" fontname="Helvetica", fontsize="10", URL="dir_2069bf6d6dd6e414796f3f544bacd284.html"]
-  dir_04e03a3f369fb0f0a2a3ca144f156fce [shape=box, label="chunk", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_04e03a3f369fb0f0a2a3ca144f156fce.html"];
-  }
-}

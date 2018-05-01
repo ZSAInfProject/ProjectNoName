@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['save',['save',['../classChunk.html#ac3e70286e057eb0f93accec639047097',1,'Chunk']]],
-  ['settile',['setTile',['../classChunk.html#ab5533469c17720e23b3b83d219536fc5',1,'Chunk::setTile()'],['../classWorld.html#a9d374f8600da3aa484e48a5887772340',1,'World::setTile()']]],
-  ['state',['State',['../classState.html',1,'']]]
+  ['render',['render',['../classGameState.html#acdfc29603b6075750555fba6ee216907',1,'GameState::render()'],['../classState.html#abea822ddf8d4a55439a0040eba979afb',1,'State::render()'],['../classChunk.html#a0353e35c14d4f576542660bb762db51f',1,'Chunk::render()']]],
+  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
 ];
