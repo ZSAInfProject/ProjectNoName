@@ -12,7 +12,7 @@
 class Tile {
 public:
     explicit Tile(nlohmann::json json);
-    Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y);
+    Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y, bool isSolid);
     Tile();
 
 
@@ -26,6 +26,8 @@ public:
     int texture_x;
     //! Integer y coordinate of texture on texture map
     int texture_y;
+    //! Tells if entity can pass through
+    bool isSolid;
 
 private:
     static constexpr auto TAG = "Tile";
