@@ -1,0 +1,9 @@
+[
+  {
+    "id":0,
+    "name": "Default",
+    "hitbox": [0,0,0,0],
+    "position": [0,0],
+    "sprite": "/res/"
+  }
+]
