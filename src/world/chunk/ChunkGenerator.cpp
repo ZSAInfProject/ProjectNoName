@@ -14,7 +14,7 @@ const float ChunkGenerator::getMaterialNoise(int materialType, float x, float y)
     auto it = materialNoises.find(materialType);
     if(it == materialNoises.end()){
         it = materialNoises.emplace(std::pair<int,siv::PerlinNoise>(materialType,
-                                                               siv::PerlinNoise((uint32_t)seed*10+materialType))).first;
+                                                               siv::PerlinNoise((uint32_t)seed*10+materialType*10))).first;
     }
     return static_cast<const float>(it->second.noise0_1(x/10.5, y/10.5));
 }
@@ -24,7 +24,7 @@ const float ChunkGenerator::getOreNoise(int oreType, float x, float y) {
     auto it = oreNoises.find(oreType);
     if(it == oreNoises.end()){
         it = oreNoises.emplace(std::pair<int,siv::PerlinNoise>(oreType,
-                                                               siv::PerlinNoise((uint32_t)seed*20+oreType))).first;
+                                                               siv::PerlinNoise((uint32_t)seed*20+oreType*20))).first;
     }
     auto oreNoiseVal = (float) (1 - fabs(it->second.octaveNoise(x / 80.5, y / 80.5, 6)));
     oreNoiseVal *= 1 - it->second.noise0_1(x / 1000.5, y / 1000.5) / 3;
@@ -167,19 +167,19 @@ SecondaryMaterial::SecondaryMaterial(nlohmann::json json) {
     }
 
     if(json.find("minDepth") != json.end()){
+        hasMinDepth = true;
         minDepth = json["minDepth"].get<float>();
+    }
+    else{
+        hasMinDepth = false;
     }
 
     if(json.find("maxDepth") != json.end()){
+        hasMaxDepth = true;
         maxDepth = json["maxDepth"].get<float>();
     }
-
-    if(json.find("hasMaxDepth") != json.end()){
-        hasMaxDepth = json["hasMaxDepth"].get<bool>();
-    }
-
-    if(json.find("hasMinDepth") != json.end()){
-        hasMinDepth = json["hasMinDepth"].get<bool>();
+    else{
+        hasMaxDepth = false;
     }
 
     if(json.find("isOre") != json.end()){
