@@ -18,8 +18,6 @@ GameState::GameState() : State(), world(10){
 
 void GameState::update(std::chrono::microseconds deltaTime) {
     auto currentCameraPos = camera.getCenter();
-    //camera.setRotation(static_cast<float>(sin(camera.getCenter().x / 2000) * 360.0));
-    camera.setCenter(currentCameraPos+sf::Vector2f(-1*deltaTime.count()/250.0,-1*deltaTime.count()/2500.0));
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
@@ -55,14 +53,27 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         camera.setCenter(camera.getCenter()+sf::Vector2f(deltaTime.count()/MOVEMENT_DIV, 0.0f));
     }
 
+    for (auto& entity : entities) {
+        entity->update(deltaTime);
+    }
+
 }
 
 void GameState::render(sf::RenderWindow *renderWindow) {
     renderWindow->setView(camera);
     world.render(*renderWindow, camera);
+
+    for (auto& entity : entities) {
+        entity->render(renderWindow);
+    }
+
     renderWindow->setView(renderWindow->getDefaultView());
 }
 void GameState::tick() {
+    for (auto& entity : entities) {
+        entity->tick();
+    }
+
 }
 
 sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {

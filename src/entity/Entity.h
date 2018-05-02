@@ -2,6 +2,7 @@
 #define NONAME_ENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include <chrono>
 #include "../utils/json.hpp"
 
 //! In game moving entity
@@ -14,13 +15,15 @@ public:
     Entity(int ID, std::string name, sf::Vector2f position, sf::RectangleShape hitbox, sf::Sprite sprite);
     explicit Entity(nlohmann::json);
 
-    virtual void tick() =0;
-    virtual void render() =0;
-    virtual void update() =0;
+    void tick();
+    void render(sf::RenderWindow *window);
+    void update(std::chrono::microseconds deltaTime);
 
     int ID;
     std::string name;
+    //! Position in world coordinates
     sf::Vector2f position;
+    //! Hitbox (position with respect to entity origin, also sprite origin)
     sf::RectangleShape hitbox;
     sf::Sprite sprite;
 

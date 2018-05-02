@@ -39,9 +39,6 @@ Entity::Entity(nlohmann::json json) {
         texture.loadFromFile(path);
         sprite.setTexture(texture);
     }
-
-
-
 }
 
 Entity::Entity(int ID, std::string name, sf::Vector2f position,sf::RectangleShape hitbox, sf::Sprite sprite) {
@@ -50,5 +47,18 @@ Entity::Entity(int ID, std::string name, sf::Vector2f position,sf::RectangleShap
    this->sprite = std::move(sprite);
    this->hitbox = std::move(hitbox);
    this->position = position;
+}
+
+void Entity::render(sf::RenderWindow *window) {
+    sprite.setPosition(position);
+    window->draw(sprite);
+}
+
+void Entity::tick() {
+
+}
+
+void Entity::update(std::chrono::microseconds deltaTime) {
+
 }
 

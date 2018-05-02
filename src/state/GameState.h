@@ -3,6 +3,7 @@
 
 #include "State.h"
 #include "../world/World.h"
+#include "../entity/Entity.h"
 
 //! State when actual gameplay is present
 /*!
@@ -21,6 +22,9 @@ public:
 private:
     //! Converts screen to world coordinates
     sf::Vector2f screen_to_global_offset(sf::Vector2f in);
+
+    //! Vector containing all the entities currently active
+    std::vector<std::unique_ptr<Entity>> entities;
 };
 
 #endif //NONAME_GAMESTATE_H
