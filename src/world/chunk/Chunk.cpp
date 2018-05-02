@@ -127,3 +127,18 @@ void Chunk::changeQuad(int x, int y) {
 }
 
 
+ChunkTile::ChunkTile(nlohmann::json json) {
+    if(json.find("id") != json.end()){
+        tileId = json["id"].get<short>();
+    }
+
+    if(json.find("amount") != json.end()){
+        amount = json["amount"].get<uint>();
+    }
+}
+
+ChunkTile::ChunkTile(short tileId_, uint amount_) {
+    tileId = tileId_;
+    amount = amount_;
+}
+

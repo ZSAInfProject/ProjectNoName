@@ -6,8 +6,10 @@
 #include "Chunk.h"
 #include "../../utils/PerlinNoise.h"
 #include "../../utils/ThreadPool.h"
+#include "../../utils/json.hpp"
 
-struct SecondaryMaterial{
+class SecondaryMaterial{
+public:
     ChunkTile tile;
     float minDepth;
     float maxDepth;
@@ -15,14 +17,17 @@ struct SecondaryMaterial{
     bool hasMaxDepth;
     bool isOre;
     float noiseMul;
+    explicit SecondaryMaterial(nlohmann::json);
 };
 
-struct Biome{
+class Biome{
+public:
     int biomeId;
     ChunkTile primaryTile;
     ChunkTile surfaceTile;
     ChunkTile subSurfaceTile;
     std::vector<SecondaryMaterial> secondaryMaterials;
+    explicit Biome(nlohmann::json);
 };
 
 //! Chunk generator class
@@ -47,6 +52,8 @@ class ChunkGenerator {
     std::map<int, siv::PerlinNoise> oreNoises;
     std::map<int, siv::PerlinNoise> materialNoises;
 
+    std::vector<Biome> biomes;
+
     inline const float getWorldHeight(float x);
 
     inline const float getMaterialNoise(int materialType, float x, float y);
@@ -54,6 +61,8 @@ class ChunkGenerator {
 
     Biome getBiome(float worldX);
     ChunkTile getTile(float worldX, float worldY, float worldHeight, Biome biome);
+
+    void loadBiome(nlohmann::json json);
 
     static constexpr auto TAG = "ChunkGenerator";
 public:
@@ -65,6 +74,8 @@ public:
      * @return a newly created chunk
      */
     std::unique_ptr<Chunk> generateChunk(int x, int y);
+
+    void loadBiomes(std::string filename);
 
     explicit ChunkGenerator(int _seed);
 };

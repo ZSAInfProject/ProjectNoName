@@ -2,6 +2,7 @@
 #include "ChunkGenerator.h"
 #include "../../utils/Log.h"
 #include "../../utils/PerlinNoise.h"
+#include "../../utils/json.hpp"
 
 const float ChunkGenerator::getWorldHeight(float x) {
     return static_cast<const float>(heightNoise.noise(x / 100.5f) * 50.5f +
@@ -31,7 +32,7 @@ const float ChunkGenerator::getOreNoise(int oreType, float x, float y) {
 }
 
 Biome ChunkGenerator::getBiome(float worldX) {
-    return Biome{1, {2,5}, {4,1}, {3,1}, {{{1,1}, 100, 0, true, false, false, 1.1}}};
+    return biomes.front();
 }
 
 ChunkTile ChunkGenerator::getTile(float worldX, float worldY, float worldHeight, Biome biome) {
@@ -108,16 +109,84 @@ std::unique_ptr<Chunk> ChunkGenerator::generateChunk(int x, int y) {
 
 ChunkGenerator::ChunkGenerator(int _seed) : threadPool(Chunk::SIDE_LENGTH) {
     seed = _seed;
+    loadBiomes("biomes.json");
     biomeNoise.reseed(static_cast<uint32_t>(seed / 2));
     heightNoise.reseed(static_cast<uint32_t>(seed));
     detailNoise.reseed(static_cast<uint32_t>(seed * 2));
     detailNoise2.reseed(static_cast<uint32_t>(seed * 3));
 }
 
+void ChunkGenerator::loadBiomes(std::string filename) {
+    std::ifstream biomesData("res/"+filename);
+    if(biomesData.is_open()) {
+        nlohmann::json json = nlohmann::json::parse(biomesData);
+        std::vector<nlohmann::json> biomes = json;
+        for(const auto& biome : biomes){
+            loadBiome(biome);
+        }
+    }
+    else{
+        Log::error(TAG, "Failed to open res/"+filename);
+    }
+}
+
+void ChunkGenerator::loadBiome(nlohmann::json json) {
+    biomes.emplace_back(json);
+}
 
 
+Biome::Biome(nlohmann::json json) {
+    if(json.find("id") != json.end()){
+        biomeId = json["id"].get<int>();
+    }
 
+    if(json.find("primaryTile") != json.end()){
+        primaryTile = ChunkTile(json["primaryTile"]);
+    }
 
+    if(json.find("surfaceTile") != json.end()){
+        surfaceTile = ChunkTile(json["surfaceTile"]);
+    }
 
+    if(json.find("subSurfaceTile") != json.end()){
+        subSurfaceTile = ChunkTile(json["subSurfaceTile"]);
+    }
 
+    if(json.find("secondaryTiles") != json.end()){
+        nlohmann::json secondaries = json["secondaryTiles"];
+        for (auto& secondary : secondaries) {
+            secondaryMaterials.emplace_back(secondary);
+        }
+    }
 
+}
+
+SecondaryMaterial::SecondaryMaterial(nlohmann::json json) {
+    if(json.find("tile") != json.end()){
+        tile = ChunkTile(json["tile"]);
+    }
+
+    if(json.find("minDepth") != json.end()){
+        minDepth = json["minDepth"].get<float>();
+    }
+
+    if(json.find("maxDepth") != json.end()){
+        maxDepth = json["maxDepth"].get<float>();
+    }
+
+    if(json.find("hasMaxDepth") != json.end()){
+        hasMaxDepth = json["hasMaxDepth"].get<bool>();
+    }
+
+    if(json.find("hasMinDepth") != json.end()){
+        hasMinDepth = json["hasMinDepth"].get<bool>();
+    }
+
+    if(json.find("isOre") != json.end()){
+        isOre = json["isOre"].get<bool>();
+    }
+
+    if(json.find("noiseMul") != json.end()){
+        noiseMul = json["noiseMul"].get<float>();
+    }
+}
