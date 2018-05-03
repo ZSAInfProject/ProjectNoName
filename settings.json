@@ -1,0 +1,6 @@
+{
+  "resolution_x": 800,
+  "resolution_y": 600,
+  "logging": "DEBUG",
+  "logfile": "Log.txt"
+}
