@@ -5,7 +5,10 @@
 #ifndef NONAME_SETTINGSMANAGER_H
 #define NONAME_SETTINGSMANAGER_H
 
-
+//! Class responsible for global program settings
+/*!
+ * Loads all settings from JSON file, which then can be accessed using get<type>(name)
+ */
 class Settings {
 public:
     //! Returns reference to singleton object.
@@ -25,6 +28,8 @@ private:
     static constexpr auto TAG = "Settings";
 
 public:
+
+    //! Returns setting wth supplied name
     template<typename T>
     static T get(std::string name) {
         if (Settings::get().json.find(name) != Settings::get().json.end()) {
@@ -34,7 +39,8 @@ public:
             throw std::invalid_argument("No setting named: " + name);
         }
     };
-    void setFile(std::string path) {
+    //! Sets file for settings and loads them
+    void setFile(const std::string &path) {
         std::ifstream ifs(path);
         if (ifs.is_open()) {
             json = nlohmann::json::parse(ifs);
