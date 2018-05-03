@@ -1,13 +1,12 @@
 #include "Log.h"
 #include <utility>
 
-void Log::setLogFile(std::string fileName, Mode mode) {
+void Log::setLogFile(std::string fileName) {
     logFileName = std::move(fileName);
     logFile.open(logFileName);
     if (!logFile.is_open()){
         Log::warn("Log", "Could not open log file");
     }
-    loggingMode = mode;
 }
 
 void Log::getMode(){
@@ -46,10 +45,19 @@ void Log::debug(std::string tag, std::string message) {
     }
 }
 
-void Log::verbose(std::string message, std::string tag) {
+void Log::verbose(std::string tag, std::string message) {
     if(get().loggingMode <= Mode::VERBOSE){
         std::cerr << "[VERBOSE] " + tag + ": " + message + "\n";
         get().logFile << "[VERBOSE] " + tag + ": " + message + "\n";
     }
+}
+
+void Log::setMode(std::string mode) {
+    if (mode == "ERROR") loggingMode = Mode::ERROR;
+    else if (mode == "WARN") loggingMode = Mode::WARN;
+    else if (mode == "INFO") loggingMode = Mode::INFO;
+    else if (mode == "DEBUG") loggingMode = Mode::DEBUG;
+    else if (mode == "VERBOSE") loggingMode = Mode::VERBOSE;
+
 }
 
