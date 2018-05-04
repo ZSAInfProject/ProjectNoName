@@ -94,8 +94,8 @@ Makefile
 # docs
 docs/
 
-# chunks
-chunks/
+# saves
+saves/
 
 # logs
 Log.txt
