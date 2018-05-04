@@ -17,6 +17,7 @@ public:
     //! Amount of material in one tile
     uint amount;
 
+    static constexpr auto TAG = "ChunkTile";
     ChunkTile() = default;
     ChunkTile(short tileId, uint amount);
     explicit ChunkTile(nlohmann::json);

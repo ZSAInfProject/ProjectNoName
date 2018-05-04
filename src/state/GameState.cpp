@@ -10,7 +10,7 @@ long mod(long a, long b)
 { return (a%b+b)%b; }
 
 GameState::GameState() : State(), world(10){
-    camera.setSize(sf::Vector2f(6000, -6000));
+    camera.setSize(sf::Vector2f(1200, -1200));
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");

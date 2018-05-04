@@ -139,17 +139,29 @@ Biome::Biome(nlohmann::json json) {
     if(json.find("id") != json.end()){
         biomeId = json["id"].get<int>();
     }
+    else{
+        Log::warn(TAG, "No id data in json");
+    }
 
     if(json.find("primaryTile") != json.end()){
         primaryTile = ChunkTile(json["primaryTile"]);
+    }
+    else{
+        Log::error(TAG, "No primaryTile data in json");
     }
 
     if(json.find("surfaceTile") != json.end()){
         surfaceTile = ChunkTile(json["surfaceTile"]);
     }
+    else{
+        Log::error(TAG, "No surfaceTile data in json");
+    }
 
     if(json.find("subSurfaceTile") != json.end()){
         subSurfaceTile = ChunkTile(json["subSurfaceTile"]);
+    }
+    else{
+        Log::error(TAG, "No subSurfaceTile data in json");
     }
 
     if(json.find("secondaryTiles") != json.end()){
@@ -164,6 +176,9 @@ Biome::Biome(nlohmann::json json) {
 SecondaryMaterial::SecondaryMaterial(nlohmann::json json) {
     if(json.find("tile") != json.end()){
         tile = ChunkTile(json["tile"]);
+    }
+    else{
+        Log::error(TAG, "No tile data in json");
     }
 
     if(json.find("minDepth") != json.end()){
@@ -185,8 +200,14 @@ SecondaryMaterial::SecondaryMaterial(nlohmann::json json) {
     if(json.find("isOre") != json.end()){
         isOre = json["isOre"].get<bool>();
     }
+    else{
+        Log::warn(TAG, "No isOre bool in json");
+    }
 
     if(json.find("noiseMul") != json.end()){
         noiseMul = json["noiseMul"].get<float>();
+    }
+    else{
+        Log::warn(TAG, "No noiseMul json");
     }
 }

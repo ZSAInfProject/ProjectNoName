@@ -17,6 +17,7 @@ public:
     bool hasMaxDepth;
     bool isOre;
     float noiseMul;
+    static constexpr auto TAG = "SecondaryMaterial";
     explicit SecondaryMaterial(nlohmann::json);
 };
 
@@ -27,6 +28,7 @@ public:
     ChunkTile surfaceTile;
     ChunkTile subSurfaceTile;
     std::vector<SecondaryMaterial> secondaryMaterials;
+    static constexpr auto TAG = "Biome";
     explicit Biome(nlohmann::json);
 };
 
