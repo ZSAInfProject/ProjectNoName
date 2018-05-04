@@ -4,15 +4,16 @@
 #include "State.h"
 #include "../world/World.h"
 #include "../entity/Entity.h"
+#include "../entity/Player.h"
 
 //! State when actual gameplay is present
 /*!
  * Contains World, Entities etc. Get's player input. Runs physics.
  */
 class GameState : public State{
-    sf::View camera;
-    World world;
 public:
+    World world;
+
     void update(std::chrono::microseconds deltaTime) override;
     void render(sf::RenderWindow* renderWindow) override;
     void tick() override;
@@ -25,6 +26,8 @@ private:
 
     //! Vector containing all the entities currently active
     std::vector<std::unique_ptr<Entity>> entities;
+
+    sf::View camera;
 };
 
 #endif //NONAME_GAMESTATE_H
