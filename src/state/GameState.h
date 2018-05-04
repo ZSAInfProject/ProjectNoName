@@ -11,6 +11,10 @@
  * Contains World, Entities etc. Get's player input. Runs physics.
  */
 class GameState : public State{
+
+    void createSavePath();
+    static constexpr auto TAG = "GameState";
+  
 public:
     World world;
 

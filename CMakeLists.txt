@@ -22,4 +22,4 @@ target_link_libraries(NoName ${SFML_LIBRARIES} Threads::Threads)
 
 file(COPY res/ DESTINATION res/)
 file(COPY settings.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(MAKE_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/chunks/)
+file(MAKE_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/saves/)
