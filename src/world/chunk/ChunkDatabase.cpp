@@ -1,5 +1,6 @@
 #include "ChunkDatabase.h"
 #include "../../utils/Log.h"
+#include "../../utils/Settings.h"
 
 ChunkDatabase::ChunkDatabase(std::unique_ptr<ChunkGenerator> _chunkGenerator) {
     chunkGenerator = std::move(_chunkGenerator);
@@ -87,7 +88,7 @@ std::string ChunkDatabase::cacheDebug(int x, int y) {
 }
     
 std::string ChunkDatabase::getChunkFilename(int x, int y) {
-    std::string filename = "chunks/";
+    std::string filename = Settings::get<std::string>("save_path")+"chunks/";
     if(x < 0){
         filename += "1";
     }else{
