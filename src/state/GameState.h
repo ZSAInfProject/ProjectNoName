@@ -12,7 +12,7 @@ class GameState : public State{
     sf::View camera;
     World world;
     void createSavePath();
-    static constexpr auto TAG = "Chunk";
+    static constexpr auto TAG = "GameState";
 public:
     void update(std::chrono::microseconds deltaTime) override;
     void render(sf::RenderWindow* renderWindow) override;
