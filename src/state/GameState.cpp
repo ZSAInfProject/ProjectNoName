@@ -23,15 +23,16 @@ GameState::GameState() : State(), world(10){
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
-    entities.push_back(std::make_unique<Player>());
-    entities[0]->gameState = this;
+
+    player = std::make_shared<Player>(*this);
+    entities.emplace_back(player);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
     camera.setCenter(entities[0]->position);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
+        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::getRenderWindow()));
 
         position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
@@ -41,7 +42,7 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::get().getRenderWindow()));
+        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::getRenderWindow()));
 
         position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
@@ -57,15 +58,15 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
 }
 
-void GameState::render(sf::RenderWindow *renderWindow) {
-    renderWindow->setView(camera);
-    world.render(*renderWindow, camera);
+void GameState::render() {
+    Game::getRenderWindow().setView(camera);
+    world.render(camera);
 
     for (auto& entity : entities) {
-        entity->render(renderWindow);
+        entity->render();
     }
 
-    renderWindow->setView(renderWindow->getDefaultView());
+    Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
     for (auto& entity : entities) {
@@ -76,10 +77,10 @@ void GameState::tick() {
 
 sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {
     auto out = in;
-    out.y = Game::get().getRenderWindow().getSize().y - in.y;
-    out -= sf::Vector2f(Game::get().getRenderWindow().getSize())/2.0f;
-    out.x *= camera.getSize().x / Game::get().getRenderWindow().getSize().x;
-    out.y *= -camera.getSize().y / Game::get().getRenderWindow().getSize().y;
+    out.y = Game::getRenderWindow().getSize().y - in.y;
+    out -= sf::Vector2f(Game::getRenderWindow().getSize())/2.0f;
+    out.x *= camera.getSize().x / Game::getRenderWindow().getSize().x;
+    out.y *= -camera.getSize().y / Game::getRenderWindow().getSize().y;
     out += camera.getCenter();
     return out;
 }
@@ -98,6 +99,10 @@ void GameState::createSavePath() {
 #else
 #error "System not supported."
 #endif
+}
+
+World &GameState::getWorld() {
+    return world;
 }
 
 

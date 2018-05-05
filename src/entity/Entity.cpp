@@ -1,8 +1,9 @@
 #include "Entity.h"
 #include "../utils/Log.h"
+#include "../Game.h"
 #include <utility>
 
-Entity::Entity(nlohmann::json json) {
+Entity::Entity(nlohmann::json json, GameState& game_state) : game_state(game_state) {
     if(json.find("ID") != json.end()){
         ID = json["ID"].get<int>();
     }
@@ -41,7 +42,8 @@ Entity::Entity(nlohmann::json json) {
     }
 }
 
-Entity::Entity(int ID, std::string name, sf::Vector2f position, sf::FloatRect hitbox, sf::Texture texture) {
+Entity::Entity(int ID, std::string name, sf::Vector2f position,
+               sf::FloatRect hitbox, sf::Texture texture, GameState& game_state) : game_state(game_state) {
    this->ID = ID;
    this->name = std::move(name);
    this->texture = texture;
@@ -50,9 +52,9 @@ Entity::Entity(int ID, std::string name, sf::Vector2f position, sf::FloatRect hi
    this->position = position;
 }
 
-void Entity::render(sf::RenderWindow *window) {
-    sprite.setPosition(position.x, position.y + sprite.getGlobalBounds().height);
-    window->draw(sprite);
+void Entity::render() {
+    sprite.setPosition(position.x, position.y);
+    Game::getRenderWindow().draw(sprite);
 }
 
 void Entity::tick() {

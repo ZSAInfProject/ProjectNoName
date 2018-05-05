@@ -1,14 +1,16 @@
 #include "Player.h"
+#include <utility>
 #include "../utils/Log.h"
 #include "../Game.h"
 #include "../state/GameState.h"
 #include "../tile/TileDatabase.h"
 
-Player::Player()
-        : Entity(0, std::string("Player"), sf::Vector2f(0,100), sf::FloatRect(0, 32, 16, 32), sf::Texture()) {
+Player::Player(GameState& game_state)
+        : Entity(0, std::string("Player"), sf::Vector2f(0,100), sf::FloatRect(0, 32, 16, 32), sf::Texture(), game_state) {
+
     texture.loadFromFile("res/textures/player.png");
     sprite = sf::Sprite(texture);
-    sprite.scale(0.5f, -0.5f);
+    sprite.scale(0.5f, 0.5f);
 
     speed = {0.0f, 0.0f};
 }
@@ -36,12 +38,11 @@ void Player::update(std::chrono::microseconds deltaTime) {
 
     position.y += deltaTime.count() * speed.y / MOVEMENT_DIV;
 
-
-    if (TileDatabase::get()[gameState->world.getTile((int)position.x / Chunk::TILE_SIZE, div((int)position.y, Chunk::TILE_SIZE)).tileId].isSolid) {
+    if (TileDatabase::get()[game_state.getWorld().getTile((int)position.x / Chunk::TILE_SIZE, div((int)position.y, Chunk::TILE_SIZE)).tileId].isSolid) {
         touching_ground = true;
         speed.y = 0;
         position.y = (int)(position.y / Chunk::TILE_SIZE) * Chunk::TILE_SIZE;
-        if (TileDatabase::get()[gameState->world.getTile((int)position.x / Chunk::TILE_SIZE, (int)position.y / Chunk::TILE_SIZE).tileId].isSolid) {
+        if (TileDatabase::get()[game_state.getWorld().getTile((int)position.x / Chunk::TILE_SIZE, (int)position.y / Chunk::TILE_SIZE).tileId].isSolid) {
             position.y = ((int)(position.y / Chunk::TILE_SIZE) + 1 )* Chunk::TILE_SIZE;
         }
     }

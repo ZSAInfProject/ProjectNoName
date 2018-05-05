@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include "../utils/json.hpp"
+#include "../state/State.h"
 
 class GameState;
 
@@ -14,11 +15,12 @@ class GameState;
 class Entity {
 
 public:
-    Entity(int ID, std::string name, sf::Vector2f position, sf::FloatRect hitbox, sf::Texture texture);
-    explicit Entity(nlohmann::json);
+    Entity(int ID, std::string name, sf::Vector2f position, sf::FloatRect hitbox, sf::Texture texture,
+           GameState& game_state);
+    explicit Entity(nlohmann::json json, GameState& game_state);
 
     virtual void tick();
-    virtual void render(sf::RenderWindow *window);
+    virtual void render();
     virtual void update(std::chrono::microseconds deltaTime);
 
     int ID;
@@ -29,7 +31,8 @@ public:
     sf::FloatRect hitbox;
     sf::Sprite sprite;
     sf::Texture texture;
-    GameState *gameState;
+
+    GameState& game_state;
 
 };
 
