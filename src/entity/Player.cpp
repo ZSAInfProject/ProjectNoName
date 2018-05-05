@@ -64,16 +64,26 @@ void Player::update(std::chrono::microseconds deltaTime) {
     float old_pos_y = position.y;
     position.y += speed.y * deltaTime.count() / MOVEMENT_DIV;
 
-    Tile tile = TileDatabase::get()[game_state.getWorld().getTile(                           //Collision detection Y
-            div(position.x + sprite.getGlobalBounds().width/2, Chunk::TILE_SIZE),
-            div(position.y, Chunk::TILE_SIZE)).tileId];
+    if (speed.y < 0) {
+        Tile tile = TileDatabase::get()[game_state.getWorld().getTile(                           //Collision detection Y down
+                div(position.x + sprite.getGlobalBounds().width / 2, Chunk::TILE_SIZE),
+                div(position.y, Chunk::TILE_SIZE)).tileId];
 
-    if (tile.isSolid) {
-        position.y = old_pos_y;
-        touching_ground = true;
-        speed.y = 0;
-    } else {
-        touching_ground = false;
+        if (tile.isSolid) {
+            position.y = old_pos_y;
+            touching_ground = true;
+            speed.y = 0;
+        } else {
+            touching_ground = false;
+        }
     }
-
+    else {
+        Tile tile = TileDatabase::get()[game_state.getWorld().getTile(                           //Collision detection Y up
+                div(position.x + sprite.getGlobalBounds().width / 2, Chunk::TILE_SIZE),
+                div(position.y, Chunk::TILE_SIZE) + 2).tileId];
+        if (tile.isSolid) {
+            position.y = old_pos_y;
+            speed.y = 0;
+        }
+    }
 }
