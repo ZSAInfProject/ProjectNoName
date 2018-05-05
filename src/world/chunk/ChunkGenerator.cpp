@@ -32,7 +32,9 @@ const float ChunkGenerator::getOreNoise(int oreType, float x, float y) {
 }
 
 Biome ChunkGenerator::getBiome(float worldX) {
-    return biomes.front();
+    float biomeNoiseVal = static_cast<float>(biomeNoise.noise0_1(worldX / 10000.5) * biomes.size());
+    int biomeId = static_cast<int>(floor(biomeNoiseVal));
+    return biomes[biomeId];
 }
 
 ChunkTile ChunkGenerator::getTile(float worldX, float worldY, float worldHeight, Biome biome) {

@@ -71,5 +71,78 @@
       }
 
     ]
+  },
+  {
+    "name": "Stonelands",
+    "id": 1,
+    "primaryTile":
+    {
+      "id": 2,
+      "amount": 5
+    },
+    "surfaceTile":
+    {
+      "id": 2,
+      "amount": 1
+    },
+    "subSurfaceTile":
+    {
+      "id": 2,
+      "amount": 1
+    },
+    "secondaryTiles":
+    [
+      {
+        "tile":
+        {
+          "id": 1,
+          "amount": 1
+        },
+        "minDepth": 50,
+        "isOre": false,
+        "noiseMul": 1.1
+      },
+      {
+        "tile":
+        {
+          "id": 3,
+          "amount": 2
+        },
+        "maxDepth": 20000,
+        "isOre": false,
+        "noiseMul": 1.15
+      },
+      {
+        "tile":
+        {
+          "id": 6,
+          "amount": 10
+        },
+        "minDepth": 50,
+        "isOre": true,
+        "noiseMul": 0.94
+      },
+      {
+        "tile":
+        {
+          "id": 5,
+          "amount": 10
+        },
+        "minDepth": 500,
+        "isOre": true,
+        "noiseMul": 0.92
+      },
+      {
+        "tile":
+        {
+          "id": 7,
+          "amount": 10
+        },
+        "minDepth": 500,
+        "isOre": true,
+        "noiseMul": 0.88
+      }
+
+    ]
   }
 ]
