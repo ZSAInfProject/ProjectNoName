@@ -2,9 +2,35 @@
 #define NONAME_CHUNKGENERATOR_H
 
 
+#include <map>
 #include "Chunk.h"
 #include "../../utils/PerlinNoise.h"
 #include "../../utils/ThreadPool.h"
+#include "../../utils/json.hpp"
+
+class SecondaryMaterial{
+public:
+    ChunkTile tile;
+    float minDepth;
+    float maxDepth;
+    bool hasMinDepth;
+    bool hasMaxDepth;
+    bool isOre;
+    float noiseMul;
+    static constexpr auto TAG = "SecondaryMaterial";
+    explicit SecondaryMaterial(nlohmann::json);
+};
+
+class Biome{
+public:
+    int biomeId;
+    ChunkTile primaryTile;
+    ChunkTile surfaceTile;
+    ChunkTile subSurfaceTile;
+    std::vector<SecondaryMaterial> secondaryMaterials;
+    static constexpr auto TAG = "Biome";
+    explicit Biome(nlohmann::json);
+};
 
 //! Chunk generator class
 /*!
@@ -17,22 +43,30 @@ class ChunkGenerator {
      */
     int seed;
 
+    siv::PerlinNoise biomeNoise;
     siv::PerlinNoise heightNoise;
     siv::PerlinNoise detailNoise;
     siv::PerlinNoise detailNoise2;
-    siv::PerlinNoise carvingNoise;
-    siv::PerlinNoise materialNoise;
-    siv::PerlinNoise oreNoise;
-    siv::PerlinNoise oreNoise2;
-    siv::PerlinNoise oreTypeNoise;
-    siv::PerlinNoise oreTypeNoise2;
 
     ThreadPool threadPool;
 
-    static constexpr auto TAG = "ChunkGenerator";
+    std::mutex mappedNoisesMut;
+    std::map<int, siv::PerlinNoise> oreNoises;
+    std::map<int, siv::PerlinNoise> materialNoises;
 
-    const ChunkTile getTile(float tileHeight, float height, float carvingNoise, float materialNoise, float oreNoise, float oreTypeNoise);
-    const short getOreType(float depth, float oreTypeNoise);
+    std::vector<Biome> biomes;
+
+    inline const float getWorldHeight(float x);
+
+    inline const float getMaterialNoise(int materialType, float x, float y);
+    inline const float getOreNoise(int oreType, float x, float y);
+
+    Biome getBiome(float worldX);
+    ChunkTile getTile(float worldX, float worldY, float worldHeight, Biome biome);
+
+    void loadBiome(nlohmann::json json);
+
+    static constexpr auto TAG = "ChunkGenerator";
 public:
     //! Method used to generate new chunks
     /*!
@@ -42,6 +76,8 @@ public:
      * @return a newly created chunk
      */
     std::unique_ptr<Chunk> generateChunk(int x, int y);
+
+    void loadBiomes(std::string filename);
 
     explicit ChunkGenerator(int _seed);
 };

@@ -127,3 +127,24 @@ void Chunk::changeQuad(int x, int y) {
 }
 
 
+ChunkTile::ChunkTile(nlohmann::json json) {
+    if(json.find("id") != json.end()){
+        tileId = json["id"].get<short>();
+    }
+    else{
+        Log::error(TAG, "No id data in json");
+    }
+
+    if(json.find("amount") != json.end()){
+        amount = json["amount"].get<uint>();
+    }
+    else{
+        Log::error(TAG, "No amount data in json");
+    }
+}
+
+ChunkTile::ChunkTile(short tileId_, uint amount_) {
+    tileId = tileId_;
+    amount = amount_;
+}
+

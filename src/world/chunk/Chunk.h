@@ -7,13 +7,20 @@
 #include <vector>
 #include <chrono>
 #include "../object/Object.h"
+#include "../../utils/json.hpp"
 
 //! Representation of a tile in a chunk
-struct ChunkTile{
+class ChunkTile{
+public:
     //! Tile id pointing to data in TileDatabase
     short tileId;
     //! Amount of material in one tile
     uint amount;
+
+    static constexpr auto TAG = "ChunkTile";
+    ChunkTile() = default;
+    ChunkTile(short tileId, uint amount);
+    explicit ChunkTile(nlohmann::json);
 };
 
 class Chunk {
