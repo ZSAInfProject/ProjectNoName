@@ -25,8 +25,10 @@ public:
     static void verbose(std::string tag, std::string message);
 
     //! Sets file to save logs to and logging level.
-    void setLogFile(std::string, Mode);
+    void setLogFile(std::string);
     void getMode();
+
+    void setMode(std::string mode);
 
 private:
 

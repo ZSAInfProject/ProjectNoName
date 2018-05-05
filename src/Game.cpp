@@ -3,6 +3,7 @@
 #include "state/GameState.h"
 #include "Game.h"
 #include "utils/Log.h"
+#include "utils/Settings.h"
 
 void Game::pushState(std::unique_ptr<State> state) {
     Log::info(TAG , "New state pushed on stack");
@@ -20,7 +21,7 @@ State& Game::getState() {
 
 void Game::run() {
     Log::info(TAG ,"Main loop started");
-    renderWindow.create({800, 600}, "ProjectNoName");
+    renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
     pushState(std::make_unique<GameState>());
 
     std::chrono::system_clock::time_point loopStart;

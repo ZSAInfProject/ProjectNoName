@@ -1,0 +1,7 @@
+{
+  "resolution_x": 800,
+  "resolution_y": 600,
+  "log_mode": "DEBUG",
+  "logfile": "Log.txt",
+  "save_path": "saves/1/"
+}

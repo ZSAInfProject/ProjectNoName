@@ -4,55 +4,63 @@
     "name": "Default",
     "terminal": "?",
     "hardness": 1,
-    "texture": [0, 0]
+    "texture": [0, 0],
+    "isSolid": true
   },
   {
     "id": 1,
     "name": "Sky",
     "terminal": " ",
     "hardness" : 0,
-    "texture": [1, 0]
+    "texture": [1, 0],
+    "isSolid": false
   },
   {
     "id": 2,
     "name": "Stone",
     "terminal": "X",
     "hardness" : 2.0,
-    "texture": [2, 0]
+    "texture": [2, 0],
+    "isSolid": true
   },
   {
     "id": 3,
     "name": "Dirt",
     "terminal": "O",
     "hardness" : 1.0,
-    "texture": [3, 0]
+    "texture": [3, 0],
+    "isSolid": true
   },
   {
     "id": 4,
     "name": "Grass",
     "terminal": "G",
     "hardness": 1.0,
-    "texture": [4, 0]
+    "texture": [4, 0],
+    "isSolid": true
   },
   {
     "id": 5,
     "name": "CopperOre",
     "terminal": "U",
     "hardness": 1.0,
-    "texture": [5, 0]
+    "texture": [5, 0],
+    "isSolid": true
   },
   {
     "id": 6,
     "name": "CoalOre",
     "terminal": "C",
     "hardness": 1.0,
-    "texture": [6, 0]
+    "texture": [6, 0],
+    "isSolid": true
   },
   {
     "id": 7,
     "name": "IronOre",
     "terminal": "F",
     "hardness": 1.0,
-    "texture": [7, 0]
+    "texture": [7, 0],
+    "isSolid": true
   }
 ]
