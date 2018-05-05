@@ -5,4 +5,6 @@ digraph "GameState"
   Node1 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="State",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classState.html",tooltip="Base class for program states. "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" world" ,fontname="Helvetica"];
+  Node3 [label="World",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWorld.html"];
 }

@@ -86,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classEntity-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Entity Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Entity Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -94,24 +94,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classEntity.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Entity_8h_source.html">Entity.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Entity:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEntity__inherit__graph.png" border="0" usemap="#Entity_inherit__map" alt="Inheritance graph"/></div>
+<map name="Entity_inherit__map" id="Entity_inherit__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for Entity:</div>
+<div class="dyncontent">
+<div class="center"><img src="classEntity__coll__graph.png" border="0" usemap="#Entity_coll__map" alt="Collaboration graph"/></div>
+<map name="Entity_coll__map" id="Entity_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7685414a84c4052451ad7de8eea28f2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7685414a84c4052451ad7de8eea28f2b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int ID, std::string name, sf::Vector2f position, sf::RectangleShape hitbox, sf::Sprite sprite)</td></tr>
-<tr class="separator:a7685414a84c4052451ad7de8eea28f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe533e6ed661368ddfb2abc4f355e5ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe533e6ed661368ddfb2abc4f355e5ae"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int ID, std::string name, sf::Vector2f <a class="el" href="classEntity.html#afc349ec89c2bffef70bf6a1d95603154">position</a>, sf::FloatRect <a class="el" href="classEntity.html#a3bed8137e87ee1923135c5b24207da60">hitbox</a>, sf::Texture texture)</td></tr>
+<tr class="separator:abe533e6ed661368ddfb2abc4f355e5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45c6ac38444033089ec95e3e7c26c0c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45c6ac38444033089ec95e3e7c26c0c8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (nlohmann::json)</td></tr>
 <tr class="separator:a45c6ac38444033089ec95e3e7c26c0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6ae3c4257123d0725c541398328559b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6ae3c4257123d0725c541398328559b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>tick</b> ()=0</td></tr>
-<tr class="separator:ac6ae3c4257123d0725c541398328559b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7615728fd41ad13436908b1941f429b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7615728fd41ad13436908b1941f429b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> ()=0</td></tr>
-<tr class="separator:aa7615728fd41ad13436908b1941f429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59a29d9b7474baf13c9c76859242287d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59a29d9b7474baf13c9c76859242287d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()=0</td></tr>
-<tr class="separator:a59a29d9b7474baf13c9c76859242287d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f08fe2d5e636d5d3bd17652c2e4eb53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f08fe2d5e636d5d3bd17652c2e4eb53"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>tick</b> ()</td></tr>
+<tr class="separator:a2f08fe2d5e636d5d3bd17652c2e4eb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad87af2e77fbcda048f7543bfb43ddaaf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad87af2e77fbcda048f7543bfb43ddaaf"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow *window)</td></tr>
+<tr class="separator:ad87af2e77fbcda048f7543bfb43ddaaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f9fd4c95bcf72cd3ffef5b18218f76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06f9fd4c95bcf72cd3ffef5b18218f76"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (std::chrono::microseconds deltaTime)</td></tr>
+<tr class="separator:a06f9fd4c95bcf72cd3ffef5b18218f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -122,14 +136,22 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b></td></tr>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a931b21fbdebb1a5963b4bcab5df128f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc349ec89c2bffef70bf6a1d95603154"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc349ec89c2bffef70bf6a1d95603154"></a>
-sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#afc349ec89c2bffef70bf6a1d95603154">position</a></td></tr>
+<tr class="memdesc:afc349ec89c2bffef70bf6a1d95603154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position in world coordinates. <br/></td></tr>
 <tr class="separator:afc349ec89c2bffef70bf6a1d95603154"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40a4575edd686de037d61aad026f2790"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40a4575edd686de037d61aad026f2790"></a>
-sf::RectangleShape&#160;</td><td class="memItemRight" valign="bottom"><b>hitbox</b></td></tr>
-<tr class="separator:a40a4575edd686de037d61aad026f2790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bed8137e87ee1923135c5b24207da60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bed8137e87ee1923135c5b24207da60"></a>
+sf::FloatRect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntity.html#a3bed8137e87ee1923135c5b24207da60">hitbox</a></td></tr>
+<tr class="memdesc:a3bed8137e87ee1923135c5b24207da60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hitbox (position with respect to entity origin, also sprite origin) <br/></td></tr>
+<tr class="separator:a3bed8137e87ee1923135c5b24207da60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48ef4ab143b8d0211877c9f6be42e824"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48ef4ab143b8d0211877c9f6be42e824"></a>
 sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td></tr>
 <tr class="separator:a48ef4ab143b8d0211877c9f6be42e824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad64dd6d282432a68475f30f7c7bbdc88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad64dd6d282432a68475f30f7c7bbdc88"></a>
+sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><b>texture</b></td></tr>
+<tr class="separator:ad64dd6d282432a68475f30f7c7bbdc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841bc61c53bf764fe598f42b19370ab2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a841bc61c53bf764fe598f42b19370ab2"></a>
+<a class="el" href="classGameState.html">GameState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>gameState</b></td></tr>
+<tr class="separator:a841bc61c53bf764fe598f42b19370ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>In game moving entity. </p>

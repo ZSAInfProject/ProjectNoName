@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: Class Members - Variables</title>
+<title>My Project: src/entity/Player.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,8 +37,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -59,20 +59,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
-      <li class="current"><a href="functions.html"><span>Class&#160;Members</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
-  <div id="navrow3" class="tabs2">
-    <ul class="tablist">
-      <li><a href="functions.html"><span>All</span></a></li>
-      <li><a href="functions_func.html"><span>Functions</span></a></li>
-      <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
-    </ul>
-  </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,52 +76,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b6f0bb288e976a059ae88387d5b9ae90.html">entity</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Player.h</div>  </div>
+</div><!--header-->
 <div class="contents">
-&#160;<ul>
-<li>amount
-: <a class="el" href="structChunkTile.html#a29ac3a16c7075941a5c483f1a3372364">ChunkTile</a>
-</li>
-<li>frame_per_second
-: <a class="el" href="classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db">Game</a>
-</li>
-<li>hardness
-: <a class="el" href="classTile.html#accd68364f51cf745c5c95717a164b2e9">Tile</a>
-</li>
-<li>hitbox
-: <a class="el" href="classEntity.html#a3bed8137e87ee1923135c5b24207da60">Entity</a>
-</li>
-<li>isSolid
-: <a class="el" href="classTile.html#a3a32e61b42ec4bc8bb1d924261c19403">Tile</a>
-</li>
-<li>minimumLoopTime
-: <a class="el" href="classGame.html#af9f24863bbe8102d1bf5d97aaa449d14">Game</a>
-</li>
-<li>name
-: <a class="el" href="classTile.html#aa5408d0f0f4a60f25796f651db2f84ac">Tile</a>
-</li>
-<li>position
-: <a class="el" href="classEntity.html#afc349ec89c2bffef70bf6a1d95603154">Entity</a>
-</li>
-<li>terminal_representation
-: <a class="el" href="classTile.html#a4792f343c63f2b7c1bf1a7321ba60206">Tile</a>
-</li>
-<li>texture
-: <a class="el" href="classTileDatabase.html#a3368141d1a148afb5830ff86b3ca29f6">TileDatabase</a>
-</li>
-<li>texture_x
-: <a class="el" href="classTile.html#ac1b8010b027d438ee826af235dc00fe1">Tile</a>
-</li>
-<li>texture_y
-: <a class="el" href="classTile.html#addde9f80a365eae65b1f4bc156f18722">Tile</a>
-</li>
-<li>tick_period
-: <a class="el" href="classGame.html#a65800b8c8afee406d719b404a4a78877">Game</a>
-</li>
-<li>tileId
-: <a class="el" href="structChunkTile.html#ac7277fa1d196411449a646d3eed73b39">ChunkTile</a>
-</li>
-</ul>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef NONAME_PLAYER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NONAME_PLAYER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;Entity.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="classPlayer.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPlayer.html">Player</a> : <span class="keyword">public</span> <a class="code" href="classEntity.html">Entity</a> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classPlayer.html">Player</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> update(std::chrono::microseconds deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    sf::Vector2f speed;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">bool</span> touching_ground = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif //NONAME_PLAYER_H</span></div>
+<div class="ttc" id="classEntity_html"><div class="ttname"><a href="classEntity.html">Entity</a></div><div class="ttdoc">In game moving entity. </div><div class="ttdef"><b>Definition:</b> Entity.h:14</div></div>
+<div class="ttc" id="classPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdef"><b>Definition:</b> Player.h:7</div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

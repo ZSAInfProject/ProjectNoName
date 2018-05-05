@@ -10,22 +10,28 @@ In game moving entity.
 
 {\ttfamily \#include $<$Entity.\-h$>$}
 
+
+
+Inheritance diagram for Entity\-:
+
+
+Collaboration diagram for Entity\-:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classEntity_a7685414a84c4052451ad7de8eea28f2b}{{\bfseries Entity} (int I\-D, std\-::string name, sf\-::\-Vector2f position, sf\-::\-Rectangle\-Shape hitbox, sf\-::\-Sprite sprite)}\label{classEntity_a7685414a84c4052451ad7de8eea28f2b}
+\hypertarget{classEntity_abe533e6ed661368ddfb2abc4f355e5ae}{{\bfseries Entity} (int I\-D, std\-::string name, sf\-::\-Vector2f \hyperlink{classEntity_afc349ec89c2bffef70bf6a1d95603154}{position}, sf\-::\-Float\-Rect \hyperlink{classEntity_a3bed8137e87ee1923135c5b24207da60}{hitbox}, sf\-::\-Texture texture)}\label{classEntity_abe533e6ed661368ddfb2abc4f355e5ae}
 
 \item 
 \hypertarget{classEntity_a45c6ac38444033089ec95e3e7c26c0c8}{{\bfseries Entity} (nlohmann\-::json)}\label{classEntity_a45c6ac38444033089ec95e3e7c26c0c8}
 
 \item 
-\hypertarget{classEntity_ac6ae3c4257123d0725c541398328559b}{virtual void {\bfseries tick} ()=0}\label{classEntity_ac6ae3c4257123d0725c541398328559b}
+\hypertarget{classEntity_a2f08fe2d5e636d5d3bd17652c2e4eb53}{virtual void {\bfseries tick} ()}\label{classEntity_a2f08fe2d5e636d5d3bd17652c2e4eb53}
 
 \item 
-\hypertarget{classEntity_aa7615728fd41ad13436908b1941f429b}{virtual void {\bfseries render} ()=0}\label{classEntity_aa7615728fd41ad13436908b1941f429b}
+\hypertarget{classEntity_ad87af2e77fbcda048f7543bfb43ddaaf}{virtual void {\bfseries render} (sf\-::\-Render\-Window $\ast$window)}\label{classEntity_ad87af2e77fbcda048f7543bfb43ddaaf}
 
 \item 
-\hypertarget{classEntity_a59a29d9b7474baf13c9c76859242287d}{virtual void {\bfseries update} ()=0}\label{classEntity_a59a29d9b7474baf13c9c76859242287d}
+\hypertarget{classEntity_a06f9fd4c95bcf72cd3ffef5b18218f76}{virtual void {\bfseries update} (std\-::chrono\-::microseconds delta\-Time)}\label{classEntity_a06f9fd4c95bcf72cd3ffef5b18218f76}
 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
@@ -37,13 +43,19 @@ In game moving entity.
 \hypertarget{classEntity_a931b21fbdebb1a5963b4bcab5df128f5}{std\-::string {\bfseries name}}\label{classEntity_a931b21fbdebb1a5963b4bcab5df128f5}
 
 \item 
-\hypertarget{classEntity_afc349ec89c2bffef70bf6a1d95603154}{sf\-::\-Vector2f {\bfseries position}}\label{classEntity_afc349ec89c2bffef70bf6a1d95603154}
+\hypertarget{classEntity_afc349ec89c2bffef70bf6a1d95603154}{sf\-::\-Vector2f \hyperlink{classEntity_afc349ec89c2bffef70bf6a1d95603154}{position}}\label{classEntity_afc349ec89c2bffef70bf6a1d95603154}
 
-\item 
-\hypertarget{classEntity_a40a4575edd686de037d61aad026f2790}{sf\-::\-Rectangle\-Shape {\bfseries hitbox}}\label{classEntity_a40a4575edd686de037d61aad026f2790}
+\begin{DoxyCompactList}\small\item\em Position in world coordinates. \end{DoxyCompactList}\item 
+\hypertarget{classEntity_a3bed8137e87ee1923135c5b24207da60}{sf\-::\-Float\-Rect \hyperlink{classEntity_a3bed8137e87ee1923135c5b24207da60}{hitbox}}\label{classEntity_a3bed8137e87ee1923135c5b24207da60}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Hitbox (position with respect to entity origin, also sprite origin) \end{DoxyCompactList}\item 
 \hypertarget{classEntity_a48ef4ab143b8d0211877c9f6be42e824}{sf\-::\-Sprite {\bfseries sprite}}\label{classEntity_a48ef4ab143b8d0211877c9f6be42e824}
+
+\item 
+\hypertarget{classEntity_ad64dd6d282432a68475f30f7c7bbdc88}{sf\-::\-Texture {\bfseries texture}}\label{classEntity_ad64dd6d282432a68475f30f7c7bbdc88}
+
+\item 
+\hypertarget{classEntity_a841bc61c53bf764fe598f42b19370ab2}{\hyperlink{classGameState}{Game\-State} $\ast$ {\bfseries game\-State}}\label{classEntity_a841bc61c53bf764fe598f42b19370ab2}
 
 \end{DoxyCompactItemize}
 
