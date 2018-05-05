@@ -7,7 +7,7 @@
 #include <vector>
 #include <chrono>
 #include "../object/Object.h"
-#include "../../utils/json.hpp"
+#include "../../../deps/json.h"
 
 //! Representation of a tile in a chunk
 class ChunkTile{

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../utils/json.hpp"
+#include "../../deps/json.h"
 
 //! Represents Tile - 1x1 game block
 /*!

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
-#include "../utils/json.hpp"
+#include "../../deps/json.h"
 #include "../state/State.h"
 
 class GameState;

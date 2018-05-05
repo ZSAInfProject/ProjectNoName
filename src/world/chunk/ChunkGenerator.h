@@ -4,9 +4,9 @@
 
 #include <map>
 #include "Chunk.h"
-#include "../../utils/PerlinNoise.h"
+#include "../../../deps/PerlinNoise.h"
 #include "../../utils/ThreadPool.h"
-#include "../../utils/json.hpp"
+#include "../../../deps/json.h"
 
 class SecondaryMaterial{
 public:
