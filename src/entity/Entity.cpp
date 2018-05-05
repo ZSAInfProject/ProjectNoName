@@ -53,7 +53,7 @@ Entity::Entity(int ID, std::string name, sf::Vector2f position,
 }
 
 void Entity::render() {
-    sprite.setPosition(position.x, position.y);
+    sprite.setPosition(position.x, position.y + sprite.getGlobalBounds().height);
     Game::getRenderWindow().draw(sprite);
 }
 

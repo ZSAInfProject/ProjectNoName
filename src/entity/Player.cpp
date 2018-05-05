@@ -10,7 +10,7 @@ Player::Player(GameState& game_state)
 
     texture.loadFromFile("res/textures/player.png");
     sprite = sf::Sprite(texture);
-    sprite.scale(0.5f, 0.5f);
+    sprite.scale(0.5f, -0.5f);
 
     speed = {0.0f, 0.0f};
 }
@@ -54,7 +54,7 @@ void Player::update(std::chrono::microseconds deltaTime) {
     if (tile_d.isSolid && !tile_u.isSolid) {
         position.y = (div(position.y, Chunk::TILE_SIZE) + 1) * Chunk::TILE_SIZE + 0.0001f;
     }
-    if (tile_d.isSolid && tile_u.isSolid) {
+    if (tile_u.isSolid) {
         position.x = old_pos_x;
         speed.x = 0;
     }
