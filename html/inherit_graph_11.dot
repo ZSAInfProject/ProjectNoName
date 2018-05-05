@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="World",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWorld.html"];
+  Node1 [label="Tile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTile.html",tooltip="Represents Tile - 1x1 game block. "];
 }
