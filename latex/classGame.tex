@@ -13,30 +13,30 @@ Main program class.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classGame_a586a831ed5ff1283fcf1b96f4eff065c}{{\bfseries Game} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_a586a831ed5ff1283fcf1b96f4eff065c}
-
-\item 
-\hypertarget{classGame_aa4c0eacd8656e54ec4e94877c453e531}{void {\bfseries operator=} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_aa4c0eacd8656e54ec4e94877c453e531}
-
-\item 
-\hypertarget{classGame_aa808b50e4c19c3ca8907d6a3ab1f473e}{void \hyperlink{classGame_aa808b50e4c19c3ca8907d6a3ab1f473e}{push\-State} (std\-::unique\-\_\-ptr$<$ \hyperlink{classState}{State} $>$ state)}\label{classGame_aa808b50e4c19c3ca8907d6a3ab1f473e}
+\hypertarget{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}{void \hyperlink{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}{push\-State} (std\-::shared\-\_\-ptr$<$ \hyperlink{classState}{State} $>$ state)}\label{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}
 
 \begin{DoxyCompactList}\small\item\em Push state on stack. \end{DoxyCompactList}\item 
 \hypertarget{classGame_a4b33dd67adef59bebadba8a234282c88}{void \hyperlink{classGame_a4b33dd67adef59bebadba8a234282c88}{pop\-State} ()}\label{classGame_a4b33dd67adef59bebadba8a234282c88}
 
 \begin{DoxyCompactList}\small\item\em Pop state from stack. \end{DoxyCompactList}\item 
-\hypertarget{classGame_aa742f626e4b8a5dac8677ef40263716c}{\hyperlink{classState}{State} \& \hyperlink{classGame_aa742f626e4b8a5dac8677ef40263716c}{get\-State} ()}\label{classGame_aa742f626e4b8a5dac8677ef40263716c}
-
-\begin{DoxyCompactList}\small\item\em Get reference to state on top of the stack. \end{DoxyCompactList}\item 
 \hypertarget{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}{void \hyperlink{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}{run} ()}\label{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}
 
 \begin{DoxyCompactList}\small\item\em Start main loop. \end{DoxyCompactList}\item 
-\hypertarget{classGame_a8cd3e699a3ff2b7ca864cf0509817a9d}{const sf\-::\-Render\-Window \& \hyperlink{classGame_a8cd3e699a3ff2b7ca864cf0509817a9d}{get\-Render\-Window} ()}\label{classGame_a8cd3e699a3ff2b7ca864cf0509817a9d}
+\hypertarget{classGame_a586a831ed5ff1283fcf1b96f4eff065c}{{\bfseries Game} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_a586a831ed5ff1283fcf1b96f4eff065c}
 
-\begin{DoxyCompactList}\small\item\em Returns a reference to main render window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_aa4c0eacd8656e54ec4e94877c453e531}{void {\bfseries operator=} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_aa4c0eacd8656e54ec4e94877c453e531}
+
+\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classGame_aa742f626e4b8a5dac8677ef40263716c}{static \hyperlink{classState}{State} \& \hyperlink{classGame_aa742f626e4b8a5dac8677ef40263716c}{get\-State} ()}\label{classGame_aa742f626e4b8a5dac8677ef40263716c}
+
+\begin{DoxyCompactList}\small\item\em Get reference to state on top of the stack. \end{DoxyCompactList}\item 
+\hypertarget{classGame_ada9faa2a1f4e1453420adead02fd9865}{static sf\-::\-Render\-Window \& \hyperlink{classGame_ada9faa2a1f4e1453420adead02fd9865}{get\-Render\-Window} ()}\label{classGame_ada9faa2a1f4e1453420adead02fd9865}
+
+\begin{DoxyCompactList}\small\item\em Returns a reference to main render window. \end{DoxyCompactList}\item 
 \hypertarget{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}{static \hyperlink{classGame}{Game} \& \hyperlink{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}{get} ()}\label{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}
 
 \begin{DoxyCompactList}\small\item\em Returns reference to singleton object. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -49,6 +49,12 @@ int \hyperlink{classGame_ac57ebbcb3e9f6add9b4bf066c900c0db}{frame\-\_\-per\-\_\-
 \begin{DoxyCompactList}\small\item\em Maximum frame rate of a game. \end{DoxyCompactList}\item 
 std\-::chrono\-::microseconds \hyperlink{classGame_a65800b8c8afee406d719b404a4a78877}{tick\-\_\-period} = std\-::chrono\-::microseconds(1000000)
 \begin{DoxyCompactList}\small\item\em Period between consecutive tick() calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a43d300e0d66811f7317d88e3476d6de3}{static constexpr auto {\bfseries T\-A\-G} = \char`\"{}Game\-Singleton\char`\"{}}\label{classGame_a43d300e0d66811f7317d88e3476d6de3}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

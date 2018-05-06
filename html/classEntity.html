@@ -111,18 +111,18 @@ Collaboration diagram for Entity:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abe533e6ed661368ddfb2abc4f355e5ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe533e6ed661368ddfb2abc4f355e5ae"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int ID, std::string name, sf::Vector2f <a class="el" href="classEntity.html#afc349ec89c2bffef70bf6a1d95603154">position</a>, sf::FloatRect <a class="el" href="classEntity.html#a3bed8137e87ee1923135c5b24207da60">hitbox</a>, sf::Texture texture)</td></tr>
-<tr class="separator:abe533e6ed661368ddfb2abc4f355e5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45c6ac38444033089ec95e3e7c26c0c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45c6ac38444033089ec95e3e7c26c0c8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (nlohmann::json)</td></tr>
-<tr class="separator:a45c6ac38444033089ec95e3e7c26c0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17f49267273ae880a6c004e2560aca02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17f49267273ae880a6c004e2560aca02"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (int ID, std::string name, sf::Vector2f <a class="el" href="classEntity.html#afc349ec89c2bffef70bf6a1d95603154">position</a>, sf::FloatRect <a class="el" href="classEntity.html#a3bed8137e87ee1923135c5b24207da60">hitbox</a>, sf::Texture texture, <a class="el" href="classGameState.html">GameState</a> &amp;game_state)</td></tr>
+<tr class="separator:a17f49267273ae880a6c004e2560aca02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b0405ce1a4be34d4117b6f5618dad9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7b0405ce1a4be34d4117b6f5618dad9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (nlohmann::json json, <a class="el" href="classGameState.html">GameState</a> &amp;game_state)</td></tr>
+<tr class="separator:af7b0405ce1a4be34d4117b6f5618dad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f08fe2d5e636d5d3bd17652c2e4eb53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f08fe2d5e636d5d3bd17652c2e4eb53"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>tick</b> ()</td></tr>
 <tr class="separator:a2f08fe2d5e636d5d3bd17652c2e4eb53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad87af2e77fbcda048f7543bfb43ddaaf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad87af2e77fbcda048f7543bfb43ddaaf"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> (sf::RenderWindow *window)</td></tr>
-<tr class="separator:ad87af2e77fbcda048f7543bfb43ddaaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5ca41372ff108e4c044e8d927995a27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5ca41372ff108e4c044e8d927995a27"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> ()</td></tr>
+<tr class="separator:af5ca41372ff108e4c044e8d927995a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06f9fd4c95bcf72cd3ffef5b18218f76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06f9fd4c95bcf72cd3ffef5b18218f76"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (std::chrono::microseconds deltaTime)</td></tr>
 <tr class="separator:a06f9fd4c95bcf72cd3ffef5b18218f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,9 +149,9 @@ sf::Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>sprite</b></td>
 <tr class="memitem:ad64dd6d282432a68475f30f7c7bbdc88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad64dd6d282432a68475f30f7c7bbdc88"></a>
 sf::Texture&#160;</td><td class="memItemRight" valign="bottom"><b>texture</b></td></tr>
 <tr class="separator:ad64dd6d282432a68475f30f7c7bbdc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a841bc61c53bf764fe598f42b19370ab2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a841bc61c53bf764fe598f42b19370ab2"></a>
-<a class="el" href="classGameState.html">GameState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>gameState</b></td></tr>
-<tr class="separator:a841bc61c53bf764fe598f42b19370ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ecabee173a2b7758cfc8999c6582874"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ecabee173a2b7758cfc8999c6582874"></a>
+<a class="el" href="classGameState.html">GameState</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>game_state</b></td></tr>
+<tr class="separator:a1ecabee173a2b7758cfc8999c6582874"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>In game moving entity. </p>

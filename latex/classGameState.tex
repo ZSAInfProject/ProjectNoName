@@ -21,14 +21,11 @@ Collaboration diagram for Game\-State\-:
 \item 
 void \hyperlink{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{update} (std\-::chrono\-::microseconds delta\-Time) override
 \begin{DoxyCompactList}\small\item\em Function called every loop iteration. \end{DoxyCompactList}\item 
-void \hyperlink{classGameState_acdfc29603b6075750555fba6ee216907}{render} (sf\-::\-Render\-Window $\ast$render\-Window) override
+void \hyperlink{classGameState_a2c36ada0cae89f91d956e2c91b070893}{render} () override
 \begin{DoxyCompactList}\small\item\em Function called every screen refresh. \end{DoxyCompactList}\item 
 void \hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick} () override
-\begin{DoxyCompactList}\small\item\em Function called periodicaly. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classGameState_af66643f9b3f275979f489f4bc91a3ad4}{\hyperlink{classWorld}{World} {\bfseries world}}\label{classGameState_af66643f9b3f275979f489f4bc91a3ad4}
+\begin{DoxyCompactList}\small\item\em Function called periodicaly. \end{DoxyCompactList}\item 
+\hypertarget{classGameState_aebc076f9bcec0aa4317eff9e9a8d566e}{\hyperlink{classWorld}{World} \& {\bfseries get\-World} ()}\label{classGameState_aebc076f9bcec0aa4317eff9e9a8d566e}
 
 \end{DoxyCompactItemize}
 
@@ -39,25 +36,25 @@ void \hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick} () overr
 Contains \hyperlink{classWorld}{World}, Entities etc. Get's player input. Runs physics. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classGameState_acdfc29603b6075750555fba6ee216907}{\index{Game\-State@{Game\-State}!render@{render}}
+\hypertarget{classGameState_a2c36ada0cae89f91d956e2c91b070893}{\index{Game\-State@{Game\-State}!render@{render}}
 \index{render@{render}!GameState@{Game\-State}}
 \subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::render (
 \begin{DoxyParamCaption}
-\item[{sf\-::\-Render\-Window $\ast$}]{render\-Window}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_acdfc29603b6075750555fba6ee216907}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_a2c36ada0cae89f91d956e2c91b070893}
 
 
 Function called every screen refresh. 
 
-\hyperlink{classGameState_acdfc29603b6075750555fba6ee216907}{render()} is called every screen refresh. Should be used for rendering. 
+\hyperlink{classGameState_a2c36ada0cae89f91d956e2c91b070893}{render()} is called every screen refresh. Should be used for rendering. 
 \begin{DoxyParams}{Parameters}
 {\em render\-Window} & S\-F\-M\-L render window reference \\
 \hline
 \end{DoxyParams}
 
 
-Implements \hyperlink{classState_abea822ddf8d4a55439a0040eba979afb}{State}.
+Implements \hyperlink{classState_a71f5105bcdc39481be7684d853fe12e9}{State}.
 
 \hypertarget{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{\index{Game\-State@{Game\-State}!tick@{tick}}
 \index{tick@{tick}!GameState@{Game\-State}}

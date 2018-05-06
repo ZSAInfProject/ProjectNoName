@@ -3,10 +3,8 @@ digraph "Entity"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="Entity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" gameState" ,fontname="Helvetica"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" game_state" ,fontname="Helvetica"];
   Node2 [label="GameState",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classGameState.html",tooltip="State when actual gameplay is present. "];
   Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="State",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classState.html",tooltip="Base class for program states. "];
-  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" world" ,fontname="Helvetica"];
-  Node4 [label="World",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWorld.html"];
 }

@@ -100,19 +100,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classState.html#af2121f8eb52144b7a789214f15e3601a">update</a>(std::chrono::microseconds deltaTime) = 0;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classState.html#abea822ddf8d4a55439a0040eba979afb">render</a>(sf::RenderWindow* renderWindow) = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classState.html#a71f5105bcdc39481be7684d853fe12e9">render</a>() = 0;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classState.html#a1cdec36e9ffad91ba7af560770601017">tick</a>() = 0;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classState.html">State</a>(<a class="code" href="classState.html">State</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classState.html">State</a>&amp; operator= (<a class="code" href="classState.html">State</a>&amp; other) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classState.html">State</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif //NONAME_STATE_H</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classState.html">State</a>(<a class="code" href="classState.html">State</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classState.html">State</a>&amp; operator= (<a class="code" href="classState.html">State</a>&amp; other) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classState.html">State</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif //NONAME_STATE_H</span></div>
+<div class="ttc" id="classState_html_a71f5105bcdc39481be7684d853fe12e9"><div class="ttname"><a href="classState.html#a71f5105bcdc39481be7684d853fe12e9">State::render</a></div><div class="ttdeci">virtual void render()=0</div><div class="ttdoc">Function called every screen refresh. </div></div>
 <div class="ttc" id="classState_html"><div class="ttname"><a href="classState.html">State</a></div><div class="ttdoc">Base class for program states. </div><div class="ttdef"><b>Definition:</b> State.h:11</div></div>
 <div class="ttc" id="classState_html_af2121f8eb52144b7a789214f15e3601a"><div class="ttname"><a href="classState.html#af2121f8eb52144b7a789214f15e3601a">State::update</a></div><div class="ttdeci">virtual void update(std::chrono::microseconds deltaTime)=0</div><div class="ttdoc">Function called every loop iteration. </div></div>
-<div class="ttc" id="classState_html_abea822ddf8d4a55439a0040eba979afb"><div class="ttname"><a href="classState.html#abea822ddf8d4a55439a0040eba979afb">State::render</a></div><div class="ttdeci">virtual void render(sf::RenderWindow *renderWindow)=0</div><div class="ttdoc">Function called every screen refresh. </div></div>
 <div class="ttc" id="classState_html_a1cdec36e9ffad91ba7af560770601017"><div class="ttname"><a href="classState.html#a1cdec36e9ffad91ba7af560770601017">State::tick</a></div><div class="ttdeci">virtual void tick()=0</div><div class="ttdoc">Function called periodicaly. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
