@@ -23,13 +23,14 @@ public:
      * render() is called every screen refresh. Should be used for rendering.
      * @param renderWindow SFML render window reference
      */
-    virtual void render(sf::RenderWindow* renderWindow) = 0;
+    virtual void render() = 0;
     //! Function called periodicaly
     /*!
      *  tick() is called periodicaly. Period is set in Game singleton.
      *  Can be used for stuff that doesn't need to run very often, for example recalculating AI path.
      */
     virtual void tick() = 0;
+
 
     State(State& other) = delete;
     State& operator= (State& other) = delete;

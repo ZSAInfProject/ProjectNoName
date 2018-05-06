@@ -16,20 +16,24 @@ class GameState : public State{
     static constexpr auto TAG = "GameState";
   
 public:
-    World world;
-
     void update(std::chrono::microseconds deltaTime) override;
-    void render(sf::RenderWindow* renderWindow) override;
+    void render() override;
     void tick() override;
 
     GameState();
 
+    World& getWorld();
+
 private:
+    World world;
+
     //! Converts screen to world coordinates
     sf::Vector2f screen_to_global_offset(sf::Vector2f in);
 
     //! Vector containing all the entities currently active
-    std::vector<std::unique_ptr<Entity>> entities;
+    std::vector<std::shared_ptr<Entity>> entities;
+
+    std::shared_ptr<Player> player;
 
     sf::View camera;
 };

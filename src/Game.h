@@ -4,6 +4,7 @@
 
 #include <stack>
 #include "state/State.h"
+#include <memory>
 
 //! Main program class
 /*!
@@ -12,35 +13,20 @@
  * Call rate for each can be setup separately.
  */
 class Game {
-public:
-    //! Returns reference to singleton object.
-    static Game& get() {
-        static Game instance;
-        return instance;
-    }
-
-    Game(Game const&) = delete;
-    void operator= (Game const&) = delete;
-
-private:
-    Game() = default;
-
-    //! Stack containing all states.
-    std::stack<std::unique_ptr<State>> states;
 
 public:
     //! Push state on stack.
-    void pushState(std::unique_ptr<State> state);
+    void pushState(std::shared_ptr<State> state);
     //! Pop state from stack.
     void popState();
     //! Get reference to state on top of the stack
-    State& getState();
+    static State& getState();
 
     //! Start main loop
     void run();
 
     //! Returns a reference to main render window
-    const sf::RenderWindow& getRenderWindow();
+    static sf::RenderWindow& getRenderWindow();
 
     //! Minimum time for main loop iteration
     /*!
@@ -59,7 +45,11 @@ public:
      * tick() will be called periodically with a given period
      */
     std::chrono::microseconds tick_period = std::chrono::microseconds(1000000);
+
+    static constexpr auto TAG = "GameSingleton";
 private:
+    //! Stack containing all states.
+    std::stack<std::shared_ptr<State>> states;
 
     void render();
     sf::RenderWindow renderWindow;
@@ -71,7 +61,20 @@ private:
     void tick();
     std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();
 
-    static constexpr auto TAG = "GameSingleton";
+
+    //Singleton stuff
+public:
+    //! Returns reference to singleton object.
+    static Game& get() {
+        static Game instance;
+        return instance;
+    }
+
+    Game(Game const&) = delete;
+    void operator= (Game const&) = delete;
+
+private:
+    Game() = default;
 };
 
 

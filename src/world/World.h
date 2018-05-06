@@ -8,7 +8,7 @@
 class World {
     ChunkDatabase chunkDatabase;
 public:
-    void render(sf::RenderWindow& window, sf::View camera);
+    void render(sf::View camera);
 
     //!Gets chunkTile using global coordinates of the world
     ChunkTile getTile(int x, int y);

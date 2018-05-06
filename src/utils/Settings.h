@@ -1,5 +1,5 @@
 #include <string>
-#include "json.hpp"
+#include "../../deps/json.h"
 #include "Log.h"
 
 #ifndef NONAME_SETTINGSMANAGER_H

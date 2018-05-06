@@ -4,7 +4,7 @@
 #include <utility>
 #include <iostream>
 #include "Tile.h"
-#include "../utils/json.hpp"
+#include "../../deps/json.h"
 #include "../utils/Log.h"
 
 void TileDatabase::loadTiles(std::string file) {

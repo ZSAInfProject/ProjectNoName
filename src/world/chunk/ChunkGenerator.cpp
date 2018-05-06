@@ -1,8 +1,8 @@
 #include <cmath>
 #include "ChunkGenerator.h"
 #include "../../utils/Log.h"
-#include "../../utils/PerlinNoise.h"
-#include "../../utils/json.hpp"
+#include "../../../deps/json.h"
+#include "../../../deps/PerlinNoise.h"
 
 const float ChunkGenerator::getWorldHeight(float x) {
     return static_cast<const float>(heightNoise.noise(x / 100.5f) * 50.5f +

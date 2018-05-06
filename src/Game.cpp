@@ -5,7 +5,7 @@
 #include "utils/Log.h"
 #include "utils/Settings.h"
 
-void Game::pushState(std::unique_ptr<State> state) {
+void Game::pushState(std::shared_ptr<State> state) {
     Log::info(TAG , "New state pushed on stack");
     states.push(std::move(state));
 }
@@ -16,13 +16,17 @@ void Game::popState() {
 }
 
 State& Game::getState() {
-    return *states.top();
+    return *Game::get().states.top();
+}
+
+sf::RenderWindow& Game::getRenderWindow() {
+    return Game::get().renderWindow;
 }
 
 void Game::run() {
     Log::info(TAG ,"Main loop started");
     renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
-    pushState(std::make_unique<GameState>());
+    pushState(std::make_shared<GameState>());
 
     std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
@@ -59,7 +63,7 @@ void Game::render() {
         previous_frame = now - std::chrono::microseconds(time_elapsed - 1000000/frame_per_second);
 
         if (!states.empty()) {
-            getState().render(&renderWindow);
+            getState().render();
         }
         renderWindow.display();
     }
@@ -89,8 +93,4 @@ void Game::tick() {
         }
 
     }
-}
-
-const sf::RenderWindow &Game::getRenderWindow() {
-    return renderWindow;
 }

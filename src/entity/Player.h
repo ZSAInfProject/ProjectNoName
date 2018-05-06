@@ -6,7 +6,7 @@
 
 class Player : public Entity {
 public:
-    Player();
+    Player(GameState& game_state);
 
     void update(std::chrono::microseconds deltaTime) override;
 
