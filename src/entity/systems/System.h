@@ -1,7 +1,3 @@
-//
-// Created by zakrent on 5/7/18.
-//
-
 #ifndef NONAME_SYSTEM_H
 #define NONAME_SYSTEM_H
 

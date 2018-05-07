@@ -1,7 +1,3 @@
-//
-// Created by zakrent on 5/7/18.
-//
-
 #ifndef NONAME_RENDERSYSTEM_H
 #define NONAME_RENDERSYSTEM_H
 
