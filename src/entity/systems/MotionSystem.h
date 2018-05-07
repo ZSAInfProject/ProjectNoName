@@ -11,6 +11,7 @@
 
 class MotionSystem : public System{
 public:
+    static const stageEnum stage = update;
     void processEntity(Entity *entity) override {
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent)

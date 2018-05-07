@@ -34,7 +34,6 @@ private:
     //! Vector containing all the entities currently active
     std::vector<std::shared_ptr<Entity>> entities;
 
-    RenderSystem renderSystem;
     std::vector<std::unique_ptr<System>> systems;
 
     std::shared_ptr<Entity> player;

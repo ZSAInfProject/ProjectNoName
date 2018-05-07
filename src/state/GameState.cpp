@@ -31,6 +31,8 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
 
     for(auto& system : systems){
+        if(system->stage != stageEnum::update)
+            continue;
         for(auto& entity : entities)
             system->processEntity(entity.get());
     }
@@ -60,12 +62,22 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
+    for(auto& system : systems){
+        if(system->stage != stageEnum::render)
+            continue;
+        for(auto& entity : entities)
+            system->processEntity(entity.get());
+    }
     world.render(camera);
-    for(auto& entity : entities)
-        renderSystem.processEntity(entity.get());
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
+    for(auto& system : systems){
+        if(system->stage != stageEnum::tick)
+            continue;
+        for(auto& entity : entities)
+            system->processEntity(entity.get());
+    }
 }
 
 sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {

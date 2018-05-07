@@ -7,8 +7,15 @@
 
 #include "../Entity.h"
 
+enum stageEnum{
+    update,
+    tick,
+    render
+};
+
 class System{
 public:
+    static const stageEnum stage = tick;
     virtual void processEntity(Entity *entity) = 0;
 };
 

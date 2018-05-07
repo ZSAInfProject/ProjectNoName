@@ -9,6 +9,7 @@
 
 class RenderSystem : public System{
 public:
+    static const stageEnum stage = render;
     void processEntity(Entity *entity) override {
         return;
     }
