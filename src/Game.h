@@ -34,12 +34,6 @@ public:
      */
     std::chrono::microseconds minimumLoopTime = std::chrono::microseconds(120);
 
-    //! Maximum frame rate of a game.
-    /*!
-     * run() will be called with maximum frequency equal to value of this variable.
-     */
-    int frame_per_second = 120;
-
     //! Period between consecutive tick() calls.
     /*!
      * tick() will be called periodically with a given period
@@ -53,7 +47,6 @@ private:
 
     void render();
     sf::RenderWindow renderWindow;
-    std::chrono::system_clock::time_point previous_frame = std::chrono::system_clock::now();
 
     void update();
     std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();

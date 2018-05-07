@@ -4,6 +4,7 @@
 #include "../Game.h"
 #include "../state/GameState.h"
 #include "../tile/TileDatabase.h"
+#include "../utils/Controls.h"
 
 Player::Player(GameState& game_state)
         : Entity(0, std::string("Player"), sf::Vector2f(0,0), sf::FloatRect(0, 32, 16, 32), sf::Texture(), game_state) {
@@ -19,17 +20,17 @@ void Player::update(std::chrono::microseconds deltaTime) {
 
     const float MOVEMENT_DIV = 2000.0f;
 
-    if((sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) && touching_ground){
+   if((Controls::isKeyboardButtonPressed(sf::Keyboard::Space) || Controls::isKeyboardButtonPressed(sf::Keyboard::W)) && touching_ground){
         speed.y = 1.0f;
         touching_ground = false;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && speed.x > -0.6f){
+    if(Controls::isKeyboardButtonPressed(sf::Keyboard::A) && speed.x > -0.6f){
         speed.x -= 0.005f * deltaTime.count() / MOVEMENT_DIV;
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && speed.x < 0.6f){
+    if(Controls::isKeyboardButtonPressed(sf::Keyboard::D) && speed.x < 0.6f){
         speed.x += 0.005f * deltaTime.count() / MOVEMENT_DIV;
     }
-    if(!sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if(!Controls::isKeyboardButtonPressed(sf::Keyboard::A) && !Controls::isKeyboardButtonPressed(sf::Keyboard::D)) {
         if (fabs(speed.x) > 0.005f * deltaTime.count() / MOVEMENT_DIV) {
             speed.x += speed.x > 0 ? (-0.005f * deltaTime.count() / MOVEMENT_DIV) : (0.005f * deltaTime.count() / MOVEMENT_DIV);
         } else {

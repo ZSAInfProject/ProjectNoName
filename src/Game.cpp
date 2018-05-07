@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "utils/Log.h"
 #include "utils/Settings.h"
+#include "utils/Controls.h"
 
 void Game::pushState(std::shared_ptr<State> state) {
     Log::info(TAG , "New state pushed on stack");
@@ -28,19 +29,63 @@ void Game::run() {
     renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
     pushState(std::make_shared<GameState>());
 
+    renderWindow.setActive(false);
+
+    std::thread renderThread([this](){
+        renderWindow.setVerticalSyncEnabled(true);
+        while(renderWindow.isOpen()){
+            sf::Event event{};
+            while (renderWindow.pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    renderWindow.close();
+                switch(event.type){
+                    case sf::Event::Closed:
+                        renderWindow.close();
+                        break;
+                    case sf::Event::Resized:break;
+                    case sf::Event::LostFocus:break;
+                    case sf::Event::GainedFocus:break;
+                    case sf::Event::TextEntered:break;
+                    case sf::Event::KeyPressed:
+                        Controls::setKeyboardKey(event.key.code, true);
+                        break;
+                    case sf::Event::KeyReleased:
+                        Controls::setKeyboardKey(event.key.code, false);
+                        break;
+                    case sf::Event::MouseWheelMoved:break;
+                    case sf::Event::MouseWheelScrolled:break;
+                    case sf::Event::MouseButtonPressed:
+                        Controls::setMouseButton(event.mouseButton.button, true);
+                        break;
+                    case sf::Event::MouseButtonReleased:
+                        Controls::setMouseButton(event.mouseButton.button, false);
+                        break;
+                    case sf::Event::MouseMoved:
+                        Controls::setMousePosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
+                        break;
+                    case sf::Event::MouseEntered:break;
+                    case sf::Event::MouseLeft:break;
+                    case sf::Event::JoystickButtonPressed:break;
+                    case sf::Event::JoystickButtonReleased:break;
+                    case sf::Event::JoystickMoved:break;
+                    case sf::Event::JoystickConnected:break;
+                    case sf::Event::JoystickDisconnected:break;
+                    case sf::Event::TouchBegan:break;
+                    case sf::Event::TouchMoved:break;
+                    case sf::Event::TouchEnded:break;
+                    case sf::Event::SensorChanged:break;
+                    case sf::Event::Count:break;
+                }
+            }
+            render();
+        }
+    });
+
     std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
     {
 
         loopStart = std::chrono::system_clock::now();
-
-        sf::Event event{};
-        while (renderWindow.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                renderWindow.close();
-        }
-
-        render();
 
         update();
 
@@ -52,21 +97,14 @@ void Game::run() {
             sf::sleep(sf::microseconds(minimumLoopTime.count() - loopTime.count()));
         }
     }
+    renderThread.join();
 }
 
 void Game::render() {
-    auto now = std::chrono::system_clock::now();
-    auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_frame).count();
-
-    if (time_elapsed >= 1000000/frame_per_second) {
-
-        previous_frame = now - std::chrono::microseconds(time_elapsed - 1000000/frame_per_second);
-
-        if (!states.empty()) {
-            getState().render();
-        }
-        renderWindow.display();
+    if (!states.empty()) {
+        getState().render();
     }
+    renderWindow.display();
 }
 
 void Game::update() {
