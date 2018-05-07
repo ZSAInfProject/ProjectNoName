@@ -24,6 +24,7 @@ public:
     GameState();
 
     World& getWorld();
+    sf::View& getCamera();
 
 private:
     World world;

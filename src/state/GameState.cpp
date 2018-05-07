@@ -110,4 +110,8 @@ World &GameState::getWorld() {
     return world;
 }
 
+sf::View &GameState::getCamera() {
+    return camera;
+}
+
 
