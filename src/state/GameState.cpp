@@ -6,6 +6,7 @@
 #include "../Game.h"
 #include "../utils/Log.h"
 #include "../utils/Settings.h"
+#include "../utils/Controls.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -31,8 +32,8 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
     camera.setCenter(entities[0]->position);
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::getRenderWindow()));
+    if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
+        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
 
         position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
@@ -41,8 +42,8 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         world.mineTile(tile.x, tile.y);
 
     }
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-        sf::Vector2f position = sf::Vector2f(sf::Mouse::getPosition(Game::getRenderWindow()));
+    if (Controls::isMouseButtonPressed(sf::Mouse::Right)) {
+        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
 
         position = screen_to_global_offset(position);
         sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
