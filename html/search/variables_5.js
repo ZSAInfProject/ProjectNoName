@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classTile.html#aa5408d0f0f4a60f25796f651db2f84ac',1,'Tile']]]
+  ['position',['position',['../classEntity.html#afc349ec89c2bffef70bf6a1d95603154',1,'Entity']]]
 ];

@@ -45,8 +45,6 @@ Main program class.
 \item 
 std\-::chrono\-::microseconds \hyperlink{classGame_af9f24863bbe8102d1bf5d97aaa449d14}{minimum\-Loop\-Time} = std\-::chrono\-::microseconds(120)
 \begin{DoxyCompactList}\small\item\em Minimum time for main loop iteration. \end{DoxyCompactList}\item 
-int \hyperlink{classGame_ac57ebbcb3e9f6add9b4bf066c900c0db}{frame\-\_\-per\-\_\-second} = 120
-\begin{DoxyCompactList}\small\item\em Maximum frame rate of a game. \end{DoxyCompactList}\item 
 std\-::chrono\-::microseconds \hyperlink{classGame_a65800b8c8afee406d719b404a4a78877}{tick\-\_\-period} = std\-::chrono\-::microseconds(1000000)
 \begin{DoxyCompactList}\small\item\em Period between consecutive tick() calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
@@ -63,14 +61,7 @@ Main program class.
 This class is a singleton. Contains main game loop. Stores all states on stack and calls update(), render() and tick() on top state. Call rate for each can be setup separately. 
 
 \subsection{Member Data Documentation}
-\hypertarget{classGame_ac57ebbcb3e9f6add9b4bf066c900c0db}{\index{Game@{Game}!frame\-\_\-per\-\_\-second@{frame\-\_\-per\-\_\-second}}
-\index{frame\-\_\-per\-\_\-second@{frame\-\_\-per\-\_\-second}!Game@{Game}}
-\subsubsection[{frame\-\_\-per\-\_\-second}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::frame\-\_\-per\-\_\-second = 120}}\label{classGame_ac57ebbcb3e9f6add9b4bf066c900c0db}
-
-
-Maximum frame rate of a game. 
-
-\hyperlink{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}{run()} will be called with maximum frequency equal to value of this variable. \hypertarget{classGame_af9f24863bbe8102d1bf5d97aaa449d14}{\index{Game@{Game}!minimum\-Loop\-Time@{minimum\-Loop\-Time}}
+\hypertarget{classGame_af9f24863bbe8102d1bf5d97aaa449d14}{\index{Game@{Game}!minimum\-Loop\-Time@{minimum\-Loop\-Time}}
 \index{minimum\-Loop\-Time@{minimum\-Loop\-Time}!Game@{Game}}
 \subsubsection[{minimum\-Loop\-Time}]{\setlength{\rightskip}{0pt plus 5cm}std\-::chrono\-::microseconds Game\-::minimum\-Loop\-Time = std\-::chrono\-::microseconds(120)}}\label{classGame_af9f24863bbe8102d1bf5d97aaa449d14}
 

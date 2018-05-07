@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['player',['Player',['../classPlayer.html',1,'']]],
-  ['popstate',['popState',['../classGame.html#a4b33dd67adef59bebadba8a234282c88',1,'Game']]],
-  ['position',['position',['../classEntity.html#afc349ec89c2bffef70bf6a1d95603154',1,'Entity']]],
-  ['pushstate',['pushState',['../classGame.html#ade1d35f91a6fe6b6da70d7caebd174f6',1,'Game']]]
+  ['render',['render',['../classGameState.html#a2c36ada0cae89f91d956e2c91b070893',1,'GameState::render()'],['../classState.html#a71f5105bcdc39481be7684d853fe12e9',1,'State::render()'],['../classChunk.html#a0353e35c14d4f576542660bb762db51f',1,'Chunk::render()']]],
+  ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
 ];

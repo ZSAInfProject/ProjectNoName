@@ -110,52 +110,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classGame.html#af9f24863bbe8102d1bf5d97aaa449d14">   35</a></span>&#160;    std::chrono::microseconds <a class="code" href="classGame.html#af9f24863bbe8102d1bf5d97aaa449d14">minimumLoopTime</a> = std::chrono::microseconds(120);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db">   41</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db">frame_per_second</a> = 120;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classGame.html#a65800b8c8afee406d719b404a4a78877">   41</a></span>&#160;    std::chrono::microseconds <a class="code" href="classGame.html#a65800b8c8afee406d719b404a4a78877">tick_period</a> = std::chrono::microseconds(1000000);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classGame.html#a65800b8c8afee406d719b404a4a78877">   47</a></span>&#160;    std::chrono::microseconds <a class="code" href="classGame.html#a65800b8c8afee406d719b404a4a78877">tick_period</a> = std::chrono::microseconds(1000000);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;GameSingleton&quot;</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::stack&lt;std::shared_ptr&lt;State&gt;&gt; states;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;GameSingleton&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::stack&lt;std::shared_ptr&lt;State&gt;&gt; states;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> render();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    sf::RenderWindow renderWindow;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> update();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> render();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    sf::RenderWindow renderWindow;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::chrono::system_clock::time_point previous_frame = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> tick();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> update();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::chrono::system_clock::time_point previous_time = std::chrono::system_clock::now();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> tick();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">//Singleton stuff</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classGame.html#ac69a0c5e25c7acb811f4a7b86a2ceb74">   68</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classGame.html">Game</a>&amp; <span class="keyword">get</span>() {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">static</span> <a class="code" href="classGame.html">Game</a> instance;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> instance;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//Singleton stuff</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classGame.html#ac69a0c5e25c7acb811f4a7b86a2ceb74">   61</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classGame.html">Game</a>&amp; <span class="keyword">get</span>() {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">static</span> <a class="code" href="classGame.html">Game</a> instance;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classGame.html">Game</a>(<a class="code" href="classGame.html">Game</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> operator= (<a class="code" href="classGame.html">Game</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classGame.html">Game</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classGame.html">Game</a>(<a class="code" href="classGame.html">Game</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> operator= (<a class="code" href="classGame.html">Game</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classGame.html">Game</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif //NONAME_GAME_H</span></div>
-<div class="ttc" id="classGame_html_ac57ebbcb3e9f6add9b4bf066c900c0db"><div class="ttname"><a href="classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db">Game::frame_per_second</a></div><div class="ttdeci">int frame_per_second</div><div class="ttdoc">Maximum frame rate of a game. </div><div class="ttdef"><b>Definition:</b> Game.h:41</div></div>
-<div class="ttc" id="classGame_html_a4b33dd67adef59bebadba8a234282c88"><div class="ttname"><a href="classGame.html#a4b33dd67adef59bebadba8a234282c88">Game::popState</a></div><div class="ttdeci">void popState()</div><div class="ttdoc">Pop state from stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:13</div></div>
-<div class="ttc" id="classGame_html_aa742f626e4b8a5dac8677ef40263716c"><div class="ttname"><a href="classGame.html#aa742f626e4b8a5dac8677ef40263716c">Game::getState</a></div><div class="ttdeci">static State &amp; getState()</div><div class="ttdoc">Get reference to state on top of the stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:18</div></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif //NONAME_GAME_H</span></div>
+<div class="ttc" id="classGame_html_a4b33dd67adef59bebadba8a234282c88"><div class="ttname"><a href="classGame.html#a4b33dd67adef59bebadba8a234282c88">Game::popState</a></div><div class="ttdeci">void popState()</div><div class="ttdoc">Pop state from stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:14</div></div>
+<div class="ttc" id="classGame_html_aa742f626e4b8a5dac8677ef40263716c"><div class="ttname"><a href="classGame.html#aa742f626e4b8a5dac8677ef40263716c">Game::getState</a></div><div class="ttdeci">static State &amp; getState()</div><div class="ttdoc">Get reference to state on top of the stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:19</div></div>
 <div class="ttc" id="classGame_html"><div class="ttname"><a href="classGame.html">Game</a></div><div class="ttdoc">Main program class. </div><div class="ttdef"><b>Definition:</b> Game.h:15</div></div>
-<div class="ttc" id="classGame_html_a65800b8c8afee406d719b404a4a78877"><div class="ttname"><a href="classGame.html#a65800b8c8afee406d719b404a4a78877">Game::tick_period</a></div><div class="ttdeci">std::chrono::microseconds tick_period</div><div class="ttdoc">Period between consecutive tick() calls. </div><div class="ttdef"><b>Definition:</b> Game.h:47</div></div>
+<div class="ttc" id="classGame_html_a65800b8c8afee406d719b404a4a78877"><div class="ttname"><a href="classGame.html#a65800b8c8afee406d719b404a4a78877">Game::tick_period</a></div><div class="ttdeci">std::chrono::microseconds tick_period</div><div class="ttdoc">Period between consecutive tick() calls. </div><div class="ttdef"><b>Definition:</b> Game.h:41</div></div>
 <div class="ttc" id="classState_html"><div class="ttname"><a href="classState.html">State</a></div><div class="ttdoc">Base class for program states. </div><div class="ttdef"><b>Definition:</b> State.h:11</div></div>
-<div class="ttc" id="classGame_html_a1ab78f5ed0d5ea879157357cf2fb2afa"><div class="ttname"><a href="classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa">Game::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Start main loop. </div><div class="ttdef"><b>Definition:</b> Game.cpp:26</div></div>
-<div class="ttc" id="classGame_html_ada9faa2a1f4e1453420adead02fd9865"><div class="ttname"><a href="classGame.html#ada9faa2a1f4e1453420adead02fd9865">Game::getRenderWindow</a></div><div class="ttdeci">static sf::RenderWindow &amp; getRenderWindow()</div><div class="ttdoc">Returns a reference to main render window. </div><div class="ttdef"><b>Definition:</b> Game.cpp:22</div></div>
+<div class="ttc" id="classGame_html_a1ab78f5ed0d5ea879157357cf2fb2afa"><div class="ttname"><a href="classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa">Game::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Start main loop. </div><div class="ttdef"><b>Definition:</b> Game.cpp:27</div></div>
+<div class="ttc" id="classGame_html_ada9faa2a1f4e1453420adead02fd9865"><div class="ttname"><a href="classGame.html#ada9faa2a1f4e1453420adead02fd9865">Game::getRenderWindow</a></div><div class="ttdeci">static sf::RenderWindow &amp; getRenderWindow()</div><div class="ttdoc">Returns a reference to main render window. </div><div class="ttdef"><b>Definition:</b> Game.cpp:23</div></div>
 <div class="ttc" id="classGame_html_af9f24863bbe8102d1bf5d97aaa449d14"><div class="ttname"><a href="classGame.html#af9f24863bbe8102d1bf5d97aaa449d14">Game::minimumLoopTime</a></div><div class="ttdeci">std::chrono::microseconds minimumLoopTime</div><div class="ttdoc">Minimum time for main loop iteration. </div><div class="ttdef"><b>Definition:</b> Game.h:35</div></div>
-<div class="ttc" id="classGame_html_ade1d35f91a6fe6b6da70d7caebd174f6"><div class="ttname"><a href="classGame.html#ade1d35f91a6fe6b6da70d7caebd174f6">Game::pushState</a></div><div class="ttdeci">void pushState(std::shared_ptr&lt; State &gt; state)</div><div class="ttdoc">Push state on stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:8</div></div>
+<div class="ttc" id="classGame_html_ade1d35f91a6fe6b6da70d7caebd174f6"><div class="ttname"><a href="classGame.html#ade1d35f91a6fe6b6da70d7caebd174f6">Game::pushState</a></div><div class="ttdeci">void pushState(std::shared_ptr&lt; State &gt; state)</div><div class="ttdoc">Push state on stack. </div><div class="ttdef"><b>Definition:</b> Game.cpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

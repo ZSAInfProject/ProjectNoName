@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['load',['load',['../classChunk.html#afa9fe7d9713cbf4fbe75520dd760880a',1,'Chunk']]],
-  ['loadtexture',['loadTexture',['../classTileDatabase.html#a1eb9f7c3ff7e497bada7a1475fb271f4',1,'TileDatabase']]],
-  ['loadtiles',['loadTiles',['../classTileDatabase.html#a986e55f0705dbfb5428931563eff1497',1,'TileDatabase']]]
+  ['minetile',['mineTile',['../classWorld.html#a1bbfac1b517a991c30aa96b57d04d265',1,'World']]],
+  ['minimumlooptime',['minimumLoopTime',['../classGame.html#af9f24863bbe8102d1bf5d97aaa449d14',1,'Game']]]
 ];

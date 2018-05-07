@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['frame_5fper_5fsecond',['frame_per_second',['../classGame.html#ac57ebbcb3e9f6add9b4bf066c900c0db',1,'Game']]]
+  ['hardness',['hardness',['../classTile.html#accd68364f51cf745c5c95717a164b2e9',1,'Tile']]],
+  ['hitbox',['hitbox',['../classEntity.html#a3bed8137e87ee1923135c5b24207da60',1,'Entity']]]
 ];
