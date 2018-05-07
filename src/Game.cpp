@@ -42,18 +42,12 @@ void Game::run() {
                     case sf::Event::Closed:
                         renderWindow.close();
                         break;
-                    case sf::Event::Resized:break;
-                    case sf::Event::LostFocus:break;
-                    case sf::Event::GainedFocus:break;
-                    case sf::Event::TextEntered:break;
                     case sf::Event::KeyPressed:
                         Controls::setKeyboardKey(event.key.code, true);
                         break;
                     case sf::Event::KeyReleased:
                         Controls::setKeyboardKey(event.key.code, false);
                         break;
-                    case sf::Event::MouseWheelMoved:break;
-                    case sf::Event::MouseWheelScrolled:break;
                     case sf::Event::MouseButtonPressed:
                         Controls::setMouseButton(event.mouseButton.button, true);
                         break;
@@ -63,18 +57,8 @@ void Game::run() {
                     case sf::Event::MouseMoved:
                         Controls::setMousePosition(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
                         break;
-                    case sf::Event::MouseEntered:break;
-                    case sf::Event::MouseLeft:break;
-                    case sf::Event::JoystickButtonPressed:break;
-                    case sf::Event::JoystickButtonReleased:break;
-                    case sf::Event::JoystickMoved:break;
-                    case sf::Event::JoystickConnected:break;
-                    case sf::Event::JoystickDisconnected:break;
-                    case sf::Event::TouchBegan:break;
-                    case sf::Event::TouchMoved:break;
-                    case sf::Event::TouchEnded:break;
-                    case sf::Event::SensorChanged:break;
-                    case sf::Event::Count:break;
+                    default:
+                        break;
                 }
             }
             render();
