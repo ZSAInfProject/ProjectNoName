@@ -4,7 +4,8 @@
 #include "State.h"
 #include "../world/World.h"
 #include "../entity/Entity.h"
-#include "../entity/Player.h"
+#include "../entity/systems/System.h"
+#include "../entity/systems/RenderSystem.h"
 
 //! State when actual gameplay is present
 /*!
@@ -33,7 +34,10 @@ private:
     //! Vector containing all the entities currently active
     std::vector<std::shared_ptr<Entity>> entities;
 
-    std::shared_ptr<Player> player;
+    RenderSystem renderSystem;
+    std::vector<std::unique_ptr<System>> systems;
+
+    std::shared_ptr<Entity> player;
 
     sf::View camera;
 };

@@ -3,37 +3,39 @@
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
+#include <unordered_map>
 #include "../../deps/json.h"
 #include "../state/State.h"
+#include "components/Component.h"
 
-class GameState;
 
 //! In game moving entity
 /*!
  * Represents entity - object in game that can move. It's position is not quantized.
  */
 class Entity {
-
-public:
-    Entity(int ID, std::string name, sf::Vector2f position, sf::FloatRect hitbox, sf::Texture texture,
-           GameState& game_state);
-    explicit Entity(nlohmann::json json, GameState& game_state);
-
-    virtual void tick();
-    virtual void render();
-    virtual void update(std::chrono::microseconds deltaTime);
-
     int ID;
-    std::string name;
-    //! Position in world coordinates
-    sf::Vector2f position;
-    //! Hitbox (position with respect to entity origin, also sprite origin)
-    sf::FloatRect hitbox;
-    sf::Sprite sprite;
-    sf::Texture texture;
+    std::unordered_map<uint, std::unique_ptr<Component>> components;
+public:
 
-    GameState& game_state;
+    template<typename T>
+    void addComponent(std::unique_ptr<Component> component)
+    {
+        components[int(T::ID)] = std::move(component);
+    }
 
+    template<typename T>
+    T* getComponent()
+    {
+        uint id = T::Id;
+        auto it = components.find(id);
+        if (it == components.end())
+            return nullptr;
+        return dynamic_cast<T*>(it->second.get());
+    }
+
+
+    Entity() = default;
 };
 
 

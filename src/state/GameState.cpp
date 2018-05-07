@@ -25,12 +25,15 @@ GameState::GameState() : State(), world(10){
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
 
-    player = std::make_shared<Player>(*this);
     entities.emplace_back(player);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
-    camera.setCenter(entities[0]->position);
+
+    for(auto& system : systems){
+        for(auto& entity : entities)
+            system->processEntity(entity.get());
+    }
 
     if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
@@ -53,27 +56,16 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
     }
 
-    for (auto& entity : entities) {
-        entity->update(deltaTime);
-    }
-
 }
 
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
     world.render(camera);
-
-    for (auto& entity : entities) {
-        entity->render();
-    }
-
+    for(auto& entity : entities)
+        renderSystem.processEntity(entity.get());
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
-    for (auto& entity : entities) {
-        entity->tick();
-    }
-
 }
 
 sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {
