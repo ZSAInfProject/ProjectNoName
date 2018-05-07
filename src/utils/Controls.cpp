@@ -1,7 +1,3 @@
-//
-// Created by zakrent on 5/7/18.
-//
-
 #include "Controls.h"
 
 bool Controls::isMouseButtonPressed(sf::Mouse::Button button) {
