@@ -47,7 +47,7 @@
         },
         "minDepth": 50,
         "isOre": true,
-        "noiseMul": 0.94
+        "noiseMul": 0.90
       },
       {
         "tile":
@@ -57,7 +57,7 @@
         },
         "minDepth": 500,
         "isOre": true,
-        "noiseMul": 0.92
+        "noiseMul": 0.88
       },
       {
         "tile":
@@ -67,7 +67,7 @@
         },
         "minDepth": 500,
         "isOre": true,
-        "noiseMul": 0.88
+        "noiseMul": 0.85
       }
 
     ]

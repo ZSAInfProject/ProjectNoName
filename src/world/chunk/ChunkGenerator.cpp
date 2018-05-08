@@ -5,8 +5,8 @@
 #include "../../../deps/PerlinNoise.h"
 
 const float ChunkGenerator::getWorldHeight(float x) {
-    return static_cast<const float>(heightNoise.noise(x / 100.5f) * 50.5f +
-                 detailNoise.noise(x / 10.5) *  detailNoise2.noise0_1(x / 1000.5) * 10.5f);
+    return static_cast<const float>(heightNoise.noise(x / 500.5f) * 250.5f +
+                 detailNoise.noise(x / 50.5) *  detailNoise2.noise0_1(x / 5000.5) * 50.5f);
 }
 
 const float ChunkGenerator::getMaterialNoise(int materialType, float x, float y) {
@@ -16,7 +16,7 @@ const float ChunkGenerator::getMaterialNoise(int materialType, float x, float y)
         it = materialNoises.emplace(std::pair<int,siv::PerlinNoise>(materialType,
                                                                siv::PerlinNoise((uint32_t)seed*10+materialType*10))).first;
     }
-    return static_cast<const float>(it->second.noise0_1(x/10.5, y/10.5));
+    return static_cast<const float>(it->second.noise0_1(x/50.5, y/50.5));
 }
 
 const float ChunkGenerator::getOreNoise(int oreType, float x, float y) {
@@ -26,13 +26,13 @@ const float ChunkGenerator::getOreNoise(int oreType, float x, float y) {
         it = oreNoises.emplace(std::pair<int,siv::PerlinNoise>(oreType,
                                                                siv::PerlinNoise((uint32_t)seed*20+oreType*20))).first;
     }
-    auto oreNoiseVal = (float) (1 - fabs(it->second.octaveNoise(x / 80.5, y / 80.5, 6)));
-    oreNoiseVal *= 1 - it->second.noise0_1(x / 1000.5, y / 1000.5) / 3;
+    auto oreNoiseVal = (float) (1 - fabs(it->second.octaveNoise(x / 400.5, y / 400.5, 6)));
+    oreNoiseVal *= 1 - it->second.noise0_1(x / 5000.5, y / 5000.5) / 15;
     return oreNoiseVal;
 }
 
 Biome ChunkGenerator::getBiome(float worldX) {
-    float biomeNoiseVal = static_cast<float>(biomeNoise.noise0_1(worldX / 10000.5) * biomes.size());
+    float biomeNoiseVal = static_cast<float>(biomeNoise.noise0_1(worldX / 50000.5) * biomes.size());
     int biomeId = static_cast<int>(floor(biomeNoiseVal));
     return biomes[biomeId];
 }
