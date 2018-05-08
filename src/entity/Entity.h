@@ -21,7 +21,7 @@ public:
     template<typename T>
     void addComponent(std::unique_ptr<Component> component)
     {
-        components[int(T::ID)] = std::move(component);
+        components[int(T::Id)] = std::move(component);
     }
 
     template<typename T>
@@ -36,6 +36,10 @@ public:
 
 
     Entity() = default;
+
+    explicit Entity(nlohmann::json json);
+
+    static constexpr auto TAG = "Entity";
 };
 
 

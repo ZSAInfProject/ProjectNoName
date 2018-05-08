@@ -6,6 +6,8 @@
 class CameraComponent : public Component{
 public:
     static const componentId Id = componentId::Camera;
+
+    explicit CameraComponent(nlohmann::json json) {};
 };
 
 #endif //NONAME_CAMERA_H
