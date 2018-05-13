@@ -3,14 +3,6 @@ project(NoName)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-
-find_package(SFML 2 COMPONENTS graphics window system audio)
-find_package(Threads REQUIRED)
-
-include_directories(${SFML_INCLUDE_DIR})
-
 file(GLOB_RECURSE SOURCE_FILES
         "src/*.cpp"
         "src/*.h"
@@ -18,8 +10,16 @@ file(GLOB_RECURSE SOURCE_FILES
 
 add_executable(NoName ${SOURCE_FILES})
 
-target_link_libraries(NoName ${SFML_LIBRARIES} Threads::Threads)
+set(SFML_BUILD_DOC FALSE)
+set(SFML_BUILD_EXAMPLES FALSE)
+set(BUILD_SHARED_LIBS FALSE)
+
+include_directories(deps/SFML/include)
+add_subdirectory(deps/SFML)
+
+target_link_libraries(NoName sfml-network sfml-graphics sfml-window sfml-system sfml-audio)
 
 file(COPY res/ DESTINATION res/)
 file(COPY settings.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/saves/)
 file(MAKE_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/saves/)
