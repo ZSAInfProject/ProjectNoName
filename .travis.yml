@@ -10,8 +10,22 @@ matrix:
           packages:
             - g++-7
             - cmake
-            - libsfml-dev
             - doxygen
+            - libudev-dev
+            - libfreetype6-dev
+            - libx11-6
+            - libxrandr-dev
+            - xcb
+            - libx11-xcb-dev
+            - libxcb-randr0-dev
+            - libxcb-image0-dev
+            - libflac++-dev
+            - oggconvert
+            - libvorbis-dev
+            - libvorbisenc2
+            - libvorbisfile3
+            - libopenal-dev
+
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
