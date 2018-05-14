@@ -9,7 +9,7 @@
 class ControlSystem : public System{
 public:
     static const stageEnum stage = update;
-    void processEntity(Entity *entity) override {
+    void processEntity(Entity *entity, std::chrono::microseconds dt) override {
         auto* positionComponent = entity->getComponent<PositionComponent>();
         auto* controlComponent = entity->getComponent<ControlComponent>();
         if(!positionComponent || !controlComponent)

@@ -9,11 +9,11 @@
 
 class CameraSystem : public System{
 public:
-    static const stageEnum stage = update;
+    static const stageEnum stage = render;
 
     explicit CameraSystem(sf::View& camera) : camera(camera) {};
 
-    void processEntity(Entity *entity) override {
+    void processEntity(Entity *entity, std::chrono::microseconds dt) override {
         auto* cameraComponent = entity->getComponent<CameraComponent>();
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent || !cameraComponent)

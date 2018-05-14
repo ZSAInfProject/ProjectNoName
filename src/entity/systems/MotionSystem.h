@@ -8,12 +8,12 @@
 class MotionSystem : public System{
 public:
     static const stageEnum stage = update;
-    void processEntity(Entity *entity) override {
+    void processEntity(Entity *entity, std::chrono::microseconds dt) override {
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent)
             return;
         positionComponent->lastPosition = positionComponent->position;
-        positionComponent->position += positionComponent->speed;
+        positionComponent->position += positionComponent->speed*dt.count();
     }
 };
 

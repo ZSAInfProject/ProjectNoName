@@ -12,7 +12,7 @@ enum stageEnum{
 class System{
 public:
     static const stageEnum stage = tick;
-    virtual void processEntity(Entity *entity) = 0;
+    virtual void processEntity(Entity *entity, std::chrono::microseconds dt = std::chrono::microseconds(0)) = 0;
 };
 
 

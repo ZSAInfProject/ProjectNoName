@@ -34,7 +34,7 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         if(system->stage != stageEnum::update)
             continue;
         for(auto& entity : entities)
-            system->processEntity(entity.get());
+            system->processEntity(entity.get(), deltaTime);
     }
 
     if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
