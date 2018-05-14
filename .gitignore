@@ -99,3 +99,5 @@ saves/
 
 # logs
 Log.txt
+
+deps/SFML/
