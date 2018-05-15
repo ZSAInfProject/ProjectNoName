@@ -7,6 +7,10 @@
 #include "../utils/Log.h"
 #include "../utils/Settings.h"
 #include "../utils/Controls.h"
+#include "../entity/systems/MotionSystem.h"
+#include "../entity/systems/ControlSystem.h"
+#include "../entity/systems/RenderSystem.h"
+#include "../entity/systems/CameraSystem.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -21,11 +25,10 @@ long mod(long a, long b)
 GameState::GameState() : State(), world(10){
     camera.setSize(sf::Vector2f(800, -600));
     createSavePath();
+    loadSystems();
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
-
-    entities.emplace_back(player);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -112,6 +115,13 @@ World &GameState::getWorld() {
 
 sf::View &GameState::getCamera() {
     return camera;
+}
+
+void GameState::loadSystems() {
+    systems.push_back(std::make_unique<ControlSystem>());
+    systems.push_back(std::make_unique<MotionSystem>());
+    systems.push_back(std::make_unique<CameraSystem>(camera));
+    systems.push_back(std::make_unique<RenderSystem>());
 }
 
 

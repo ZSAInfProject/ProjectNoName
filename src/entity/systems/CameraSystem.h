@@ -1,6 +1,5 @@
-#ifndef NONAME_MOTIONSYSTEM_H
-#define NONAME_MOTIONSYSTEM_H
-
+#ifndef NONAME_CAMERASYSTEM_H
+#define NONAME_CAMERASYSTEM_H
 
 #include "System.h"
 #include "../components/Position.h"

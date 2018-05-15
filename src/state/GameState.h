@@ -14,6 +14,7 @@
 class GameState : public State{
 
     void createSavePath();
+    void loadSystems();
     static constexpr auto TAG = "GameState";
   
 public:
