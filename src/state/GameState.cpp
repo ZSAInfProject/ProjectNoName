@@ -34,10 +34,10 @@ GameState::GameState() : State(), world(10){
 void GameState::update(std::chrono::microseconds deltaTime) {
 
     for(auto& system : systems){
-        if(system->stage != stageEnum::update)
-            continue;
-        for(auto& entity : entities)
-            system->processEntity(entity.get(), deltaTime);
+        if(system->stage == stageEnum::update) {
+            for (auto &entity : entities)
+                system->processEntity(entity.get(), deltaTime);
+        }
     }
 
     if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
@@ -66,20 +66,20 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
     for(auto& system : systems){
-        if(system->stage != stageEnum::render)
-            continue;
-        for(auto& entity : entities)
-            system->processEntity(entity.get());
+        if(system->stage == stageEnum::render) {
+            for (auto &entity : entities)
+                system->processEntity(entity.get());
+        }
     }
     world.render(camera);
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
     for(auto& system : systems){
-        if(system->stage != stageEnum::tick)
-            continue;
-        for(auto& entity : entities)
-            system->processEntity(entity.get());
+        if(system->stage == stageEnum::tick) {
+            for (auto &entity : entities)
+                system->processEntity(entity.get());
+        }
     }
 }
 
