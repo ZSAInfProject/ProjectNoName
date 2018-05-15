@@ -41,6 +41,8 @@ public:
 
     explicit Entity(nlohmann::json json);
 
+    std::string name;
+
     static constexpr auto TAG = "Entity";
 };
 

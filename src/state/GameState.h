@@ -6,6 +6,7 @@
 #include "../entity/Entity.h"
 #include "../entity/systems/System.h"
 #include "../entity/systems/RenderSystem.h"
+#include "../entity/EntityFactory.h"
 
 //! State when actual gameplay is present
 /*!
@@ -41,6 +42,8 @@ private:
     std::shared_ptr<Entity> player;
 
     sf::View camera;
+
+    EntityFactory entityFactory;
 };
 
 #endif //NONAME_GAMESTATE_H

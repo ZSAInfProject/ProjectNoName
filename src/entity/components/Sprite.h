@@ -13,7 +13,7 @@ public:
     sf::Vector2i size;
 
     explicit SpriteComponent(nlohmann::json json) {
-        texture.loadFromFile(json["path"].get<std::string>());
+        texture.loadFromFile("res/" + json["path"].get<std::string>());
         size = {json["size"][0].get<int>(), json["size"][1].get<int>()};
         sprite = sf::Sprite(texture);
         sprite.setScale(size.x / texture.getSize().x, -size.x / texture.getSize().x);

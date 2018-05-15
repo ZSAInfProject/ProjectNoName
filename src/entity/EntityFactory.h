@@ -8,5 +8,5 @@ public:
 
 private:
     std::unordered_map<std::string, std::unique_ptr<Entity>> entities;
-    static constexpr auto TAG = "TileDatabase";
+    static constexpr auto TAG = "EntityFactory";
 };

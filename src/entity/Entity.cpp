@@ -8,6 +8,7 @@
 Entity::Entity(nlohmann::json json) {
     ID = 0;
     if (json.find("name") != json.end()) {
+        name = json["name"].get<std::string>();
         if (json.find("components") != json.end()) {
             for (auto &component : json["components"]) {
                 if (component.find("type") != component.end()) {
@@ -29,8 +30,9 @@ Entity::Entity(nlohmann::json json) {
         } else {
             Log::warn(TAG, "Entity: " + json["name"].get<std::string>() + " does not have components");
         }
+    } else {
+        Log::warn(TAG, "Entity does not have a name");
     }
-    Log::warn(TAG, "Entity does not have a name");
 }
 
 Entity::Entity(Entity &old) {

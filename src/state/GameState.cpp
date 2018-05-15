@@ -22,21 +22,22 @@
 long mod(long a, long b)
 { return (a%b+b)%b; }
 
-GameState::GameState() : State(), world(10){
+GameState::GameState() : State(), world(10), entityFactory("entities/entities.json"){
     camera.setSize(sf::Vector2f(800, -600));
     createSavePath();
     loadSystems();
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
+    entities.push_back(entityFactory.get("Player"));
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
-
     for(auto& system : systems){
         if(system->stage == stageEnum::update) {
-            for (auto &entity : entities)
+            for (auto &entity : entities) {
                 system->processEntity(entity.get(), deltaTime);
+            }
         }
     }
 

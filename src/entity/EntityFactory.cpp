@@ -8,7 +8,13 @@ EntityFactory::EntityFactory(std::string file) {
         nlohmann::json j = nlohmann::json::parse(ifs);
         if (!j.empty()) {
             for (auto it = j.begin(); it != j.end(); it++) {
-                entities[it.key()] = std::make_unique<Entity>(it.value());
+                std::ifstream entity_stream("res/" + it.value().get<std::string>());
+                if (entity_stream.is_open()) {
+                    auto entity_json = nlohmann::json::parse(entity_stream);
+                    entities[it.key()] = std::make_unique<Entity>(entity_json);
+                } else {
+                    Log::error(TAG, "Could not open entity file:" + it.value().get<std::string>());
+                }
             }
         }
     } else {
