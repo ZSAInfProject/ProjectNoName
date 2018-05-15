@@ -1,0 +1,9 @@
+{
+  "name": "Player",
+  "components": [
+    "camera",
+    "control",
+    "position",
+    "sprite"
+  ]
+}

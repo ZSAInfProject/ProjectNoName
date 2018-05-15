@@ -13,6 +13,9 @@ class Component{
 public:
     static const componentId Id = componentId::Unknown;
     virtual ~Component() = default;
+    Component() = default;
+    Component(Component& old) = default;;
+    explicit Component(nlohmann::json json) {};
 };
 
 #endif //NONAME_COMPONENT_H

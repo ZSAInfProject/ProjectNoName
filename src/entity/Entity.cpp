@@ -32,3 +32,9 @@ Entity::Entity(nlohmann::json json) {
     }
     Log::warn(TAG, "Entity does not have a name");
 }
+
+Entity::Entity(Entity &old) {
+    for (auto& component: old.components) {
+        components[component.first] = std::make_unique<Component>(*component.second);
+    }
+}

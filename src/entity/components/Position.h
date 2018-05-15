@@ -3,6 +3,7 @@
 
 #include <SFML/System.hpp>
 #include "Component.h"
+#include "../../../deps/json.h"
 
 class PositionComponent : public Component{
 public:
@@ -12,7 +13,7 @@ public:
     sf::Vector2f lastPosition;
     sf::Vector2f speed;
 
-    explicit PositionComponent(nlohmann::json json) {
+    explicit PositionComponent(nlohmann::json json){
         position = {0, 0};
         lastPosition = {0, 0};
         speed = {0, 0};

@@ -37,6 +37,8 @@ public:
 
     Entity() = default;
 
+    Entity(Entity& old);
+
     explicit Entity(nlohmann::json json);
 
     static constexpr auto TAG = "Entity";
