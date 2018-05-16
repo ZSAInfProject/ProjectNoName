@@ -9,8 +9,8 @@
 
 class RenderSystem : public System {
 public:
-    static const stageEnum stage = render;
-    void processEntity(Entity *entity, std::chrono::microseconds dt) override {
+    stageEnum getStage() { return render; };
+    void processEntity(std::shared_ptr<Entity> entity, std::chrono::microseconds dt) override {
         auto* spriteComponent = entity->getComponent<SpriteComponent>();
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent || !spriteComponent)

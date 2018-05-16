@@ -7,8 +7,8 @@
 
 class MotionSystem : public System{
 public:
-    static const stageEnum stage = update;
-    void processEntity(Entity *entity, std::chrono::microseconds dt) override {
+    stageEnum getStage() override { return update; };
+    void processEntity(std::shared_ptr<Entity> entity, std::chrono::microseconds dt) override {
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent)
             return;
