@@ -121,9 +121,9 @@ void Chunk::changeQuad(int x, int y) {
     int ty = TileDatabase::get()[tile_id].texture_y;
 
     quad[0].texCoords = sf::Vector2f(tx*TILE_SIZE, ty*TILE_SIZE);
-    quad[1].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, ty*TILE_SIZE);
-    quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE, (ty+1)*TILE_SIZE);
-    quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE);
+    quad[1].texCoords = sf::Vector2f((tx+1)*TILE_SIZE - 0.0075, ty*TILE_SIZE);
+    quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE - 0.0075, (ty+1)*TILE_SIZE - 0.0075);
+    quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE - 0.0075);
 }
 
 
