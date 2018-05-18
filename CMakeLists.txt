@@ -17,7 +17,10 @@ set(BUILD_SHARED_LIBS FALSE)
 include_directories(deps/SFML/include)
 add_subdirectory(deps/SFML)
 
-target_link_libraries(NoName sfml-network sfml-graphics sfml-window sfml-system sfml-audio)
+include_directories(deps/imgui-sfml)
+add_subdirectory(deps/imgui-sfml)
+
+target_link_libraries(NoName sfml-network sfml-graphics sfml-window sfml-system sfml-audio imgui-sfml)
 
 file(COPY res/ DESTINATION res/)
 file(COPY settings.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

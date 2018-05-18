@@ -2,3 +2,7 @@
 	path = deps/SFML
 	url = https://github.com/SFML/SFML.git
 	ignore = dirty
+[submodule "deps/imgui-sfml"]
+	path = deps/imgui-sfml
+	url = https://github.com/zakrent/imgui-sfml.git
+	ignore = dirty
