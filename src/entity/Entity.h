@@ -15,8 +15,8 @@
  */
 class Entity {
     int ID;
-    std::unordered_map<uint, std::unique_ptr<Component>> components;
 public:
+    std::unordered_map<uint, std::unique_ptr<Component>> components;
 
     template<typename T>
     void addComponent(std::unique_ptr<Component> component)

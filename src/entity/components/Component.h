@@ -13,6 +13,9 @@ class Component{
 public:
     static const componentId Id = componentId::Unknown;
     virtual ~Component() = default;
+
+    virtual std::unique_ptr<Component> clone() = 0;
+
     Component() = default;
     Component(Component& old) = default;;
     explicit Component(nlohmann::json json) {};

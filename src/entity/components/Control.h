@@ -7,7 +7,11 @@ class ControlComponent : public Component{
 public:
     static const componentId Id = componentId::Control;
 
-    float speed = 1.0f;
+    float speed = 1;
+
+    std::unique_ptr<Component> clone() override {
+        return std::make_unique<ControlComponent>(*this);
+    }
 
     explicit ControlComponent(nlohmann::json json) {
         speed = json["speed"].get<float>();

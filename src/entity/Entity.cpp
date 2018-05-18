@@ -36,7 +36,7 @@ Entity::Entity(nlohmann::json json) {
 }
 
 Entity::Entity(Entity &old) {
-    for (auto& component: old.components) {
-        components[component.first] = std::make_unique<Component>(*component.second);
+    for (auto &component : old.components) {
+        components[component.first] = std::move(component.second->clone());
     }
 }

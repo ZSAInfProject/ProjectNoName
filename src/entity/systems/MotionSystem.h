@@ -13,8 +13,8 @@ public:
         if(!positionComponent)
             return;
         positionComponent->lastPosition = positionComponent->position;
-        positionComponent->position.x += positionComponent->speed.x*dt.count();
-        positionComponent->position.y += positionComponent->speed.y*dt.count();
+        positionComponent->position.x += positionComponent->speed.x*dt.count()/1e6;
+        positionComponent->position.y += positionComponent->speed.y*dt.count()/1e6;
     }
 };
 

@@ -6,7 +6,7 @@
     },
     {
       "type": "Control",
-      "speed": 1.0
+      "speed": 100.0
     },
     {
       "type": "Position"

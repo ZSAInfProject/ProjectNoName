@@ -13,6 +13,10 @@ public:
     sf::Vector2f lastPosition;
     sf::Vector2f speed;
 
+    std::unique_ptr<Component> clone() override {
+        return std::make_unique<PositionComponent>(*this);
+    }
+
     explicit PositionComponent(nlohmann::json json){
         position = {0, 0};
         lastPosition = {0, 0};

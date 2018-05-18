@@ -12,6 +12,12 @@ public:
     sf::Texture texture;
     sf::Vector2i size;
 
+    std::unique_ptr<Component> clone() override {
+        return std::make_unique<SpriteComponent>(*this);
+    }
+
+
+    SpriteComponent(SpriteComponent& old) = default;
     explicit SpriteComponent(nlohmann::json json) {
         texture.loadFromFile("res/" + json["path"].get<std::string>());
         size = {json["size"][0].get<int>(), json["size"][1].get<int>()};
