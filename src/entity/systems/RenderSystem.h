@@ -16,7 +16,7 @@ public:
         if(!positionComponent || !spriteComponent)
             return;
 
-        auto position = positionComponent->position * (float)Chunk::TILE_SIZE;
+        auto position = positionComponent->position;
         position.y += spriteComponent->sprite.getGlobalBounds().height;
         spriteComponent->sprite.setPosition(position);
         Game::getRenderWindow().draw(spriteComponent->sprite);

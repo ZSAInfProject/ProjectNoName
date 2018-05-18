@@ -66,13 +66,13 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
+    world.render(camera);
     for(auto& system : systems){
         if(system->getStage() == stageEnum::render) {
             for (auto &entity : entities)
                 system->processEntity(entity);
         }
     }
-    world.render(camera);
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {

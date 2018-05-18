@@ -22,7 +22,8 @@ public:
         texture.loadFromFile("res/" + json["path"].get<std::string>());
         size = {json["size"][0].get<int>(), json["size"][1].get<int>()};
         sprite = sf::Sprite(texture);
-        sprite.setScale(size.x / texture.getSize().x, -size.x / texture.getSize().x);
+        sprite.setScale(1,1);
+        sprite.setScale(size.x*32.0f/texture.getSize().y , -size.y*32.0f/texture.getSize().y);
     };
 };
 
