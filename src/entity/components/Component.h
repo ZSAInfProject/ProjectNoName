@@ -11,7 +11,7 @@ enum componentId{
 
 class Component{
 public:
-    static const componentId Id = componentId::Unknown;
+    static const componentId id = componentId::Unknown;
     virtual ~Component() = default;
 
     virtual std::unique_ptr<Component> clone() = 0;
