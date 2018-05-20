@@ -18,14 +18,20 @@ public:
         if (Controls::isKeyboardButtonPressed(sf::Keyboard::W)) {
             positionComponent->speed.y = controlComponent->speed;
         }
-        if (Controls::isKeyboardButtonPressed(sf::Keyboard::S)) {
+        else if (Controls::isKeyboardButtonPressed(sf::Keyboard::S)) {
             positionComponent->speed.y = -controlComponent->speed;
+        }
+        else {
+            positionComponent->speed.y = 0;
         }
         if (Controls::isKeyboardButtonPressed(sf::Keyboard::A)) {
             positionComponent->speed.x = -controlComponent->speed;
         }
-        if (Controls::isKeyboardButtonPressed(sf::Keyboard::D)) {
+        else if (Controls::isKeyboardButtonPressed(sf::Keyboard::D)) {
             positionComponent->speed.x = controlComponent->speed;
+        }
+        else {
+            positionComponent->speed.x = 0;
         }
     }
 };
