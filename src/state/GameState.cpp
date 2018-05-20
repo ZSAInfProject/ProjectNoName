@@ -7,6 +7,10 @@
 #include "../utils/Log.h"
 #include "../utils/Settings.h"
 #include "../utils/Controls.h"
+#include "../entity/systems/MotionSystem.h"
+#include "../entity/systems/ControlSystem.h"
+#include "../entity/systems/RenderSystem.h"
+#include "../entity/systems/CameraSystem.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -18,19 +22,24 @@
 long mod(long a, long b)
 { return (a%b+b)%b; }
 
-GameState::GameState() : State(), world(10){
+GameState::GameState() : State(), world(10), entityFactory("entities/entities.json"){
     camera.setSize(sf::Vector2f(800, -600));
     createSavePath();
+    loadSystems();
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
-
-    player = std::make_shared<Player>(*this);
-    entities.emplace_back(player);
+    entities.push_back(entityFactory.get("Player"));
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
-    camera.setCenter(entities[0]->position);
+    for(auto& system : systems){
+        if(system->getStage() == stageEnum::update) {
+            for (auto &entity : entities) {
+                system->processEntity(entity, deltaTime);
+            }
+        }
+    }
 
     if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
         sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
@@ -53,27 +62,26 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
     }
 
-    for (auto& entity : entities) {
-        entity->update(deltaTime);
-    }
-
 }
 
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
     world.render(camera);
-
-    for (auto& entity : entities) {
-        entity->render();
+    for(auto& system : systems){
+        if(system->getStage() == stageEnum::render) {
+            for (auto &entity : entities)
+                system->processEntity(entity);
+        }
     }
-
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
-    for (auto& entity : entities) {
-        entity->tick();
+    for(auto& system : systems){
+        if(system->getStage() == stageEnum::tick) {
+            for (auto &entity : entities)
+                system->processEntity(entity);
+        }
     }
-
 }
 
 sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {
@@ -104,6 +112,17 @@ void GameState::createSavePath() {
 
 World &GameState::getWorld() {
     return world;
+}
+
+sf::View &GameState::getCamera() {
+    return camera;
+}
+
+void GameState::loadSystems() {
+    systems.push_back(std::make_unique<ControlSystem>());
+    systems.push_back(std::make_unique<MotionSystem>());
+    systems.push_back(std::make_unique<CameraSystem>(camera));
+    systems.push_back(std::make_unique<RenderSystem>());
 }
 
 

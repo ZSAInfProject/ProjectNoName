@@ -4,7 +4,9 @@
 #include "State.h"
 #include "../world/World.h"
 #include "../entity/Entity.h"
-#include "../entity/Player.h"
+#include "../entity/systems/System.h"
+#include "../entity/systems/RenderSystem.h"
+#include "../entity/EntityFactory.h"
 
 //! State when actual gameplay is present
 /*!
@@ -13,6 +15,7 @@
 class GameState : public State{
 
     void createSavePath();
+    void loadSystems();
     static constexpr auto TAG = "GameState";
   
 public:
@@ -23,6 +26,7 @@ public:
     GameState();
 
     World& getWorld();
+    sf::View& getCamera();
 
 private:
     World world;
@@ -33,9 +37,13 @@ private:
     //! Vector containing all the entities currently active
     std::vector<std::shared_ptr<Entity>> entities;
 
-    std::shared_ptr<Player> player;
+    std::vector<std::unique_ptr<System>> systems;
+
+    std::shared_ptr<Entity> player;
 
     sf::View camera;
+
+    EntityFactory entityFactory;
 };
 
 #endif //NONAME_GAMESTATE_H

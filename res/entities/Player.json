@@ -1,0 +1,20 @@
+{
+  "name": "Player",
+  "components": [
+    {
+      "type": "Camera"
+    },
+    {
+      "type": "Control",
+      "speed": 100.0
+    },
+    {
+      "type": "Position"
+    },
+    {
+      "type": "Sprite",
+      "path": "textures/player.png",
+      "size": [1.0, 1.0]
+    }
+  ]
+}
