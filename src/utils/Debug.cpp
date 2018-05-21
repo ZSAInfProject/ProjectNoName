@@ -22,12 +22,12 @@ void Debug::update() {
 
     if(Game::canUpdateimGui()) {
         for(int i = 0; i < errorMessages.size(); i++){
-            ImGui::SetNextWindowPos(sf::Vector2f(ImGui::GetIO().DisplaySize)*0.5f+sf::Vector2f(-150, -250+i*10), ImGuiCond_Once);
+            ImGui::SetNextWindowPos(sf::Vector2f(ImGui::GetIO().DisplaySize)*0.5f+sf::Vector2f(-150, -250+i*10));
             ImGui::SetNextWindowSizeConstraints(sf::Vector2f(300, 10), sf::Vector2f(300, 500));
             ImGui::PushStyleColor(ImGuiCol_TitleBg, IM_COL32(0xff, 0x00, 0x00, 0xaa));
             ImGui::PushStyleColor(ImGuiCol_TitleBgActive, IM_COL32(0xff, 0x00, 0x00, 0xaa));
             ImGui::Begin(("Error##"+std::to_string(i)).c_str(), nullptr,
-                         ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
+                         ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
             ImGui::TextWrapped(errorMessages[i].c_str());
             ImGui::SetCursorPosX(ImGui::GetWindowWidth()/2-50);
             if(ImGui::Button("Ok", sf::Vector2f(100,20))){
