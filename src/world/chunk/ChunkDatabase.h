@@ -43,6 +43,9 @@ public:
      * @return string representation of cache
      */
 
+    bool isChunkLoaded(int x, int y);
+    bool isChunkGenerated(int x, int y);
+
     explicit ChunkDatabase(std::unique_ptr<ChunkGenerator>);
     ~ChunkDatabase();
 private:

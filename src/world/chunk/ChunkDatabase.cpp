@@ -109,3 +109,18 @@ void ChunkDatabase::saveCache(bool ignoreAutoSavePeriod) {
         Log::verbose(TAG, "Cache saved");
     }
 }
+
+bool ChunkDatabase::isChunkLoaded(int x, int y) {
+    auto chunkIt = chunkCache.find(std::make_tuple(x, y));
+    return chunkIt != chunkCache.end();
+}
+
+bool ChunkDatabase::isChunkGenerated(int x, int y) {
+    auto chunkIt = chunkCache.find(std::make_tuple(x, y));
+    if(chunkIt != chunkCache.end()){
+        return true;
+    }
+    std::unique_ptr<Chunk> fileChunk = std::make_unique<Chunk>();
+    return fileChunk->load(getChunkFilename(x,y));
+
+}
