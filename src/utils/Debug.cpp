@@ -20,70 +20,84 @@ void Debug::update() {
         toggled = false;
     }
 
-    if(Game::canUpdateimGui()) {
-        for(int i = 0; i < errorMessages.size(); i++){
-            ImGui::SetNextWindowPos(sf::Vector2f(ImGui::GetIO().DisplaySize)*0.5f+sf::Vector2f(-150, -250+i*10));
-            ImGui::SetNextWindowSizeConstraints(sf::Vector2f(300, 10), sf::Vector2f(300, 500));
-            ImGui::PushStyleColor(ImGuiCol_TitleBg, IM_COL32(0xff, 0x00, 0x00, 0xaa));
-            ImGui::PushStyleColor(ImGuiCol_TitleBgActive, IM_COL32(0xff, 0x00, 0x00, 0xaa));
-            ImGui::Begin(("Error##"+std::to_string(i)).c_str(), nullptr,
-                         ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
-            ImGui::TextWrapped(errorMessages[i].c_str());
-            ImGui::SetCursorPosX(ImGui::GetWindowWidth()/2-50);
-            if(ImGui::Button("Ok", sf::Vector2f(100,20))){
-                errorMessages.erase(errorMessages.begin()+i);
-            }
-            ImGui::End();
-            ImGui::PopStyleColor(2);
-        }
+    if(Game::canUpdateimGui()){
+        updateErrors();
+        updateMainDebug();
+    }
 
-        if(active) {
-            ImGui::SetNextWindowSizeConstraints(sf::Vector2f(300, 10), sf::Vector2f(300, 500));
-        }
-        ImGui::Begin("Performance info", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
-        ImGui::SetWindowPos(sf::Vector2f(5,5));
-        ImGui::Text("Press F3 to toggle");
-        if(active) {
-            ImGui::Text("FPS: %-6.1f (%-7.3f ms/frame)", fps, 1000.0f / fps);
-            ImGui::Text("UPS: %-6.1f (%-7.3f µs/update)", ups, 10e5 / ups);
-            ImGui::Text("Entities: %.i", entityCount);
-            ImGui::Text("Chunk cache: %.i", loadedChunks);
-            ImGui::Separator();
-            sf::Vector2f& playerPos = player->getComponent<PositionComponent>()->position;
-            ImGui::Value("X", playerPos.x);
-            ImGui::SameLine();
-            ImGui::Value("Y", playerPos.y);
-            if (ImGui::CollapsingHeader("Cheats")) {
-                ImGui::SliderFloat("Speed", &player->getComponent<ControlComponent>()->speed, 100.0f, 10000.0f);
-                ImGui::InputFloat2("Position", &player->getComponent<PositionComponent>()->position.x);
-            }
-            if (ImGui::CollapsingHeader("Plots")) {
-                ImGui::PlotLines("FPS plot", fpsHistory.data(), static_cast<int>(fpsHistory.size()));
-                ImGui::PlotLines("UPS plot", upsHistory.data(), static_cast<int>(upsHistory.size()));
-            }
-            if (ImGui::CollapsingHeader("Log")) {
-                ImGui::BeginChild("log-scroll", sf::Vector2f(0, 200), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_AlwaysVerticalScrollbar);
-                for (auto &log: logMessages) {
-                    switch (log.first) {
-                        case WARN:
-                            ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0xff, 0x00, 0xaa));
-                            break;
-                        case ERROR:
-                            ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0x00, 0x00, 0xaa));
-                            break;
-                        default:
-                            ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0xff, 0xff, 0xaa));
-                            break;
-                    }
-                    ImGui::TextWrapped(log.second.c_str());
-                    ImGui::PopStyleColor();
-                }
-                ImGui::SetScrollHere(1.0f);
-                ImGui::EndChild();
-            }
+}
+
+void Debug::updateErrors() {
+    for(int i = 0; i < errorMessages.size(); i++){
+        ImGui::SetNextWindowPos(sf::Vector2f(ImGui::GetIO().DisplaySize)*0.5f+sf::Vector2f(-150, -250+i*10));
+        ImGui::SetNextWindowSizeConstraints(sf::Vector2f(300, 10), sf::Vector2f(300, 500));
+        ImGui::PushStyleColor(ImGuiCol_TitleBg, IM_COL32(0xff, 0x00, 0x00, 0xaa));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgActive, IM_COL32(0xff, 0x00, 0x00, 0xaa));
+        ImGui::Begin(("Error##"+std::to_string(i)).c_str(), nullptr,
+                     ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove);
+        ImGui::TextWrapped(errorMessages[i].c_str());
+        ImGui::SetCursorPosX(ImGui::GetWindowWidth()/2-50);
+        if(ImGui::Button("Ok", sf::Vector2f(100,20))){
+            errorMessages.erase(errorMessages.begin()+i);
         }
         ImGui::End();
+        ImGui::PopStyleColor(2);
     }
+}
+
+void Debug::updateMainDebug() {
+    if(active) {
+        ImGui::SetNextWindowSizeConstraints(sf::Vector2f(300, 10), sf::Vector2f(300, 500));
+    }
+
+    ImGui::Begin("Performance info", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::SetWindowPos(sf::Vector2f(5,5));
+    ImGui::Text("Press F3 to toggle");
+
+    if(active) {
+        ImGui::Text("FPS: %-6.1f (%-7.3f ms/frame)", fps, 1000.0f / fps);
+        ImGui::Text("UPS: %-6.1f (%-7.3f µs/update)", ups, 10e5 / ups);
+        ImGui::Text("Entities: %.i", entityCount);
+        ImGui::Text("Chunk cache: %.i", loadedChunks);
+        ImGui::Separator();
+
+        sf::Vector2f& playerPos = player->getComponent<PositionComponent>()->position;
+        ImGui::Value("X", playerPos.x);
+        ImGui::SameLine();
+        ImGui::Value("Y", playerPos.y);
+
+        if (ImGui::CollapsingHeader("Cheats")) {
+            ImGui::SliderFloat("Speed", &player->getComponent<ControlComponent>()->speed, 100.0f, 10000.0f);
+            ImGui::InputFloat2("Position", &player->getComponent<PositionComponent>()->position.x);
+        }
+
+        if (ImGui::CollapsingHeader("Plots")) {
+            ImGui::PlotLines("FPS plot", fpsHistory.data(), static_cast<int>(fpsHistory.size()));
+            ImGui::PlotLines("UPS plot", upsHistory.data(), static_cast<int>(upsHistory.size()));
+        }
+
+        if (ImGui::CollapsingHeader("Log")) {
+            ImGui::BeginChild("log-scroll", sf::Vector2f(0, 200), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_AlwaysVerticalScrollbar);
+            for (auto &log: logMessages) {
+                switch (log.first) {
+                    case WARN:
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0xff, 0x00, 0xaa));
+                        break;
+                    case ERROR:
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0x00, 0x00, 0xaa));
+                        break;
+                    default:
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(0xff, 0xff, 0xff, 0xaa));
+                        break;
+                }
+                ImGui::TextWrapped(log.second.c_str());
+                ImGui::PopStyleColor();
+            }
+            ImGui::SetScrollHere(1.0f);
+            ImGui::EndChild();
+        }
+    }
+    ImGui::End();
 }
 
 void Debug::reportUpdateTime(std::chrono::microseconds time) {
@@ -156,4 +170,5 @@ void Debug::reportEntityCount(int n) {
 void Debug::reportPlayerEntity(std::shared_ptr<Entity> _player) {
     player = _player;
 }
+
 

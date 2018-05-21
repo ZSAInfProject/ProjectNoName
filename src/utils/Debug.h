@@ -24,6 +24,8 @@ class Debug : public LogSubscriber {
     std::shared_ptr<Entity> player;
     std::vector<std::pair<enum Mode,std::string>> logMessages;
     std::vector<std::string> errorMessages;
+    void updateErrors();
+    void updateMainDebug();
 public:
     //! Method called every update
     void update();
