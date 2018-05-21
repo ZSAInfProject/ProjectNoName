@@ -86,25 +86,25 @@ void Debug::notify(enum Mode mode, std::string tag, std::string msg) {
     std::string modeString;
     switch(mode){
         case VERBOSE:
-            modeString = "VERBOSE";
+            modeString = "V";
             break;
         case DEBUG:
-            modeString = "DEBUG";
+            modeString = "D";
             break;
         case INFO:
-            modeString = "INFO";
+            modeString = "I";
             break;
         case WARN:
-            modeString = "WARN";
+            modeString = "W";
             break;
         case ERROR:
-            modeString = "ERROR";
+            modeString = "E";
             break;
         case NOLOG:
-            modeString = "NOLOG";
+            modeString = "N";
             break;
     }
-    logMessages.emplace_back(mode, "["+modeString+"] "+tag+": "+msg);
+    logMessages.emplace_back(mode, "["+modeString+"]"+tag+": "+msg);
 }
 
 Debug::Debug() {
