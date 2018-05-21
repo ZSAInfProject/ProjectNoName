@@ -9,6 +9,7 @@
 #include "Log.h"
 #include "../entity/Entity.h"
 
+//! Class responsible for updating visual debug items
 class Debug : public LogSubscriber {
     int loadedChunks;
     int entityCount;
@@ -21,14 +22,22 @@ class Debug : public LogSubscriber {
     std::vector<float> upsHistory;
 
     std::shared_ptr<Entity> player;
-public:
     std::vector<std::pair<enum Mode,std::string>> logMessages;
+public:
+    //! Method called every update
     void update();
+    //! Method called every tick
     void tick();
+
+    //! Update update duration
     void reportUpdateTime(std::chrono::microseconds);
+    //! Update render duration
     void reportRenderTime(std::chrono::milliseconds);
+    //! Update player entity
     void reportPlayerEntity(std::shared_ptr<Entity>);
+    //! Update loaded chunks count
     void reportLoadedChunks(int n);
+    //! Update entity count
     void reportEntityCount(int n);
 
     void notify(enum Mode, std::string, std::string) override;
