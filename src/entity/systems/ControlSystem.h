@@ -15,6 +15,8 @@ public:
         if(!positionComponent || !controlComponent)
             return;
 
+        Game::get().debug.reportPlayerEntity(entity);
+
         if (Controls::isKeyboardButtonPressed(sf::Keyboard::W)) {
             positionComponent->speed.y = controlComponent->speed;
         }

@@ -4,6 +4,7 @@
 
 #include <stack>
 #include "state/State.h"
+#include "utils/Debug.h"
 #include <mutex>
 #include <memory>
 
@@ -16,6 +17,7 @@
 class Game {
 
 public:
+    Debug debug;
     //! Push state on stack.
     void pushState(std::shared_ptr<State> state);
     //! Pop state from stack.
@@ -47,10 +49,12 @@ public:
 private:
     bool imGuiUpdatedThisFrame;
     std::mutex renderMutex;
+
     //! Stack containing all states.
     std::stack<std::shared_ptr<State>> states;
 
     void render();
+    std::chrono::system_clock::time_point previous_render = std::chrono::system_clock::now();
     sf::RenderWindow renderWindow;
 
     void update();
@@ -58,7 +62,6 @@ private:
 
     void tick();
     std::chrono::system_clock::time_point previous_tick = std::chrono::system_clock::now();
-
 
     //Singleton stuff
 public:

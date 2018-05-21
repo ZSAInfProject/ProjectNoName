@@ -39,8 +39,8 @@ void Game::run() {
         ImGui::NewFrame();
         renderWindow.setVerticalSyncEnabled(true);
         while(renderWindow.isOpen()){
-            renderMutex.lock();
             renderWindow.setActive(true);
+            render();
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
@@ -69,7 +69,7 @@ void Game::run() {
                 }
                 ImGui::SFML::ProcessEvent(event);
             }
-            render();
+            renderWindow.display();
         }
         ImGui::SFML::Shutdown;
     });
@@ -80,6 +80,7 @@ void Game::run() {
         loopStart = std::chrono::system_clock::now();
 
         renderMutex.lock();
+
         update();
 
         tick();
@@ -87,14 +88,6 @@ void Game::run() {
         auto now = std::chrono::system_clock::now();
         auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart);
 
-        if(Game::canUpdateimGui()) {
-            ImGui::SetNextWindowSize(sf::Vector2f(300,50));
-            ImGui::SetNextWindowPos(sf::Vector2f(5,5));
-            ImGui::Begin("Performance info", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
-            ImGui::Text("FPS: %.1f (%.3f ms/frame)", ImGui::GetIO().Framerate, 1000.0f/ImGui::GetIO().Framerate);
-            ImGui::Text("UPS: %.1f (%.3f µs/update)", 1000000.0f/loopTime.count(), 1.0f*loopTime.count());
-            ImGui::End();
-        }
         imGuiUpdatedThisFrame = true;
 
         renderMutex.unlock();
@@ -107,21 +100,28 @@ void Game::run() {
 }
 
 void Game::render() {
+    //Wait for imGui update
+    while(!imGuiUpdatedThisFrame);
+    renderMutex.lock();
+    auto now = std::chrono::system_clock::now();
+    auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - previous_render);
+    previous_render = now;
+    debug.reportRenderTime(deltaTime);
     if (!states.empty()) {
         getState().render();
     }
     ImGui::SFML::Render(renderWindow);
-    ImGui::SFML::Update(renderWindow, sf::milliseconds(17));
+    ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
     imGuiUpdatedThisFrame = false;
     renderMutex.unlock();
-    renderWindow.display();
 }
 
 void Game::update() {
     auto now = std::chrono::system_clock::now();
     auto deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_time);
     previous_time = now;
-
+    debug.reportUpdateTime(deltaTime);
+    debug.update();
     if (!states.empty()) {
         getState().update(deltaTime);
     }
@@ -131,9 +131,8 @@ void Game::tick() {
     Log::verbose(TAG, "tick");
     auto now = std::chrono::system_clock::now();
     auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick);
-
     if (time_elapsed >= tick_period) {
-
+        debug.tick();
         previous_tick = now - std::chrono::microseconds(time_elapsed - tick_period);
 
         if (!states.empty()) {
