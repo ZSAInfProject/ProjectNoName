@@ -4,6 +4,7 @@
 
 #include <stack>
 #include "state/State.h"
+#include <mutex>
 #include <memory>
 
 //! Main program class
@@ -28,6 +29,8 @@ public:
     //! Returns a reference to main render window
     static sf::RenderWindow& getRenderWindow();
 
+    static bool canUpdateimGui();
+
     //! Minimum time for main loop iteration
     /*!
      * If main loop runs faster than the set up limit it will be slowed down to save CPU usage.
@@ -42,6 +45,8 @@ public:
 
     static constexpr auto TAG = "GameSingleton";
 private:
+    bool imGuiUpdatedThisFrame;
+    std::mutex renderMutex;
     //! Stack containing all states.
     std::stack<std::shared_ptr<State>> states;
 

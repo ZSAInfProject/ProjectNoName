@@ -1,5 +1,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/System.hpp>
+#include <imgui-SFML.h>
+#include <imgui.h>
 #include "state/GameState.h"
 #include "Game.h"
 #include "utils/Log.h"
@@ -30,10 +32,15 @@ void Game::run() {
     pushState(std::make_shared<GameState>());
 
     renderWindow.setActive(false);
+    imGuiUpdatedThisFrame = true;
 
     std::thread renderThread([this](){
+        ImGui::SFML::Init(renderWindow);
+        ImGui::NewFrame();
         renderWindow.setVerticalSyncEnabled(true);
         while(renderWindow.isOpen()){
+            renderMutex.lock();
+            renderWindow.setActive(true);
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
@@ -60,23 +67,38 @@ void Game::run() {
                     default:
                         break;
                 }
+                ImGui::SFML::ProcessEvent(event);
             }
             render();
         }
+        ImGui::SFML::Shutdown;
     });
 
     std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
     {
-
         loopStart = std::chrono::system_clock::now();
 
+        renderMutex.lock();
         update();
 
         tick();
 
         auto now = std::chrono::system_clock::now();
         auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart);
+
+        if(Game::canUpdateimGui()) {
+            ImGui::SetNextWindowSize(sf::Vector2f(300,50));
+            ImGui::SetNextWindowPos(sf::Vector2f(5,5));
+            ImGui::Begin("Performance info", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+            ImGui::Text("FPS: %.1f (%.3f ms/frame)", ImGui::GetIO().Framerate, 1000.0f/ImGui::GetIO().Framerate);
+            ImGui::Text("UPS: %.1f (%.3f µs/update)", 1000000.0f/loopTime.count(), 1.0f*loopTime.count());
+            ImGui::End();
+        }
+        imGuiUpdatedThisFrame = true;
+
+        renderMutex.unlock();
+
         if(loopTime < minimumLoopTime){
             sf::sleep(sf::microseconds(minimumLoopTime.count() - loopTime.count()));
         }
@@ -88,6 +110,10 @@ void Game::render() {
     if (!states.empty()) {
         getState().render();
     }
+    ImGui::SFML::Render(renderWindow);
+    ImGui::SFML::Update(renderWindow, sf::milliseconds(17));
+    imGuiUpdatedThisFrame = false;
+    renderMutex.unlock();
     renderWindow.display();
 }
 
@@ -115,4 +141,8 @@ void Game::tick() {
         }
 
     }
+}
+
+bool Game::canUpdateimGui() {
+    return !Game::get().imGuiUpdatedThisFrame;
 }
