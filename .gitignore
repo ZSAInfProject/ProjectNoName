@@ -101,3 +101,4 @@ saves/
 Log.txt
 
 deps/SFML/
+build/
