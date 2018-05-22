@@ -57,10 +57,13 @@ void Debug::updateMainDebug() {
     if(active) {
         ImGui::Text("FPS: %-6.1f (%-7.3f ms/frame)", fps, 1000.0f / fps);
         ImGui::Text("UPS: %-6.1f (%-7.3f µs/update)", ups, 10e5 / ups);
+        if (ImGui::CollapsingHeader("Plots")) {
+            ImGui::PlotLines("FPS plot", fpsHistory.data(), static_cast<int>(fpsHistory.size()));
+            ImGui::PlotLines("UPS plot", upsHistory.data(), static_cast<int>(upsHistory.size()));
+        }
+
         ImGui::Text("Entities: %.i", entityCount);
         ImGui::Text("Chunk cache: %.i", loadedChunks);
-        ImGui::Separator();
-
         sf::Vector2f& playerPos = player->getComponent<PositionComponent>()->position;
         ImGui::Value("X", playerPos.x);
         ImGui::SameLine();
@@ -69,11 +72,6 @@ void Debug::updateMainDebug() {
         if (ImGui::CollapsingHeader("Cheats")) {
             ImGui::SliderFloat("Speed", &player->getComponent<ControlComponent>()->speed, 100.0f, 10000.0f);
             ImGui::InputFloat2("Position", &player->getComponent<PositionComponent>()->position.x);
-        }
-
-        if (ImGui::CollapsingHeader("Plots")) {
-            ImGui::PlotLines("FPS plot", fpsHistory.data(), static_cast<int>(fpsHistory.size()));
-            ImGui::PlotLines("UPS plot", upsHistory.data(), static_cast<int>(upsHistory.size()));
         }
 
         if (ImGui::CollapsingHeader("Log")) {
