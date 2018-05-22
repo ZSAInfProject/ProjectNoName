@@ -1,5 +1,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/System.hpp>
+#include <imgui-SFML.h>
+#include <imgui.h>
 #include "state/GameState.h"
 #include "Game.h"
 #include "utils/Log.h"
@@ -30,10 +32,15 @@ void Game::run() {
     pushState(std::make_shared<GameState>());
 
     renderWindow.setActive(false);
+    imGuiUpdatedThisFrame = true;
 
     std::thread renderThread([this](){
+        ImGui::SFML::Init(renderWindow);
+        ImGui::NewFrame();
         renderWindow.setVerticalSyncEnabled(true);
         while(renderWindow.isOpen()){
+            renderWindow.setActive(true);
+            render();
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
@@ -60,16 +67,19 @@ void Game::run() {
                     default:
                         break;
                 }
+                ImGui::SFML::ProcessEvent(event);
             }
-            render();
+            renderWindow.display();
         }
+        ImGui::SFML::Shutdown;
     });
 
     std::chrono::system_clock::time_point loopStart;
     while (renderWindow.isOpen())
     {
-
         loopStart = std::chrono::system_clock::now();
+
+        renderMutex.lock();
 
         update();
 
@@ -77,6 +87,11 @@ void Game::run() {
 
         auto now = std::chrono::system_clock::now();
         auto loopTime = std::chrono::duration_cast<std::chrono::microseconds>(now - loopStart);
+
+        imGuiUpdatedThisFrame = true;
+
+        renderMutex.unlock();
+
         if(loopTime < minimumLoopTime){
             sf::sleep(sf::microseconds(minimumLoopTime.count() - loopTime.count()));
         }
@@ -85,17 +100,28 @@ void Game::run() {
 }
 
 void Game::render() {
+    //Wait for imGui update
+    while(!imGuiUpdatedThisFrame);
+    renderMutex.lock();
+    auto now = std::chrono::system_clock::now();
+    auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - previous_render);
+    previous_render = now;
+    debug.reportRenderTime(deltaTime);
     if (!states.empty()) {
         getState().render();
     }
-    renderWindow.display();
+    ImGui::SFML::Render(renderWindow);
+    ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
+    imGuiUpdatedThisFrame = false;
+    renderMutex.unlock();
 }
 
 void Game::update() {
     auto now = std::chrono::system_clock::now();
     auto deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_time);
     previous_time = now;
-
+    debug.reportUpdateTime(deltaTime);
+    debug.update();
     if (!states.empty()) {
         getState().update(deltaTime);
     }
@@ -105,9 +131,8 @@ void Game::tick() {
     Log::verbose(TAG, "tick");
     auto now = std::chrono::system_clock::now();
     auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick);
-
     if (time_elapsed >= tick_period) {
-
+        debug.tick();
         previous_tick = now - std::chrono::microseconds(time_elapsed - tick_period);
 
         if (!states.empty()) {
@@ -115,4 +140,8 @@ void Game::tick() {
         }
 
     }
+}
+
+bool Game::canUpdateimGui() {
+    return !Game::get().imGuiUpdatedThisFrame;
 }

@@ -1,7 +1,8 @@
+#include <imgui.h>
 #include "Controls.h"
 
 bool Controls::isMouseButtonPressed(sf::Mouse::Button button) {
-    return Controls::get().mouseMap[button];
+    return Controls::get().mouseMap[button] && ! ImGui::IsMouseHoveringAnyWindow();
 }
 
 bool Controls::isKeyboardButtonPressed(sf::Keyboard::Key key) {

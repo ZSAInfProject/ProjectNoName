@@ -1,6 +1,7 @@
 #include "ChunkDatabase.h"
 #include "../../utils/Log.h"
 #include "../../utils/Settings.h"
+#include "../../Game.h"
 
 ChunkDatabase::ChunkDatabase(std::unique_ptr<ChunkGenerator> _chunkGenerator) {
     chunkGenerator = std::move(_chunkGenerator);
@@ -27,6 +28,7 @@ Chunk *ChunkDatabase::getChunk(int x, int y) {
     }
 
     cleanUpCache();
+    Game::get().debug.reportLoadedChunks(static_cast<int>(chunkCache.size()));
     saveCache();
 
     return chunkIt->second.chunk.get();
@@ -122,6 +124,6 @@ void ChunkDatabase::saveCache(bool ignoreAutoSavePeriod) {
                     getChunkFilename(std::get<0>(entry.first), std::get<1>(entry.first))
             );
         }
-        Log::debug(TAG, "Cache saved");
+        Log::verbose(TAG, "Cache saved");
     }
 }

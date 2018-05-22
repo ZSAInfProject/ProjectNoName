@@ -33,6 +33,7 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
+    Game::get().debug.reportEntityCount(static_cast<int>(entities.size()));
     for(auto& system : systems){
         if(system->getStage() == stageEnum::update) {
             for (auto &entity : entities) {

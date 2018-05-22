@@ -33,8 +33,10 @@ before_install:
   - eval "${MATRIX_EVAL}"
 
 script:
-  - cmake . && make
-  - doxygen
+  - mkdir build
+  - cd build
+  - cmake .. && make -j $(nproc --all)
+  - doxygen ..
 
 deploy:
   provider: pages

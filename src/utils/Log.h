@@ -4,8 +4,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 enum Mode{ VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5};
+
+class LogSubscriber{
+public:
+    //! Notify about a new message
+    virtual void notify(enum Mode, std::string tag, std::string message) = 0;
+};
 
 //! Singleton responsible for logging and saving logs.
 class Log {
@@ -30,7 +37,12 @@ public:
 
     void setMode(std::string mode);
 
+    //! Subscribe to receive debug messages
+    void subscribe(LogSubscriber& subscriber);
+
 private:
+    std::vector<std::reference_wrapper<LogSubscriber>> subscribers;
+    void notifyAll(enum Mode, std::string, std::string);
 
     std::string logFileName;
     std::ofstream logFile;
