@@ -1,0 +1,6 @@
+<map id="Component" name="Component">
+<area shape="rect" id="node2" href="$classCameraComponent.html" title="CameraComponent" alt="" coords="5,80,139,107"/>
+<area shape="rect" id="node3" href="$classControlComponent.html" title="ControlComponent" alt="" coords="164,80,293,107"/>
+<area shape="rect" id="node4" href="$classPositionComponent.html" title="PositionComponent" alt="" coords="319,80,453,107"/>
+<area shape="rect" id="node5" href="$classSpriteComponent.html" title="SpriteComponent" alt="" coords="479,80,601,107"/>
+</map>

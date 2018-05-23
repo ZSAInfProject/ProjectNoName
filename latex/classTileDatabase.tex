@@ -1,0 +1,71 @@
+\hypertarget{classTileDatabase}{\section{Tile\-Database Class Reference}
+\label{classTileDatabase}\index{Tile\-Database@{Tile\-Database}}
+}
+
+
+Singleton mapping ids to tiles.  
+
+
+
+
+{\ttfamily \#include $<$Tile\-Database.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTileDatabase_a416e304c465d358759c5f75c2d9dd339}{{\bfseries Tile\-Database} (\hyperlink{classTileDatabase}{Tile\-Database} const \&)=delete}\label{classTileDatabase_a416e304c465d358759c5f75c2d9dd339}
+
+\item 
+\hypertarget{classTileDatabase_a6fea9bd536a262734b09a39e5b737250}{void {\bfseries operator=} (\hyperlink{classTileDatabase}{Tile\-Database} const \&)=delete}\label{classTileDatabase_a6fea9bd536a262734b09a39e5b737250}
+
+\item 
+void \hyperlink{classTileDatabase_a986e55f0705dbfb5428931563eff1497}{load\-Tiles} (std\-::string file)
+\begin{DoxyCompactList}\small\item\em Loads tiles from J\-S\-O\-N file. \end{DoxyCompactList}\item 
+\hypertarget{classTileDatabase_a1eb9f7c3ff7e497bada7a1475fb271f4}{void \hyperlink{classTileDatabase_a1eb9f7c3ff7e497bada7a1475fb271f4}{load\-Texture} (std\-::string file)}\label{classTileDatabase_a1eb9f7c3ff7e497bada7a1475fb271f4}
+
+\begin{DoxyCompactList}\small\item\em Loads texture map for tiles from file. \end{DoxyCompactList}\item 
+\hypertarget{classTileDatabase_afd8392440590a9a162104d27f93001a8}{\hyperlink{classTile}{Tile} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int index)}\label{classTileDatabase_afd8392440590a9a162104d27f93001a8}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTileDatabase_a305f67578059fc81b04b0c99f3065e8d}{static \hyperlink{classTileDatabase}{Tile\-Database} \& {\bfseries get} ()}\label{classTileDatabase_a305f67578059fc81b04b0c99f3065e8d}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTileDatabase_a3368141d1a148afb5830ff86b3ca29f6}{sf\-::\-Texture \hyperlink{classTileDatabase_a3368141d1a148afb5830ff86b3ca29f6}{texture}}\label{classTileDatabase_a3368141d1a148afb5830ff86b3ca29f6}
+
+\begin{DoxyCompactList}\small\item\em Texture map for tiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Singleton mapping ids to tiles. 
+
+Contains vector of reference tiles. Loaded from json file using \hyperlink{classTileDatabase_a986e55f0705dbfb5428931563eff1497}{load\-Tiles()}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classTileDatabase_a986e55f0705dbfb5428931563eff1497}{\index{Tile\-Database@{Tile\-Database}!load\-Tiles@{load\-Tiles}}
+\index{load\-Tiles@{load\-Tiles}!TileDatabase@{Tile\-Database}}
+\subsubsection[{load\-Tiles}]{\setlength{\rightskip}{0pt plus 5cm}void Tile\-Database\-::load\-Tiles (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{file}
+\end{DoxyParamCaption}
+)}}\label{classTileDatabase_a986e55f0705dbfb5428931563eff1497}
+
+
+Loads tiles from J\-S\-O\-N file. 
+
+File should be a J\-S\-O\-N vector of tiles. 
+\begin{DoxyParams}{Parameters}
+{\em file} & -\/ path to file (root directory is res/) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/tile/Tile\-Database.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/tile/Tile\-Database.\-cpp\end{DoxyCompactItemize}

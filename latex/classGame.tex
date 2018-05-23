@@ -1,0 +1,99 @@
+\hypertarget{classGame}{\section{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+}
+
+
+Main program class.  
+
+
+
+
+{\ttfamily \#include $<$Game.\-h$>$}
+
+
+
+Collaboration diagram for Game\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classGame__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}{void \hyperlink{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}{push\-State} (std\-::shared\-\_\-ptr$<$ \hyperlink{classState}{State} $>$ state)}\label{classGame_ade1d35f91a6fe6b6da70d7caebd174f6}
+
+\begin{DoxyCompactList}\small\item\em Push state on stack. \end{DoxyCompactList}\item 
+\hypertarget{classGame_a4b33dd67adef59bebadba8a234282c88}{void \hyperlink{classGame_a4b33dd67adef59bebadba8a234282c88}{pop\-State} ()}\label{classGame_a4b33dd67adef59bebadba8a234282c88}
+
+\begin{DoxyCompactList}\small\item\em Pop state from stack. \end{DoxyCompactList}\item 
+\hypertarget{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}{void \hyperlink{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}{run} ()}\label{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}
+
+\begin{DoxyCompactList}\small\item\em Start main loop. \end{DoxyCompactList}\item 
+\hypertarget{classGame_a586a831ed5ff1283fcf1b96f4eff065c}{{\bfseries Game} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_a586a831ed5ff1283fcf1b96f4eff065c}
+
+\item 
+\hypertarget{classGame_aa4c0eacd8656e54ec4e94877c453e531}{void {\bfseries operator=} (\hyperlink{classGame}{Game} const \&)=delete}\label{classGame_aa4c0eacd8656e54ec4e94877c453e531}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_aa742f626e4b8a5dac8677ef40263716c}{static \hyperlink{classState}{State} \& \hyperlink{classGame_aa742f626e4b8a5dac8677ef40263716c}{get\-State} ()}\label{classGame_aa742f626e4b8a5dac8677ef40263716c}
+
+\begin{DoxyCompactList}\small\item\em Get reference to state on top of the stack. \end{DoxyCompactList}\item 
+\hypertarget{classGame_ada9faa2a1f4e1453420adead02fd9865}{static sf\-::\-Render\-Window \& \hyperlink{classGame_ada9faa2a1f4e1453420adead02fd9865}{get\-Render\-Window} ()}\label{classGame_ada9faa2a1f4e1453420adead02fd9865}
+
+\begin{DoxyCompactList}\small\item\em Returns a reference to main render window. \end{DoxyCompactList}\item 
+\hypertarget{classGame_a25e2c45d98aa8c8cdddfc488854ad64e}{static bool {\bfseries can\-Updateim\-Gui} ()}\label{classGame_a25e2c45d98aa8c8cdddfc488854ad64e}
+
+\item 
+\hypertarget{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}{static \hyperlink{classGame}{Game} \& \hyperlink{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}{get} ()}\label{classGame_ac69a0c5e25c7acb811f4a7b86a2ceb74}
+
+\begin{DoxyCompactList}\small\item\em Returns reference to singleton object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a60b6ea0a4b4329525edf8db627429c19}{\hyperlink{classDebug}{Debug} {\bfseries debug}}\label{classGame_a60b6ea0a4b4329525edf8db627429c19}
+
+\item 
+std\-::chrono\-::microseconds \hyperlink{classGame_af9f24863bbe8102d1bf5d97aaa449d14}{minimum\-Loop\-Time} = std\-::chrono\-::microseconds(120)
+\begin{DoxyCompactList}\small\item\em Minimum time for main loop iteration. \end{DoxyCompactList}\item 
+std\-::chrono\-::microseconds \hyperlink{classGame_a65800b8c8afee406d719b404a4a78877}{tick\-\_\-period} = std\-::chrono\-::microseconds(1000000)
+\begin{DoxyCompactList}\small\item\em Period between consecutive tick() calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGame_a43d300e0d66811f7317d88e3476d6de3}{static constexpr auto {\bfseries T\-A\-G} = \char`\"{}Game\-Singleton\char`\"{}}\label{classGame_a43d300e0d66811f7317d88e3476d6de3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main program class. 
+
+This class is a singleton. Contains main game loop. Stores all states on stack and calls update(), render() and tick() on top state. Call rate for each can be setup separately. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classGame_af9f24863bbe8102d1bf5d97aaa449d14}{\index{Game@{Game}!minimum\-Loop\-Time@{minimum\-Loop\-Time}}
+\index{minimum\-Loop\-Time@{minimum\-Loop\-Time}!Game@{Game}}
+\subsubsection[{minimum\-Loop\-Time}]{\setlength{\rightskip}{0pt plus 5cm}std\-::chrono\-::microseconds Game\-::minimum\-Loop\-Time = std\-::chrono\-::microseconds(120)}}\label{classGame_af9f24863bbe8102d1bf5d97aaa449d14}
+
+
+Minimum time for main loop iteration. 
+
+If main loop runs faster than the set up limit it will be slowed down to save C\-P\-U usage. \hypertarget{classGame_a65800b8c8afee406d719b404a4a78877}{\index{Game@{Game}!tick\-\_\-period@{tick\-\_\-period}}
+\index{tick\-\_\-period@{tick\-\_\-period}!Game@{Game}}
+\subsubsection[{tick\-\_\-period}]{\setlength{\rightskip}{0pt plus 5cm}std\-::chrono\-::microseconds Game\-::tick\-\_\-period = std\-::chrono\-::microseconds(1000000)}}\label{classGame_a65800b8c8afee406d719b404a4a78877}
+
+
+Period between consecutive tick() calls. 
+
+tick() will be called periodically with a given period 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/Game.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/Game.\-cpp\end{DoxyCompactItemize}

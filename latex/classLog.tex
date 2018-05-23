@@ -1,0 +1,63 @@
+\hypertarget{classLog}{\section{Log Class Reference}
+\label{classLog}\index{Log@{Log}}
+}
+
+
+Singleton responsible for logging and saving logs.  
+
+
+
+
+{\ttfamily \#include $<$Log.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classLog_acf321111c34203cfae64f324f2406919}{{\bfseries Log} (\hyperlink{classLog}{Log} const \&)=delete}\label{classLog_acf321111c34203cfae64f324f2406919}
+
+\item 
+\hypertarget{classLog_aa7eb1f9ae38ad5efc9f69d43d5817e8f}{void {\bfseries operator=} (\hyperlink{classLog}{Log} const \&)=delete}\label{classLog_aa7eb1f9ae38ad5efc9f69d43d5817e8f}
+
+\item 
+\hypertarget{classLog_acd3bd9bd1f52f6e2c93d7d4322c56384}{void \hyperlink{classLog_acd3bd9bd1f52f6e2c93d7d4322c56384}{set\-Log\-File} (std\-::string)}\label{classLog_acd3bd9bd1f52f6e2c93d7d4322c56384}
+
+\begin{DoxyCompactList}\small\item\em Sets file to save logs to and logging level. \end{DoxyCompactList}\item 
+\hypertarget{classLog_a966590e62c5f1691a438fb4144121a9c}{void {\bfseries get\-Mode} ()}\label{classLog_a966590e62c5f1691a438fb4144121a9c}
+
+\item 
+\hypertarget{classLog_a459deb553338454ce65be9e756f013be}{void {\bfseries set\-Mode} (std\-::string mode)}\label{classLog_a459deb553338454ce65be9e756f013be}
+
+\item 
+\hypertarget{classLog_ae8ab545617321078f7f4299dff9a9e26}{void \hyperlink{classLog_ae8ab545617321078f7f4299dff9a9e26}{subscribe} (\hyperlink{classLogSubscriber}{Log\-Subscriber} \&subscriber)}\label{classLog_ae8ab545617321078f7f4299dff9a9e26}
+
+\begin{DoxyCompactList}\small\item\em Subscribe to receive debug messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classLog_ad33d94e0b040b898ee4b88cc0b4c0941}{static \hyperlink{classLog}{Log} \& {\bfseries get} ()}\label{classLog_ad33d94e0b040b898ee4b88cc0b4c0941}
+
+\item 
+\hypertarget{classLog_ac7b6384ef275acd4982544201b21750c}{static void {\bfseries error} (std\-::string tag, std\-::string message)}\label{classLog_ac7b6384ef275acd4982544201b21750c}
+
+\item 
+\hypertarget{classLog_aba264cddc8a3e63c41c203e1b365eebc}{static void {\bfseries warn} (std\-::string tag, std\-::string message)}\label{classLog_aba264cddc8a3e63c41c203e1b365eebc}
+
+\item 
+\hypertarget{classLog_a90132d669178c96ef6a0ddf2571d38fb}{static void {\bfseries info} (std\-::string tag, std\-::string message)}\label{classLog_a90132d669178c96ef6a0ddf2571d38fb}
+
+\item 
+\hypertarget{classLog_a53a0cc512876c782787a3bfa44d26ea2}{static void {\bfseries debug} (std\-::string tag, std\-::string message)}\label{classLog_a53a0cc512876c782787a3bfa44d26ea2}
+
+\item 
+\hypertarget{classLog_a5fb96b3db1f6561689f60d3d9dfe3b8d}{static void {\bfseries verbose} (std\-::string tag, std\-::string message)}\label{classLog_a5fb96b3db1f6561689f60d3d9dfe3b8d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Singleton responsible for logging and saving logs. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/utils/Log.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/utils/Log.\-cpp\end{DoxyCompactItemize}

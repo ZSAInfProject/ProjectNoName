@@ -1,0 +1,53 @@
+\hypertarget{classThreadPool}{\section{Thread\-Pool Class Reference}
+\label{classThreadPool}\index{Thread\-Pool@{Thread\-Pool}}
+}
+
+
+Class representing thread pool.  
+
+
+
+
+{\ttfamily \#include $<$Thread\-Pool.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classThreadPool_a24a2e7844d83f452eac701ad8484593c}{add\-Job} (std\-::function$<$ void(void)$>$ job)
+\begin{DoxyCompactList}\small\item\em Add job to job queue. \end{DoxyCompactList}\item 
+\hypertarget{classThreadPool_a41dde4c256785b525a0334c060932a64}{void \hyperlink{classThreadPool_a41dde4c256785b525a0334c060932a64}{wait} ()}\label{classThreadPool_a41dde4c256785b525a0334c060932a64}
+
+\begin{DoxyCompactList}\small\item\em Waits until all jobs are completed. \end{DoxyCompactList}\item 
+\hypertarget{classThreadPool_af59341f9ab24fda771109bc3ee8cdef2}{{\bfseries Thread\-Pool} (int number\-Of\-Threads)}\label{classThreadPool_af59341f9ab24fda771109bc3ee8cdef2}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class representing thread pool. 
+
+This class can be used when you want to easily execute jobs in parallel or reuse threads. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classThreadPool_a24a2e7844d83f452eac701ad8484593c}{\index{Thread\-Pool@{Thread\-Pool}!add\-Job@{add\-Job}}
+\index{add\-Job@{add\-Job}!ThreadPool@{Thread\-Pool}}
+\subsubsection[{add\-Job}]{\setlength{\rightskip}{0pt plus 5cm}void Thread\-Pool\-::add\-Job (
+\begin{DoxyParamCaption}
+\item[{std\-::function$<$ void(void)$>$}]{job}
+\end{DoxyParamCaption}
+)}}\label{classThreadPool_a24a2e7844d83f452eac701ad8484593c}
+
+
+Add job to job queue. 
+
+\hyperlink{classThreadPool_a24a2e7844d83f452eac701ad8484593c}{add\-Job()} adds a job to the job queue where it waits to be executed by any free thread. 
+\begin{DoxyParams}{Parameters}
+{\em job} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/utils/Thread\-Pool.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/utils/Thread\-Pool.\-cpp\end{DoxyCompactItemize}
