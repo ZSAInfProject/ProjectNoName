@@ -25,6 +25,11 @@ public:
     short objectId;
     void serialize(Buffer&);
 
+    short node = 0;
+
+    short node0 = 0;
+    short node1 = 0;
+
     ChunkTile() = default;
     ChunkTile(short tileId, uint amount, short objectId = -1);
     explicit ChunkTile(nlohmann::json);
@@ -92,6 +97,7 @@ public:
     void setTile(int x, int y, ChunkTile value);
     //! Set tile objectId at given coordinates to supplied objectId
     void setTileObject(int x, int y, short objectId);
+    void setTileNodes(int x, int y, short node, short node0, short node1);
 
     Chunk();
     Chunk(Chunk const&) = delete;

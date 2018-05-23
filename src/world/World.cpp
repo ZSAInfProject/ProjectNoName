@@ -5,6 +5,7 @@
 #include "../utils/Log.h"
 #include "../Game.h"
 #include "../entity/components/ObjectPosition.h"
+#include "../tile/TileDatabase.h"
 
 World::World(int seed) : chunkDatabase(std::make_unique<ChunkGenerator>(seed)) {}
 
@@ -29,6 +30,22 @@ ChunkTile World::getTile(int x, int y) {
     auto tile = coordinates.first;
     auto chunk = coordinates.second;
 
+    return chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y);
+}
+
+ChunkTile World::getLoadedTile(int x, int y) {
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
+    if (!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
+        ChunkTile chunkTile(0, 0);
+        chunkTile.tileId = 0;
+        return chunkTile;
+    }
     return chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y);
 }
 
@@ -110,4 +127,15 @@ std::pair<sf::Vector2i, sf::Vector2i> World::getTileAndChunkCoordinates(int x, i
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
     return std::make_pair(tile, chunk);
+}
+
+void World::setTileNodes(int x, int y, short node, short node0, short node1) {
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNodes(tile.x, tile.y, node, node0, node1);
 }

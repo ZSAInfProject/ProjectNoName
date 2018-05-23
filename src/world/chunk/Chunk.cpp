@@ -55,6 +55,7 @@ void Chunk::save(const std::string& fileName) {
 
     //Save tiles
     Buffer buffer(bufferMode::store);
+
     for(ChunkTile tile : tiles) {
         tile.serialize(buffer);
     }
@@ -151,6 +152,15 @@ bool Chunk::isInsideBoundaries(int x, int y) {
     return true;
 }
 
+void Chunk::setTileNodes(int x, int y, short node, short node0, short node1) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return;
+    }
+    tiles[y*SIDE_LENGTH + x].node = node;
+    tiles[y*SIDE_LENGTH + x].node0 = node0;
+    tiles[y*SIDE_LENGTH + x].node1 = node1;
+}
 
 ChunkTile::ChunkTile(nlohmann::json json) {
     if(json.find("id") != json.end()) {
@@ -177,5 +187,8 @@ ChunkTile::ChunkTile(short tileId_, uint amount_, short objectId_) {
 void ChunkTile::serialize(Buffer& buffer) {
     buffer.io<short>(&tileId);
     buffer.io<uint>(&amount);
+    buffer.io<short>(&node);
+    buffer.io<short>(&node0);
+    buffer.io<short>(&node1);
 }
 

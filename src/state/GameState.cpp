@@ -19,7 +19,11 @@
 #error "System not supported."
 #endif
 
-GameState::GameState() : State(), world(10), entityFactory("entities/entities.json") {
+
+long mod(long a, long b) { return (a % b + b) % b; }
+
+
+GameState::GameState() : State(), world(10), entityFactory("entities/entities.json"), pathfinder() {
     camera.setSize(sf::Vector2f(800, -600));
     createSavePath();
     loadSystems();
@@ -37,6 +41,9 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     gameModes.push_back(std::shared_ptr<GameMode>(new ManagementMode()));
     gameMode = gameModes.at(GameMode::architectMode);
     gui = std::make_shared<GUI>(gameMode->getTag(), 1.f);
+
+    pathfinder.setWorld(&world);
+    pathfinder.generate(0, 0);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -69,8 +76,11 @@ void GameState::render(float deltaTime) {
             }
         }
     }
+
     renderWindow.setView(Game::getRenderWindow().getDefaultView());
     gui->display(renderWindow, deltaTime);
+    pathfinder.render(Game::getRenderWindow());
+    Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 
 void GameState::tick() {

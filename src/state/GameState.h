@@ -11,6 +11,7 @@
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/EntityFactory.h"
 #include "GameMode.h"
+#include "../world/pathfinding/Pathfinder.h"
 
 //! State when actual gameplay is present
 /*!
@@ -76,6 +77,8 @@ public:
     //! Container for every game mode
     std::vector<std::shared_ptr<GameMode>> gameModes;
 
+    Pathfinder pathfinder;
+
     //! Saves all entities to a file
     void saveEntities();
     //! Loads all entities from file \return True if succeeds
@@ -85,7 +88,6 @@ public:
     void createSavePath();
     //! Pushes all entity/object systems to system vector
     void loadSystems();
-
 };
 
 #endif //NONAME_GAMESTATE_H
