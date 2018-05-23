@@ -3,6 +3,7 @@
 #include "../chunk/Chunk.h"
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
+#include "../../utils/Settings.h"
 
 void Pathfinder::render(sf::RenderWindow& window) {
     for (int i=1; i<nodes.size(); i++) {
@@ -51,7 +52,9 @@ void Pathfinder::branch_node(short id) {
         branch(Left, nodes[id].x-1, nodes[id].y, id);
     }
     if (!solid[6]) {
-        branch(Down, nodes[id].x, nodes[id].y - 1, id);
+        if (TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid) {
+            branch(Down, nodes[id].x, nodes[id].y - 1, id);
+        }
     }
     if (!solid[1] && ((!solid[0] && solid[3])||(!solid[2] && solid[4])) && nodes[id].connections[Up] == 0) {
         branch(Up, nodes[id].x, nodes[id].y + 1, id);
@@ -93,19 +96,39 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
             temp_x--;
         }
         if (!solid[6] && direction != Up) {
-            count++;
-            temp_dir = Down;
-            temp_y--;
+            if (TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid) {
+                count++;
+                temp_dir = Down;
+                temp_y--;
+            }
         }
         if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4])) && direction != Down) {
             count++;
             temp_dir = Up;
             temp_y++;
         }
+
+        Log::debug(TAG, "Step " + std::to_string(x) + " " + std::to_string(y));
+
         if (count > 1 || count == 0) {
             end = true;
 
-            if (world->getTile(x, y).node == 0) {
+            if (world->getTile(x, y).node != 0 && world->getTile(x, y).node < nodes.size()) {
+                switch (direction) {
+                    case Up:
+                        nodes[world->getTile(x, y).node].connections[Down] = id;
+                        break;
+                    case Down:
+                        nodes[world->getTile(x, y).node].connections[Up] = id;
+                        break;
+                    case Left:
+                        nodes[world->getTile(x, y).node].connections[Right] = id;
+                        break;
+                    case Right:
+                        nodes[world->getTile(x, y).node].connections[Left] = id;
+                        break;
+                }
+            } else {
                 short arr1[4] = {0, 0, 0, 0};
                 short arr2[4] = {0, 0, 0, 0};
                 switch (direction) {
@@ -122,29 +145,17 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
                         arr1[Left] = id;
                         break;
                 }
+                Log::debug(TAG, "Node created " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(id));
                 Node n = {true, x, y, {arr1[0], arr1[1], arr1[2], arr1[3]}, {arr2[0], arr2[1], arr2[2], arr2[3]}};
                 nodes.push_back(n);
-                Log::debug(TAG, std::to_string(static_cast<short>(nodes.size() - 1)));
+
                 world->setTileNodes(x, y, static_cast<short>(nodes.size() - 1), 0, 0);
-                branch_node(static_cast<short>(nodes.size() - 1));
-            } else {
-                switch (direction) {
-                    case Up:
-                        nodes[world->getTile(x, y).node].connections[Down] = id;
-                        break;
-                    case Down:
-                        nodes[world->getTile(x, y).node].connections[Up] = id;
-                        break;
-                    case Left:
-                        nodes[world->getTile(x, y).node].connections[Right] = id;
-                        break;
-                    case Right:
-                        nodes[world->getTile(x, y).node].connections[Left] = id;
-                        break;
+                nodes[id].connections[dir] = static_cast<short>(nodes.size() - 1);
+                if (id != static_cast<short>(nodes.size() - 1)) {
+                    branch_node(static_cast<short>(nodes.size() - 1));
                 }
-                branch_node(world->getTile(x, y).node);
             }
-            nodes[id].connections[dir] = static_cast<short>(nodes.size() - 1);
+
 
 
         } else {
@@ -157,5 +168,54 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
 
 void Pathfinder::setWorld(World *world) {
     this->world = world;
+}
+
+void Pathfinder::save() {
+    std::ofstream file(Settings::get<std::string>("save_path") + "nodes.td");
+    if(file.good()) {
+        std::string output;
+        for (auto node : nodes) {
+            output += std::to_string(node.enabled) + "\n";
+            output += std::to_string(node.x) + "\n";
+            output += std::to_string(node.y) + "\n";
+            for (auto connection : node.connections) {
+                output += std::to_string(connection) + "\n";
+            }
+            for (auto length : node.lenghts) {
+                output += std::to_string(length) + "\n";
+            }
+            output += "\n";
+        }
+        file << output;
+        file.close();
+    }
+}
+
+void Pathfinder::load() {
+    std::ifstream file(Settings::get<std::string>("save_path") + "nodes.td");
+    if(file.good()) {
+        std::string line;
+        while(getline(file, line)) {
+            Node node{};
+            node.enabled = (bool)std::stoi(line);
+            getline(file, line);
+            node.x = std::stoi(line);
+            getline(file, line);
+            node.y = std::stoi(line);
+            getline(file, line);
+            for (short &connection : node.connections) {
+                connection = (short)std::stoi(line);
+                getline(file, line);
+            }
+            for (short &lenght : node.lenghts) {
+                lenght = (short)std::stoi(line);
+                getline(file, line);
+            }
+        }
+    }
+}
+
+Pathfinder::~Pathfinder() {
+   save();
 }
 

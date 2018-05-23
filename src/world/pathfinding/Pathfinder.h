@@ -28,6 +28,10 @@ public:
     void render(sf::RenderWindow& window);
     void generate(int x, int y);
     void setWorld(World* world);
+    void save();
+    void load();
+
+    ~Pathfinder();
 
 private:
     void branch_node(short id);
