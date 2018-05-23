@@ -25,6 +25,7 @@ matrix:
             - libvorbisenc2
             - libvorbisfile3
             - libopenal-dev
+            - graphviz
 
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
