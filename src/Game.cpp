@@ -2,6 +2,9 @@
 #include <SFML/System.hpp>
 #include <imgui-SFML.h>
 #include <imgui.h>
+#include <SFGUI/SFGUI.hpp>
+#include <SFGUI/Widgets.hpp>
+#include <SFML/Graphics.hpp>
 #include "state/GameState.h"
 #include "Game.h"
 #include "utils/Log.h"
@@ -34,6 +37,8 @@ void Game::run() {
     renderWindow.setActive(false);
     imGuiUpdatedThisFrame = true;
 
+    GUI::get().setup();
+
     std::thread renderThread([this](){
         ImGui::SFML::Init(renderWindow);
         ImGui::NewFrame();
@@ -43,8 +48,11 @@ void Game::run() {
             render();
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
+
                 if (event.type == sf::Event::Closed)
                     renderWindow.close();
+                else if(GUI::get().handleEvent(event))
+                    continue;
                 switch(event.type){
                     case sf::Event::Closed:
                         renderWindow.close();
@@ -99,6 +107,8 @@ void Game::run() {
     renderThread.join();
 }
 
+
+
 void Game::render() {
     //Wait for imGui update
     while(!imGuiUpdatedThisFrame);
@@ -110,6 +120,7 @@ void Game::render() {
     if (!states.empty()) {
         getState().render();
     }
+    GUI::get().display(renderWindow);
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
     imGuiUpdatedThisFrame = false;

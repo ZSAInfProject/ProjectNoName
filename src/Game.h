@@ -7,6 +7,7 @@
 #include "utils/Debug.h"
 #include <mutex>
 #include <memory>
+#include "gui/GUI.h"
 
 //! Main program class
 /*!
