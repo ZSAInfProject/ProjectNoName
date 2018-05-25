@@ -102,3 +102,6 @@ Log.txt
 
 deps/SFML/
 build/
+
+# vim stuff
+compile_commands.json
