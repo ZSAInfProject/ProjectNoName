@@ -6,7 +6,7 @@
     },
     {
       "type": "Control",
-      "speed": 100.0
+      "speed": 10.0
     },
     {
       "type": "Position"
@@ -15,6 +15,10 @@
       "type": "Sprite",
       "path": "textures/player.png",
       "size": [1.0, 1.0]
+    },
+    {
+      "type" : "Colider",
+      "size" : [1.0, 2.0]
     }
   ]
 }

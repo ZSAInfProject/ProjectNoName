@@ -17,7 +17,10 @@ public:
         auto* positionComponent = entity->getComponent<PositionComponent>();
         if(!positionComponent || !cameraComponent)
             return;
-        camera.setCenter(positionComponent->position);
+        auto position = positionComponent->position;
+        position.y *= Chunk::TILE_SIZE;
+        position.x *= Chunk::TILE_SIZE;
+        camera.setCenter(position);
     }
 
 private:

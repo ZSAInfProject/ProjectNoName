@@ -4,6 +4,7 @@
 
 #include "System.h"
 #include "../components/Position.h"
+#include "../components/Colider.h"
 
 class MotionSystem : public System{
 public:
@@ -13,8 +14,11 @@ public:
         if(!positionComponent)
             return;
         positionComponent->lastPosition = positionComponent->position;
-        positionComponent->position.x += positionComponent->speed.x*dt.count()/1e6;
-        positionComponent->position.y += positionComponent->speed.y*dt.count()/1e6;
+        auto* coliderComponent = entity->getComponent<ColiderComponent>();
+        if(coliderComponent) {
+            positionComponent->position.x += positionComponent->speed.x * dt.count() / 1e6;
+            positionComponent->position.y += positionComponent->speed.y * dt.count() / 1e6;
+        }
     }
 };
 

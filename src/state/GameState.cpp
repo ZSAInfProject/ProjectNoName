@@ -11,6 +11,7 @@
 #include "../entity/systems/ControlSystem.h"
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/systems/CameraSystem.h"
+#include "../entity/systems/ColiderSystem.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -124,6 +125,7 @@ void GameState::loadSystems() {
     systems.push_back(std::make_unique<MotionSystem>());
     systems.push_back(std::make_unique<CameraSystem>(camera));
     systems.push_back(std::make_unique<RenderSystem>());
+    systems.push_back(std::make_unique<ColiderSystem>(world));
 }
 
 

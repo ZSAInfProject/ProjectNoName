@@ -17,6 +17,8 @@ public:
             return;
 
         auto position = positionComponent->position;
+        position.y *= Chunk::TILE_SIZE;
+        position.x *= Chunk::TILE_SIZE;
         position.y += spriteComponent->sprite.getGlobalBounds().height;
         spriteComponent->sprite.setPosition(position);
         Game::getRenderWindow().draw(spriteComponent->sprite);
