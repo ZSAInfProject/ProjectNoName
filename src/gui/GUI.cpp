@@ -4,18 +4,6 @@
 
 #include "GUI.h"
 
-sfg::Desktop& GUI::getDesktop(){
-    return GUI::desktop;
-}
-
-sfg::Window::Ptr& GUI::getWindow(){
-    return GUI::window;
-}
-
-sfg::SFGUI& GUI::getSfgui(){
-    return GUI::sfgui;
-}
-
 void GUI::setup(){
     GUI::label = sfg::Label::Create( "Hello world!" );
     auto buttonArc = sfg::Button::Create( "test" );
@@ -54,25 +42,21 @@ void GUI::setup(){
 
     char* test = new char[30];
 
-    buttonArc->GetSignal( sfg::Widget::OnLeftClick ).Connect( [test, this] () mutable {
+    buttonArc->GetSignal( sfg::Widget::OnLeftClick ).Connect( [test, this] {
         snprintf(test, 30, "%i", GUI::event.mouseButton.x);
         GUI::label->SetPosition(sf::Vector2f(200, 500));
         GUI::label->SetText( test );
     } );
 
-    buttonArc->GetSignal(sfg::Widget::OnMouseMove).Connect([test, this] () mutable {
+    buttonArc->GetSignal(sfg::Widget::OnMouseMove).Connect([test, this] {
         GUI::label->SetPosition(sf::Vector2f(GUI::event.mouseMove.x+50, GUI::event.mouseMove.y-50));
     });
-    buttonArc->GetSignal(sfg::Widget::OnMouseLeave).Connect([test, this] () mutable {
+    buttonArc->GetSignal(sfg::Widget::OnMouseLeave).Connect([test, this] {
         GUI::label->Show(false);
     });
-    buttonArc->GetSignal(sfg::Widget::OnMouseEnter).Connect([test, this] () mutable {
+    buttonArc->GetSignal(sfg::Widget::OnMouseEnter).Connect([test, this] {
         GUI::label->Show(true);
     });
-
-}
-
-void GUI::setupEvents(){
 
 }
 
@@ -93,6 +77,6 @@ bool GUI::handleEvent(sf::Event& event) {
 
 void GUI::display(sf::RenderWindow& renderWindow){
     //likely needs to get time to next update from game::deltatime
-    GUI::get().getDesktop().Update(.017f);
-    GUI::sfgui.Display(renderWindow);
+    desktop.Update(.017f);
+    sfgui.Display(renderWindow);
 }

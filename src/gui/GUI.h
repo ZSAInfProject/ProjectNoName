@@ -7,10 +7,6 @@
 
 class GUI {
 public:
-    sfg::Desktop& getDesktop();
-    sfg::Window::Ptr& getWindow();
-    sfg::SFGUI& getSfgui();
-
     sfg::Label::Ptr label;
 
     void setup();
