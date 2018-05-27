@@ -32,6 +32,9 @@ public:
     //! Returns a reference to main render window
     static sf::RenderWindow& getRenderWindow();
 
+    //! Returns a reference to gui object
+    static GUI& getGUI();
+
     static bool canUpdateimGui();
 
     //! Minimum time for main loop iteration
@@ -50,6 +53,7 @@ public:
 private:
     bool imGuiUpdatedThisFrame;
     std::mutex renderMutex;
+    GUI gui = GUI();
 
     //! Stack containing all states.
     std::stack<std::shared_ptr<State>> states;

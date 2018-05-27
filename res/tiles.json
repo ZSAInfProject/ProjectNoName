@@ -5,7 +5,8 @@
     "terminal": "?",
     "hardness": 1,
     "texture": [0, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "unusable"
   },
   {
     "id": 1,
@@ -13,7 +14,8 @@
     "terminal": " ",
     "hardness" : 0,
     "texture": [1, 0],
-    "isSolid": false
+    "isSolid": false,
+    "category": "unusable"
   },
   {
     "id": 2,
@@ -21,7 +23,8 @@
     "terminal": "X",
     "hardness" : 2.0,
     "texture": [2, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "plain blocks"
   },
   {
     "id": 3,
@@ -29,7 +32,8 @@
     "terminal": "O",
     "hardness" : 1.0,
     "texture": [3, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "plain blocks"
   },
   {
     "id": 4,
@@ -37,7 +41,8 @@
     "terminal": "G",
     "hardness": 1.0,
     "texture": [4, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "plain blocks"
   },
   {
     "id": 5,
@@ -45,7 +50,8 @@
     "terminal": "U",
     "hardness": 1.0,
     "texture": [5, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "ores"
   },
   {
     "id": 6,
@@ -53,7 +59,8 @@
     "terminal": "C",
     "hardness": 1.0,
     "texture": [6, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "ores"
   },
   {
     "id": 7,
@@ -61,6 +68,7 @@
     "terminal": "F",
     "hardness": 1.0,
     "texture": [7, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": "ores"
   }
 ]

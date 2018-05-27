@@ -1,0 +1,14 @@
+//for future usage, will store style data for windows, buttons, etc. for GUI modes
+{
+  "main" : [
+    "Window: {",
+    ""
+
+
+  ],
+  "architect" :{
+
+  }
+
+
+}

@@ -163,4 +163,12 @@ bool GameState::loadEntities() {
     return false;
 }
 
+void GameState::setGameMode(int newMode) {
+    gameMode = newMode;
+}
+
+int GameState::getGameMode() {
+    return gameMode;
+}
+
 

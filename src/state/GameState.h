@@ -31,6 +31,9 @@ public:
     World& getWorld();
     sf::View& getCamera();
 
+    int getGameMode();
+    void setGameMode(int newMode);
+
 private:
     World world;
 
@@ -47,6 +50,10 @@ private:
     sf::View camera;
 
     EntityFactory entityFactory;
+
+    //TODO make use of it in gui
+    //! stores gameMode
+    int gameMode = 1;
 };
 
 #endif //NONAME_GAMESTATE_H

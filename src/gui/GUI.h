@@ -4,36 +4,30 @@
 #include <SFGUI/SFGUI.hpp>
 #include <SFGUI/Widgets.hpp>
 #include <SFML/Graphics.hpp>
+#include <chrono>
+#include "modes/MainMode.h"
+#include "modes/ArchitectMode.h"
+#include "modes/GUIMode.h"
 
 class GUI {
 public:
-    sfg::Label::Ptr label;
-
-    void setup();
-    void setupEvents();
+    GUI();
     bool handleEvent(sf::Event& event);
-    void display(sf::RenderWindow& renderWindow);
+    void display(sf::RenderWindow& renderWindow, float deltaTime);
+    void changeMode(int newMode);
+
 
 private:
     sfg::Desktop desktop;
-    sfg::Window::Ptr window;
-    sfg::SFGUI sfgui;
-    sf::Event event;
+    sfg::SFGUI sfgui = sfg::SFGUI();
 
-    //singleton stuff
-public:
-    //! Returns reference to singleton object.
-    static GUI& get() {
-        static GUI instance;
-        return instance;
-    }
-
-    GUI(GUI const&) = delete;
-    void operator= (GUI const&) = delete;
-
-private:
-    GUI() = default;
+    //TODO add other gamemodes
+    std::vector<GUIMode*> modes = {
+//            MinerMode(),;
+            new ArchitectMode(),
+//            ManagementMode();
+            new MainMode()
+    };
 };
-
 
 #endif //NONAME_GUI_H

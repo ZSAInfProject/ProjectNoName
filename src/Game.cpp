@@ -37,8 +37,6 @@ void Game::run() {
     renderWindow.setActive(false);
     imGuiUpdatedThisFrame = true;
 
-    GUI::get().setup();
-
     std::thread renderThread([this](){
         ImGui::SFML::Init(renderWindow);
         ImGui::NewFrame();
@@ -51,7 +49,7 @@ void Game::run() {
 
                 if (event.type == sf::Event::Closed)
                     renderWindow.close();
-                else if(GUI::get().handleEvent(event))
+                else if(gui.handleEvent(event))
                     continue;
                 switch(event.type){
                     case sf::Event::Closed:
@@ -120,7 +118,7 @@ void Game::render() {
     if (!states.empty()) {
         getState().render();
     }
-    GUI::get().display(renderWindow);
+    gui.display(renderWindow, deltaTime.count());
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
     imGuiUpdatedThisFrame = false;
@@ -155,4 +153,8 @@ void Game::tick() {
 
 bool Game::canUpdateimGui() {
     return !Game::get().imGuiUpdatedThisFrame;
+}
+
+GUI& Game::getGUI() {
+    return Game::get().gui;
 }
