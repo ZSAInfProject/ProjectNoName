@@ -95,14 +95,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> componentId Id = componentId::Camera;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    std::unique_ptr&lt;Component&gt; clone()<span class="keyword"> override </span>{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> std::make_unique&lt;CameraComponent&gt;(*this);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classCameraComponent.html">CameraComponent</a>(nlohmann::json json) {};</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif //NONAME_CAMERA_H</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    nlohmann::json serialize()<span class="keyword"> override </span>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        nlohmann::json json;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        json[<span class="stringliteral">&quot;type&quot;</span>] = <span class="stringliteral">&quot;Camera&quot;</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">return</span> json;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    };</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::unique_ptr&lt;Component&gt; clone()<span class="keyword"> override </span>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">return</span> std::make_unique&lt;CameraComponent&gt;(*this);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classCameraComponent.html">CameraComponent</a>(nlohmann::json json) {};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif //NONAME_CAMERA_H</span></div>
 <div class="ttc" id="classComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:12</div></div>
 <div class="ttc" id="classCameraComponent_html"><div class="ttname"><a href="classCameraComponent.html">CameraComponent</a></div><div class="ttdef"><b>Definition:</b> Camera.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
