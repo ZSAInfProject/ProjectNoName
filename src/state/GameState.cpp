@@ -29,7 +29,9 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
-    entities.push_back(entityFactory.get("Player"));
+    if(!loadEntities()){
+        entities.push_back(entityFactory.get("Player"));
+    }
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -124,6 +126,41 @@ void GameState::loadSystems() {
     systems.push_back(std::make_unique<MotionSystem>());
     systems.push_back(std::make_unique<CameraSystem>(camera));
     systems.push_back(std::make_unique<RenderSystem>());
+}
+
+void GameState::saveEntities() {
+    nlohmann::json json;
+    for(int i = 0; i < entities.size(); i++){
+        json["entities"][i] = entities[i]->serialize();
+    }
+    std::string filename = Settings::get<std::string>("save_path")+"entities.json";
+    std::ofstream entityDate(filename);
+    std::string data = json.dump();
+    entityDate.write(data.c_str(), data.size());
+    if(entityDate.fail()){
+        Log::error(TAG, "Failed to save entities");
+    }
+    else{
+        Log::info(TAG, "Entities saved");
+    }
+}
+
+GameState::~GameState() {
+    saveEntities();
+}
+
+bool GameState::loadEntities() {
+    std::string filename = Settings::get<std::string>("save_path")+"entities.json";
+    std::ifstream ifs(filename);
+    if (ifs.is_open()) {
+        nlohmann::json j = nlohmann::json::parse(ifs);
+        std::vector<nlohmann::json> entityData = j["entities"];
+        for(auto entity : entityData){
+            entities.push_back(std::make_shared<Entity>(entity));
+        }
+        return true;
+    }
+    return false;
 }
 
 

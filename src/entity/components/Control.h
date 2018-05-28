@@ -9,6 +9,13 @@ public:
 
     float speed = 1;
 
+    nlohmann::json serialize() override {
+        nlohmann::json json;
+        json["type"]="Control";
+        json["speed"]=speed;
+        return json;
+    };
+
     std::unique_ptr<Component> clone() override {
         return std::make_unique<ControlComponent>(*this);
     }

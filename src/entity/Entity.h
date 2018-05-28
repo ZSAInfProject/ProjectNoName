@@ -34,6 +34,7 @@ public:
         return dynamic_cast<T*>(it->second.get());
     }
 
+    nlohmann::json serialize();
 
     Entity() = default;
 
