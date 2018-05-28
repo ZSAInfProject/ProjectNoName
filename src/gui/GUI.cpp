@@ -1,15 +1,19 @@
 #include "GUI.h"
 
 GUI::GUI() {
-    modes.at(modes.size()-1)->addWindows(desktop);
-    modes.at(0)->addWindows(desktop);
+    GUImodes.push_back(new GUIModeMiner::GUIModeMiner());
+    GUImodes.push_back(new GUIModeArchitect::GUIModeArchitect());
+    GUImodes.push_back(new GUIModeManagement::GUIModeManagement());
+    GUImodes.push_back(new GUIModeSwitcher::GUIModeSwitcher());
+    GUImodes.at(1)->addWindows(desktop);
+    GUImodes.at(GUImodes.size()-1)->addWindows(desktop);
 }
 
 bool GUI::handleEvent(sf::Event& event) {
     desktop.HandleEvent(event);
     if(event.type != sf::Event::MouseButtonPressed)
         return false;
-    for(GUIMode* m : modes)
+    for(GUIMode* m : GUImodes)
         if(m->handleEvent(event))
             return true;
     return false;
@@ -21,7 +25,9 @@ void GUI::display(sf::RenderWindow& renderWindow, float deltaTime) {
 }
 
 void GUI::changeMode(int newMode) {
-    //TODO change game modes (removes windows of last mode then adds windows of new mode) needs other game mode classes
-//    architectMode.removeWidows(desktop);
-//    mainMode.removeWidows(desktop);
+    for(GUIMode* m : GUImodes)
+        if(m->getTag() != newMode && m->getTag() >= 0)
+            m->removeWindows(desktop);
+        else
+            m->addWindows(desktop);
 }

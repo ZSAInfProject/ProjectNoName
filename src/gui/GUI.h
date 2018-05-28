@@ -1,13 +1,14 @@
 #ifndef NONAME_GUI_H
 #define NONAME_GUI_H
 
+#include "modes/GUIModeMiner.h"
+#include "modes/GUIModeManagement.h"
+#include "modes/GUIModeArchitect.h"
 #include <SFGUI/SFGUI.hpp>
 #include <SFGUI/Widgets.hpp>
 #include <SFML/Graphics.hpp>
 #include <chrono>
-#include "modes/MainMode.h"
-#include "modes/ArchitectMode.h"
-#include "modes/GUIMode.h"
+#include "modes/GUIModeSwitcher.h"
 
 class GUI {
 public:
@@ -16,18 +17,11 @@ public:
     void display(sf::RenderWindow& renderWindow, float deltaTime);
     void changeMode(int newMode);
 
-
 private:
     sfg::Desktop desktop;
     sfg::SFGUI sfgui = sfg::SFGUI();
 
-    //TODO add other gamemodes
-    std::vector<GUIMode*> modes = {
-//            MinerMode(),;
-            new ArchitectMode(),
-//            ManagementMode();
-            new MainMode()
-    };
+    std::vector<GUIMode*> GUImodes;
 };
 
 #endif //NONAME_GUI_H

@@ -1,12 +1,16 @@
 #ifndef NONAME_GAMESTATE_H
 #define NONAME_GAMESTATE_H
 
+#include "MinerMode.h"
+#include "ArchitectMode.h"
+#include "ManagementMode.h"
 #include "State.h"
 #include "../world/World.h"
 #include "../entity/Entity.h"
 #include "../entity/systems/System.h"
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/EntityFactory.h"
+#include "GameMode.h"
 
 //! State when actual gameplay is present
 /*!
@@ -19,6 +23,7 @@ class GameState : public State{
     void loadSystems();
     bool loadEntities();
     static constexpr auto TAG = "GameState";
+
   
 public:
     void update(std::chrono::microseconds deltaTime) override;
@@ -31,7 +36,11 @@ public:
     World& getWorld();
     sf::View& getCamera();
 
-    int getGameMode();
+    std::unique_ptr<GameMode> getGameMode();
+    /*!
+     * Changes game mode, for list of game modes see @see GameMode
+     * @param newMode Get newMode value from GameMode::gameModesEnum
+     */
     void setGameMode(int newMode);
 
 private:
@@ -52,8 +61,9 @@ private:
     EntityFactory entityFactory;
 
     //TODO make use of it in gui
-    //! stores gameMode
-    int gameMode = 1;
+    //! stores gameMode, defaul gamemode for now is architect mode
+    std::unique_ptr<GameMode> gameMode;
+    std::vector<GameMode*> gameModes;
 };
 
 #endif //NONAME_GAMESTATE_H

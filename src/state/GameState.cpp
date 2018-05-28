@@ -29,9 +29,17 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
-    if(!loadEntities()){
+
+    if(!loadEntities()) {
         entities.push_back(entityFactory.get("Player"));
     }
+
+    //! the same arrangement as in GameMode::gameModesEnum
+    gameModes.push_back(new MinerMode::MinerMode());
+    gameModes.push_back(new ArchitectMode::ArchitectMode());
+    gameModes.push_back(new ManagementMode::ManagementMode());
+    gameMode = std::make_unique<GameMode>(GameMode::gameModesEnum::architectMode);
+
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -164,10 +172,13 @@ bool GameState::loadEntities() {
 }
 
 void GameState::setGameMode(int newMode) {
-    gameMode = newMode;
+    if(gameMode->getTag() == newMode)
+        return;
+    Game::get().getGUI().changeMode(newMode);
+    gameMode = std::unique_ptr<GameMode>(gameModes.at(newMode));
 }
 
-int GameState::getGameMode() {
+std::unique_ptr<GameMode> GameState::getGameMode() {
     return gameMode;
 }
 

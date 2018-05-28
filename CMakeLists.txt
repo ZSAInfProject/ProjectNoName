@@ -18,7 +18,7 @@ file(GLOB_RECURSE SOURCE_FILES
         "src/*.h"
         )
 
-add_executable(NoName ${SOURCE_FILES} src/gui/modes/MainMode.cpp src/gui/modes/MainMode.h src/gui/modes/GUIMode.h src/gui/modes/ArchitectMode.cpp src/gui/modes/ArchitectMode.h)
+add_executable(NoName ${SOURCE_FILES} src/gui/modes/GUIModeSwitcher.cpp src/gui/modes/GUIModeSwitcher.h src/gui/modes/GUIMode.h src/gui/modes/GUIModeArchitect.cpp src/gui/modes/GUIModeArchitect.h src/state/ArchitectMode.cpp src/state/ArchitectMode.h src/state/MinerMode.cpp src/state/MinerMode.h src/state/ManagementMode.cpp src/state/ManagementMode.h)
 
 set(SFML_BUILD_DOC FALSE)
 set(SFML_BUILD_EXAMPLES FALSE)

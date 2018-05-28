@@ -14,7 +14,9 @@ public:
     //! adds its own windows to desktop
     virtual void addWindows(sfg::Desktop &desktop) = 0;
     //! removes its own windows from destkop
-    virtual void removeWidows(sfg::Desktop &desktop) = 0;
+    virtual void removeWindows(sfg::Desktop &desktop) = 0;
+    //!returns name of particular mode
+    virtual int getTag() = 0;
 };
 
 #endif //NONAME_MODE_H

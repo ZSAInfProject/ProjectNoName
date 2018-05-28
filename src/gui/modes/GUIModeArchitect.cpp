@@ -1,6 +1,6 @@
-#include "ArchitectMode.h"
+#include "GUIModeArchitect.h"
 
-ArchitectMode::ArchitectMode() {
+GUIModeArchitect::GUIModeArchitect() {
     categoryWindow = sfg::ScrolledWindow::Create();
     categoryWindow->SetId("categoryWindow");
     categoryWindow->SetScrollbarPolicy(sfg::ScrolledWindow::VERTICAL_ALWAYS | sfg::ScrolledWindow::HORIZONTAL_NEVER);
@@ -29,16 +29,20 @@ ArchitectMode::ArchitectMode() {
     categoryWindow->GetViewport()->GetVerticalAdjustment()->SetUpper( 100000000.f );
 }
 
-bool ArchitectMode::handleEvent(sf::Event &event) {
+bool GUIModeArchitect::handleEvent(sf::Event &event) {
     if(categoryWindow->GetAllocation().contains(event.mouseButton.x, event.mouseButton.y))
         return true;
     return false;
 }
 
-void ArchitectMode::addWindows(sfg::Desktop &desktop) {
+void GUIModeArchitect::addWindows(sfg::Desktop &desktop) {
     desktop.Add(categoryWindow);
 }
 
-void ArchitectMode::removeWidows(sfg::Desktop &desktop) {
+void GUIModeArchitect::removeWindows(sfg::Desktop &desktop) {
     desktop.Remove(categoryWindow);
+}
+
+int GUIModeArchitect::getTag() {
+    return tag;
 }

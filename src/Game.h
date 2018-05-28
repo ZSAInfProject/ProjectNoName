@@ -1,13 +1,12 @@
 #ifndef NONAME_GAME_H
 #define NONAME_GAME_H
 
-
+#include "gui/GUI.h"
 #include <stack>
 #include "state/State.h"
 #include "utils/Debug.h"
 #include <mutex>
 #include <memory>
-#include "gui/GUI.h"
 
 //! Main program class
 /*!
