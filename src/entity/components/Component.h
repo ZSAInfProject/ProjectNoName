@@ -16,6 +16,8 @@ public:
 
     virtual std::unique_ptr<Component> clone() = 0;
 
+    virtual  nlohmann::json serialize() = 0;
+
     Component() = default;
     Component(Component& old) = default;;
     explicit Component(nlohmann::json json) {};

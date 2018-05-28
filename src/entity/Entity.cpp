@@ -40,3 +40,12 @@ Entity::Entity(Entity &old) {
         components[component.first] = std::move(component.second->clone());
     }
 }
+
+nlohmann::json Entity::serialize() {
+    nlohmann::json json;
+    json["name"]=name;
+    for(auto& component : components){
+        json["components"].push_back(component.second->serialize());
+    }
+    return json;
+}

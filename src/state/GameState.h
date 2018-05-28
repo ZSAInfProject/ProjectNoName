@@ -14,8 +14,10 @@
  */
 class GameState : public State{
 
+    void saveEntities();
     void createSavePath();
     void loadSystems();
+    bool loadEntities();
     static constexpr auto TAG = "GameState";
   
 public:
@@ -24,6 +26,7 @@ public:
     void tick() override;
 
     GameState();
+    ~GameState();
 
     World& getWorld();
     sf::View& getCamera();
