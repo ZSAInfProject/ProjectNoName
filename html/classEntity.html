@@ -102,10 +102,22 @@ Public Member Functions</h2></td></tr>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:afb2d2dd5bbd30e71802726cd45d630ae"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addComponent</b> (std::unique_ptr&lt; <a class="el" href="classComponent.html">Component</a> &gt; component)</td></tr>
 <tr class="separator:afb2d2dd5bbd30e71802726cd45d630ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845522369ff678f4c754f654e294a516"><td class="memTemplParams" colspan="2"><a class="anchor" id="a845522369ff678f4c754f654e294a516"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a845522369ff678f4c754f654e294a516"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>addComponent</b> (std::unique_ptr&lt; <a class="el" href="classComponent.html">Component</a> &gt; component, bool enabled)</td></tr>
+<tr class="separator:a845522369ff678f4c754f654e294a516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a369c207eab2aed48053346a58b4cdbe2"><td class="memTemplParams" colspan="2"><a class="anchor" id="a369c207eab2aed48053346a58b4cdbe2"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a369c207eab2aed48053346a58b4cdbe2"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>getComponent</b> ()</td></tr>
 <tr class="separator:a369c207eab2aed48053346a58b4cdbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03a490501ebcd0e26596099f40a7d1c2"><td class="memTemplParams" colspan="2"><a class="anchor" id="a03a490501ebcd0e26596099f40a7d1c2"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a03a490501ebcd0e26596099f40a7d1c2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>enable</b> ()</td></tr>
+<tr class="separator:a03a490501ebcd0e26596099f40a7d1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8063a683992bb4fc567746cf2c5775a6"><td class="memTemplParams" colspan="2"><a class="anchor" id="a8063a683992bb4fc567746cf2c5775a6"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8063a683992bb4fc567746cf2c5775a6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>disable</b> ()</td></tr>
+<tr class="separator:a8063a683992bb4fc567746cf2c5775a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5074110a6e1fc8b3e87cdee9032b5c92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5074110a6e1fc8b3e87cdee9032b5c92"></a>
 nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><b>serialize</b> ()</td></tr>
 <tr class="separator:a5074110a6e1fc8b3e87cdee9032b5c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,10 +130,11 @@ nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><b>serialize</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab706f432d78dd17aebad2a6b0fadefac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab706f432d78dd17aebad2a6b0fadefac"></a>
+<tr class="memitem:ac57bd5720c2527ac204a327b1f9f9104"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac57bd5720c2527ac204a327b1f9f9104"></a>
 std::unordered_map&lt; uint, <br class="typebreak"/>
-std::unique_ptr&lt; <a class="el" href="classComponent.html">Component</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>components</b></td></tr>
-<tr class="separator:ab706f432d78dd17aebad2a6b0fadefac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+std::pair&lt; std::unique_ptr<br class="typebreak"/>
+&lt; <a class="el" href="classComponent.html">Component</a> &gt;, bool &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>components</b></td></tr>
+<tr class="separator:ac57bd5720c2527ac204a327b1f9f9104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a931b21fbdebb1a5963b4bcab5df128f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a931b21fbdebb1a5963b4bcab5df128f5"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a931b21fbdebb1a5963b4bcab5df128f5"><td class="memSeparator" colspan="2">&#160;</td></tr>

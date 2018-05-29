@@ -16,7 +16,16 @@ In game moving entity.
 \hypertarget{classEntity_afb2d2dd5bbd30e71802726cd45d630ae}{{\footnotesize template$<$typename T $>$ }\\void {\bfseries add\-Component} (std\-::unique\-\_\-ptr$<$ \hyperlink{classComponent}{Component} $>$ component)}\label{classEntity_afb2d2dd5bbd30e71802726cd45d630ae}
 
 \item 
+\hypertarget{classEntity_a845522369ff678f4c754f654e294a516}{{\footnotesize template$<$typename T $>$ }\\void {\bfseries add\-Component} (std\-::unique\-\_\-ptr$<$ \hyperlink{classComponent}{Component} $>$ component, bool enabled)}\label{classEntity_a845522369ff678f4c754f654e294a516}
+
+\item 
 \hypertarget{classEntity_a369c207eab2aed48053346a58b4cdbe2}{{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries get\-Component} ()}\label{classEntity_a369c207eab2aed48053346a58b4cdbe2}
+
+\item 
+\hypertarget{classEntity_a03a490501ebcd0e26596099f40a7d1c2}{{\footnotesize template$<$typename T $>$ }\\void {\bfseries enable} ()}\label{classEntity_a03a490501ebcd0e26596099f40a7d1c2}
+
+\item 
+\hypertarget{classEntity_a8063a683992bb4fc567746cf2c5775a6}{{\footnotesize template$<$typename T $>$ }\\void {\bfseries disable} ()}\label{classEntity_a8063a683992bb4fc567746cf2c5775a6}
 
 \item 
 \hypertarget{classEntity_a5074110a6e1fc8b3e87cdee9032b5c92}{nlohmann\-::json {\bfseries serialize} ()}\label{classEntity_a5074110a6e1fc8b3e87cdee9032b5c92}
@@ -31,8 +40,9 @@ In game moving entity.
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classEntity_ab706f432d78dd17aebad2a6b0fadefac}{std\-::unordered\-\_\-map$<$ uint, \\*
-std\-::unique\-\_\-ptr$<$ \hyperlink{classComponent}{Component} $>$ $>$ {\bfseries components}}\label{classEntity_ab706f432d78dd17aebad2a6b0fadefac}
+\hypertarget{classEntity_ac57bd5720c2527ac204a327b1f9f9104}{std\-::unordered\-\_\-map$<$ uint, \\*
+std\-::pair$<$ std\-::unique\-\_\-ptr\\*
+$<$ \hyperlink{classComponent}{Component} $>$, bool $>$ $>$ {\bfseries components}}\label{classEntity_ac57bd5720c2527ac204a327b1f9f9104}
 
 \item 
 \hypertarget{classEntity_a931b21fbdebb1a5963b4bcab5df128f5}{std\-::string {\bfseries name}}\label{classEntity_a931b21fbdebb1a5963b4bcab5df128f5}
