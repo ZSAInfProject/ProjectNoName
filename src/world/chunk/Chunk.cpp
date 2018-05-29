@@ -1,6 +1,7 @@
 #include "Chunk.h"
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
+#include "../../utils/Buffer.h"
 
 #include <fstream>
 #include <iostream>
@@ -53,37 +54,23 @@ void Chunk::save(const std::string &fileName) {
     //TODO: save objects to another file.
 
     //Save tiles
-    std::ofstream tileData(fileName+".td");
+    Buffer buffer(bufferMode::store);
     for(ChunkTile tile : tiles) {
-        if(tileData.good()) {
-            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Saving to " + fileName + ".td file failed!");
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
+    buffer.save(fileName+".td");
 }
 
 bool Chunk::load(const std::string &filename) {
-    std::ifstream tileData;
-    tileData.open(filename+".td", std::ifstream::in | std::ifstream::binary);
-    if(!tileData.is_open()){
-        return false;
-    }
     //TODO: load objects
+    Buffer buffer(bufferMode::load);
+    if(!buffer.load(filename+".td"))
+        return false;
 
     //Load tiles
     for(ChunkTile& tile : tiles){
-        if(tileData.good()) {
-            tileData.read(reinterpret_cast<char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Loading from " + filename + ".td failed!");
-            return false;
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
 
     updateQuads();
 
@@ -146,5 +133,10 @@ ChunkTile::ChunkTile(nlohmann::json json) {
 ChunkTile::ChunkTile(short tileId_, uint amount_) {
     tileId = tileId_;
     amount = amount_;
+}
+
+void ChunkTile::serialize(Buffer& buffer) {
+    buffer.io<short>(&tileId);
+    buffer.io<uint>(&amount);
 }
 

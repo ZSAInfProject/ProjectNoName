@@ -2,8 +2,8 @@
 // Created by zakrent on 5/29/18.
 //
 
-#ifndef NONAME_BUFFER_H
-#define NONAME_BUFFER_H
+#ifndef NONAME_BUFFER2_H
+#define NONAME_BUFFER2_H
 
 #include <cstring>
 #include <string>
@@ -39,8 +39,8 @@ public:
         }
     }
 
-    void load(const std::string &filename);
-    void save(const std::string &filename);
+    bool load(const std::string &filename);
+    bool save(const std::string &filename);
 
     void setMode(enum bufferMode _mode){
         mode = _mode;
@@ -58,35 +58,6 @@ public:
         delete data;
     }
 };
-
-void Buffer::resize(int size) {
-    auto* newData = new char[size];
-    memcpy(newData, data, (size_t)currentSize);
-    delete data;
-    currentSize = size;
-    data = newData;
-}
-
-void Buffer::load(const std::string &filename) {
-    std::ifstream file(filename, std::ios::binary);
-    if(file.is_open() && !file.fail()){
-        auto fsize = file.tellg();
-        file.seekg( 0, file.end );
-        fsize = file.tellg() - fsize;
-        file.seekg( 0, file.beg );
-        resize((int)fsize);
-        file.read(data, fsize);
-    }
-    file.close();
-}
-
-void Buffer::save(const std::string &filename) {
-    std::ofstream file(filename, std::ios::binary);
-    if(file.is_open() && !file.fail()){
-        file.write(data, currentSize);
-    }
-    file.close();
-}
 
 
 #endif //NONAME_BUFFER_H
