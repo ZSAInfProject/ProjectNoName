@@ -11,6 +11,7 @@ public:
     void addWindows(sfg::Desktop &desktop) override;
     void removeWindows(sfg::Desktop &desktop) override;
     int getTag() override;
+    std::string getName() override;
 private:
     std::string name = "miner mode";
     int tag = GameMode::gameModesEnum::minerMode;

@@ -36,12 +36,13 @@ public:
     World& getWorld();
     sf::View& getCamera();
 
-    std::unique_ptr<GameMode> getGameMode();
+    std::shared_ptr<GameMode> getGameMode();
     /*!
      * Changes game mode, for list of game modes see @see GameMode
      * @param newMode Get newMode value from GameMode::gameModesEnum
+     * @return returns whether game mode was changed or not
      */
-    void setGameMode(int newMode);
+    bool setGameMode(int newMode);
 
 private:
     World world;
@@ -61,9 +62,9 @@ private:
     EntityFactory entityFactory;
 
     //TODO make use of it in gui
-    //! stores gameMode, defaul gamemode for now is architect mode
-    std::unique_ptr<GameMode> gameMode;
-    std::vector<GameMode*> gameModes;
+    //! stores gameMode, default gamemode for now is architect mode
+    std::shared_ptr<GameMode> gameMode;
+    std::vector<std::shared_ptr<GameMode>> gameModes;
 };
 
 #endif //NONAME_GAMESTATE_H

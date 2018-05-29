@@ -37,7 +37,7 @@ void GUIModeSwitcher::containerSetup(sfg::Fixed::Ptr &container) const {
 void GUIModeSwitcher::eventSetup(sfg::Label::Ptr &labelActiveMode) const {
     switchWindow->GetWidgetById("minerMode")->
             GetSignal(sfg::Widget::OnLeftClick).Connect([this]{
-        dynamic_cast<GameState*>(&Game::get().getState())->setGameMode(GameMode::minerMode);
+        dynamic_cast<GameState*>(&Game::get().getState())->setGameMode(GameMode::gameModesEnum::minerMode);
     });
     switchWindow->GetWidgetById("architectMode")->
             GetSignal(sfg::Widget::OnLeftClick).Connect([this]{
@@ -67,13 +67,14 @@ void GUIModeSwitcher::removeWindows(sfg::Desktop &desktop) {
 }
 
 void GUIModeSwitcher::changeMode(int newMode) const {
-    //TODO rewrite function so it uses gameState::GameMode instead of int
-
-    dynamic_cast<GameState*>(&Game::get().getState())->setGameMode(newMode);
-    dynamic_cast<sfg::Label*>(switchWindow->GetWidgetById("activeMode").get())->SetText("not working now");
-    Game::get().getGUI().changeMode(newMode);
+    dynamic_cast<sfg::Label*>(switchWindow->GetWidgetById("activeMode").get())->
+            SetText(Game::get().getGUI().getGUIMode(newMode)->getName());
 }
 
 int GUIModeSwitcher::getTag() {
     return tag;
+}
+
+std::string GUIModeSwitcher::getName() {
+    return name;
 }

@@ -11,12 +11,14 @@ class GUIMode {
 public:
     //! returns whether mouse click from event was inside of any active window
     virtual bool handleEvent(sf::Event &event) = 0;
-    //! adds its own windows to desktop
+    //! adds windows to desktop
     virtual void addWindows(sfg::Desktop &desktop) = 0;
-    //! removes its own windows from destkop
+    //! removes windows from destkop
     virtual void removeWindows(sfg::Desktop &desktop) = 0;
-    //!returns name of particular mode
+    //!returns name of  GUIMode
     virtual int getTag() = 0;
+    //! returns name of GUIMode
+    virtual std::string getName() = 0;
 };
 
 #endif //NONAME_MODE_H

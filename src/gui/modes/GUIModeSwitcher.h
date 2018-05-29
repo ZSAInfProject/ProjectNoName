@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "GUIMode.h"
-#include "../../state/GameState.h"
 #include "../../state/GameMode.h"
 
 
@@ -19,7 +18,7 @@ public:
     void addWindows(sfg::Desktop &desktop) override;
     void removeWindows(sfg::Desktop &desktop) override;
     int getTag() override;
-
+    std::string getName() override;
 
 private:
     sfg::Window::Ptr switchWindow;
@@ -30,13 +29,6 @@ private:
 
     void containerSetup(sfg::Fixed::Ptr &container) const;
     void eventSetup(sfg::Label::Ptr &labelActiveMode) const;
-
-    //map for mode ids, use mode id +3 to get mode name
-    const std::map<int, std::string> modes ={
-            {0, "minerMode"},
-            {1, "architectMode"},
-            {2, "managementMode"},
-    };
 };
 
 

@@ -46,3 +46,7 @@ void GUIModeArchitect::removeWindows(sfg::Desktop &desktop) {
 int GUIModeArchitect::getTag() {
     return tag;
 }
+
+std::string GUIModeArchitect::getName() {
+    return name;
+}

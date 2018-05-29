@@ -35,11 +35,10 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     }
 
     //! the same arrangement as in GameMode::gameModesEnum
-    gameModes.push_back(new MinerMode::MinerMode());
-    gameModes.push_back(new ArchitectMode::ArchitectMode());
-    gameModes.push_back(new ManagementMode::ManagementMode());
-    gameMode = std::make_unique<GameMode>(GameMode::gameModesEnum::architectMode);
-
+    gameModes.push_back(std::shared_ptr<GameMode>(new MinerMode()));
+    gameModes.push_back(std::shared_ptr<GameMode>(new ArchitectMode()));
+    gameModes.push_back(std::shared_ptr<GameMode>(new ManagementMode()));
+    gameMode = gameModes.at(GameMode::architectMode);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -171,14 +170,15 @@ bool GameState::loadEntities() {
     return false;
 }
 
-void GameState::setGameMode(int newMode) {
+bool GameState::setGameMode(int newMode) {
     if(gameMode->getTag() == newMode)
-        return;
+        return false;
     Game::get().getGUI().changeMode(newMode);
-    gameMode = std::unique_ptr<GameMode>(gameModes.at(newMode));
+    gameMode = gameModes.at(newMode);
+    return true;
 }
 
-std::unique_ptr<GameMode> GameState::getGameMode() {
+std::shared_ptr<GameMode> GameState::getGameMode() {
     return gameMode;
 }
 

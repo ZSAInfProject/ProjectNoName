@@ -16,12 +16,13 @@ public:
     bool handleEvent(sf::Event& event);
     void display(sf::RenderWindow& renderWindow, float deltaTime);
     void changeMode(int newMode);
+    std::shared_ptr<GUIMode> getGUIMode(int guiMode);
 
 private:
     sfg::Desktop desktop;
     sfg::SFGUI sfgui = sfg::SFGUI();
 
-    std::vector<GUIMode*> GUImodes;
+    std::vector<std::shared_ptr<GUIMode>> GUImodes;
 };
 
 #endif //NONAME_GUI_H
