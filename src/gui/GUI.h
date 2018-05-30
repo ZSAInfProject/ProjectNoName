@@ -10,18 +10,32 @@
 #include <chrono>
 #include "modes/GUIModeSwitcher.h"
 
+/*!
+ * Shows in-game gui, use GUI::init to setup a class
+ */
 class GUI {
 public:
-    GUI();
+    GUI() = default;
+    //! Setup, initializes gui modes and sets gui to an active mode
+    void init();
+    /*!
+     * Handles events related to gui
+     * @param event Event to handle
+     * @return Returns true if mousce click was performed inside any gui window
+     */
     bool handleEvent(sf::Event& event);
+    //! Refreshes gui
     void display(sf::RenderWindow& renderWindow, float deltaTime);
+    //! Changes gui mode, do not call without changing game mode
     void changeMode(int newMode);
+    //! Returns a pointer to a gui mode
     std::shared_ptr<GUIMode> getGUIMode(int guiMode);
 
 private:
     sfg::Desktop desktop;
-    sfg::SFGUI sfgui = sfg::SFGUI();
+    sfg::SFGUI sfgui;
 
+    //! A vector which stores every gui mode
     std::vector<std::shared_ptr<GUIMode>> GUImodes;
 };
 

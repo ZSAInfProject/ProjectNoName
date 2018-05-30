@@ -170,12 +170,11 @@ bool GameState::loadEntities() {
     return false;
 }
 
-bool GameState::setGameMode(int newMode) {
+void GameState::setGameMode(int newMode) {
     if(gameMode->getTag() == newMode)
-        return false;
-    Game::get().getGUI().changeMode(newMode);
+        return;
+    Game::get().getGUI()->changeMode(newMode);
     gameMode = gameModes.at(newMode);
-    return true;
 }
 
 std::shared_ptr<GameMode> GameState::getGameMode() {

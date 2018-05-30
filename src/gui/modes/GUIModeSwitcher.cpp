@@ -22,9 +22,12 @@ void GUIModeSwitcher::containerSetup(sfg::Fixed::Ptr &container) const {
     auto buttonManagementMode = sfg::Button::Create("Z");
     buttonManagementMode->SetId("managementMode");
     buttonManagementMode->SetRequisition(sf::Vector2f(20, 24));
-    auto labelActiveMode = sfg::Label::Create("architect mode"); //TODO fetch name from GameState
-        labelActiveMode->SetId("activeMode");
-    //don't change allocation values
+
+    auto labelActiveMode = sfg::Label::Create(Game::get().getGUI()->
+            getGUIMode(dynamic_cast<GameState*>(&Game::get().getState())->getGameMode()->getTag())->getName());
+    labelActiveMode->SetId("activeMode");
+
+    //! don't change allocation values
     container->Put(buttonMinerMode, sf::Vector2f(24, 20));
     container->Put(buttonArchitectMode, sf::Vector2f(54, 20));
     container->Put(buttonManagementMode, sf::Vector2f(84, 20));
@@ -58,17 +61,17 @@ bool GUIModeSwitcher::handleEvent(sf::Event &event) {
     return false;
 }
 
-void GUIModeSwitcher::addWindows(sfg::Desktop &desktop) {
+void GUIModeSwitcher::addWindows(sfg::Desktop& desktop) {
     desktop.Add(switchWindow);
 }
 
-void GUIModeSwitcher::removeWindows(sfg::Desktop &desktop) {
-    removeWindows(desktop);
+void GUIModeSwitcher::removeWindows(sfg::Desktop& desktop) {
+    switchWindow->Show(false);
 }
 
 void GUIModeSwitcher::changeMode(int newMode) const {
     dynamic_cast<sfg::Label*>(switchWindow->GetWidgetById("activeMode").get())->
-            SetText(Game::get().getGUI().getGUIMode(newMode)->getName());
+            SetText(Game::get().getGUI()->getGUIMode(newMode)->getName());
 }
 
 int GUIModeSwitcher::getTag() {

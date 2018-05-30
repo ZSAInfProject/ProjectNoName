@@ -34,8 +34,11 @@ void Game::run() {
     renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
     pushState(std::make_shared<GameState>());
 
+
     renderWindow.setActive(false);
     imGuiUpdatedThisFrame = true;
+    gui = std::shared_ptr<GUI>(new GUI());
+    gui->init();
 
     std::thread renderThread([this](){
         ImGui::SFML::Init(renderWindow);
@@ -49,7 +52,7 @@ void Game::run() {
 
                 if (event.type == sf::Event::Closed)
                     renderWindow.close();
-                else if(gui.handleEvent(event))
+                else if(gui->handleEvent(event))
                     continue;
                 switch(event.type){
                     case sf::Event::Closed:
@@ -118,7 +121,7 @@ void Game::render() {
     if (!states.empty()) {
         getState().render();
     }
-    gui.display(renderWindow, deltaTime.count());
+    gui->display(renderWindow, deltaTime.count());
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
     imGuiUpdatedThisFrame = false;
@@ -155,6 +158,6 @@ bool Game::canUpdateimGui() {
     return !Game::get().imGuiUpdatedThisFrame;
 }
 
-GUI& Game::getGUI() {
+std::shared_ptr<GUI> Game::getGUI() {
     return Game::get().gui;
 }

@@ -31,8 +31,8 @@ public:
     //! Returns a reference to main render window
     static sf::RenderWindow& getRenderWindow();
 
-    //! Returns a reference to gui object
-    static GUI& getGUI();
+    //! Returns a pointer to a GUI object
+    static std::shared_ptr<GUI> getGUI();
 
     static bool canUpdateimGui();
 
@@ -52,7 +52,8 @@ public:
 private:
     bool imGuiUpdatedThisFrame;
     std::mutex renderMutex;
-    GUI gui = GUI();
+    std::shared_ptr<GUI> gui;
+//    GUI gui;
 
     //! Stack containing all states.
     std::stack<std::shared_ptr<State>> states;
