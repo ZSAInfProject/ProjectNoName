@@ -15,13 +15,14 @@
  */
 class GUI {
 public:
-    GUI() = default;
-    //! Setup, initializes gui modes and sets gui to an active mode
-    void init();
+    /*!
+     * @param mode mode to load during a start-up
+     */
+    GUI(int mode);
     /*!
      * Handles events related to gui
      * @param event Event to handle
-     * @return Returns true if mousce click was performed inside any gui window
+     * @return Returns true if mouse click was performed inside any gui window
      */
     bool handleEvent(sf::Event& event);
     //! Refreshes gui

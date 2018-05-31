@@ -39,6 +39,7 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     gameModes.push_back(std::shared_ptr<GameMode>(new ArchitectMode()));
     gameModes.push_back(std::shared_ptr<GameMode>(new ManagementMode()));
     gameMode = gameModes.at(GameMode::architectMode);
+    gui = std::shared_ptr<GUI>(new GUI(gameMode->getTag()));
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
@@ -173,7 +174,7 @@ bool GameState::loadEntities() {
 void GameState::setGameMode(int newMode) {
     if(gameMode->getTag() == newMode)
         return;
-    Game::get().getGUI()->changeMode(newMode);
+    gui->changeMode(newMode);
     gameMode = gameModes.at(newMode);
 }
 
@@ -181,4 +182,6 @@ std::shared_ptr<GameMode> GameState::getGameMode() {
     return gameMode;
 }
 
-
+std::shared_ptr<GUI> GameState::getGUI() {
+    return gui;
+}

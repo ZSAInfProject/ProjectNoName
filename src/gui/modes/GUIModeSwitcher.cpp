@@ -2,17 +2,17 @@
 #include "../../Game.h"
 #include "../../state/GameState.h"
 
-GUIModeSwitcher::GUIModeSwitcher() {
+GUIModeSwitcher::GUIModeSwitcher(std::string modeName) {
     switchWindow = sfg::Window::Create(0b00010);
     auto container = sfg::Fixed::Create();
     container->SetId("container");
-    containerSetup(container);
+    containerSetup(container, modeName);
     switchWindow->Add(container);
     switchWindow->SetRequisition(sf::Vector2f(150, 40));
     switchWindow->SetAllocation(sf::FloatRect(sf::Vector2f(350, 25), sf::Vector2f(150, 40)));
 }
 
-void GUIModeSwitcher::containerSetup(sfg::Fixed::Ptr &container) const {
+void GUIModeSwitcher::containerSetup(sfg::Fixed::Ptr &container, std::string modeName) const {
     auto buttonMinerMode = sfg::Button::Create("G");
     buttonMinerMode->SetId("minerMode");
     buttonMinerMode->SetRequisition(sf::Vector2f(20, 24));
@@ -22,9 +22,7 @@ void GUIModeSwitcher::containerSetup(sfg::Fixed::Ptr &container) const {
     auto buttonManagementMode = sfg::Button::Create("Z");
     buttonManagementMode->SetId("managementMode");
     buttonManagementMode->SetRequisition(sf::Vector2f(20, 24));
-
-    auto labelActiveMode = sfg::Label::Create(Game::get().getGUI()->
-            getGUIMode(dynamic_cast<GameState*>(&Game::get().getState())->getGameMode()->getTag())->getName());
+    auto labelActiveMode = sfg::Label::Create(modeName);
     labelActiveMode->SetId("activeMode");
 
     //! don't change allocation values
@@ -71,7 +69,7 @@ void GUIModeSwitcher::removeWindows(sfg::Desktop& desktop) {
 
 void GUIModeSwitcher::changeMode(int newMode) const {
     dynamic_cast<sfg::Label*>(switchWindow->GetWidgetById("activeMode").get())->
-            SetText(Game::get().getGUI()->getGUIMode(newMode)->getName());
+            SetText(dynamic_cast<GameState*>(&Game::getState())->getGUI()->getGUIMode(newMode)->getName());
 }
 
 int GUIModeSwitcher::getTag() {

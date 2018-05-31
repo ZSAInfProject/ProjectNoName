@@ -3,7 +3,6 @@
 #include <imgui-SFML.h>
 #include <imgui.h>
 #include <SFGUI/SFGUI.hpp>
-#include <SFGUI/Widgets.hpp>
 #include <SFML/Graphics.hpp>
 #include "state/GameState.h"
 #include "Game.h"
@@ -34,11 +33,8 @@ void Game::run() {
     renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
     pushState(std::make_shared<GameState>());
 
-
     renderWindow.setActive(false);
     imGuiUpdatedThisFrame = true;
-    gui = std::shared_ptr<GUI>(new GUI());
-    gui->init();
 
     std::thread renderThread([this](){
         ImGui::SFML::Init(renderWindow);
@@ -49,10 +45,9 @@ void Game::run() {
             render();
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
-
                 if (event.type == sf::Event::Closed)
                     renderWindow.close();
-                else if(gui->handleEvent(event))
+                else if(dynamic_cast<GameState*>(&Game::getState())->getGUI()->handleEvent(event))
                     continue;
                 switch(event.type){
                     case sf::Event::Closed:
@@ -108,8 +103,6 @@ void Game::run() {
     renderThread.join();
 }
 
-
-
 void Game::render() {
     //Wait for imGui update
     while(!imGuiUpdatedThisFrame);
@@ -120,8 +113,8 @@ void Game::render() {
     debug.reportRenderTime(deltaTime);
     if (!states.empty()) {
         getState().render();
+        dynamic_cast<GameState*>(&Game::getState())->getGUI()->display(renderWindow, deltaTime.count());
     }
-    gui->display(renderWindow, deltaTime.count());
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));
     imGuiUpdatedThisFrame = false;
@@ -156,8 +149,4 @@ void Game::tick() {
 
 bool Game::canUpdateimGui() {
     return !Game::get().imGuiUpdatedThisFrame;
-}
-
-std::shared_ptr<GUI> Game::getGUI() {
-    return Game::get().gui;
 }

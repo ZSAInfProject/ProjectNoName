@@ -12,7 +12,7 @@
 
 class GUIModeSwitcher : public GUIMode {
 public:
-    GUIModeSwitcher();
+    GUIModeSwitcher(std::string modeName);
     //! Makes changes to its windows when changing modes, do not call without changing gui mode
     void changeMode(int newMode) const;
     bool handleEvent(sf::Event &event) override;
@@ -29,7 +29,7 @@ private:
     int tag = -999;
 
     //! Extracted functions from ctor
-    void containerSetup(sfg::Fixed::Ptr &container) const;
+    void containerSetup(sfg::Fixed::Ptr &container, std::string modeName) const;
     void eventSetup(sfg::Label::Ptr &labelActiveMode) const;
 };
 

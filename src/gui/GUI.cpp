@@ -2,12 +2,12 @@
 #include "../Game.h"
 #include "../state/GameState.h"
 
-void GUI::init() {
+GUI::GUI(int mode) {
     GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeMiner()));
     GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeArchitect()));
     GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeManagement()));
-    GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher()));
-    GUImodes.at(dynamic_cast<GameState*>(&Game::getState())->getGameMode()->getTag())->addWindows(desktop);
+    GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher(GUImodes.at(mode)->getName())));
+    GUImodes.at(mode)->addWindows(desktop);
     GUImodes.back()->addWindows(desktop);
 }
 

@@ -47,6 +47,9 @@ public:
      */
     void setGameMode(int newMode);
 
+    //! Returns a pointer to a GUI object
+    std::shared_ptr<GUI> getGUI();
+
 private:
     World world;
 
@@ -64,6 +67,8 @@ private:
 
     EntityFactory entityFactory;
 
+    //! A pointer to gui
+    std::shared_ptr<GUI> gui;
 
     //! A pointer to the active game mode, default game mode for now is architect mode
     std::shared_ptr<GameMode> gameMode;
