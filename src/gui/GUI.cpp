@@ -9,6 +9,7 @@ GUI::GUI(int mode) {
     GUImodes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher(GUImodes.at(mode)->getName())));
     GUImodes.at(mode)->addWindows(desktop);
     GUImodes.back()->addWindows(desktop);
+    desktop.LoadThemeFromFile("themes.txt");
 }
 
 bool GUI::handleEvent(sf::Event& event) {

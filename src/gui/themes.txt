@@ -1,0 +1,7 @@
+Window {
+    BackgroundColor: #00FF0080;
+}
+
+Window > * > Label {
+    Color: #000000FF;
+}
