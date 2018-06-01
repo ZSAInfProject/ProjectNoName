@@ -37,6 +37,6 @@ target_link_libraries(NoName sfml-network sfml-graphics sfml-window sfml-system 
 
 file(COPY res/ DESTINATION res/)
 file(COPY settings.json DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY src/gui/themes.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY res/themes.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(REMOVE_RECURSE ${CMAKE_CURRENT_BINARY_DIR}/saves/)
 file(MAKE_DIRECTORY  ${CMAKE_CURRENT_BINARY_DIR}/saves/)
