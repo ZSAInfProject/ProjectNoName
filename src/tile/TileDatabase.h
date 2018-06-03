@@ -6,6 +6,13 @@
 
 #include "Tile.h"
 
+//!order of categories, do not change it
+enum categoriesEnum{
+    unusable = 0,
+    plainBlocks,
+    ores
+};
+
 //! Singleton mapping ids to tiles
 /*!
  * Contains vector of reference tiles. Loaded from json file using loadTiles().
@@ -34,13 +41,19 @@ public:
     //! Loads texture map for tiles from file
     void loadTexture(std::string file);
     Tile& operator[] (int index);
+    //! Returns size of tiles
+    int size();
 
     //! Texture map for tiles
     sf::Texture texture;
+    std::shared_ptr<std::vector<std::string>> getCategoryNames();
 
 private:
     std::vector<Tile> tiles;
     void loadTile(nlohmann::json json);
+    //! order of category names corresponds to categoriesEnum's order
+    const std::shared_ptr<std::vector<std::string>> categoryNames = std::make_shared<std::vector<std::string>>
+            (std::vector<std::string> {"unusable", "plain blocks", "ores"});
 
     static constexpr auto TAG = "TileDatabase";
 };

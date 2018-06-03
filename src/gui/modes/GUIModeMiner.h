@@ -1,5 +1,5 @@
-#ifndef NONAME_MINERMODE_H
-#define NONAME_MINERMODE_H
+#ifndef NONAME_GUIMODEMINER_H
+#define NONAME_GUIMODEMINER_H
 
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
@@ -19,4 +19,4 @@ private:
     sfg::Window::Ptr placeHolder;
 };
 
-#endif //NONAME_MINERMODE_H
+#endif //NONAME_GUIMODEMINER_H

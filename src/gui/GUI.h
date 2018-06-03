@@ -31,13 +31,16 @@ public:
     void changeMode(int newMode);
     //! Returns a pointer to a gui mode
     std::shared_ptr<GUIMode> getGUIMode(int guiMode);
+    //! Returns a pointer to last event (allows GUIModes to access event
+    sf::Event* getEvent();
 
 private:
     sfg::Desktop desktop;
     sfg::SFGUI sfgui;
 
+    sf::Event event;
     //! A vector which stores every gui mode
-    std::vector<std::shared_ptr<GUIMode>> GUImodes;
+    std::vector<std::shared_ptr<GUIMode>> GUIModes;
 };
 
 #endif //NONAME_GUI_H

@@ -1,17 +1,15 @@
-#ifndef NONAME_MAINMODE_H
-#define NONAME_MAINMODE_H
+#ifndef NONAME_GUIMODESWITCHER_H
+#define NONAME_GUIMODESWITCHER_H
 
 #include <SFGUI/SFGUI.hpp>
 #include <SFGUI/Widgets.hpp>
-//#include <SFML/Graphics.hpp>
 #include <vector>
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
 
-
-
 class GUIModeSwitcher : public GUIMode {
 public:
+    //! @param modeName Name of active mode
     GUIModeSwitcher(std::string modeName);
     //! Makes changes to its windows when changing modes, do not call without changing gui mode
     void changeMode(int newMode) const;
@@ -28,9 +26,10 @@ private:
     //! this value does not correspond to any actual game mode as it is not a game mode
     int tag = -999;
 
-    //! Extracted functions from ctor
+    //! Extracted function from ctor
     void containerSetup(sfg::Fixed::Ptr &container, std::string modeName) const;
+    //! Extracted function from ctor
     void eventSetup(sfg::Label::Ptr &labelActiveMode) const;
 };
 
-#endif //NONAME_MAINMODE_H
+#endif //NONAME_GUIMODESWITCHER_H

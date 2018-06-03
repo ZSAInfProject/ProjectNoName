@@ -1,8 +1,6 @@
-#ifndef NONAME_ARCHITECTMODE_H
-#define NONAME_ARCHITECTMODE_H
+#ifndef NONAME_GUIMODEARCHITECT_H
+#define NONAME_GUIMODEARCHITECT_H
 
-#include <SFGUI/SFGUI.hpp>
-#include <SFGUI/Widgets.hpp>
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
 
@@ -17,9 +15,33 @@ public:
 
 private:
     std::string name = "architect mode";
+    std::shared_ptr<std::vector<std::string>> categoryNames;
     int tag = GameMode::gameModesEnum::architectMode;
+    int lastCategory = 0;
+    int lastTooltip = 0;
+    sfg::ScrolledWindow::Ptr categorySelectorWindow;
+    std::vector<sfg::ScrolledWindow::Ptr> categoryWindows;
+    std::vector<sfg::Window::Ptr> blockTooltips;
 
-    sfg::ScrolledWindow::Ptr categoryWindow;
+    //! Generates categorySelectorWindow
+    void createCategorySelectorWindow();
+    //! Generates categoryWindows
+    void createCategoryWindow();
+    //! Generates blocks
+    void createBlockButtons();
+    //! Adds events for every block @param id buttons's id
+    void createBlockButtonsEvents(int id, sfg::Widget::Ptr button);
+    //! Generates tooltip for every block
+    void createBlockTooltips();
+    //! Functions below are sub-functions for specific events
+    //! Changes visibility of categories @param id Category to show
+    void chooseCategory(int id);
+    //! Changes visibility of tooltips @param id Category to show
+    void chooseBlock(int id);
+    //! Handles showing tooltips @param id Tooltip to handle
+    void showFloatingTooltip(bool show, int id);
+    //! Handles movement of tooltip @param id Tooltip to handle
+    void moveFloatingTooltip(int id);
 };
 
-#endif //NONAME_ARCHITECTMODE_H
+#endif //NONAME_GUIMODEARCHITECT_H

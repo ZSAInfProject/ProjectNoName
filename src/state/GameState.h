@@ -42,7 +42,7 @@ public:
     std::shared_ptr<GameMode> getGameMode();
 
     /*!
-     * Changes game mode, for list of game modes see @see GameMode
+     * Changes game mode, for list of game modes see GameMode
      * @param newMode Get newMode value from GameMode::gameModesEnum
      */
     void setGameMode(int newMode);
@@ -67,7 +67,6 @@ private:
 
     EntityFactory entityFactory;
 
-    //! A pointer to gui
     std::shared_ptr<GUI> gui;
 
     //! A pointer to the active game mode, default game mode for now is architect mode

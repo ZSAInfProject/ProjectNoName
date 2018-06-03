@@ -1,8 +1,6 @@
-#ifndef NONAME_MANAGEMENTMODE_H
-#define NONAME_MANAGEMENTMODE_H
+#ifndef NONAME_GUIMODEMANAGEMENT_H
+#define NONAME_GUIMODEMANAGEMENT_H
 
-#include <SFGUI/SFGUI.hpp>
-#include <SFGUI/Widgets.hpp>
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
 
@@ -21,5 +19,4 @@ private:
     sfg::Window::Ptr placeHolder;
 };
 
-
-#endif //NONAME_MANAGEMENTMODE_H
+#endif //NONAME_GUIMODEMANAGEMENT_H

@@ -6,7 +6,7 @@
     "hardness": 1,
     "texture": [0, 0],
     "isSolid": true,
-    "category": "unusable"
+    "category": 0
   },
   {
     "id": 1,
@@ -15,7 +15,7 @@
     "hardness" : 0,
     "texture": [1, 0],
     "isSolid": false,
-    "category": "unusable"
+    "category": 0
   },
   {
     "id": 2,
@@ -24,7 +24,7 @@
     "hardness" : 2.0,
     "texture": [2, 0],
     "isSolid": true,
-    "category": "plain blocks"
+    "category": 1
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "hardness" : 1.0,
     "texture": [3, 0],
     "isSolid": true,
-    "category": "plain blocks"
+    "category": 1
   },
   {
     "id": 4,
@@ -42,7 +42,7 @@
     "hardness": 1.0,
     "texture": [4, 0],
     "isSolid": true,
-    "category": "plain blocks"
+    "category": 1
   },
   {
     "id": 5,
@@ -51,7 +51,7 @@
     "hardness": 1.0,
     "texture": [5, 0],
     "isSolid": true,
-    "category": "ores"
+    "category": 2
   },
   {
     "id": 6,
@@ -60,7 +60,7 @@
     "hardness": 1.0,
     "texture": [6, 0],
     "isSolid": true,
-    "category": "ores"
+    "category": 2
   },
   {
     "id": 7,
@@ -69,6 +69,6 @@
     "hardness": 1.0,
     "texture": [7, 0],
     "isSolid": true,
-    "category": "ores"
+    "category": 2
   }
 ]
