@@ -27,7 +27,7 @@ class GameState : public State{
   
 public:
     void update(std::chrono::microseconds deltaTime) override;
-    void render() override;
+    void render(float deltaTime) override;
     void tick() override;
 
     GameState();
@@ -50,7 +50,7 @@ public:
     //! Returns a pointer to a GUI object
     std::shared_ptr<GUI> getGUI();
 
-private:
+  private:
     World world;
 
     //! Converts screen to world coordinates

@@ -112,8 +112,7 @@ void Game::render() {
     previous_render = now;
     debug.reportRenderTime(deltaTime);
     if (!states.empty()) {
-        getState().render();
-        dynamic_cast<GameState*>(&Game::getState())->getGUI()->display(renderWindow, deltaTime.count());
+        getState().render(deltaTime.count());
     }
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));

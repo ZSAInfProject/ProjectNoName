@@ -75,8 +75,10 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 
 }
 
-void GameState::render() {
-    Game::getRenderWindow().setView(camera);
+void GameState::render(float deltaTime) {
+    auto& renderWindow = Game::getRenderWindow();
+    
+    renderWindow.setView(camera);
     world.render(camera);
     for(auto& system : systems){
         if(system->getStage() == stageEnum::render) {
@@ -84,7 +86,8 @@ void GameState::render() {
                 system->processEntity(entity);
         }
     }
-    Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
+    renderWindow.setView(Game::getRenderWindow().getDefaultView());
+    gui->display(renderWindow, deltaTime);
 }
 void GameState::tick() {
     for(auto& system : systems){
@@ -182,6 +185,7 @@ std::shared_ptr<GameMode> GameState::getGameMode() {
     return gameMode;
 }
 
-std::shared_ptr<GUI> GameState::getGUI() {
+std::shared_ptr<GUI> GameState::getGUI()
+{
     return gui;
 }
