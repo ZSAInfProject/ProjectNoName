@@ -127,14 +127,9 @@ void GUIModeArchitect::createBlockTooltips() {
         char *test = new char[16];
         sprintf(test, "hardness: %5.1f", TileDatabase::get()[i].hardness);
         auto labelHardness = sfg::Label::Create(test);
-        auto image = sfg::Button::Create("image");
-        auto sfImage = sf::Image();
-        sfImage.create(80, 80, sf::Color(0xFF, 0x00, 0x00, 0x80));
-        auto img = sfg::Image::Create(sfImage);
-        image->SetRequisition(sf::Vector2f(80, 80));
 
         box->Pack(labelName);
-        box->Pack(img);
+        box->Pack(generateImage(i));
         box->Pack(labelCategory);
         box->Pack(labelSolid);
         box->Pack(labelHardness);
@@ -142,6 +137,21 @@ void GUIModeArchitect::createBlockTooltips() {
         blockTooltips.at(i)->Add(box);
         blockTooltips.at(i)->Show(false);
     }
+}
+
+sfg::Image::Ptr GUIModeArchitect::generateImage(int id) const {
+    sf::Texture texture;
+    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * 16, TileDatabase::get()[id].texture_y * 16 , 16, 16));
+    sf::Sprite sprite;
+    sprite.setTexture(texture, true);
+    sprite.setScale(5.f, 5.f);
+    sf::RenderTexture render;
+    render.clear();
+    render.create(80, 80);
+    render.draw(sprite);
+    render.display();
+    auto img = sfg::Image::Create((render.getTexture()).copyToImage());
+    return img;
 }
 
 void GUIModeArchitect::chooseCategory(int id) {

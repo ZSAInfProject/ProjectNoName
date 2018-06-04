@@ -42,6 +42,8 @@ private:
     void showFloatingTooltip(bool show, int id);
     //! Handles movement of tooltip @param id Tooltip to handle
     void moveFloatingTooltip(int id);
+
+    sfg::Image::Ptr generateImage(int id) const;
 };
 
 #endif //NONAME_GUIMODEARCHITECT_H
