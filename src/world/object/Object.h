@@ -4,13 +4,10 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <chrono>
+#include "../../entity/Entity.h"
 
-class Object {
-    int position[2];
-public:
-    void render(sf::RenderWindow);
-    void clickOn();
-    void update(std::chrono::microseconds deltaTime);
+class Object : public Entity {
+
 };
 
 
