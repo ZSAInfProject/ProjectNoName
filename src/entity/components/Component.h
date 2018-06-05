@@ -6,7 +6,8 @@ enum componentId{
     Position,
     Sprite,
     Camera,
-    Control
+    Control,
+    Inventory
 };
 
 class Component{

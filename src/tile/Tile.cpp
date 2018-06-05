@@ -39,6 +39,16 @@ Tile::Tile(nlohmann::json json) {
         texture_y = 0;
     }
 
+    if (json.find("drop") != json.end()) {
+        std::string type = json["drop"]["type"];
+        drop.type = getResourceType(type);
+        drop.amount = json["drop"]["amount"];
+    }
+    else{
+        drop.type = resourceType::unknown;
+        drop.amount = 0;
+    }
+
     if (json.find("isSolid") != json.end()) {
         isSolid = json["isSolid"].get<bool>();
     }
