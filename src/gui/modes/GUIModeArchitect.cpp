@@ -4,6 +4,7 @@
 #include "../../tile/TileDatabase.h"
 #include "../../Game.h"
 
+
 GUIModeArchitect::GUIModeArchitect() {
     categoryNames = TileDatabase::get().getCategoryNames();
     createCategorySelectorWindow();
@@ -53,7 +54,7 @@ void GUIModeArchitect::createCategorySelectorWindow() {
     categorySelectorWindow->SetScrollbarPolicy(
             sfg::ScrolledWindow::VERTICAL_ALWAYS | sfg::ScrolledWindow::HORIZONTAL_NEVER);
     categorySelectorWindow->SetRequisition(sf::Vector2f(60, 300));
-    categorySelectorWindow->SetAllocation(sf::FloatRect(sf::Vector2f(15, 404), sf::Vector2f(60, 150)));
+    categorySelectorWindow->SetAllocation(sf::FloatRect(sf::Vector2f(15, alloc.categorySelectorWindowPositionY), sf::Vector2f(60, 300)));
 
     auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.f);
     box->SetId("container");
@@ -61,7 +62,7 @@ void GUIModeArchitect::createCategorySelectorWindow() {
     for (int i = 0; i < categoryNames->size(); i++) {
         auto button = sfg::Button::Create(categoryNames->at(i));
         button->SetId("category" + i);
-        button->SetRequisition(sf::Vector2f(80, 80));
+        button->SetRequisition(sf::Vector2f(alloc.buttonSize, alloc.buttonSize));
         button->GetSignal(sfg::Widget::OnLeftClick).Connect([this, i] { chooseCategory(i); });
         box->Pack(button);
     }
@@ -79,7 +80,7 @@ void GUIModeArchitect::createCategoryWindow() {
         categoryWindows.at(i)->SetScrollbarPolicy(
                 sfg::ScrolledWindow::VERTICAL_NEVER | sfg::ScrolledWindow::HORIZONTAL_ALWAYS);
         categoryWindows.at(i)->SetRequisition(sf::Vector2f(300, 60));
-        categoryWindows.at(i)->SetAllocation(sf::FloatRect(sf::Vector2f(138, 599), sf::Vector2f(300, 60)));
+        categoryWindows.at(i)->SetAllocation(sf::FloatRect(sf::Vector2f(138, alloc.categoryWindowPositionY), sf::Vector2f(300, 60)));
     }
 }
 
@@ -100,7 +101,7 @@ void GUIModeArchitect::createBlockButtons() {
 
     for (int i = 0; i < TileDatabase::get().size(); i++) {
         auto button = sfg::Button::Create(TileDatabase::get()[i].name);
-        button->SetRequisition(sf::Vector2f(80, 80));
+        button->SetRequisition(sf::Vector2f(alloc.buttonSize, alloc.buttonSize));
         createBlockButtonsEvents(i, button);
         blocks.at(TileDatabase::get()[i].category)->Pack(button);
     }
@@ -116,7 +117,7 @@ void GUIModeArchitect::createBlockButtonsEvents(int id, sfg::Widget::Ptr button)
 void GUIModeArchitect::createBlockTooltips() {
     for (int i = 0; i < TileDatabase::get().size(); i++) {
         blockTooltips.push_back(sfg::Window::Create(0b00010));
-        blockTooltips.at(i)->SetPosition(sf::Vector2f(1130, 505));
+        blockTooltips.at(i)->SetPosition(sf::Vector2f(alloc.tooltipPositionX, alloc.tooltipPositionY));
         blockTooltips.at(i)->SetRequisition(sf::Vector2f(125, 200));
 
         auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.f);
@@ -124,9 +125,9 @@ void GUIModeArchitect::createBlockTooltips() {
         auto labelCategory = sfg::Label::Create(categoryNames->at(TileDatabase::get()[i].category));
         auto labelSolid = sfg::Label::Create((TileDatabase::get()[i].isSolid) ? "solid" : "not solid");
         auto labelName = sfg::Label::Create(TileDatabase::get()[i].name);
-        char *test = new char[16];
-        sprintf(test, "hardness: %5.1f", TileDatabase::get()[i].hardness);
-        auto labelHardness = sfg::Label::Create(test);
+        char *hardnessText = new char[16];
+        sprintf(hardnessText, "hardness: %5.1f", TileDatabase::get()[i].hardness);
+        auto labelHardness = sfg::Label::Create(hardnessText);
 
         box->Pack(labelName);
         box->Pack(generateImage(i));
@@ -141,17 +142,16 @@ void GUIModeArchitect::createBlockTooltips() {
 
 sfg::Image::Ptr GUIModeArchitect::generateImage(int id) const {
     sf::Texture texture;
-    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * 16, TileDatabase::get()[id].texture_y * 16 , 16, 16));
+    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * Chunk::TILE_SIZE, TileDatabase::get()[id].texture_y * Chunk::TILE_SIZE , Chunk::TILE_SIZE, Chunk::TILE_SIZE));
     sf::Sprite sprite;
     sprite.setTexture(texture, true);
-    sprite.setScale(5.f, 5.f);
+    sprite.setScale(alloc.blockScale, alloc.blockScale);
     sf::RenderTexture render;
     render.clear();
-    render.create(80, 80);
+    render.create(alloc.buttonSize, alloc.buttonSize);
     render.draw(sprite);
     render.display();
-    auto img = sfg::Image::Create((render.getTexture()).copyToImage());
-    return img;
+    return sfg::Image::Create((render.getTexture()).copyToImage());
 }
 
 void GUIModeArchitect::chooseCategory(int id) {
@@ -161,7 +161,7 @@ void GUIModeArchitect::chooseCategory(int id) {
 }
 
 void GUIModeArchitect::chooseBlock(int id) {
-    blockTooltips.at(id)->SetPosition(sf::Vector2f(1130, 505));
+    blockTooltips.at(id)->SetPosition(sf::Vector2f(alloc.tooltipPositionX, alloc.tooltipPositionY));
     blockTooltips.at(lastTooltip)->Show(false);
     blockTooltips.at(id)->Show(true);
     lastTooltip = id;

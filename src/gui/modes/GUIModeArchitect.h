@@ -3,6 +3,8 @@
 
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
+#include "../../world/chunk/Chunk.h"
+#include "GUIAllocation.h"
 
 class GUIModeArchitect : public GUIMode {
 public:
@@ -23,6 +25,8 @@ private:
     std::vector<sfg::ScrolledWindow::Ptr> categoryWindows;
     std::vector<sfg::Window::Ptr> blockTooltips;
 
+    ArchitectModeAllocation alloc = ArchitectModeAllocation(1.5f);
+
     //! Generates categorySelectorWindow
     void createCategorySelectorWindow();
     //! Generates categoryWindows
@@ -42,7 +46,7 @@ private:
     void showFloatingTooltip(bool show, int id);
     //! Handles movement of tooltip @param id Tooltip to handle
     void moveFloatingTooltip(int id);
-
+    //! Generates images for tooltips @param id Tooltip's id
     sfg::Image::Ptr generateImage(int id) const;
 };
 

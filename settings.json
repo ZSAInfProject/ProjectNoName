@@ -1,6 +1,6 @@
 {
   "resolution_x": 1280,
-  "resolution_y": 720,
+  "resolution_y": 864,
   "log_mode": "DEBUG",
   "logfile": "Log.txt",
   "save_path": "saves/1/"
