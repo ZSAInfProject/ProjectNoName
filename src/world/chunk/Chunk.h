@@ -8,6 +8,7 @@
 #include <chrono>
 #include "../object/Object.h"
 #include "../../../deps/json.h"
+#include "../../utils/Buffer.h"
 
 //! Representation of a tile in a chunk
 class ChunkTile{
@@ -17,6 +18,7 @@ public:
     //! Amount of material in one tile
     uint amount;
 
+    void serialize(Buffer&);
     static constexpr auto TAG = "ChunkTile";
     ChunkTile() = default;
     ChunkTile(short tileId, uint amount);
