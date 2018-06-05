@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "World.h"
 #include "../tile/Tile.h"
 #include "../utils/Log.h"
@@ -58,4 +59,14 @@ short World::mineTile(int x, int y) {
         setTile(x, y, tile);
     }
     return id;
+}
+
+std::vector<std::shared_ptr<Object>> World::getObjectsForUpdate() {
+    std::vector<std::shared_ptr<Object>> vector;
+    for (auto& chunk : chunkDatabase.chunkCache) {
+        for (auto& object : chunk.second.chunk->objects) {
+            vector.push_back(object);
+        }
+    }
+    return vector;
 }

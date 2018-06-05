@@ -17,9 +17,10 @@ struct CacheEntry{
  * if they are not in the cache.
  */
 class ChunkDatabase {
-    std::map<std::tuple<int, int>, CacheEntry> chunkCache;
     std::unique_ptr<ChunkGenerator> chunkGenerator;
 public:
+    std::map<std::tuple<int, int>, CacheEntry> chunkCache;
+
     //! Gets Chunk from database
     /*!
      * Return a pointer to requested Chunk. Any changes to the Chunk are

@@ -40,6 +40,11 @@ void GameState::update(std::chrono::microseconds deltaTime) {
         if(system->getStage() == stageEnum::update) {
             for (auto &entity : entities) {
                 system->processEntity(entity, deltaTime);
+
+            }
+            auto objects = world.getObjectsForUpdate();
+            for (auto& object : objects){
+                system->processEntity(std::static_pointer_cast<Entity>(object), deltaTime);
             }
         }
     }
@@ -74,6 +79,10 @@ void GameState::render() {
         if(system->getStage() == stageEnum::render) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            auto objects = world.getObjectsForUpdate();
+            for (auto& object : objects){
+                system->processEntity(std::static_pointer_cast<Entity>(object));
+            }
         }
     }
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
@@ -83,6 +92,10 @@ void GameState::tick() {
         if(system->getStage() == stageEnum::tick) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            auto objects = world.getObjectsForUpdate();
+            for (auto& object : objects){
+                system->processEntity(std::static_pointer_cast<Entity>(object));
+            }
         }
     }
 }

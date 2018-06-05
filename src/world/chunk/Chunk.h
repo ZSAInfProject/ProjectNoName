@@ -27,9 +27,10 @@ class Chunk {
 public:
     static const int SIDE_LENGTH = 32;
     static const int TILE_SIZE = 16;
+
+    std::vector<std::shared_ptr<Object>> objects;
 private:
     std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
-    std::vector<std::unique_ptr<Object>> objects;
 
     void generateVertices();
     void changeQuad(int x, int y);

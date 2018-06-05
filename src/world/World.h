@@ -2,6 +2,7 @@
 #define NONAME_WORLD_H
 
 
+#include <vector>
 #include "chunk/ChunkDatabase.h"
 #include "../tile/Tile.h"
 
@@ -23,6 +24,8 @@ public:
      * @return tile id BEFORE mining
      */
     short mineTile(int x, int y);
+
+    std::vector<std::shared_ptr<Object>> getObjectsForUpdate();
 
     explicit World(int seed);
 
