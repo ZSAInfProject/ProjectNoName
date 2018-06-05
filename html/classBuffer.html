@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>My Project: Member List</title>
+<title>My Project: Buffer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,21 +81,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classBuffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ChunkTile Member List</div>  </div>
+<div class="title">Buffer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="classChunkTile.html">ChunkTile</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classChunkTile.html#a29ac3a16c7075941a5c483f1a3372364">amount</a></td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ChunkTile</b>()=default (defined in <a class="el" href="classChunkTile.html">ChunkTile</a>)</td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ChunkTile</b>(short tileId, uint amount) (defined in <a class="el" href="classChunkTile.html">ChunkTile</a>)</td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>ChunkTile</b>(nlohmann::json) (defined in <a class="el" href="classChunkTile.html">ChunkTile</a>)</td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>serialize</b>(Buffer &amp;) (defined in <a class="el" href="classChunkTile.html">ChunkTile</a>)</td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>TAG</b> (defined in <a class="el" href="classChunkTile.html">ChunkTile</a>)</td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classChunkTile.html#ac7277fa1d196411449a646d3eed73b39">tileId</a></td><td class="entry"><a class="el" href="classChunkTile.html">ChunkTile</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a0c119cd2bde0f5e099ae5a7d603edf57"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0c119cd2bde0f5e099ae5a7d603edf57"></a>
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0c119cd2bde0f5e099ae5a7d603edf57"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>io</b> (T *ptr)</td></tr>
+<tr class="separator:a0c119cd2bde0f5e099ae5a7d603edf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3658c31d018d2b35aece3adc7b174607"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3658c31d018d2b35aece3adc7b174607"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const std::string &amp;filename)</td></tr>
+<tr class="separator:a3658c31d018d2b35aece3adc7b174607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7972aa16337fe9ad4ea68bbd384cae5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7972aa16337fe9ad4ea68bbd384cae5e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>save</b> (const std::string &amp;filename)</td></tr>
+<tr class="separator:a7972aa16337fe9ad4ea68bbd384cae5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b59c9981c93320d2ce9d383aef7e4c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b59c9981c93320d2ce9d383aef7e4c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMode</b> (enum bufferMode _mode)</td></tr>
+<tr class="separator:a9b59c9981c93320d2ce9d383aef7e4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4715e0d06e79cfa7c69a77ab240b437c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4715e0d06e79cfa7c69a77ab240b437c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Buffer</b> (enum bufferMode _mode, int size=1)</td></tr>
+<tr class="separator:a4715e0d06e79cfa7c69a77ab240b437c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/travis/build/ZSAInfProject/ProjectNoName/src/utils/<a class="el" href="Buffer_8h_source.html">Buffer.h</a></li>
+<li>/home/travis/build/ZSAInfProject/ProjectNoName/src/utils/Buffer.cpp</li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
