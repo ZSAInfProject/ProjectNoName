@@ -1,15 +1,20 @@
 #include "GUI.h"
 #include "../Game.h"
 #include "../state/GameState.h"
+#include "GUIAllocation.h"
 
-GUI::GUI(int mode) {
+GUI::GUI(int mode) : GUI(mode, 1.f) {   }
+
+GUI::GUI(int mode, float scale) {
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeMiner()));
-    GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeArchitect()));
+    GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeArchitect(scale)));
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeManagement()));
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher(GUIModes.at(mode)->getName())));
     GUIModes.at(mode)->addWindows(desktop);
     GUIModes.back()->addWindows(desktop);
     desktop.LoadThemeFromFile("themes.txt");
+    alloc = std::unique_ptr<GUIAllocation>(new GUIAllocation(scale));
+    desktop.SetProperty("*", "FontSize", alloc->fontSize);
 }
 
 bool GUI::handleEvent(sf::Event& event) {

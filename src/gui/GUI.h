@@ -15,10 +15,13 @@
  */
 class GUI {
 public:
+    //! GUI with default scale @param mode mode to load during a start-up
+    GUI(int mode);
     /*!
      * @param mode mode to load during a start-up
+     * @param scale GUI scale
      */
-    GUI(int mode);
+    GUI(int mode, float scale);
     /*!
      * Handles events related to gui
      * @param event Event to handle
@@ -37,6 +40,8 @@ public:
 private:
     sfg::Desktop desktop;
     sfg::SFGUI sfgui;
+
+    std::unique_ptr<GUIAllocation> alloc;
 
     sf::Event event;
     //! A vector which stores every gui mode

@@ -1,7 +1,15 @@
+* {
+    FontName: DejaVuSansMono.ttf;
+}
+
 Window {
     BackgroundColor: #00FF0080;
 }
 
 Window > * > Label {
     Color: #000000FF;
+}
+
+ScrolledWindow {
+    /*BorderWidth: 0;*/
 }

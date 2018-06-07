@@ -4,11 +4,11 @@
 #include "GUIMode.h"
 #include "../../state/GameMode.h"
 #include "../../world/chunk/Chunk.h"
-#include "GUIAllocation.h"
+#include "../GUIAllocation.h"
 
 class GUIModeArchitect : public GUIMode {
 public:
-    GUIModeArchitect();
+    GUIModeArchitect(float scale);
     bool handleEvent(sf::Event &event) override;
     void addWindows(sfg::Desktop& desktop) override;
     void removeWindows(sfg::Desktop& desktop) override;
@@ -25,7 +25,7 @@ private:
     std::vector<sfg::ScrolledWindow::Ptr> categoryWindows;
     std::vector<sfg::Window::Ptr> blockTooltips;
 
-    ArchitectModeAllocation alloc = ArchitectModeAllocation(1.5f);
+    std::unique_ptr<ArchitectModeAllocation> alloc;
 
     //! Generates categorySelectorWindow
     void createCategorySelectorWindow();
@@ -48,6 +48,13 @@ private:
     void moveFloatingTooltip(int id);
     //! Generates images for tooltips @param id Tooltip's id
     sfg::Image::Ptr generateImage(int id) const;
+    /*!
+     * Refactors string to have no more than LineSize charaters in each line
+     * @param str String to refactor
+     * @param lineSize Size of a line
+     * @return Returns refactored string
+     */
+    std::string refactorString(std::string str, int lineSize);
 };
 
 #endif //NONAME_GUIMODEARCHITECT_H

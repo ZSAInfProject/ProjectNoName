@@ -39,7 +39,7 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     gameModes.push_back(std::shared_ptr<GameMode>(new ArchitectMode()));
     gameModes.push_back(std::shared_ptr<GameMode>(new ManagementMode()));
     gameMode = gameModes.at(GameMode::architectMode);
-    gui = std::shared_ptr<GUI>(new GUI(gameMode->getTag()));
+    gui = std::shared_ptr<GUI>(new GUI(gameMode->getTag(), 1.f));
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
