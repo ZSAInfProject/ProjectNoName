@@ -25,7 +25,9 @@ public:
      */
     short mineTile(int x, int y);
 
-    std::vector<std::shared_ptr<Object>> getObjectsForUpdate();
+    void addObject(std::shared_ptr<Entity> object);
+
+    std::vector<std::shared_ptr<Entity>> getObjectsForUpdate();
 
     explicit World(int seed);
 

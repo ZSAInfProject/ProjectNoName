@@ -4,6 +4,7 @@
 #include "../tile/Tile.h"
 #include "../utils/Log.h"
 #include "../Game.h"
+#include "../entity/components/ObjectPosition.h"
 
 World::World(int seed) : chunkDatabase(std::make_unique<ChunkGenerator>(seed)){
 
@@ -61,12 +62,37 @@ short World::mineTile(int x, int y) {
     return id;
 }
 
-std::vector<std::shared_ptr<Object>> World::getObjectsForUpdate() {
-    std::vector<std::shared_ptr<Object>> vector;
+std::vector<std::shared_ptr<Entity>> World::getObjectsForUpdate() {
+    std::vector<std::shared_ptr<Entity>> vector;
     for (auto& chunk : chunkDatabase.chunkCache) {
         for (auto& object : chunk.second.chunk->objects) {
             vector.push_back(object);
         }
     }
     return vector;
+}
+
+void World::addObject(std::shared_ptr<Entity> object) {
+    auto* opc = object->getComponent<ObjectPositionComponent>();
+    if (!opc){
+        Log::warn(TAG, "Object added without object position");
+        object->addComponent<ObjectPositionComponent>(std::make_unique<ObjectPositionComponent>());
+        opc = object->getComponent<ObjectPositionComponent>();
+    }
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * opc->position.x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * opc->position.y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(opc->position.x, Chunk::SIDE_LENGTH);
+    tile.y = mod(opc->position.y, Chunk::SIDE_LENGTH);
+
+    if (getTile(tile.x, tile.y).objectId != -1) {
+        Log::info(TAG, "Added object in place of another. Aborting");
+        return;
+    }
+
+    chunkDatabase.getChunk(chunk.x, chunk.y)->objects.push_back(object);
+    auto id = chunkDatabase.getChunk(chunk.x, chunk.y)->objects.size() - 1;
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTileObject(tile.x, tile.y, id);
 }
