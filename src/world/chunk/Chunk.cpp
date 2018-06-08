@@ -1,6 +1,7 @@
 #include "Chunk.h"
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
+#include "../../utils/Buffer.h"
 
 #include <fstream>
 #include <iostream>
@@ -48,16 +49,11 @@ void Chunk::setTile(int x, int y, ChunkTile value) {
 void Chunk::save(const std::string &fileName) {
 
     //Save tiles
-    std::ofstream tileData(fileName+".td");
+    Buffer buffer(bufferMode::store);
     for(ChunkTile tile : tiles) {
-        if(tileData.good()) {
-            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Saving to " + fileName + ".td file failed!");
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
+    buffer.save(fileName+".td");
 
     //Save objects
     std::ofstream objectData(fileName+".json");
@@ -76,24 +72,16 @@ void Chunk::save(const std::string &fileName) {
     objectData.close();
 }
 
-bool Chunk::load(const std::string &filename) {
-    std::ifstream tileData;
-    tileData.open(filename+".td", std::ifstream::in | std::ifstream::binary);
-    if(!tileData.is_open()){
+bool Chunk::load(const std::string &filename){
+  
+    Buffer buffer(bufferMode::load);
+    if(!buffer.load(filename+".td"))
         return false;
-    }
 
     //Load tiles
     for(ChunkTile& tile : tiles){
-        if(tileData.good()) {
-            tileData.read(reinterpret_cast<char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Loading from " + filename + ".td failed!");
-            return false;
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
 
     updateQuads();
 
@@ -106,7 +94,6 @@ bool Chunk::load(const std::string &filename) {
             objects.push_back(std::make_shared<Entity>(object));
         }
     }
-
     return true;
 }
 
@@ -175,5 +162,10 @@ ChunkTile::ChunkTile(short tileId_, uint amount_, short objectId_) {
     tileId = tileId_;
     amount = amount_;
     objectId = objectId_;
+}
+
+void ChunkTile::serialize(Buffer& buffer) {
+    buffer.io<short>(&tileId);
+    buffer.io<uint>(&amount);
 }
 
