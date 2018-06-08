@@ -58,6 +58,7 @@ public:
     const int tooltipPositionY;
 
     const float boxSpacing;
+
 private:
     static const int baseBlockSize = 80;
     static const int baseCategorySelectorWindowHeight = 300;

@@ -1,8 +1,6 @@
 #include "ManagementMode.h"
 
-ManagementMode::ManagementMode() {
-
-}
+ManagementMode::ManagementMode() { }
 
 int ManagementMode::getTag() {
     return tag;

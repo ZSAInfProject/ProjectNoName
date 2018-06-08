@@ -1,8 +1,6 @@
 #include "ArchitectMode.h"
 
-ArchitectMode::ArchitectMode() {
-
-}
+ArchitectMode::ArchitectMode() {}
 
 int ArchitectMode::getTag() {
     return tag;

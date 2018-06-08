@@ -153,7 +153,7 @@ void GUIModeArchitect::createBlockTooltips() {
 
 sfg::Image::Ptr GUIModeArchitect::generateImage(int id) const {
     sf::Texture texture;
-    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * Chunk::TILE_SIZE,
+    texture.loadFromFile("res/texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * Chunk::TILE_SIZE,
                                                     TileDatabase::get()[id].texture_y * Chunk::TILE_SIZE,
                                                     Chunk::TILE_SIZE, Chunk::TILE_SIZE));
     sf::Sprite sprite;

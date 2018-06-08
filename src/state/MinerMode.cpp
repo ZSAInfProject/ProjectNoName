@@ -1,8 +1,6 @@
 #include "MinerMode.h"
 
-MinerMode::MinerMode() {
-
-}
+MinerMode::MinerMode() { }
 
 int MinerMode::getTag() {
     return tag;

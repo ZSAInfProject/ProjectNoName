@@ -6,7 +6,6 @@
  */
 class GameMode {
 public:
-
     enum gameModesEnum{
         minerMode = 0,
         architectMode,

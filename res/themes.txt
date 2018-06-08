@@ -1,5 +1,5 @@
 * {
-    FontName: DejaVuSansMono.ttf;
+    FontName: res/DejaVuSansMono.ttf;
 }
 
 Window {
