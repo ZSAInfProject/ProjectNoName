@@ -7,5 +7,6 @@ var searchData=
   ['reportplayerentity',['reportPlayerEntity',['../classDebug.html#a16c4480a7c46cf2190ad174d38f27c64',1,'Debug']]],
   ['reportrendertime',['reportRenderTime',['../classDebug.html#a1e30c7b1d66117085ee8705c5dbe2938',1,'Debug']]],
   ['reportupdatetime',['reportUpdateTime',['../classDebug.html#afe8811f313b908598f9da5a48abdf6d9',1,'Debug']]],
+  ['resource',['Resource',['../structResource.html',1,'']]],
   ['run',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
 ];

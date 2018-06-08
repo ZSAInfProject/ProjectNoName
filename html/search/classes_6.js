@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['motionsystem',['MotionSystem',['../classMotionSystem.html',1,'']]]
+  ['log',['Log',['../classLog.html',1,'']]],
+  ['logsubscriber',['LogSubscriber',['../classLogSubscriber.html',1,'']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['save',['save',['../classChunk.html#ac3e70286e057eb0f93accec639047097',1,'Chunk']]],
+  ['screen_5fto_5fglobal_5foffset',['screen_to_global_offset',['../classGameState.html#a945e9dfe15e3708799977ed8133f7678',1,'GameState']]],
   ['secondarymaterial',['SecondaryMaterial',['../classSecondaryMaterial.html',1,'']]],
   ['setfile',['setFile',['../classSettings.html#ae78776f5925ddc2eb747e9df6521c975',1,'Settings']]],
   ['setkeyboardkey',['setKeyboardKey',['../classControls.html#a47b500a4326b1876afa64989cedcc2a7',1,'Controls']]],
