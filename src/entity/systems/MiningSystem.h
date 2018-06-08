@@ -27,7 +27,7 @@ public:
         auto now = std::chrono::system_clock::now();
         auto mineTime = std::chrono::duration_cast<std::chrono::microseconds>(now - miningComponent->lastMine);
         if(mineTime > miningComponent->miningDuration && miningComponent->miningInProgress) {
-            miningComponent->miningLeft -= dt.count()*10e5;
+            miningComponent->miningLeft -= 1;
             if(miningComponent->miningLeft <= 0){
                 miningComponent->miningInProgress = false;
                 int id = gameState.getWorld().mineTile(miningComponent->miningTarget.x, miningComponent->miningTarget.y);
