@@ -17,6 +17,7 @@
 
 class MiningSystem : public System{
     GameState& gameState;
+
 public:
     void processEntity(std::shared_ptr<Entity> entity, std::chrono::microseconds dt = std::chrono::microseconds(0)) override {
         auto* miningComponent = entity->getComponent<MiningComponent>();
@@ -47,13 +48,11 @@ public:
             if (position.y < 0) tile.y -= 1;
             gameState.getWorld().setTile(tile.x, tile.y, {2,1});
         }
-
     }
     stageEnum getStage() override { return stageEnum::update; };
 
     MiningSystem(GameState& _gameState) : gameState(_gameState){
     };
-
 };
 
 #endif //NONAME_MININGSYSTEM_H

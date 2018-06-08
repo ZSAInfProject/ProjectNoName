@@ -14,18 +14,26 @@ Entity::Entity(nlohmann::json json) {
         if (json.find("components") != json.end()) {
             for (auto &component : json["components"]) {
                 if (component.find("type") != component.end()) {
+                    bool enabled;
+                    if (component.find("enabled") != component.end()) {
+                        enabled = component["enabled"].get<bool>();
+                    }
+                    else {
+                        enabled = true;
+                    }
+
                     if (component["type"].get<std::string>() == "Position")
-                        addComponent<PositionComponent>(std::make_unique<PositionComponent>(component));
+                        addComponent<PositionComponent>(std::make_unique<PositionComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Sprite")
-                        addComponent<SpriteComponent>(std::make_unique<SpriteComponent>(component));
+                        addComponent<SpriteComponent>(std::make_unique<SpriteComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Control")
-                        addComponent<ControlComponent>(std::make_unique<ControlComponent>(component));
+                        addComponent<ControlComponent>(std::make_unique<ControlComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Camera")
-                        addComponent<CameraComponent>(std::make_unique<CameraComponent>(component));
+                        addComponent<CameraComponent>(std::make_unique<CameraComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Inventory")
-                        addComponent<InventoryComponent>(std::make_unique<InventoryComponent>(component));
+                        addComponent<InventoryComponent>(std::make_unique<InventoryComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Mining")
-                        addComponent<MiningComponent>(std::make_unique<MiningComponent>(component));
+                        addComponent<MiningComponent>(std::make_unique<MiningComponent>(component), enabled);
                     else {
                         Log::warn(TAG, "Component type in entity: " + json["name"].get<std::string>() + " is invalid");
                     }
@@ -43,7 +51,7 @@ Entity::Entity(nlohmann::json json) {
 
 Entity::Entity(Entity &old) {
     for (auto &component : old.components) {
-        components[component.first] = std::move(component.second->clone());
+        components[component.first] = std::make_pair(std::move(component.second.first->clone()), component.second.second);
     }
 }
 
@@ -51,7 +59,9 @@ nlohmann::json Entity::serialize() {
     nlohmann::json json;
     json["name"]=name;
     for(auto& component : components){
-        json["components"].push_back(component.second->serialize());
+        auto comp = component.second.first->serialize();
+        comp["enabled"] = component.second.second;
+        json["components"].push_back(comp);
     }
     return json;
 }

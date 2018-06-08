@@ -16,12 +16,18 @@
 class Entity {
     int ID;
 public:
-    std::unordered_map<uint, std::unique_ptr<Component>> components;
+    std::unordered_map<uint, std::pair<std::unique_ptr<Component>, bool>> components;
 
     template<typename T>
     void addComponent(std::unique_ptr<Component> component)
     {
-        components[int(T::Id)] = std::move(component);
+        components[int(T::Id)] = std::make_pair(std::move(component), true);
+    }
+
+    template<typename T>
+    void addComponent(std::unique_ptr<Component> component, bool enabled)
+    {
+        components[int(T::Id)] = std::make_pair(std::move(component), enabled);
     }
 
     template<typename T>
@@ -31,7 +37,30 @@ public:
         auto it = components.find(id);
         if (it == components.end())
             return nullptr;
-        return dynamic_cast<T*>(it->second.get());
+        if (!it->second.second) {
+            return nullptr;
+        }
+        return dynamic_cast<T*>(it->second.first.get());
+    }
+
+    template<typename T>
+    void enable()
+    {
+        uint id = T::Id;
+        auto it = components.find(id);
+        if (it == components.end())
+            return;
+        it->second.second = true;
+    }
+
+    template<typename T>
+    void disable()
+    {
+        uint id = T::Id;
+        auto it = components.find(id);
+        if (it == components.end())
+            return;
+        it->second.second = false;
     }
 
     nlohmann::json serialize();

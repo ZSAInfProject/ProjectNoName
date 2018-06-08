@@ -9,6 +9,7 @@
 
 class ControlSystem : public System{
     GameState& gameState;
+
 public:
     stageEnum getStage() override { return update; };
     void processEntity(std::shared_ptr<Entity> entity, std::chrono::microseconds dt) override {
