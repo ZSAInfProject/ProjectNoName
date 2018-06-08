@@ -26,6 +26,7 @@ public:
     short mineTile(int x, int y);
 
     void addObject(std::shared_ptr<Entity> object);
+    void removeObject(int x, int y);
 
     std::vector<std::shared_ptr<Entity>> getObjectsForUpdate();
 

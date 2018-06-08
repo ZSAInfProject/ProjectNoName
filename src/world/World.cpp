@@ -96,3 +96,17 @@ void World::addObject(std::shared_ptr<Entity> object) {
     auto id = chunkDatabase.getChunk(chunk.x, chunk.y)->objects.size() - 1;
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTileObject(tile.x, tile.y, id);
 }
+
+void World::removeObject(int x, int y) {
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
+
+    auto index = chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y).objectId;
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTileObject(tile.x, tile.y, -1);
+    chunkDatabase.getChunk(chunk.x, chunk.y)->objects[index] = std::make_shared<Entity>();
+}
