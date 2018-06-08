@@ -4,6 +4,7 @@
 #include <string>
 
 #include "../../deps/json.h"
+#include "../utils/Resource.h"
 
 //! Represents Tile - 1x1 game block
 /*!
@@ -15,7 +16,7 @@ public:
     Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y, bool isSolid);
     Tile();
 
-
+    Resource drop;
     //! Tile name showed to player
     std::string name;
     //! Hardness of a material. Correlates to time needed to destroy.

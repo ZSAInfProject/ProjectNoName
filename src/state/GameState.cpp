@@ -11,6 +11,7 @@
 #include "../entity/systems/ControlSystem.h"
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/systems/CameraSystem.h"
+#include "../entity/systems/MiningSystem.h"
 #include "../entity/components/ObjectPosition.h"
 
 #ifdef __unix__
@@ -50,30 +51,6 @@ void GameState::update(std::chrono::microseconds deltaTime) {
             }
         }
     }
-
-    if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-        position = screen_to_global_offset(position);
-        sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-        if (position.x < 0) tile.x -= 1;
-        if (position.y < 0) tile.y -= 1;
-        world.mineTile(tile.x, tile.y);
-
-    }
-    if (Controls::isMouseButtonPressed(sf::Mouse::Right)) {
-        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-        position = screen_to_global_offset(position);
-        sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-        if (position.x < 0) tile.x -= 1;
-        if (position.y < 0) tile.y -= 1;
-        auto object = entityFactory.get("Ladder");
-        object->getComponent<ObjectPositionComponent>()->position = {tile.x, tile.y};
-        world.addObject(object);
-
-    }
-
 }
 
 void GameState::render() {
@@ -139,8 +116,9 @@ sf::View &GameState::getCamera() {
 }
 
 void GameState::loadSystems() {
-    systems.push_back(std::make_unique<ControlSystem>());
+    systems.push_back(std::make_unique<ControlSystem>(*this));
     systems.push_back(std::make_unique<MotionSystem>());
+    systems.push_back(std::make_unique<MiningSystem>(*this));
     systems.push_back(std::make_unique<CameraSystem>(camera));
     systems.push_back(std::make_unique<RenderSystem>());
 }

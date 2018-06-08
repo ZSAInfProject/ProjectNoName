@@ -6,6 +6,8 @@
 #include "components/Camera.h"
 #include "components/ObjectPosition.h"
 #include "../utils/Log.h"
+#include "components/Inventory.h"
+#include "components/Mining.h"
 
 Entity::Entity(nlohmann::json json) {
     ID = 0;
@@ -30,6 +32,10 @@ Entity::Entity(nlohmann::json json) {
                         addComponent<ControlComponent>(std::make_unique<ControlComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Camera")
                         addComponent<CameraComponent>(std::make_unique<CameraComponent>(component), enabled);
+                    else if (component["type"].get<std::string>() == "Inventory")
+                        addComponent<InventoryComponent>(std::make_unique<InventoryComponent>(component), enabled);
+                    else if (component["type"].get<std::string>() == "Mining")
+                        addComponent<MiningComponent>(std::make_unique<MiningComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "ObjectPosition")
                         addComponent<ObjectPositionComponent>(std::make_unique<ObjectPositionComponent>(component), enabled);
                     else {

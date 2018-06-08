@@ -25,6 +25,9 @@ public:
     void render() override;
     void tick() override;
 
+    //! Converts screen to world coordinates
+    sf::Vector2f screen_to_global_offset(sf::Vector2f in);
+
     GameState();
     ~GameState();
 
@@ -33,9 +36,6 @@ public:
 
 private:
     World world;
-
-    //! Converts screen to world coordinates
-    sf::Vector2f screen_to_global_offset(sf::Vector2f in);
 
     //! Vector containing all the entities currently active
     std::vector<std::shared_ptr<Entity>> entities;
