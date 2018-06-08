@@ -6,9 +6,10 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <vector>
 #include <chrono>
-#include "../object/Object.h"
 #include "../../../deps/json.h"
+#include "../../entity/Entity.h"
 #include "../../utils/Buffer.h"
+
 
 //! Representation of a tile in a chunk
 class ChunkTile{
@@ -17,11 +18,12 @@ public:
     short tileId;
     //! Amount of material in one tile
     uint amount;
-
+    short objectId;
     void serialize(Buffer&);
+
     static constexpr auto TAG = "ChunkTile";
     ChunkTile() = default;
-    ChunkTile(short tileId, uint amount);
+    ChunkTile(short tileId, uint amount, short objectId = -1);
     explicit ChunkTile(nlohmann::json);
 };
 
@@ -29,9 +31,10 @@ class Chunk {
 public:
     static const int SIDE_LENGTH = 32;
     static const int TILE_SIZE = 16;
+
+    std::vector<std::shared_ptr<Entity>> objects;
 private:
     std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
-    std::vector<std::unique_ptr<Object>> objects;
 
     void generateVertices();
     void changeQuad(int x, int y);
@@ -91,6 +94,7 @@ public:
      * @param value a new value of the tile
      */
     void setTile(int x, int y, ChunkTile value);
+    void setTileObject(int x, int y, short objectId);
 
     Chunk();
     explicit Chunk(const std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH>& _tiles);

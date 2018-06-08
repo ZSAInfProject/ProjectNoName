@@ -23,5 +23,10 @@ EntityFactory::EntityFactory(std::string file) {
 }
 
 std::shared_ptr<Entity> EntityFactory::get(std::string name) {
+    if (entities.find(name) == entities.end())
+    {
+        Log::error(TAG, "No entity named: " + name);
+        return nullptr;
+    }
     return std::make_shared<Entity>(*entities[name]);
 }
