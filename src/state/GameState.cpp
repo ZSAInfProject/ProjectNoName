@@ -12,6 +12,7 @@
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/systems/CameraSystem.h"
 #include "../entity/systems/MiningSystem.h"
+#include "../entity/components/ObjectPosition.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -33,36 +34,49 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     if(!loadEntities()){
         entities.push_back(entityFactory.get("Player"));
     }
+
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
     Game::get().debug.reportEntityCount(static_cast<int>(entities.size()));
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::update) {
             for (auto &entity : entities) {
                 system->processEntity(entity, deltaTime);
+
+            }
+            for (auto& object : objects){
+                system->processEntity(object, deltaTime);
             }
         }
     }
-
 }
 
 void GameState::render() {
     Game::getRenderWindow().setView(camera);
     world.render(camera);
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::render) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            for (auto& object : objects){
+                system->processEntity(object);
+            }
         }
     }
     Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 void GameState::tick() {
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::tick) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            for (auto& object : objects){
+                system->processEntity(object);
+            }
         }
     }
 }
