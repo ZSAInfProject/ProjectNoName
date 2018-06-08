@@ -13,7 +13,8 @@
 class Tile {
 public:
     explicit Tile(nlohmann::json json);
-    Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y, bool isSolid);
+    Tile(std::string name, float hardness, std::string terminal_representation,
+         int texture_x, int texture_y, bool isSolid, int category);
     Tile();
 
     Resource drop;
@@ -29,6 +30,8 @@ public:
     int texture_y;
     //! Tells if entity can pass through
     bool isSolid;
+    //! Category of the tile
+    int category;
 
 private:
     static constexpr auto TAG = "Tile";

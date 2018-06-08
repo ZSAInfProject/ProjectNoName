@@ -51,3 +51,11 @@ void TileDatabase::loadTexture(std::string file) {
         Log::warn(TAG, "Could not load textures");
     }
 }
+
+std::shared_ptr<std::vector<std::string>> TileDatabase::getCategoryNames() {
+    return categoryNames;
+}
+
+int TileDatabase::size() {
+    return tiles.size();
+}

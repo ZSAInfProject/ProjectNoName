@@ -56,10 +56,20 @@ Tile::Tile(nlohmann::json json) {
         Log::warn(TAG, "No isSolid for tile specified");
         isSolid = true;
     }
+
+    if(json.find("category") != json.end()){
+        category = json["category"].get<int>();
+    }
+    else {
+        Log::warn(TAG, "No category for tile specified");
+        category = 0;
+    }
 }
 
-Tile::Tile(std::string name, float hardness, std::string terminal_representation, int texture_x, int texture_y, bool isSolid)
-        : name(std::move(name)), hardness(hardness), terminal_representation(std::move(terminal_representation)), texture_x(texture_x), texture_y(texture_y), isSolid(isSolid) {}
+Tile::Tile(std::string name, float hardness, std::string terminal_representation,
+           int texture_x, int texture_y, bool isSolid, int category)
+        : name(std::move(name)), hardness(hardness), terminal_representation(std::move(terminal_representation)),
+          texture_x(texture_x), texture_y(texture_y), isSolid(isSolid), category(category) {}
 
 Tile::Tile() {
     name = "Default";
@@ -68,4 +78,5 @@ Tile::Tile() {
     texture_x = 0;
     texture_y = 0;
     isSolid = true;
+    category = 0;
 }

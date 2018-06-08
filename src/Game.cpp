@@ -2,6 +2,8 @@
 #include <SFML/System.hpp>
 #include <imgui-SFML.h>
 #include <imgui.h>
+#include <SFGUI/SFGUI.hpp>
+#include <SFML/Graphics.hpp>
 #include "state/GameState.h"
 #include "Game.h"
 #include "utils/Log.h"
@@ -46,6 +48,8 @@ void Game::run() {
             while (renderWindow.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
                     renderWindow.close();
+                else if(dynamic_cast<GameState*>(&Game::getState())->getGUI()->handleEvent(event))
+                    continue;
                 switch(event.type){
                     case sf::Event::Closed:
                         renderWindow.close();
@@ -109,7 +113,7 @@ void Game::render() {
     previous_render = now;
     debug.reportRenderTime(deltaTime);
     if (!states.empty()) {
-        getState().render();
+        getState().render(deltaTime.count());
     }
     ImGui::SFML::Render(renderWindow);
     ImGui::SFML::Update(renderWindow, sf::milliseconds(static_cast<sf::Int32>(deltaTime.count())));

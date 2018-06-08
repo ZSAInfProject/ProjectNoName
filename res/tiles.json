@@ -5,7 +5,8 @@
     "terminal": "?",
     "hardness": 1,
     "texture": [0, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 0
   },
   {
     "id": 1,
@@ -13,7 +14,8 @@
     "terminal": " ",
     "hardness" : 0,
     "texture": [1, 0],
-    "isSolid": false
+    "isSolid": false,
+    "category": 0
   },
   {
     "id": 2,
@@ -22,6 +24,7 @@
     "hardness" : 2.0,
     "texture": [2, 0],
     "isSolid": true,
+    "category": 1,
     "drop":
     {
       "type": "stone",
@@ -34,7 +37,8 @@
     "terminal": "O",
     "hardness" : 1.0,
     "texture": [3, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 1
   },
   {
     "id": 4,
@@ -42,7 +46,8 @@
     "terminal": "G",
     "hardness": 1.0,
     "texture": [4, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 1
   },
   {
     "id": 5,
@@ -50,7 +55,8 @@
     "terminal": "U",
     "hardness": 1.0,
     "texture": [5, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 2
   },
   {
     "id": 6,
@@ -58,7 +64,8 @@
     "terminal": "C",
     "hardness": 1.0,
     "texture": [6, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 2
   },
   {
     "id": 7,
@@ -66,6 +73,7 @@
     "terminal": "F",
     "hardness": 1.0,
     "texture": [7, 0],
-    "isSolid": true
+    "isSolid": true,
+    "category": 2
   }
 ]

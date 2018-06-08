@@ -4,13 +4,13 @@
 # doxygen (www.doxygen.org) for a project.
 #
 # All text after a double hash (##) is considered a comment and is placed in
-# front of the TAG it is preceding.
+# front of the tag it is preceding.
 #
 # All text after a single hash (#) is considered a comment and will be ignored.
 # The format is:
-# TAG = value [value, ...]
+# tag = value [value, ...]
 # For lists, items can also be appended using:
-# TAG += value [value, ...]
+# tag += value [value, ...]
 # Values that contain spaces should be placed between quotes (\" \").
 
 #---------------------------------------------------------------------------

@@ -1,12 +1,16 @@
 #ifndef NONAME_GAMESTATE_H
 #define NONAME_GAMESTATE_H
 
+#include "MinerMode.h"
+#include "ArchitectMode.h"
+#include "ManagementMode.h"
 #include "State.h"
 #include "../world/World.h"
 #include "../entity/Entity.h"
 #include "../entity/systems/System.h"
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/EntityFactory.h"
+#include "GameMode.h"
 
 //! State when actual gameplay is present
 /*!
@@ -19,10 +23,11 @@ class GameState : public State{
     void loadSystems();
     bool loadEntities();
     static constexpr auto TAG = "GameState";
+
   
 public:
     void update(std::chrono::microseconds deltaTime) override;
-    void render() override;
+    void render(float deltaTime) override;
     void tick() override;
 
     //! Converts screen to world coordinates
@@ -34,7 +39,21 @@ public:
     World& getWorld();
     sf::View& getCamera();
 
-private:
+    /*!
+     * Returns pointer to the active game mode
+     */
+    std::shared_ptr<GameMode> getGameMode();
+
+    /*!
+     * Changes game mode, for list of game modes see GameMode
+     * @param newMode Get newMode value from GameMode::gameModesEnum
+     */
+    void setGameMode(int newMode);
+
+    //! Returns a pointer to a GUI object
+    std::shared_ptr<GUI> getGUI();
+
+  private:
     World world;
 
     //! Vector containing all the entities currently active
@@ -47,6 +66,14 @@ private:
     sf::View camera;
 
     EntityFactory entityFactory;
+
+    std::shared_ptr<GUI> gui;
+
+    //! A pointer to the active game mode, default game mode for now is architect mode
+    std::shared_ptr<GameMode> gameMode;
+
+    //! Container for every game mode
+    std::vector<std::shared_ptr<GameMode>> gameModes;
 };
 
 #endif //NONAME_GAMESTATE_H

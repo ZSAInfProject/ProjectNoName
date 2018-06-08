@@ -23,7 +23,7 @@ public:
      * render() is called every screen refresh. Should be used for rendering.
      * @param renderWindow SFML render window reference
      */
-    virtual void render() = 0;
+    virtual void render(float deltaTime) = 0;
     //! Function called periodicaly
     /*!
      *  tick() is called periodicaly. Period is set in Game singleton.
