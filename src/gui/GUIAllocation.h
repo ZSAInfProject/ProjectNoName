@@ -2,32 +2,33 @@
 #define NONAME_GUIALLOCATION_H
 
 #include "../utils/Settings.h"
-#include "../utils/Log.h"
 #include "../world/chunk/Chunk.h"
 
-class ArchitectModeAllocation{
+class ArchitectModeAllocation {
 public:
     ArchitectModeAllocation(float scale) :
             GUIScale(scale),
             buttonSize(int(baseBlockSize * GUIScale)),
-            blockScale(buttonSize/Chunk::TILE_SIZE),
+            blockScale(buttonSize / Chunk::TILE_SIZE),
 
             categorySelectorWindowHeight(baseCategorySelectorWindowHeight * GUIScale),
             categorySelectorWindowWidth(buttonSize),
             categorySelectorWindowPositionX(windowsSpacing),
-            categorySelectorWindowPositionY(Settings::get<unsigned int>("resolution_y") - 1 - windowsSpacing - categorySelectorWindowHeight),
+            categorySelectorWindowPositionY(
+                    Settings::get<unsigned int>("resolution_y") - 1 - windowsSpacing - categorySelectorWindowHeight),
 
             categoryWindowsHeight(buttonSize),
             categoryWindowsWidth(baseCategoryWindowsWidth * GUIScale),
-            categoryWindowsPositionX(categorySelectorWindowPositionX + 26 +  buttonSize + windowsSpacing),
-            categoryWindowsPositionY(Settings::get<unsigned int>("resolution_y") - windowsSpacing - 26 - categoryWindowsHeight),
+            categoryWindowsPositionX(categorySelectorWindowPositionX + 26 + buttonSize + windowsSpacing),
+            categoryWindowsPositionY(
+                    Settings::get<unsigned int>("resolution_y") - windowsSpacing - 26 - categoryWindowsHeight),
 
             tooltipHeight(baseTooltipHeight * GUIScale),
             tooltipWidth(baseTooltipWidth * GUIScale),
             tooltipPositionX(Settings::get().get<unsigned int>("resolution_x") - windowsSpacing - tooltipWidth),
             tooltipPositionY(Settings::get().get<unsigned int>("resolution_y") - windowsSpacing - tooltipHeight),
 
-            boxSpacing(baseBoxSpacing * GUIScale) {   }
+            boxSpacing(baseBoxSpacing * GUIScale) {}
 
     const float GUIScale;
     const int buttonSize;
@@ -68,19 +69,51 @@ private:
     static const int baseBoxSpacing = 10.f;
 };
 
-class ManagementModeAllocation{
+class ModeSwitcherAllocation {
 public:
-    const float placeholder = 80.f;
+    ModeSwitcherAllocation(float scale) :
+            GUIScale(scale),
+            buttonWidth(GUIScale * baseButtonWidth),
+            buttonHeight(GUIScale * baseButtonHeight),
+            switchWindowHeight(GUIScale * baseSwitchWindowHeight),
+            switchWindowWidth(GUIScale * baseSwitchWindowWidth),
+            switchWindowPositionX(baseSwitchWindowPositionX),
+            switchWindowPositionY(windowSpacing),
+            boxSpacing(GUIScale * baseBoxSpacing) {}
+
+    const float GUIScale;
+    const int buttonWidth;
+    const int buttonHeight;
+
+    const int switchWindowHeight;
+    const int switchWindowWidth;
+    const int switchWindowPositionX;
+    const int switchWindowPositionY;
+
+    const float boxSpacing;
+
+private:
+    static const int baseButtonWidth = 27;
+    static const int baseButtonHeight = 24;
+
+    static const int windowSpacing = 15;
+
+    static const int baseSwitchWindowHeight = 70;
+    static const int baseSwitchWindowWidth = 123;
+    static const int baseSwitchWindowPositionX = 350;
+
+    static const int baseBoxSpacing = 10.f;
 };
 
-class GUIAllocation{
+class GUIAllocation {
 public:
     GUIAllocation(float scale) :
-        GUIScale(scale),
-        fontSize(int(12 * GUIScale)) {
-        if(GUIScale < 1.f)
+            GUIScale(scale),
+            fontSize(int(12 * GUIScale)) {
+        if (GUIScale < 1.f)
             Log::warn("GUI", "Scale value is incorrect, expect GUI to have strange behaviour");
     }
+
     const float GUIScale;
     const int fontSize;
 };

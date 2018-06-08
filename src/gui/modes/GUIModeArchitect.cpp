@@ -54,8 +54,11 @@ void GUIModeArchitect::createCategorySelectorWindow() {
     categorySelectorWindow->SetId("categorySelectorWindow");
     categorySelectorWindow->SetScrollbarPolicy(
             sfg::ScrolledWindow::VERTICAL_ALWAYS | sfg::ScrolledWindow::HORIZONTAL_NEVER);
-    categorySelectorWindow->SetRequisition(sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
-    categorySelectorWindow->SetAllocation(sf::FloatRect(sf::Vector2f(alloc->categorySelectorWindowPositionX, alloc->categorySelectorWindowPositionY), sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight)));
+    categorySelectorWindow->SetRequisition(
+            sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
+    categorySelectorWindow->SetAllocation(
+            sf::FloatRect(sf::Vector2f(alloc->categorySelectorWindowPositionX, alloc->categorySelectorWindowPositionY),
+                          sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight)));
 
     auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, alloc->boxSpacing);
     box->SetId("categorySelectorBox");
@@ -63,15 +66,16 @@ void GUIModeArchitect::createCategorySelectorWindow() {
     box->SetRequisition(sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
     for (int i = 0; i < categoryNames->size(); i++) {
         auto button = sfg::Button::Create(refactorString(categoryNames->at(i), 10));
-        if(button->GetLabel().getSize())
-        button->SetId("category" + i);
+        if (button->GetLabel().getSize())
+            button->SetId("category" + i);
         button->SetRequisition(sf::Vector2f(alloc->buttonSize, alloc->buttonSize));
         button->GetSignal(sfg::Widget::OnLeftClick).Connect([this, i] { chooseCategory(i); });
         box->Pack(button);
     }
 
     categorySelectorWindow->AddWithViewport(box);
-    categorySelectorWindow->GetViewport()->SetRequisition(sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
+    categorySelectorWindow->GetViewport()->SetRequisition(
+            sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
     categorySelectorWindow->GetViewport()->GetVerticalAdjustment()->SetLower(0.f);
     categorySelectorWindow->GetViewport()->GetVerticalAdjustment()->SetUpper(10000.f);
 }
@@ -79,11 +83,13 @@ void GUIModeArchitect::createCategorySelectorWindow() {
 void GUIModeArchitect::createCategoryWindow() {
     for (int i = 0; i < categoryNames->size(); i++) {
         categoryWindows.push_back(sfg::ScrolledWindow::Create());
-        categoryWindows.at(i)->SetId("categoryWindow"+i);
+        categoryWindows.at(i)->SetId("categoryWindow" + i);
         categoryWindows.at(i)->SetScrollbarPolicy(
                 sfg::ScrolledWindow::VERTICAL_NEVER | sfg::ScrolledWindow::HORIZONTAL_ALWAYS);
         categoryWindows.at(i)->SetRequisition(sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight));
-        categoryWindows.at(i)->SetAllocation(sf::FloatRect(sf::Vector2f(alloc->categoryWindowsPositionX, alloc->categoryWindowsPositionY), sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight)));
+        categoryWindows.at(i)->SetAllocation(
+                sf::FloatRect(sf::Vector2f(alloc->categoryWindowsPositionX, alloc->categoryWindowsPositionY),
+                              sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight)));
     }
 }
 
@@ -91,12 +97,14 @@ void GUIModeArchitect::createBlockButtons() {
     std::vector<sfg::Box::Ptr> blocks;
     for (int i = 0; i < categoryNames->size(); i++) {
         auto box = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, alloc->boxSpacing);
-        box->SetAllocation(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight)));
+        box->SetAllocation(sf::FloatRect(sf::Vector2f(0, 0),
+                                         sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight)));
         box->SetId("blocks" + i);
         blocks.push_back(box);
 
         categoryWindows.at(i)->AddWithViewport(blocks.at(i));
-        categoryWindows.at(i)->GetViewport()->SetRequisition(sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight));
+        categoryWindows.at(i)->GetViewport()->SetRequisition(
+                sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight));
         categoryWindows.at(i)->GetViewport()->GetVerticalAdjustment()->SetLower(0.f);
         categoryWindows.at(i)->GetViewport()->GetVerticalAdjustment()->SetUpper(100000000.f);
         categoryWindows.at(i)->Show(false);
@@ -145,7 +153,9 @@ void GUIModeArchitect::createBlockTooltips() {
 
 sfg::Image::Ptr GUIModeArchitect::generateImage(int id) const {
     sf::Texture texture;
-    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * Chunk::TILE_SIZE, TileDatabase::get()[id].texture_y * Chunk::TILE_SIZE , Chunk::TILE_SIZE, Chunk::TILE_SIZE));
+    texture.loadFromFile("texture.png", sf::IntRect(TileDatabase::get()[id].texture_x * Chunk::TILE_SIZE,
+                                                    TileDatabase::get()[id].texture_y * Chunk::TILE_SIZE,
+                                                    Chunk::TILE_SIZE, Chunk::TILE_SIZE));
     sf::Sprite sprite;
     sprite.setTexture(texture, true);
     sprite.setScale(alloc->blockScale, alloc->blockScale);
@@ -168,12 +178,12 @@ void GUIModeArchitect::chooseBlock(int id) {
     blockTooltips.at(lastTooltip)->Show(false);
     blockTooltips.at(id)->Show(true);
     lastTooltip = id;
-    std::dynamic_pointer_cast<ArchitectMode>(dynamic_cast<GameState*>
+    std::dynamic_pointer_cast<ArchitectMode>(dynamic_cast<GameState *>
                                              (&Game::get().getState())->getGameMode())->setBlock(id);
 }
 
 void GUIModeArchitect::showFloatingTooltip(bool show, int id) {
-    if (id != lastTooltip){
+    if (id != lastTooltip) {
         blockTooltips.at(id)->SetHierarchyLevel(19865467);
         categoryWindows.at(lastCategory)->SetHierarchyLevel(0);
         blockTooltips.at(id)->Show(show);
@@ -191,18 +201,18 @@ void GUIModeArchitect::moveFloatingTooltip(int id) {
 std::string GUIModeArchitect::refactorString(std::string str, int lineSize) {
     int lineLength = 0;
     int wordLength = 0;
-    for(int i = 0; i < str.length(); i++){
-        if(str[i] != ' ' || str[i] != '\n')
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] != ' ' || str[i] != '\n')
             wordLength++;
         else
             wordLength = 0;
-        if(++lineLength > lineSize){
-            if(str[i] == ' ')
+        if (++lineLength > lineSize) {
+            if (str[i] == ' ')
                 str.replace(i, 1, "\n");
-            else if(wordLength == 1)
-                str.replace(i-1, 1, "\n");
+            else if (wordLength == 1)
+                str.replace(i - 1, 1, "\n");
             else
-                str.insert(i-1, "-\n");
+                str.insert(i - 1, "-\n");
             wordLength = 0;
             lineLength = 0;
         }

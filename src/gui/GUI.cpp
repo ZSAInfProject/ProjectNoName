@@ -9,7 +9,7 @@ GUI::GUI(int mode, float scale) {
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeMiner()));
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeArchitect(scale)));
     GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeManagement()));
-    GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher(GUIModes.at(mode)->getName())));
+    GUIModes.push_back(std::shared_ptr<GUIMode>(new GUIModeSwitcher(GUIModes.at(mode)->getName(), scale)));
     GUIModes.at(mode)->addWindows(desktop);
     GUIModes.back()->addWindows(desktop);
     desktop.LoadThemeFromFile("themes.txt");
