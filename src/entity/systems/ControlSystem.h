@@ -51,8 +51,7 @@ public:
             miningComponent->miningLeft = TileDatabase::get()[gameState.getWorld().getTile(tile.x, tile.y).tileId].hardness;
         }
     }
-    ControlSystem(GameState& _gameState) : gameState(_gameState){
-    }
+    ControlSystem(GameState& _gameState) : gameState(_gameState){}
 };
 
 #endif //NONAME_CONTROLSYSTEM_H
