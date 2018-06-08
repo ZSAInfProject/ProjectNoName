@@ -25,7 +25,7 @@ Inheritance diagram for State\-:
 \item 
 virtual void \hyperlink{classState_af2121f8eb52144b7a789214f15e3601a}{update} (std\-::chrono\-::microseconds delta\-Time)=0
 \begin{DoxyCompactList}\small\item\em Function called every loop iteration. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classState_a71f5105bcdc39481be7684d853fe12e9}{render} ()=0
+virtual void \hyperlink{classState_af989800e12898aea96188086e9fd649d}{render} (float delta\-Time)=0
 \begin{DoxyCompactList}\small\item\em Function called every screen refresh. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classState_a1cdec36e9ffad91ba7af560770601017}{tick} ()=0
 \begin{DoxyCompactList}\small\item\em Function called periodicaly. \end{DoxyCompactList}\item 
@@ -43,25 +43,25 @@ Base class for program states.
 Represents a program state like menu or game. Kept on stack by \hyperlink{classGame}{Game}. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classState_a71f5105bcdc39481be7684d853fe12e9}{\index{State@{State}!render@{render}}
+\hypertarget{classState_af989800e12898aea96188086e9fd649d}{\index{State@{State}!render@{render}}
 \index{render@{render}!State@{State}}
 \subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}virtual void State\-::render (
 \begin{DoxyParamCaption}
-{}
+\item[{float}]{delta\-Time}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classState_a71f5105bcdc39481be7684d853fe12e9}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classState_af989800e12898aea96188086e9fd649d}
 
 
 Function called every screen refresh. 
 
-\hyperlink{classState_a71f5105bcdc39481be7684d853fe12e9}{render()} is called every screen refresh. Should be used for rendering. 
+\hyperlink{classState_af989800e12898aea96188086e9fd649d}{render()} is called every screen refresh. Should be used for rendering. 
 \begin{DoxyParams}{Parameters}
 {\em render\-Window} & S\-F\-M\-L render window reference \\
 \hline
 \end{DoxyParams}
 
 
-Implemented in \hyperlink{classGameState_a2c36ada0cae89f91d956e2c91b070893}{Game\-State}.
+Implemented in \hyperlink{classGameState_aa4061260f4ca0acc7d1833dbb6691f0f}{Game\-State}.
 
 \hypertarget{classState_a1cdec36e9ffad91ba7af560770601017}{\index{State@{State}!tick@{tick}}
 \index{tick@{tick}!State@{State}}

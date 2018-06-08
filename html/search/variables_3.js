@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minimumlooptime',['minimumLoopTime',['../classGame.html#af9f24863bbe8102d1bf5d97aaa449d14',1,'Game']]]
+  ['hardness',['hardness',['../classTile.html#accd68364f51cf745c5c95717a164b2e9',1,'Tile']]]
 ];

@@ -9,5 +9,7 @@ var searchData=
   ['tick_5fperiod',['tick_period',['../classGame.html#a65800b8c8afee406d719b404a4a78877',1,'Game']]],
   ['tile',['Tile',['../classTile.html',1,'']]],
   ['tiledatabase',['TileDatabase',['../classTileDatabase.html',1,'']]],
-  ['tileid',['tileId',['../classChunkTile.html#ac7277fa1d196411449a646d3eed73b39',1,'ChunkTile']]]
+  ['tileid',['tileId',['../classChunkTile.html#ac7277fa1d196411449a646d3eed73b39',1,'ChunkTile']]],
+  ['tooltipheight',['tooltipHeight',['../classArchitectModeAllocation.html#ae8d7a4848298c9f412f897cddea8c6c1',1,'ArchitectModeAllocation']]],
+  ['tooltipwidth',['tooltipWidth',['../classArchitectModeAllocation.html#a105c9efe42616394d6d74071df0b8fd8',1,'ArchitectModeAllocation']]]
 ];

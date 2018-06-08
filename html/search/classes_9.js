@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['positioncomponent',['PositionComponent',['../classPositionComponent.html',1,'']]]
+  ['objectpositioncomponent',['ObjectPositionComponent',['../classObjectPositionComponent.html',1,'']]]
 ];

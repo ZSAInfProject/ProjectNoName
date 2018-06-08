@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['miningcomponent',['MiningComponent',['../classMiningComponent.html',1,'']]],
-  ['miningsystem',['MiningSystem',['../classMiningSystem.html',1,'']]],
-  ['motionsystem',['MotionSystem',['../classMotionSystem.html',1,'']]]
+  ['log',['Log',['../classLog.html',1,'']]],
+  ['logsubscriber',['LogSubscriber',['../classLogSubscriber.html',1,'']]]
 ];

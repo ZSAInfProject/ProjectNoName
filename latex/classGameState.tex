@@ -35,19 +35,28 @@ Collaboration diagram for Game\-State\-:
 \item 
 void \hyperlink{classGameState_aba059d7ab1a53b8f5d795292ed37abac}{update} (std\-::chrono\-::microseconds delta\-Time) override
 \begin{DoxyCompactList}\small\item\em Function called every loop iteration. \end{DoxyCompactList}\item 
-void \hyperlink{classGameState_a2c36ada0cae89f91d956e2c91b070893}{render} () override
+void \hyperlink{classGameState_aa4061260f4ca0acc7d1833dbb6691f0f}{render} (float delta\-Time) override
 \begin{DoxyCompactList}\small\item\em Function called every screen refresh. \end{DoxyCompactList}\item 
 void \hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick} () override
 \begin{DoxyCompactList}\small\item\em Function called periodicaly. \end{DoxyCompactList}\item 
 \hypertarget{classGameState_a945e9dfe15e3708799977ed8133f7678}{sf\-::\-Vector2f \hyperlink{classGameState_a945e9dfe15e3708799977ed8133f7678}{screen\-\_\-to\-\_\-global\-\_\-offset} (sf\-::\-Vector2f in)}\label{classGameState_a945e9dfe15e3708799977ed8133f7678}
 
 \begin{DoxyCompactList}\small\item\em Converts screen to world coordinates. \end{DoxyCompactList}\item 
+\hyperlink{classGameState_a4fa0a2bf50315c4a35a3890a0adcee5c}{Game\-State} ()
+\item 
 \hypertarget{classGameState_aebc076f9bcec0aa4317eff9e9a8d566e}{\hyperlink{classWorld}{World} \& {\bfseries get\-World} ()}\label{classGameState_aebc076f9bcec0aa4317eff9e9a8d566e}
 
 \item 
 \hypertarget{classGameState_a45607b8a0473073090740500826268c0}{sf\-::\-View \& {\bfseries get\-Camera} ()}\label{classGameState_a45607b8a0473073090740500826268c0}
 
-\end{DoxyCompactItemize}
+\item 
+std\-::shared\-\_\-ptr$<$ \hyperlink{classGameMode}{Game\-Mode} $>$ \hyperlink{classGameState_a20ec39ca6754c9a78e5142772208b1a6}{get\-Game\-Mode} ()
+\item 
+void \hyperlink{classGameState_a52d8b4a7e3f778f0858ff53554c89eda}{set\-Game\-Mode} (int new\-Mode)
+\item 
+\hypertarget{classGameState_a64c8327f5ca1d060867381ecfbfd81c3}{std\-::shared\-\_\-ptr$<$ \hyperlink{classGUI}{G\-U\-I} $>$ \hyperlink{classGameState_a64c8327f5ca1d060867381ecfbfd81c3}{get\-G\-U\-I} ()}\label{classGameState_a64c8327f5ca1d060867381ecfbfd81c3}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a \hyperlink{classGUI}{G\-U\-I} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -55,27 +64,56 @@ void \hyperlink{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{tick} () overr
 
 Contains \hyperlink{classWorld}{World}, Entities etc. Get's player input. Runs physics. 
 
-\subsection{Member Function Documentation}
-\hypertarget{classGameState_a2c36ada0cae89f91d956e2c91b070893}{\index{Game\-State@{Game\-State}!render@{render}}
-\index{render@{render}!GameState@{Game\-State}}
-\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::render (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGameState_a4fa0a2bf50315c4a35a3890a0adcee5c}{\index{Game\-State@{Game\-State}!Game\-State@{Game\-State}}
+\index{Game\-State@{Game\-State}!GameState@{Game\-State}}
+\subsubsection[{Game\-State}]{\setlength{\rightskip}{0pt plus 5cm}Game\-State\-::\-Game\-State (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_a2c36ada0cae89f91d956e2c91b070893}
+)}}\label{classGameState_a4fa0a2bf50315c4a35a3890a0adcee5c}
+the same arrangement as in Game\-Mode\-::game\-Modes\-Enum 
+
+\subsection{Member Function Documentation}
+\hypertarget{classGameState_a20ec39ca6754c9a78e5142772208b1a6}{\index{Game\-State@{Game\-State}!get\-Game\-Mode@{get\-Game\-Mode}}
+\index{get\-Game\-Mode@{get\-Game\-Mode}!GameState@{Game\-State}}
+\subsubsection[{get\-Game\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}std\-::shared\-\_\-ptr$<$ {\bf Game\-Mode} $>$ Game\-State\-::get\-Game\-Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGameState_a20ec39ca6754c9a78e5142772208b1a6}
+Returns pointer to the active game mode \hypertarget{classGameState_aa4061260f4ca0acc7d1833dbb6691f0f}{\index{Game\-State@{Game\-State}!render@{render}}
+\index{render@{render}!GameState@{Game\-State}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::render (
+\begin{DoxyParamCaption}
+\item[{float}]{delta\-Time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGameState_aa4061260f4ca0acc7d1833dbb6691f0f}
 
 
 Function called every screen refresh. 
 
-\hyperlink{classGameState_a2c36ada0cae89f91d956e2c91b070893}{render()} is called every screen refresh. Should be used for rendering. 
+\hyperlink{classGameState_aa4061260f4ca0acc7d1833dbb6691f0f}{render()} is called every screen refresh. Should be used for rendering. 
 \begin{DoxyParams}{Parameters}
 {\em render\-Window} & S\-F\-M\-L render window reference \\
 \hline
 \end{DoxyParams}
 
 
-Implements \hyperlink{classState_a71f5105bcdc39481be7684d853fe12e9}{State}.
+Implements \hyperlink{classState_af989800e12898aea96188086e9fd649d}{State}.
 
+\hypertarget{classGameState_a52d8b4a7e3f778f0858ff53554c89eda}{\index{Game\-State@{Game\-State}!set\-Game\-Mode@{set\-Game\-Mode}}
+\index{set\-Game\-Mode@{set\-Game\-Mode}!GameState@{Game\-State}}
+\subsubsection[{set\-Game\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::set\-Game\-Mode (
+\begin{DoxyParamCaption}
+\item[{int}]{new\-Mode}
+\end{DoxyParamCaption}
+)}}\label{classGameState_a52d8b4a7e3f778f0858ff53554c89eda}
+Changes game mode, for list of game modes see \hyperlink{classGameMode}{Game\-Mode} 
+\begin{DoxyParams}{Parameters}
+{\em new\-Mode} & Get new\-Mode value from Game\-Mode\-::game\-Modes\-Enum \\
+\hline
+\end{DoxyParams}
 \hypertarget{classGameState_ae9ff24d75f36ef56daa6a180d4b38a09}{\index{Game\-State@{Game\-State}!tick@{tick}}
 \index{tick@{tick}!GameState@{Game\-State}}
 \subsubsection[{tick}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-State\-::tick (

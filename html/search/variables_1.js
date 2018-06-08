@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hardness',['hardness',['../classTile.html#accd68364f51cf745c5c95717a164b2e9',1,'Tile']]]
+  ['blockscale',['blockScale',['../classArchitectModeAllocation.html#a9dedfd6ac1214bd502f1f861c64eb420',1,'ArchitectModeAllocation']]]
 ];

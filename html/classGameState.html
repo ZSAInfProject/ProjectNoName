@@ -113,9 +113,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aba059d7ab1a53b8f5d795292ed37abac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">update</a> (std::chrono::microseconds deltaTime) override</td></tr>
 <tr class="memdesc:aba059d7ab1a53b8f5d795292ed37abac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every loop iteration.  <a href="#aba059d7ab1a53b8f5d795292ed37abac">More...</a><br/></td></tr>
 <tr class="separator:aba059d7ab1a53b8f5d795292ed37abac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c36ada0cae89f91d956e2c91b070893"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a2c36ada0cae89f91d956e2c91b070893">render</a> () override</td></tr>
-<tr class="memdesc:a2c36ada0cae89f91d956e2c91b070893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every screen refresh.  <a href="#a2c36ada0cae89f91d956e2c91b070893">More...</a><br/></td></tr>
-<tr class="separator:a2c36ada0cae89f91d956e2c91b070893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4061260f4ca0acc7d1833dbb6691f0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f">render</a> (float deltaTime) override</td></tr>
+<tr class="memdesc:aa4061260f4ca0acc7d1833dbb6691f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every screen refresh.  <a href="#aa4061260f4ca0acc7d1833dbb6691f0f">More...</a><br/></td></tr>
+<tr class="separator:aa4061260f4ca0acc7d1833dbb6691f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">tick</a> () override</td></tr>
 <tr class="memdesc:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called periodicaly.  <a href="#ae9ff24d75f36ef56daa6a180d4b38a09">More...</a><br/></td></tr>
 <tr class="separator:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,12 +123,22 @@ Public Member Functions</h2></td></tr>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">screen_to_global_offset</a> (sf::Vector2f in)</td></tr>
 <tr class="memdesc:a945e9dfe15e3708799977ed8133f7678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts screen to world coordinates. <br/></td></tr>
 <tr class="separator:a945e9dfe15e3708799977ed8133f7678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa0a2bf50315c4a35a3890a0adcee5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a> ()</td></tr>
+<tr class="separator:a4fa0a2bf50315c4a35a3890a0adcee5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebc076f9bcec0aa4317eff9e9a8d566e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebc076f9bcec0aa4317eff9e9a8d566e"></a>
 <a class="el" href="classWorld.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getWorld</b> ()</td></tr>
 <tr class="separator:aebc076f9bcec0aa4317eff9e9a8d566e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45607b8a0473073090740500826268c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45607b8a0473073090740500826268c0"></a>
 sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</b> ()</td></tr>
 <tr class="separator:a45607b8a0473073090740500826268c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ec39ca6754c9a78e5142772208b1a6"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classGameMode.html">GameMode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a20ec39ca6754c9a78e5142772208b1a6">getGameMode</a> ()</td></tr>
+<tr class="separator:a20ec39ca6754c9a78e5142772208b1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d8b4a7e3f778f0858ff53554c89eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a52d8b4a7e3f778f0858ff53554c89eda">setGameMode</a> (int newMode)</td></tr>
+<tr class="separator:a52d8b4a7e3f778f0858ff53554c89eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64c8327f5ca1d060867381ecfbfd81c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64c8327f5ca1d060867381ecfbfd81c3"></a>
+std::shared_ptr&lt; <a class="el" href="classGUI.html">GUI</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a64c8327f5ca1d060867381ecfbfd81c3">getGUI</a> ()</td></tr>
+<tr class="memdesc:a64c8327f5ca1d060867381ecfbfd81c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to a <a class="el" href="classGUI.html">GUI</a> object. <br/></td></tr>
+<tr class="separator:a64c8327f5ca1d060867381ecfbfd81c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classState"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classState')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classState.html">State</a></td></tr>
 <tr class="memitem:a8fba10b9995ce898339f3b0d39234788 inherit pub_methods_classState"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fba10b9995ce898339f3b0d39234788"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (<a class="el" href="classState.html">State</a> &amp;other)=delete</td></tr>
@@ -140,8 +150,41 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classState.html" title="Base class for program states. ">State</a> when actual gameplay is present. </p>
 <p>Contains <a class="el" href="classWorld.html">World</a>, Entities etc. Get's player input. Runs physics. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2c36ada0cae89f91d956e2c91b070893"></a>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4fa0a2bf50315c4a35a3890a0adcee5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameState::GameState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>the same arrangement as in GameMode::gameModesEnum </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a20ec39ca6754c9a78e5142772208b1a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classGameMode.html">GameMode</a> &gt; GameState::getGameMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns pointer to the active game mode </p>
+
+</div>
+</div>
+<a class="anchor" id="aa4061260f4ca0acc7d1833dbb6691f0f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -151,7 +194,8 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</
         <tr>
           <td class="memname">void GameState::render </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -163,7 +207,7 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</
 </div><div class="memdoc">
 
 <p>Function called every screen refresh. </p>
-<p><a class="el" href="classGameState.html#a2c36ada0cae89f91d956e2c91b070893" title="Function called every screen refresh. ">render()</a> is called every screen refresh. Should be used for rendering. </p>
+<p><a class="el" href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f" title="Function called every screen refresh. ">render()</a> is called every screen refresh. Should be used for rendering. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">renderWindow</td><td>SFML render window reference </td></tr>
@@ -171,7 +215,30 @@ sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classState.html#a71f5105bcdc39481be7684d853fe12e9">State</a>.</p>
+<p>Implements <a class="el" href="classState.html#af989800e12898aea96188086e9fd649d">State</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52d8b4a7e3f778f0858ff53554c89eda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameState::setGameMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>newMode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Changes game mode, for list of game modes see <a class="el" href="classGameMode.html">GameMode</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newMode</td><td>Get newMode value from GameMode::gameModesEnum </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

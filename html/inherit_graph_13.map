@@ -1,4 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classLogSubscriber.html" title="LogSubscriber" alt="" coords="6,5,111,32"/>
-<area shape="rect" id="node2" href="$classDebug.html" title="Class responsible for updating visual debug items. " alt="" coords="161,5,221,32"/>
+<area shape="rect" id="node1" href="$classGameMode.html" title="GameMode" alt="" coords="6,56,95,83"/>
+<area shape="rect" id="node2" href="$classArchitectMode.html" title="Placeholder for architect mode, as of now it only stores its tag. " alt="" coords="156,5,263,32"/>
+<area shape="rect" id="node3" href="$classManagementMode.html" title="Placeholder for architect mode, as of now it only stores its tag. " alt="" coords="145,56,274,83"/>
+<area shape="rect" id="node4" href="$classMinerMode.html" title="Placeholder for miner mode, as of now it only stores its tag. " alt="" coords="166,107,253,133"/>
 </map>

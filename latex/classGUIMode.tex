@@ -1,0 +1,56 @@
+\hypertarget{classGUIMode}{\section{G\-U\-I\-Mode Class Reference}
+\label{classGUIMode}\index{G\-U\-I\-Mode@{G\-U\-I\-Mode}}
+}
+
+
+{\ttfamily \#include $<$G\-U\-I\-Mode.\-h$>$}
+
+
+
+Inheritance diagram for G\-U\-I\-Mode\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGUIMode__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}{virtual bool \hyperlink{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}{handle\-Event} (sf\-::\-Event \&event)=0}\label{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}
+
+\begin{DoxyCompactList}\small\item\em returns whether mouse click occured inside of any active window \end{DoxyCompactList}\item 
+\hypertarget{classGUIMode_a1d1fec81001a6bf807760243d76de01c}{virtual void \hyperlink{classGUIMode_a1d1fec81001a6bf807760243d76de01c}{add\-Windows} (sfg\-::\-Desktop \&desktop)=0}\label{classGUIMode_a1d1fec81001a6bf807760243d76de01c}
+
+\begin{DoxyCompactList}\small\item\em adds windows to desktop \end{DoxyCompactList}\item 
+virtual void \hyperlink{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{remove\-Windows} (sfg\-::\-Desktop \&desktop)=0
+\item 
+\hypertarget{classGUIMode_ae96374e78394931314c1d36b61c4389c}{virtual int \hyperlink{classGUIMode_ae96374e78394931314c1d36b61c4389c}{get\-Tag} ()=0}\label{classGUIMode_ae96374e78394931314c1d36b61c4389c}
+
+\begin{DoxyCompactList}\small\item\em returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\item 
+\hypertarget{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}{virtual std\-::string \hyperlink{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}{get\-Name} ()=0}\label{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}
+
+\begin{DoxyCompactList}\small\item\em returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base gui class for every game mode 
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{\index{G\-U\-I\-Mode@{G\-U\-I\-Mode}!remove\-Windows@{remove\-Windows}}
+\index{remove\-Windows@{remove\-Windows}!GUIMode@{G\-U\-I\-Mode}}
+\subsubsection[{remove\-Windows}]{\setlength{\rightskip}{0pt plus 5cm}virtual void G\-U\-I\-Mode\-::remove\-Windows (
+\begin{DoxyParamCaption}
+\item[{sfg\-::\-Desktop \&}]{desktop}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}
+removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
+
+Implemented in \hyperlink{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{G\-U\-I\-Mode\-Switcher}, \hyperlink{classGUIModeArchitect_aea6eeeba6cf9597beb326d38e63af49d}{G\-U\-I\-Mode\-Architect}, \hyperlink{classGUIModeManagement_a1c1602738b2628a7f31d7ccd0201a99a}{G\-U\-I\-Mode\-Management}, and \hyperlink{classGUIModeMiner_ac494c734e0e209548f7749edd8dfe4b3}{G\-U\-I\-Mode\-Miner}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/gui/modes/G\-U\-I\-Mode.\-h\end{DoxyCompactItemize}

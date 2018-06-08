@@ -1,0 +1,5 @@
+<map id="GameMode" name="GameMode">
+<area shape="rect" id="node2" href="$classArchitectMode.html" title="Placeholder for architect mode, as of now it only stores its tag. " alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node3" href="$classManagementMode.html" title="Placeholder for architect mode, as of now it only stores its tag. " alt="" coords="137,80,265,107"/>
+<area shape="rect" id="node4" href="$classMinerMode.html" title="Placeholder for miner mode, as of now it only stores its tag. " alt="" coords="290,80,376,107"/>
+</map>

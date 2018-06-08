@@ -1,0 +1,89 @@
+\hypertarget{classGUI}{\section{G\-U\-I Class Reference}
+\label{classGUI}\index{G\-U\-I@{G\-U\-I}}
+}
+
+
+{\ttfamily \#include $<$G\-U\-I.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGUI_a43b90b8b0773bf9d3e9f2ac85a83b0a4}{G\-U\-I} (int mode)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classGUI}{G\-U\-I} with default scale. \end{DoxyCompactList}\item 
+\hyperlink{classGUI_aa7e20a80c9eaba0c07526e37d3662840}{G\-U\-I} (int mode, float scale)
+\item 
+bool \hyperlink{classGUI_ade522dd36065824fb0b1196e288906a8}{handle\-Event} (sf\-::\-Event \&event)
+\item 
+\hypertarget{classGUI_a61360fb51a703e35f86530bb8fb00b42}{void \hyperlink{classGUI_a61360fb51a703e35f86530bb8fb00b42}{display} (sf\-::\-Render\-Window \&render\-Window, float delta\-Time)}\label{classGUI_a61360fb51a703e35f86530bb8fb00b42}
+
+\begin{DoxyCompactList}\small\item\em Refreshes gui. \end{DoxyCompactList}\item 
+\hypertarget{classGUI_a693d2446309a4e36f06ee778a313471b}{void \hyperlink{classGUI_a693d2446309a4e36f06ee778a313471b}{change\-Mode} (int new\-Mode)}\label{classGUI_a693d2446309a4e36f06ee778a313471b}
+
+\begin{DoxyCompactList}\small\item\em Changes gui mode, do not call without changing game mode. \end{DoxyCompactList}\item 
+\hypertarget{classGUI_a6cd2962793721d6da4ad88ef5969ce6f}{std\-::shared\-\_\-ptr$<$ \hyperlink{classGUIMode}{G\-U\-I\-Mode} $>$ \hyperlink{classGUI_a6cd2962793721d6da4ad88ef5969ce6f}{get\-G\-U\-I\-Mode} (int gui\-Mode)}\label{classGUI_a6cd2962793721d6da4ad88ef5969ce6f}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a gui mode. \end{DoxyCompactList}\item 
+\hypertarget{classGUI_ac534ec18b718ce0021f608929d234473}{sf\-::\-Event $\ast$ \hyperlink{classGUI_ac534ec18b718ce0021f608929d234473}{get\-Event} ()}\label{classGUI_ac534ec18b718ce0021f608929d234473}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to last event (allows G\-U\-I\-Modes to access event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Shows in-\/game gui, use G\-U\-I\-::init to setup a class 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGUI_a43b90b8b0773bf9d3e9f2ac85a83b0a4}{\index{G\-U\-I@{G\-U\-I}!G\-U\-I@{G\-U\-I}}
+\index{G\-U\-I@{G\-U\-I}!GUI@{G\-U\-I}}
+\subsubsection[{G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}G\-U\-I\-::\-G\-U\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}}\label{classGUI_a43b90b8b0773bf9d3e9f2ac85a83b0a4}
+
+
+\hyperlink{classGUI}{G\-U\-I} with default scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & mode to load during a start-\/up \\
+\hline
+\end{DoxyParams}
+\hypertarget{classGUI_aa7e20a80c9eaba0c07526e37d3662840}{\index{G\-U\-I@{G\-U\-I}!G\-U\-I@{G\-U\-I}}
+\index{G\-U\-I@{G\-U\-I}!GUI@{G\-U\-I}}
+\subsubsection[{G\-U\-I}]{\setlength{\rightskip}{0pt plus 5cm}G\-U\-I\-::\-G\-U\-I (
+\begin{DoxyParamCaption}
+\item[{int}]{mode, }
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)}}\label{classGUI_aa7e20a80c9eaba0c07526e37d3662840}
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & mode to load during a start-\/up \\
+\hline
+{\em scale} & \hyperlink{classGUI}{G\-U\-I} scale \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUI_ade522dd36065824fb0b1196e288906a8}{\index{G\-U\-I@{G\-U\-I}!handle\-Event@{handle\-Event}}
+\index{handle\-Event@{handle\-Event}!GUI@{G\-U\-I}}
+\subsubsection[{handle\-Event}]{\setlength{\rightskip}{0pt plus 5cm}bool G\-U\-I\-::handle\-Event (
+\begin{DoxyParamCaption}
+\item[{sf\-::\-Event \&}]{event}
+\end{DoxyParamCaption}
+)}}\label{classGUI_ade522dd36065824fb0b1196e288906a8}
+Handles events related to gui 
+\begin{DoxyParams}{Parameters}
+{\em event} & Event to handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if mouse click was performed inside any gui window 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/gui/G\-U\-I.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/gui/G\-U\-I.\-cpp\end{DoxyCompactItemize}

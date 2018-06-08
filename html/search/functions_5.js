@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['minetile',['mineTile',['../classWorld.html#a1bbfac1b517a991c30aa96b57d04d265',1,'World']]]
+  ['iskeyboardbuttonpressed',['isKeyboardButtonPressed',['../classControls.html#aa5b1c1b937b98d56c254d0dc03127313',1,'Controls']]],
+  ['ismousebuttonpressed',['isMouseButtonPressed',['../classControls.html#aecd624927fa3cb6f93840f6f54166a7d',1,'Controls']]]
 ];

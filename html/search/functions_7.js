@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['popstate',['popState',['../classGame.html#a4b33dd67adef59bebadba8a234282c88',1,'Game']]],
-  ['pushstate',['pushState',['../classGame.html#ade1d35f91a6fe6b6da70d7caebd174f6',1,'Game']]]
+  ['minetile',['mineTile',['../classWorld.html#a1bbfac1b517a991c30aa96b57d04d265',1,'World']]]
 ];

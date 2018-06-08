@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classTile.html#aa5408d0f0f4a60f25796f651db2f84ac',1,'Tile']]]
+  ['issolid',['isSolid',['../classTile.html#a3a32e61b42ec4bc8bb1d924261c19403',1,'Tile']]]
 ];

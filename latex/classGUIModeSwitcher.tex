@@ -1,0 +1,81 @@
+\hypertarget{classGUIModeSwitcher}{\section{G\-U\-I\-Mode\-Switcher Class Reference}
+\label{classGUIModeSwitcher}\index{G\-U\-I\-Mode\-Switcher@{G\-U\-I\-Mode\-Switcher}}
+}
+
+
+Inheritance diagram for G\-U\-I\-Mode\-Switcher\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classGUIModeSwitcher__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\-U\-I\-Mode\-Switcher\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classGUIModeSwitcher__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGUIModeSwitcher_aac580eabe162e7f8a8ba88ad3b2e3ebc}{G\-U\-I\-Mode\-Switcher} (std\-::string mode\-Name, float scale)
+\item 
+\hypertarget{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}{void \hyperlink{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}{change\-Mode} (int new\-Mode) const }\label{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}
+
+\begin{DoxyCompactList}\small\item\em Makes changes to its windows when changing modes, do not call without changing gui mode. \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}{bool \hyperlink{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}{handle\-Event} (sf\-::\-Event \&event) override}\label{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}
+
+\begin{DoxyCompactList}\small\item\em returns whether mouse click occured inside of any active window \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}{void \hyperlink{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}{add\-Windows} (sfg\-::\-Desktop \&desktop) override}\label{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}
+
+\begin{DoxyCompactList}\small\item\em adds windows to desktop \end{DoxyCompactList}\item 
+void \hyperlink{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{remove\-Windows} (sfg\-::\-Desktop \&desktop) override
+\item 
+\hypertarget{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}{int \hyperlink{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}{get\-Tag} () override}\label{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}
+
+\begin{DoxyCompactList}\small\item\em returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}{std\-::string \hyperlink{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}{get\-Name} () override}\label{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}
+
+\begin{DoxyCompactList}\small\item\em returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGUIModeSwitcher_aac580eabe162e7f8a8ba88ad3b2e3ebc}{\index{G\-U\-I\-Mode\-Switcher@{G\-U\-I\-Mode\-Switcher}!G\-U\-I\-Mode\-Switcher@{G\-U\-I\-Mode\-Switcher}}
+\index{G\-U\-I\-Mode\-Switcher@{G\-U\-I\-Mode\-Switcher}!GUIModeSwitcher@{G\-U\-I\-Mode\-Switcher}}
+\subsubsection[{G\-U\-I\-Mode\-Switcher}]{\setlength{\rightskip}{0pt plus 5cm}G\-U\-I\-Mode\-Switcher\-::\-G\-U\-I\-Mode\-Switcher (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{mode\-Name, }
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)}}\label{classGUIModeSwitcher_aac580eabe162e7f8a8ba88ad3b2e3ebc}
+
+\begin{DoxyParams}{Parameters}
+{\em mode\-Name} & Name of active mode \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{\index{G\-U\-I\-Mode\-Switcher@{G\-U\-I\-Mode\-Switcher}!remove\-Windows@{remove\-Windows}}
+\index{remove\-Windows@{remove\-Windows}!GUIModeSwitcher@{G\-U\-I\-Mode\-Switcher}}
+\subsubsection[{remove\-Windows}]{\setlength{\rightskip}{0pt plus 5cm}void G\-U\-I\-Mode\-Switcher\-::remove\-Windows (
+\begin{DoxyParamCaption}
+\item[{sfg\-::\-Desktop \&}]{desktop}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}
+removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
+
+Implements \hyperlink{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{G\-U\-I\-Mode}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/gui/modes/G\-U\-I\-Mode\-Switcher.\-h\item 
+/home/travis/build/\-Z\-S\-A\-Inf\-Project/\-Project\-No\-Name/src/gui/modes/G\-U\-I\-Mode\-Switcher.\-cpp\end{DoxyCompactItemize}

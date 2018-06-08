@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classSettings.html" title="Class responsible for global program settings. " alt="" coords="6,5,77,32"/>
+<area shape="rect" id="node1" href="$classGUIMode.html" title="GUIMode" alt="" coords="6,81,85,108"/>
+<area shape="rect" id="node2" href="$classGUIModeArchitect.html" title="GUIModeArchitect" alt="" coords="145,5,276,32"/>
+<area shape="rect" id="node3" href="$classGUIModeManagement.html" title="GUIModeManagement" alt="" coords="134,56,287,83"/>
+<area shape="rect" id="node4" href="$classGUIModeMiner.html" title="GUIModeMiner" alt="" coords="155,107,266,133"/>
+<area shape="rect" id="node5" href="$classGUIModeSwitcher.html" title="GUIModeSwitcher" alt="" coords="146,157,275,184"/>
 </map>
