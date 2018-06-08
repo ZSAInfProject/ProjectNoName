@@ -1,5 +1,6 @@
 #include "ZoneManager.h"
 #include "../utils/Settings.h"
+#include "../utils/Buffer.h"
 
 const Zone &ZoneManager::getZone(int id) {
     return zones[id];
@@ -38,19 +39,17 @@ std::pair<bool, int> ZoneManager::isInAnyZone(sf::Vector2i vector) {
 }
 
 void ZoneManager::save() {
-    std::ofstream file(Settings::get<std::string>("save_path") + "zones.td");
-    if(file.good()) {
-        file.write(reinterpret_cast<const char*>(&zones[0]), zones.size()*sizeof(Zone));
-        file.close();
+    Buffer buffer(bufferMode::store);
+    for(auto& zone : zones){
+        buffer.io<Zone>(&zone);
     }
-
+    buffer.save(Settings::get<std::string>("save_path")+"zones.td");
 }
 
 void ZoneManager::load() {
-    std::ifstream file(Settings::get<std::string>("save_path") + "zones.td", std::ifstream::in | std::ifstream::binary);
-    if(file.good()) {
-        const size_t count = static_cast<const size_t>(file.tellg() / sizeof(Zone));
-        zones = std::vector<Zone>(count);
-        file.read(reinterpret_cast<char*>(&zones[0]), count*sizeof(Zone));
+    Buffer buffer(bufferMode::load);
+    buffer.load(Settings::get<std::string>("save_path")+"zones.td");
+    for(auto& zone : zones){
+        buffer.io<Zone>(&zone);
     }
 }

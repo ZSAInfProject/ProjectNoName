@@ -1,0 +1,14 @@
+{
+  "name": "Ladder",
+  "components": [
+    {
+      "type": "Sprite",
+      "path": "textures/player.png",
+      "size": [1.0, 1.0]
+    },
+    {
+      "type": "ObjectPosition",
+      "position": [0, 0]
+    }
+  ]
+}

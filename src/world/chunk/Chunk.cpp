@@ -1,6 +1,7 @@
 #include "Chunk.h"
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
+#include "../../utils/Buffer.h"
 
 #include <fstream>
 #include <iostream>
@@ -16,10 +17,6 @@ void Chunk::render(sf::RenderWindow& window, const sf::Vector2f& translation, co
     states.texture = &TileDatabase::get().texture;
 
     window.draw(vertices, states);
-}
-
-void Chunk::update(std::chrono::microseconds deltaTime) {
-
 }
 
 Chunk::Chunk() {
@@ -50,43 +47,53 @@ void Chunk::setTile(int x, int y, ChunkTile value) {
 }
 
 void Chunk::save(const std::string &fileName) {
-    //TODO: save objects to another file.
 
     //Save tiles
-    std::ofstream tileData(fileName+".td");
+    Buffer buffer(bufferMode::store);
     for(ChunkTile tile : tiles) {
-        if(tileData.good()) {
-            tileData.write(reinterpret_cast<const char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Saving to " + fileName + ".td file failed!");
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
+    buffer.save(fileName+".td");
+
+    //Save objects
+    std::ofstream objectData(fileName+".json");
+    if(objectData.good()) {
+        nlohmann::json json;
+        json["objects"] = nlohmann::json::array();
+        for(int i = 0; i < objects.size(); i++){
+            json["objects"][i] = objects[i]->serialize();
+        }
+        std::string data = json.dump();
+        objectData.write(data.c_str(), data.size());
+    }
+    else {
+        Log::error(TAG, "Saving to " + fileName + ".json file failed!");
+    }
+    objectData.close();
 }
 
-bool Chunk::load(const std::string &filename) {
-    std::ifstream tileData;
-    tileData.open(filename+".td", std::ifstream::in | std::ifstream::binary);
-    if(!tileData.is_open()){
+bool Chunk::load(const std::string &filename){
+  
+    Buffer buffer(bufferMode::load);
+    if(!buffer.load(filename+".td"))
         return false;
-    }
-    //TODO: load objects
 
     //Load tiles
     for(ChunkTile& tile : tiles){
-        if(tileData.good()) {
-            tileData.read(reinterpret_cast<char *>(&tile), sizeof(typeof(tile)));
-        }
-        else{
-            Log::error(TAG, "Loading from " + filename + ".td failed!");
-            return false;
-        }
+        tile.serialize(buffer);
     }
-    tileData.close();
 
     updateQuads();
 
+    //Load objects
+    std::ifstream objectData(filename+".json");
+    if (objectData.is_open()) {
+        nlohmann::json j = nlohmann::json::parse(objectData);
+        std::vector<nlohmann::json> objectVector = j["objects"];
+        for(auto object : objectVector){
+            objects.push_back(std::make_shared<Entity>(object));
+        }
+    }
     return true;
 }
 
@@ -126,6 +133,14 @@ void Chunk::changeQuad(int x, int y) {
     quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE - 0.0075);
 }
 
+void Chunk::setTileObject(int x, int y, short objectId) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile object set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return;
+    }
+    tiles[y*SIDE_LENGTH + x].objectId = objectId;
+}
+
 
 ChunkTile::ChunkTile(nlohmann::json json) {
     if(json.find("id") != json.end()){
@@ -143,8 +158,14 @@ ChunkTile::ChunkTile(nlohmann::json json) {
     }
 }
 
-ChunkTile::ChunkTile(short tileId_, uint amount_) {
+ChunkTile::ChunkTile(short tileId_, uint amount_, short objectId_) {
     tileId = tileId_;
     amount = amount_;
+    objectId = objectId_;
+}
+
+void ChunkTile::serialize(Buffer& buffer) {
+    buffer.io<short>(&tileId);
+    buffer.io<uint>(&amount);
 }
 

@@ -30,7 +30,8 @@ sf::RenderWindow& Game::getRenderWindow() {
 
 void Game::run() {
     Log::info(TAG ,"Main loop started");
-    renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName");
+    renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName",
+        sf::Style::Close);
     pushState(std::make_shared<GameState>());
 
     renderWindow.setActive(false);

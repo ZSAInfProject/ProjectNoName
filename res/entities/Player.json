@@ -17,6 +17,13 @@
       "type": "Sprite",
       "path": "textures/player.png",
       "size": [1.0, 1.0]
+    },
+    {
+      "type": "Inventory"
+    },
+    {
+      "type": "Mining",
+      "duration": 1000
     }
   ]
 }

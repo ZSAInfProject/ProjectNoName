@@ -25,6 +25,11 @@
     "texture": [2, 0],
     "isSolid": true,
     "category": 1
+    "drop":
+    {
+      "type": "stone",
+      "amount": 1
+    }
   },
   {
     "id": 3,

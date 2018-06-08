@@ -11,6 +11,8 @@
 #include "../entity/systems/ControlSystem.h"
 #include "../entity/systems/RenderSystem.h"
 #include "../entity/systems/CameraSystem.h"
+#include "../entity/systems/MiningSystem.h"
+#include "../entity/components/ObjectPosition.h"
 
 #ifdef __unix__
 #include <sys/stat.h>
@@ -44,35 +46,18 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
 
 void GameState::update(std::chrono::microseconds deltaTime) {
     Game::get().debug.reportEntityCount(static_cast<int>(entities.size()));
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::update) {
             for (auto &entity : entities) {
                 system->processEntity(entity, deltaTime);
+
+            }
+            for (auto& object : objects){
+                system->processEntity(object, deltaTime);
             }
         }
     }
-
-    if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-        position = screen_to_global_offset(position);
-        sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-        if (position.x < 0) tile.x -= 1;
-        if (position.y < 0) tile.y -= 1;
-        world.mineTile(tile.x, tile.y);
-
-    }
-    if (Controls::isMouseButtonPressed(sf::Mouse::Right)) {
-        sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-        position = screen_to_global_offset(position);
-        sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-        if (position.x < 0) tile.x -= 1;
-        if (position.y < 0) tile.y -= 1;
-        world.setTile(tile.x, tile.y, {2,1});
-
-    }
-
 }
 
 void GameState::render(float deltaTime) {
@@ -80,20 +65,28 @@ void GameState::render(float deltaTime) {
     
     renderWindow.setView(camera);
     world.render(camera);
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::render) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            for (auto& object : objects){
+                system->processEntity(object);
+            }
         }
     }
     renderWindow.setView(Game::getRenderWindow().getDefaultView());
     gui->display(renderWindow, deltaTime);
 }
 void GameState::tick() {
+    auto objects = world.getObjectsForUpdate();
     for(auto& system : systems){
         if(system->getStage() == stageEnum::tick) {
             for (auto &entity : entities)
                 system->processEntity(entity);
+            for (auto& object : objects){
+                system->processEntity(object);
+            }
         }
     }
 }
@@ -133,8 +126,9 @@ sf::View &GameState::getCamera() {
 }
 
 void GameState::loadSystems() {
-    systems.push_back(std::make_unique<ControlSystem>());
+    systems.push_back(std::make_unique<ControlSystem>(*this));
     systems.push_back(std::make_unique<MotionSystem>());
+    systems.push_back(std::make_unique<MiningSystem>(*this));
     systems.push_back(std::make_unique<CameraSystem>(camera));
     systems.push_back(std::make_unique<RenderSystem>());
 }

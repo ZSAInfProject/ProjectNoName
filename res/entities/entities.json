@@ -1,3 +1,4 @@
 {
-  "Player": "entities/Player.json"
+  "Player": "entities/Player.json",
+  "Ladder": "objects/Ladder.json"
 }
