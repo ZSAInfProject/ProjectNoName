@@ -13,36 +13,29 @@
 #include "../../world/chunk/Chunk.h"
 #include "../../state/GameState.h"
 #include "../../tile/TileDatabase.h"
+#include "../components/Mining.h"
 
 class MiningSystem : public System{
-    std::chrono::system_clock::time_point lastMine;
-    const int miningSpeed = 1000;
     GameState& gameState;
 public:
     void processEntity(std::shared_ptr<Entity> entity, std::chrono::microseconds dt = std::chrono::microseconds(0)) override {
-        auto* controlComponent = entity->getComponent<ControlComponent>();
+        auto* miningComponent = entity->getComponent<MiningComponent>();
         auto* inventoryComponent = entity->getComponent<InventoryComponent>();
-        if(!inventoryComponent || !controlComponent)
+        if(!inventoryComponent || !miningComponent)
             return;
-        if (Controls::isMouseButtonPressed(sf::Mouse::Left)) {
-            std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-            auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastMine);
-            if(deltaTime.count() < miningSpeed){
-                return;
+        auto now = std::chrono::system_clock::now();
+        auto mineTime = std::chrono::duration_cast<std::chrono::microseconds>(now - miningComponent->lastMine);
+        if(mineTime > miningComponent->miningDuration && miningComponent->miningInProgress) {
+            miningComponent->miningLeft -= dt.count()*10e5;
+            if(miningComponent->miningLeft <= 0){
+                miningComponent->miningInProgress = false;
+                int id = gameState.getWorld().mineTile(miningComponent->miningTarget.x, miningComponent->miningTarget.y);
+                Resource res = TileDatabase::get()[id].drop;
+                if (res.type != unknown) {
+                    inventoryComponent->resources[res.type] += res.amount;
+                }
             }
-            lastMine = now;
-            sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-            position = gameState.screen_to_global_offset(position);
-            sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-            if (position.x < 0) tile.x -= 1;
-            if (position.y < 0) tile.y -= 1;
-            int id = gameState.getWorld().mineTile(tile.x, tile.y);
-            Resource res = TileDatabase::get()[id].drop;
-            if(res.type != unknown) {
-                inventoryComponent->resources[res.type].type = res.type;
-                inventoryComponent->resources[res.type].amount += res.amount;
-            }
+            miningComponent->lastMine = now;
         }
 
         if (Controls::isMouseButtonPressed(sf::Mouse::Right)) {

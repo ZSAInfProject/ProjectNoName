@@ -13,15 +13,15 @@ class InventoryComponent : public Component{
 public:
     static const componentId Id = componentId::Inventory;
 
-    std::map<resourceType, Resource> resources;
+    std::map<resourceType, int> resources;
 
     nlohmann::json serialize() override {
         nlohmann::json json;
         json["type"] = "Inventory";
         for(auto& resource : resources){
             nlohmann::json resData;
-            resData["type"]=getResourceType(resource.second.type);
-            resData["amount"]=resource.second.amount;
+            resData["type"]=getResourceType(resource.first);
+            resData["amount"]=resource.second;
             json["resources"].push_back(resData);
         }
         return json;
@@ -35,7 +35,7 @@ public:
         if(json.find("resources") != json.end()){
             for(const auto &resource : json["resources"]){
                 Resource res{getResourceType(resource["type"].get<std::string>()), resource["amount"].get<unsigned int>()};
-                resources[res.type] = res;
+                resources[getResourceType(resource["type"].get<std::string>())] = resource["amount"].get<unsigned int>();
             }
         }
     };

@@ -20,6 +20,10 @@
     },
     {
       "type": "Inventory"
+    },
+    {
+      "type": "Mining",
+      "duration": 1000
     }
   ]
 }

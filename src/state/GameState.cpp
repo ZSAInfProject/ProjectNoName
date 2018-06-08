@@ -102,7 +102,7 @@ sf::View &GameState::getCamera() {
 }
 
 void GameState::loadSystems() {
-    systems.push_back(std::make_unique<ControlSystem>());
+    systems.push_back(std::make_unique<ControlSystem>(*this));
     systems.push_back(std::make_unique<MotionSystem>());
     systems.push_back(std::make_unique<MiningSystem>(*this));
     systems.push_back(std::make_unique<CameraSystem>(camera));

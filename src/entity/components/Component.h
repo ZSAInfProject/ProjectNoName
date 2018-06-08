@@ -7,7 +7,8 @@ enum componentId{
     Sprite,
     Camera,
     Control,
-    Inventory
+    Inventory,
+    Mining
 };
 
 class Component{

@@ -5,6 +5,7 @@
 #include "components/Camera.h"
 #include "../utils/Log.h"
 #include "components/Inventory.h"
+#include "components/Mining.h"
 
 Entity::Entity(nlohmann::json json) {
     ID = 0;
@@ -23,6 +24,8 @@ Entity::Entity(nlohmann::json json) {
                         addComponent<CameraComponent>(std::make_unique<CameraComponent>(component));
                     else if (component["type"].get<std::string>() == "Inventory")
                         addComponent<InventoryComponent>(std::make_unique<InventoryComponent>(component));
+                    else if (component["type"].get<std::string>() == "Mining")
+                        addComponent<MiningComponent>(std::make_unique<MiningComponent>(component));
                     else {
                         Log::warn(TAG, "Component type in entity: " + json["name"].get<std::string>() + " is invalid");
                     }
