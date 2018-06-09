@@ -5,6 +5,7 @@
 #include "Controls.h"
 #include "../entity/components/Position.h"
 #include "../entity/components/Control.h"
+#include "../entity/components/Mining.h"
 
 void Debug::update() {
     while(logMessages.size() > 50){
@@ -72,6 +73,7 @@ void Debug::updateMainDebug() {
         if (ImGui::CollapsingHeader("Cheats")) {
             ImGui::SliderFloat("Speed", &player->getComponent<ControlComponent>()->speed, 100.0f, 10000.0f);
             ImGui::InputFloat2("Position", &player->getComponent<PositionComponent>()->position.x);
+            ImGui::SliderInt("Mining", (int*)&player->getComponent<MiningComponent>()->miningDuration, 1, 200);
         }
 
         if (ImGui::CollapsingHeader("Log")) {

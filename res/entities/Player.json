@@ -23,7 +23,7 @@
     },
     {
       "type": "Mining",
-      "duration": 1000
+      "duration": 200
     }
   ]
 }

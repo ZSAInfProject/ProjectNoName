@@ -40,7 +40,7 @@ public:
         }
 
         auto* miningComponent = entity->getComponent<MiningComponent>();
-        if (miningComponent && Controls::isMouseButtonPressed(sf::Mouse::Left)) {
+        if (miningComponent && Controls::isMouseButtonPressed(sf::Mouse::Left) && !miningComponent->miningInProgress) {
             sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
             position = gameState.screen_to_global_offset(position);
             sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
