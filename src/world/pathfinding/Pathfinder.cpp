@@ -4,6 +4,7 @@
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
 #include "../../utils/Settings.h"
+#include "../../entity/components/Ladder.h"
 
 void Pathfinder::render(sf::RenderWindow& window) {
     for (int i=1; i<nodes.size(); i++) {
@@ -35,20 +36,36 @@ void Pathfinder::branch_node(short id) {
     //    0 1 2
     //    3   4
     //    5 6 7
-    bool solid[8] = {TileDatabase::get()[world->getLoadedTile(x-1, y+1).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x, y+1).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x+1, y+1).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x-1, y).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x+1, y).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x-1, y-1).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x, y-1).tileId].isSolid,
-                     TileDatabase::get()[world->getLoadedTile(x+1, y-1).tileId].isSolid
+    //    8 9 10
+    bool solid[11] = {TileDatabase::get()[world->getLoadedTile(x-1, y+1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x, y+1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x+1, y+1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x-1, y).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x+1, y).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x-1, y-1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x, y-1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x+1, y-1).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x-1, y-2).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid,
+                      TileDatabase::get()[world->getLoadedTile(x+1, y-2).tileId].isSolid
     };
-    if (!solid[4] && nodes[id].connections[Right] == 0) {
+
+    //
+    //       0
+    //     1 2 3
+    bool ladder[4] = {
+            world->getObject(x, y) == nullptr ? false : world->getObject(x, y)->getComponent<LadderComponent>() != nullptr,
+            world->getObject(x-1, y-1) == nullptr ? false : world->getObject(x-1, y-1)->getComponent<LadderComponent>() != nullptr,
+            world->getObject(x, y-1) == nullptr ? false : world->getObject(x, y-1)->getComponent<LadderComponent>() != nullptr,
+            world->getObject(x+1, y-1) == nullptr ? false : world->getObject(x+1, y-1)->getComponent<LadderComponent>() != nullptr
+    };
+
+
+    if (!solid[4] && (solid[7] || solid[10] || ladder[3]) && nodes[id].connections[Right] == 0) {
         branch(Right, nodes[id].x+1, nodes[id].y, id);
 
     }
-    if (!solid[3] && nodes[id].connections[Left] == 0) {
+    if (!solid[3] && (solid[5] || solid[8] || ladder[1]) && nodes[id].connections[Left] == 0) {
         branch(Left, nodes[id].x-1, nodes[id].y, id);
     }
     if (!solid[6]) {
@@ -56,7 +73,7 @@ void Pathfinder::branch_node(short id) {
             branch(Down, nodes[id].x, nodes[id].y - 1, id);
         }
     }
-    if (!solid[1] && ((!solid[0] && solid[3])||(!solid[2] && solid[4])) && nodes[id].connections[Up] == 0) {
+    if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4]) || ladder[0]) && nodes[id].connections[Up] == 0) {
         branch(Up, nodes[id].x, nodes[id].y + 1, id);
     }
 }
@@ -70,39 +87,53 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
         //    0 1 2
         //    3   4
         //    5 6 7
-        bool solid[8] = {TileDatabase::get()[world->getLoadedTile(x-1, y+1).tileId].isSolid,
+        //    8 9 10
+        bool solid[11] = {TileDatabase::get()[world->getLoadedTile(x-1, y+1).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x, y+1).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x+1, y+1).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x-1, y).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x+1, y).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x-1, y-1).tileId].isSolid,
                          TileDatabase::get()[world->getLoadedTile(x, y-1).tileId].isSolid,
-                         TileDatabase::get()[world->getLoadedTile(x+1, y-1).tileId].isSolid
+                         TileDatabase::get()[world->getLoadedTile(x+1, y-1).tileId].isSolid,
+                         TileDatabase::get()[world->getLoadedTile(x-1, y-2).tileId].isSolid,
+                         TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid,
+                         TileDatabase::get()[world->getLoadedTile(x+1, y-2).tileId].isSolid
         };
+        //
+        //       0
+        //     1 2 3
+        bool ladder[4] = {
+                world->getObject(x, y) == nullptr ? false : world->getObject(x, y)->getComponent<LadderComponent>() != nullptr,
+                world->getObject(x-1, y-1) == nullptr ? false : world->getObject(x-1, y-1)->getComponent<LadderComponent>() != nullptr,
+                world->getObject(x, y-1) == nullptr ? false : world->getObject(x, y-1)->getComponent<LadderComponent>() != nullptr,
+                world->getObject(x+1, y-1) == nullptr ? false : world->getObject(x+1, y-1)->getComponent<LadderComponent>() != nullptr
+        };
+
 
         int temp_x = x;
         int temp_y = y;
         Direction temp_dir = direction;
         int count = 0;
 
-        if (!solid[4] && (solid[6] || solid[7]) && direction != Left) {
+        if (!solid[4] && (solid[6] || ladder[2] || direction == Up) && (solid[7] || (solid[10] && direction != Up) || ladder[3]) && direction != Left) {
             count++;
             temp_dir = Right;
             temp_x++;
         }
-        if (!solid[3] && (solid[6] || solid[5]) && direction != Right) {
+        if (!solid[3] && (solid[6] || ladder[2] || direction == Up) && (solid[5] || (solid[8] && direction != Up) || ladder[1]) && direction != Right) {
             count++;
             temp_dir = Left;
             temp_x--;
         }
-        if (!solid[6] && direction != Up) {
+        if (!solid[6] && (solid[9] || ladder[2]) && direction != Up) {
             if (TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid) {
                 count++;
                 temp_dir = Down;
                 temp_y--;
             }
         }
-        if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4])) && direction != Down) {
+        if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4]) || ladder[0]) && direction != Down) {
             count++;
             temp_dir = Up;
             temp_y++;

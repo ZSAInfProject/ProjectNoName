@@ -176,6 +176,7 @@ ChunkTile::ChunkTile(nlohmann::json json) {
     else {
         Log::error(TAG, "No amount data in json");
     }
+    objectId = -1;
 }
 
 ChunkTile::ChunkTile(short tileId_, uint amount_, short objectId_) {
@@ -187,6 +188,7 @@ ChunkTile::ChunkTile(short tileId_, uint amount_, short objectId_) {
 void ChunkTile::serialize(Buffer& buffer) {
     buffer.io<short>(&tileId);
     buffer.io<uint>(&amount);
+    buffer.io<short>(&objectId);
     buffer.io<short>(&node);
     buffer.io<short>(&node0);
     buffer.io<short>(&node1);

@@ -52,6 +52,8 @@ public:
     //! Returns a pointer to a GUI object
     std::shared_ptr<GUI> getGUI();
 
+    EntityFactory& getEntityFactory();
+
   private:
     World world;
 

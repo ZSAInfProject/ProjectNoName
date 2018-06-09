@@ -12,7 +12,9 @@ enum componentId {
     Control,
     Inventory,
     Mining,
-    Building
+    Building,
+    Ladder,
+    ObjectPosition
 };
 
 class Component {

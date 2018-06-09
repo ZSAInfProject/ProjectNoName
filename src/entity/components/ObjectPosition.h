@@ -7,7 +7,7 @@
 
 class ObjectPositionComponent : public Component{
 public:
-    static const componentId Id = componentId::Position;
+    static const componentId Id = componentId::ObjectPosition;
 
     sf::Vector2i position;
 

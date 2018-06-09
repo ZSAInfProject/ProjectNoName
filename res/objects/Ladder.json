@@ -3,12 +3,15 @@
   "components": [
     {
       "type": "Sprite",
-      "path": "textures/player.png",
+      "path": "textures/Ladder.png",
       "size": [1.0, 1.0]
     },
     {
       "type": "ObjectPosition",
       "position": [0, 0]
+    },
+    {
+      "type": "Ladder"
     }
   ]
 }

@@ -21,8 +21,10 @@ public:
     short tileId;
     //! Amount of material in one tile
     uint amount;
+
     //! Id of object in tile. -1 if empty
-    short objectId;
+    short objectId = -1;
+
     void serialize(Buffer&);
 
     short node = 0;

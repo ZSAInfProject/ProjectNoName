@@ -9,6 +9,7 @@
 #include "components/Inventory.h"
 #include "components/Mining.h"
 #include "components/Building.h"
+#include "components/Ladder.h"
 
 Entity::Entity(nlohmann::json json) {
     ID = 0;
@@ -41,6 +42,8 @@ Entity::Entity(nlohmann::json json) {
                         addComponent<ObjectPositionComponent>(std::make_unique<ObjectPositionComponent>(component), enabled);
                     else if (component["type"].get<std::string>() == "Building")
                         addComponent<BuildingComponent>(std::make_unique<BuildingComponent>(component), enabled);
+                    else if (component["type"].get<std::string>() == "Ladder")
+                        addComponent<LadderComponent>(std::make_unique<LadderComponent>(component), enabled);
                     else {
                         Log::warn(TAG, "Component type in entity: " + json["name"].get<std::string>() + " is invalid");
                     }

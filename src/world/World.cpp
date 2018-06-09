@@ -139,3 +139,21 @@ void World::setTileNodes(int x, int y, short node, short node0, short node1) {
     tile.y = mod(y, Chunk::SIDE_LENGTH);
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNodes(tile.x, tile.y, node, node0, node1);
 }
+
+std::shared_ptr<Entity> World::getObject(int x, int y) {
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
+    if (!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
+        return nullptr;
+    }
+    auto index = chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y).objectId;
+    if (index == -1) {
+        return nullptr;
+    }
+    return chunkDatabase.getChunk(chunk.x, chunk.y)->objects[index];
+}

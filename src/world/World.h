@@ -30,8 +30,11 @@ public:
 
     //! Adds object to world
     void addObject(std::shared_ptr<Entity> object);
+
     //! Removes object at supplied coordinates
     void removeObject(int x, int y);
+
+    std::shared_ptr<Entity> getObject(int x, int y);
 
     //! Returns objects to be processed by systems
     std::vector<std::shared_ptr<Entity>> getObjectsForUpdate();

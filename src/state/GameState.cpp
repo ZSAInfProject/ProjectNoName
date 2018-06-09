@@ -78,10 +78,9 @@ void GameState::render(float deltaTime) {
         }
     }
 
+    pathfinder.render(Game::getRenderWindow());
     renderWindow.setView(Game::getRenderWindow().getDefaultView());
     gui->display(renderWindow, deltaTime);
-    pathfinder.render(Game::getRenderWindow());
-    Game::getRenderWindow().setView(Game::getRenderWindow().getDefaultView());
 }
 
 void GameState::tick() {
@@ -192,4 +191,8 @@ std::shared_ptr<GUI> GameState::getGUI() {
 
 void GameState::handleEvent(sf::Event event) {
     gui->handleEvent(event);
+}
+
+EntityFactory &GameState::getEntityFactory() {
+    return entityFactory;
 }
