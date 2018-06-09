@@ -68,10 +68,8 @@ void Pathfinder::branch_node(short id) {
     if (!solid[3] && (solid[5] || solid[8] || ladder[1]) && nodes[id].connections[Left] == 0) {
         branch(Left, nodes[id].x-1, nodes[id].y, id);
     }
-    if (!solid[6]) {
-        if (TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid) {
-            branch(Down, nodes[id].x, nodes[id].y - 1, id);
-        }
+    if (!solid[6] && (solid[9] || ladder[2])) {
+        branch(Down, nodes[id].x, nodes[id].y - 1, id);
     }
     if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4]) || ladder[0]) && nodes[id].connections[Up] == 0) {
         branch(Up, nodes[id].x, nodes[id].y + 1, id);
@@ -127,11 +125,9 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
             temp_x--;
         }
         if (!solid[6] && (solid[9] || ladder[2]) && direction != Up) {
-            if (TileDatabase::get()[world->getLoadedTile(x, y-2).tileId].isSolid) {
-                count++;
-                temp_dir = Down;
-                temp_y--;
-            }
+            count++;
+            temp_dir = Down;
+            temp_y--;
         }
         if (!solid[1] && ((!solid[0] && solid[3]) || (!solid[2] && solid[4]) || ladder[0]) && direction != Down) {
             count++;

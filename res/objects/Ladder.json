@@ -4,7 +4,7 @@
     {
       "type": "Sprite",
       "path": "textures/Ladder.png",
-      "size": [1.0, 1.0]
+      "size": [0.5, 0.5]
     },
     {
       "type": "ObjectPosition",

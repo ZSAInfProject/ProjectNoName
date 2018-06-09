@@ -11,7 +11,7 @@ public:
     std::string path;
     sf::Sprite sprite;
     sf::Texture texture;
-    sf::Vector2i size;
+    sf::Vector2f size;
 
     std::unique_ptr<Component> clone() override {
         return std::make_unique<SpriteComponent>(*this);
@@ -30,7 +30,7 @@ public:
     explicit SpriteComponent(nlohmann::json json) {
         path = json["path"].get<std::string>();
         texture.loadFromFile("res/" + json["path"].get<std::string>());
-        size = {json["size"][0].get<int>(), json["size"][1].get<int>()};
+        size = {json["size"][0].get<float>(), json["size"][1].get<float>()};
         sprite = sf::Sprite(texture);
         sprite.setScale(1,1);
         sprite.setScale(size.x*32.0f/texture.getSize().y , -size.y*32.0f/texture.getSize().y);
