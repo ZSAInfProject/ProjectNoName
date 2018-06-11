@@ -178,3 +178,7 @@ std::shared_ptr<GameMode> GameState::getGameMode() {
 std::shared_ptr<GUI> GameState::getGUI() {
     return gui;
 }
+
+void GameState::handleEvent(sf::Event event) {
+    gui->handleEvent(event);
+}

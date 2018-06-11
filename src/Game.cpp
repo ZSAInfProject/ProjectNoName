@@ -46,10 +46,6 @@ void Game::run() {
             render();
             sf::Event event{};
             while (renderWindow.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
-                    renderWindow.close();
-                else if(dynamic_cast<GameState*>(&Game::getState())->getGUI()->handleEvent(event))
-                    continue;
                 switch(event.type){
                     case sf::Event::Closed:
                         renderWindow.close();
@@ -73,6 +69,9 @@ void Game::run() {
                         break;
                 }
                 ImGui::SFML::ProcessEvent(event);
+                if(!ImGui::IsAnyItemActive()) {
+                    getState().handleEvent(event);
+                }
             }
             renderWindow.display();
         }
