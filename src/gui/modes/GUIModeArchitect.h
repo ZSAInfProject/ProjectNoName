@@ -9,16 +9,13 @@
 class GUIModeArchitect : public GUIMode {
 public:
     GUIModeArchitect(float scale);
-
     bool handleEvent(sf::Event &event) override;
-
     void addWindows(sfg::Desktop &desktop) override;
-
     void removeWindows(sfg::Desktop &desktop) override;
-
     int getTag() override;
-
     std::string getName() override;
+    void rescale(float newScale) override;
+    void resize(int newWindowWidth, int newWindowHeight) override;
 
 private:
     std::string name = "architect mode";
@@ -31,6 +28,10 @@ private:
     std::vector<sfg::Window::Ptr> blockTooltips;
 
     std::unique_ptr<ArchitectModeAllocation> alloc;
+    float scale;
+    int windowHeight;
+    int windowWidth;
+
 
     //! Generates categorySelectorWindow
     void createCategorySelectorWindow();
@@ -70,6 +71,9 @@ private:
      * @return Returns refactored string
      */
     std::string refactorString(std::string str, int lineSize);
+
+    //! Rescales and Resizes GUImode @param rescale True value creates/recreate GUI for this mode
+    void create(bool rescale);
 };
 
 #endif //NONAME_GUIMODEARCHITECT_H

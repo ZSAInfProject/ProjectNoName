@@ -13,13 +13,16 @@ GUI::GUI(int mode, float scale) {
     GUIModes.at(mode)->addWindows(desktop);
     GUIModes.back()->addWindows(desktop);
     desktop.LoadThemeFromFile("themes.txt");
-    alloc = std::unique_ptr<GUIAllocation>(new GUIAllocation(scale));
+    alloc = std::make_unique<GUIAllocation>(GUIAllocation(scale));
     desktop.SetProperty("*", "FontSize", alloc->fontSize);
 }
 
 bool GUI::handleEvent(sf::Event& event) {
     desktop.HandleEvent(event);
     GUI::event = event;
+    if(event.type == sf::Event::Resized)
+        for(std::shared_ptr<GUIMode> mode : GUIModes)
+            mode->resize(event.size.width, event.size.height);
     if(event.type != sf::Event::MouseButtonPressed)
         return false;
     for(std::shared_ptr<GUIMode> mode : GUIModes)
@@ -52,4 +55,11 @@ std::shared_ptr<GUIMode> GUI::getGUIMode(int guiMode) {
 
 sf::Event *GUI::getEvent() {
     return &event;
+}
+
+void GUI::rescale(float newScale) {
+    alloc = std::make_unique<GUIAllocation>(GUIAllocation(newScale));
+    desktop.SetProperty("*", "FontSize", alloc->fontSize);
+    for(std::shared_ptr<GUIMode> mode : GUIModes)
+        mode->rescale(newScale);
 }

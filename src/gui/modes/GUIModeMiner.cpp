@@ -30,3 +30,11 @@ std::string GUIModeMiner::getName() {
     return name;
 }
 
+void GUIModeMiner::rescale(float newScale) {
+
+}
+
+void GUIModeMiner::resize(int newWindowWidth, int newWindowHeight) {
+
+}
+

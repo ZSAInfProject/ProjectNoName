@@ -6,12 +6,11 @@
 
 
 GUIModeArchitect::GUIModeArchitect(float scale) {
-    alloc = std::unique_ptr<ArchitectModeAllocation>(new ArchitectModeAllocation(scale));
+    GUIModeArchitect::scale = scale;
+    windowWidth = Settings::get().get<unsigned int>("resolution_x");
+    windowHeight = Settings::get().get<unsigned int>("resolution_y");
     categoryNames = TileDatabase::get().getCategoryNames();
-    createCategorySelectorWindow();
-    createCategoryWindow();
-    createBlockButtons();
-    createBlockTooltips();
+    create(true);
 }
 
 bool GUIModeArchitect::handleEvent(sf::Event &event) {
@@ -49,7 +48,19 @@ std::string GUIModeArchitect::getName() {
     return name;
 }
 
+void GUIModeArchitect::rescale(float newScale) {
+    scale = newScale;
+    create(true);
+}
+
+void GUIModeArchitect::resize(int newWindowWidth, int newWindowHeight) {
+    windowHeight = newWindowHeight;
+    windowWidth = newWindowWidth;
+    create(false);
+}
+
 void GUIModeArchitect::createCategorySelectorWindow() {
+    categorySelectorWindow = nullptr;
     categorySelectorWindow = sfg::ScrolledWindow::Create();
     categorySelectorWindow->SetId("categorySelectorWindow");
     categorySelectorWindow->SetScrollbarPolicy(
@@ -81,6 +92,7 @@ void GUIModeArchitect::createCategorySelectorWindow() {
 }
 
 void GUIModeArchitect::createCategoryWindow() {
+    categoryWindows.clear();
     for (int i = 0; i < categoryNames->size(); i++) {
         categoryWindows.push_back(sfg::ScrolledWindow::Create());
         categoryWindows.at(i)->SetId("categoryWindow" + i);
@@ -126,6 +138,7 @@ void GUIModeArchitect::createBlockButtonsEvents(int id, sfg::Widget::Ptr button)
 }
 
 void GUIModeArchitect::createBlockTooltips() {
+    blockTooltips.clear();
     for (int i = 0; i < TileDatabase::get().size(); i++) {
         blockTooltips.push_back(sfg::Window::Create(0b00010));
         blockTooltips.at(i)->SetPosition(sf::Vector2f(alloc->tooltipPositionX, alloc->tooltipPositionY));
@@ -219,3 +232,21 @@ std::string GUIModeArchitect::refactorString(std::string str, int lineSize) {
     }
     return str;
 }
+
+void GUIModeArchitect::create(bool rescale) {
+    alloc = std::make_unique<ArchitectModeAllocation>(ArchitectModeAllocation(scale, windowWidth, windowHeight));
+    if(!rescale) {
+        categorySelectorWindow->SetPosition(
+                sf::Vector2f(alloc->categorySelectorWindowPositionX, alloc->categorySelectorWindowPositionY));
+        for (sfg::ScrolledWindow::Ptr w : categoryWindows)
+            w->SetPosition(sf::Vector2f(alloc->categoryWindowsPositionX, alloc->categoryWindowsPositionY));
+        for (sfg::Window::Ptr w : blockTooltips)
+            w->SetPosition(sf::Vector2f(alloc->tooltipPositionX, alloc->tooltipPositionY));
+    } else {
+        createCategorySelectorWindow();
+        createCategoryWindow();
+        createBlockButtons();
+        createBlockTooltips();
+    }
+}
+

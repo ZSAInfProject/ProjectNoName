@@ -1,10 +1,15 @@
 #include "GUIModeManagement.h"
+#include "../../Game.h"
+#include "../../state/GameState.h"
 
 GUIModeManagement::GUIModeManagement() {
     placeHolder = sfg::Window::Create();
     placeHolder->SetPosition(sf::Vector2f(520, 330));
-    auto label = sfg::Label::Create(name + " placeholder");
-    placeHolder->Add(label);
+    auto button = sfg::Button::Create("rescale to x2");
+    button->GetSignal(sfg::Widget::OnLeftClick).Connect([] {
+        dynamic_cast<GameState *>(&Game::get().getState())->getGUI()->rescale(2.f);
+    });
+    placeHolder->Add(button);
 }
 
 bool GUIModeManagement::handleEvent(sf::Event &event) {
@@ -28,5 +33,13 @@ int GUIModeManagement::getTag() {
 
 std::string GUIModeManagement::getName() {
     return name;
+}
+
+void GUIModeManagement::rescale(float newScale) {
+
+}
+
+void GUIModeManagement::resize(int newWindowWidth, int newWindowHeight) {
+
 }
 

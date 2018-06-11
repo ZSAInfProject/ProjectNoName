@@ -36,6 +36,8 @@ public:
     std::shared_ptr<GUIMode> getGUIMode(int guiMode);
     //! Returns a pointer to last event (allows GUIModes to access event
     sf::Event* getEvent();
+    //! Rescales GUI
+    void rescale(float newScale);
 
 private:
     sfg::Desktop desktop;
