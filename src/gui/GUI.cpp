@@ -19,7 +19,10 @@ GUI::GUI(int mode, float scale) {
 bool GUI::handleEvent(sf::Event &event) {
     desktop.HandleEvent(event);
     GUI::event = event;
-    if (event.type != sf::Event::MouseButtonPressed)
+    if(event.type == sf::Event::Resized)
+        for(std::shared_ptr<GUIMode> mode : GUIModes)
+            mode->resize(event.size.width, event.size.height);
+    if(event.type != sf::Event::MouseButtonPressed)
         return false;
     for (std::shared_ptr<GUIMode> mode : GUIModes)
         if (mode->handleEvent(event))
@@ -50,4 +53,11 @@ std::shared_ptr<GUIMode> GUI::getGUIMode(int guiMode) {
 
 sf::Event *GUI::getEvent() {
     return &event;
+}
+
+void GUI::rescale(float newScale) {
+    alloc = std::make_unique<GUIAllocation>(GUIAllocation(newScale));
+    desktop.SetProperty("*", "FontSize", alloc->fontSize);
+    for(std::shared_ptr<GUIMode> mode : GUIModes)
+        mode->rescale(newScale);
 }
