@@ -57,6 +57,16 @@ Tile::Tile(nlohmann::json json) {
         isSolid = true;
     }
 
+    if(json.find("buildCost") != json.end()){
+        std::string type = json["buildCost"]["type"];
+        buildCost.type = getResourceType(type);
+        buildCost.amount = json["buildCost"]["amount"];
+    }
+    else{
+        buildCost.type = resourceType::unknown;
+        buildCost.amount = 0;
+    }
+
     if(json.find("category") != json.end()){
         category = json["category"].get<int>();
     }

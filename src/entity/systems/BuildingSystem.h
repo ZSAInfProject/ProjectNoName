@@ -14,8 +14,11 @@ class BuildingSystem : public System{
 
         if(buildingComponent->buildScheduled){
             if(gameState.getWorld().getTile(buildingComponent->buildingTarget.x, buildingComponent->buildingTarget.y).tileId == 1){
-                gameState.getWorld().setTile(buildingComponent->buildingTarget.x, buildingComponent->buildingTarget.y,
-                        buildingComponent->tile);
+                Resource cost = TileDatabase::get()[buildingComponent->tile.tileId].buildCost;
+                if(inventoryComponent->resources[cost.type] >= cost.amount){
+                    inventoryComponent->resources[cost.type] -= cost.amount;
+                    gameState.getWorld().setTile(buildingComponent->buildingTarget.x, buildingComponent->buildingTarget.y, buildingComponent->tile);
+                }
             }
             buildingComponent->buildScheduled = false;
         }

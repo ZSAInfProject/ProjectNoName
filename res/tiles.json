@@ -29,6 +29,11 @@
     {
       "type": "stone",
       "amount": 1
+    },
+    "buildCost":
+    {
+      "type": "stone",
+      "amount": 1
     }
   },
   {
