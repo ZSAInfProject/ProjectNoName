@@ -38,16 +38,6 @@ public:
             }
             miningComponent->lastMine = now;
         }
-
-        if (Controls::isMouseButtonPressed(sf::Mouse::Right)) {
-            sf::Vector2f position = sf::Vector2f(Controls::getMousePosition());
-
-            position = gameState.screen_to_global_offset(position);
-            sf::Vector2i tile = sf::Vector2i(position / (float)Chunk::TILE_SIZE);
-            if (position.x < 0) tile.x -= 1;
-            if (position.y < 0) tile.y -= 1;
-            gameState.getWorld().setTile(tile.x, tile.y, {2,1});
-        }
     }
     stageEnum getStage() override { return stageEnum::update; };
 
