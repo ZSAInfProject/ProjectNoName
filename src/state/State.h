@@ -31,6 +31,8 @@ public:
      */
     virtual void tick() = 0;
 
+    virtual void handleEvent(sf::Event event) = 0;
+
 
     State(State& other) = delete;
     State& operator= (State& other) = delete;

@@ -29,6 +29,7 @@ public:
     void update(std::chrono::microseconds deltaTime) override;
     void render(float deltaTime) override;
     void tick() override;
+    void handleEvent(sf::Event event);
 
     //! Converts screen to world coordinates
     sf::Vector2f screen_to_global_offset(sf::Vector2f in);

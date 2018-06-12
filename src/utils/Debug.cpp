@@ -6,6 +6,7 @@
 #include "../entity/components/Position.h"
 #include "../entity/components/Control.h"
 #include "../entity/components/Mining.h"
+#include "../entity/components/Inventory.h"
 
 void Debug::update() {
     while(logMessages.size() > 50){
@@ -75,6 +76,13 @@ void Debug::updateMainDebug() {
             ImGui::InputFloat2("Position", &player->getComponent<PositionComponent>()->position.x);
             ImGui::SliderInt("Mining", (int*)&player->getComponent<MiningComponent>()->miningDuration, 1, 200);
         }
+
+        if (ImGui::CollapsingHeader("Inventory")) {
+	    InventoryComponent* inventory = player->getComponent<InventoryComponent>();	
+            for(const auto& item : inventory->resources){
+                ImGui::Text("%s: %.i", getResourceType(item.first).c_str(), item.second); 
+            }
+	}
 
         if (ImGui::CollapsingHeader("Log")) {
             ImGui::BeginChild("log-scroll", sf::Vector2f(0, 200), false, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_AlwaysVerticalScrollbar);
