@@ -69,9 +69,6 @@ void GUIModeSwitcher::createSwitchWindow() {
     auto buttonArchitectMode = sfg::Button::Create("A");
     buttonArchitectMode->SetId("architectMode");
     buttonArchitectMode->SetRequisition(sf::Vector2f(alloc->buttonWidth, alloc->buttonHeight));
-    auto* test = new char[50];
-    sprintf(test, "%i, %i", switchWindow->GetAllocation().height, alloc->switchWindowHeight);
-    Log::info("BTN", test);
     auto buttonManagementMode = sfg::Button::Create("Z");
     buttonManagementMode->SetId("managementMode");
     buttonManagementMode->SetRequisition(sf::Vector2f(alloc->buttonWidth, alloc->buttonHeight));
@@ -88,9 +85,6 @@ void GUIModeSwitcher::createSwitchWindow() {
 
 void GUIModeSwitcher::create(bool rescale) {
     alloc = std::make_unique<ModeSwitcherAllocation>(ModeSwitcherAllocation(scale, windowWidth, windowHeight));
-    auto* test = new char[50];
-    sprintf(test, "%f, %i, %i", scale, alloc->buttonWidth, alloc->buttonHeight);
-    Log::info("ALLOC", test);
     if(!rescale)
         switchWindow->SetPosition(sf::Vector2f(alloc->switchWindowPositionX, alloc->switchWindowPositionY));
     else
