@@ -2,5 +2,7 @@ var searchData=
 [
   ['biome',['Biome',['../classBiome.html',1,'']]],
   ['blockscale',['blockScale',['../classArchitectModeAllocation.html#a9dedfd6ac1214bd502f1f861c64eb420',1,'ArchitectModeAllocation']]],
-  ['buffer',['Buffer',['../classBuffer.html',1,'']]]
+  ['buffer',['Buffer',['../classBuffer.html',1,'']]],
+  ['buildingcomponent',['BuildingComponent',['../classBuildingComponent.html',1,'']]],
+  ['buildingsystem',['BuildingSystem',['../classBuildingSystem.html',1,'']]]
 ];

@@ -1,0 +1,4 @@
+<map id="BuildingComponent" name="BuildingComponent">
+<area shape="rect" id="node2" href="$classComponent.html" title="Component" alt="" coords="5,5,93,32"/>
+<area shape="rect" id="node3" href="$classChunkTile.html" title="Representation of a tile in a chunk. " alt="" coords="118,5,199,32"/>
+</map>

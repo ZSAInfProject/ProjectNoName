@@ -126,35 +126,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            miningComponent-&gt;lastMine = now;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classControls.html#aecd624927fa3cb6f93840f6f54166a7d">Controls::isMouseButtonPressed</a>(sf::Mouse::Right)) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            sf::Vector2f position = sf::Vector2f(<a class="code" href="classControls.html#a33cdde7d51fac2bf9d10576e5830fc8a">Controls::getMousePosition</a>());</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            position = gameState.<a class="code" href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">screen_to_global_offset</a>(position);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            sf::Vector2i tile = sf::Vector2i(position / (<span class="keywordtype">float</span>)Chunk::TILE_SIZE);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span> (position.x &lt; 0) tile.x -= 1;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">if</span> (position.y &lt; 0) tile.y -= 1;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            gameState.getWorld().<a class="code" href="classWorld.html#a9d374f8600da3aa484e48a5887772340">setTile</a>(tile.x, tile.y, {2,1});</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    stageEnum getStage()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> stageEnum::update; };</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classMiningSystem.html">MiningSystem</a>(<a class="code" href="classGameState.html">GameState</a>&amp; _gameState) : gameState(_gameState){</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif //NONAME_MININGSYSTEM_H</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    stageEnum getStage()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> stageEnum::update; };</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classMiningSystem.html">MiningSystem</a>(<a class="code" href="classGameState.html">GameState</a>&amp; _gameState) : gameState(_gameState){</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif //NONAME_MININGSYSTEM_H</span></div>
 <div class="ttc" id="classMiningComponent_html"><div class="ttname"><a href="classMiningComponent.html">MiningComponent</a></div><div class="ttdef"><b>Definition:</b> Mining.h:11</div></div>
 <div class="ttc" id="classMiningSystem_html"><div class="ttname"><a href="classMiningSystem.html">MiningSystem</a></div><div class="ttdef"><b>Definition:</b> MiningSystem.h:18</div></div>
 <div class="ttc" id="classSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdef"><b>Definition:</b> System.h:12</div></div>
-<div class="ttc" id="classControls_html_aecd624927fa3cb6f93840f6f54166a7d"><div class="ttname"><a href="classControls.html#aecd624927fa3cb6f93840f6f54166a7d">Controls::isMouseButtonPressed</a></div><div class="ttdeci">static bool isMouseButtonPressed(sf::Mouse::Button)</div><div class="ttdoc">Checks if mouse button was pressed in last frame. </div><div class="ttdef"><b>Definition:</b> Controls.cpp:4</div></div>
 <div class="ttc" id="structResource_html"><div class="ttname"><a href="structResource.html">Resource</a></div><div class="ttdef"><b>Definition:</b> Resource.h:17</div></div>
 <div class="ttc" id="classInventoryComponent_html"><div class="ttname"><a href="classInventoryComponent.html">InventoryComponent</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:12</div></div>
-<div class="ttc" id="classGameState_html_a945e9dfe15e3708799977ed8133f7678"><div class="ttname"><a href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">GameState::screen_to_global_offset</a></div><div class="ttdeci">sf::Vector2f screen_to_global_offset(sf::Vector2f in)</div><div class="ttdoc">Converts screen to world coordinates. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:89</div></div>
 <div class="ttc" id="classGameState_html"><div class="ttname"><a href="classGameState.html">GameState</a></div><div class="ttdoc">State when actual gameplay is present. </div><div class="ttdef"><b>Definition:</b> GameState.h:19</div></div>
 <div class="ttc" id="classWorld_html_a1bbfac1b517a991c30aa96b57d04d265"><div class="ttname"><a href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">World::mineTile</a></div><div class="ttdeci">short mineTile(int x, int y)</div><div class="ttdoc">Mines given tile. </div><div class="ttdef"><b>Definition:</b> World.cpp:52</div></div>
-<div class="ttc" id="classControls_html_a33cdde7d51fac2bf9d10576e5830fc8a"><div class="ttname"><a href="classControls.html#a33cdde7d51fac2bf9d10576e5830fc8a">Controls::getMousePosition</a></div><div class="ttdeci">static sf::Vector2f getMousePosition()</div><div class="ttdoc">Return a mouse position in last frame. </div><div class="ttdef"><b>Definition:</b> Controls.cpp:12</div></div>
-<div class="ttc" id="classWorld_html_a9d374f8600da3aa484e48a5887772340"><div class="ttname"><a href="classWorld.html#a9d374f8600da3aa484e48a5887772340">World::setTile</a></div><div class="ttdeci">void setTile(int x, int y, ChunkTile value)</div><div class="ttdoc">Sets tile to given value using global coordinates of the world. </div><div class="ttdef"><b>Definition:</b> World.cpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

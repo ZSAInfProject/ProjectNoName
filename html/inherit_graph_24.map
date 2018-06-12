@@ -1,8 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classSystem.html" title="System" alt="" coords="5,107,72,133"/>
-<area shape="rect" id="node2" href="$classCameraSystem.html" title="CameraSystem" alt="" coords="121,5,234,32"/>
-<area shape="rect" id="node3" href="$classControlSystem.html" title="ControlSystem" alt="" coords="123,56,232,83"/>
-<area shape="rect" id="node4" href="$classMiningSystem.html" title="MiningSystem" alt="" coords="125,107,230,133"/>
-<area shape="rect" id="node5" href="$classMotionSystem.html" title="MotionSystem" alt="" coords="124,157,231,184"/>
-<area shape="rect" id="node6" href="$classRenderSystem.html" title="RenderSystem" alt="" coords="123,208,232,235"/>
+<area shape="rect" id="node1" href="$classSystem.html" title="System" alt="" coords="5,132,72,159"/>
+<area shape="rect" id="node2" href="$classBuildingSystem.html" title="BuildingSystem" alt="" coords="121,5,234,32"/>
+<area shape="rect" id="node3" href="$classCameraSystem.html" title="CameraSystem" alt="" coords="121,56,234,83"/>
+<area shape="rect" id="node4" href="$classControlSystem.html" title="ControlSystem" alt="" coords="123,107,232,133"/>
+<area shape="rect" id="node5" href="$classMiningSystem.html" title="MiningSystem" alt="" coords="125,157,230,184"/>
+<area shape="rect" id="node6" href="$classMotionSystem.html" title="MotionSystem" alt="" coords="124,208,231,235"/>
+<area shape="rect" id="node7" href="$classRenderSystem.html" title="RenderSystem" alt="" coords="123,259,232,285"/>
 </map>
