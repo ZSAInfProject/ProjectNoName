@@ -8,7 +8,8 @@ enum componentId{
     Camera,
     Control,
     Inventory,
-    Mining
+    Mining,
+    Building
 };
 
 class Component{

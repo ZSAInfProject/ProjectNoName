@@ -8,6 +8,7 @@
 #include "../entity/systems/ControlSystem.h"
 #include "../entity/systems/CameraSystem.h"
 #include "../entity/systems/MiningSystem.h"
+#include "../entity/systems/BuildingSystem.h"
 
 #ifdef __unix__
 
@@ -124,6 +125,7 @@ void GameState::loadSystems() {
     systems.push_back(std::make_unique<ControlSystem>(*this));
     systems.push_back(std::make_unique<MotionSystem>());
     systems.push_back(std::make_unique<MiningSystem>(*this));
+    systems.push_back(std::make_unique<BuildingSystem>(*this));
     systems.push_back(std::make_unique<CameraSystem>(camera));
     systems.push_back(std::make_unique<RenderSystem>());
 }

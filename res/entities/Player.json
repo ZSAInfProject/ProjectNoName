@@ -22,6 +22,9 @@
       "type": "Inventory"
     },
     {
+      "type": "Building"
+    },
+    {
       "type": "Mining",
       "duration": 200
     }

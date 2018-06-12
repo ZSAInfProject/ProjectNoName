@@ -17,6 +17,7 @@ public:
          int texture_x, int texture_y, bool isSolid, int category);
     Tile();
 
+    Resource buildCost;
     Resource drop;
     //! Tile name showed to player
     std::string name;
