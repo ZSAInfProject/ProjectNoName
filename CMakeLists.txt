@@ -4,6 +4,11 @@ project(NoName)
 set(CMAKE_CXX_STANDARD 14)
 
 SET( CMAKE_EXPORT_COMPILE_COMMANDS ON )
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror=implicit-function-declaration -pipe")
+SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
+SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -Ofast -s -march=native -fomit-frame-pointer")
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
+
 
 IF( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json" )
 	EXECUTE_PROCESS( COMMAND ${CMAKE_COMMAND} -E copy_if_different
