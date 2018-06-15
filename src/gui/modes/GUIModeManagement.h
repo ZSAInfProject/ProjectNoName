@@ -12,6 +12,8 @@ public:
     void removeWindows(sfg::Desktop& desktop) override;
     int getTag() override;
     std::string getName() override;
+    void rescale(float newScale) override;
+    void resize(int newWindowWidth, int newWindowHeight) override;
 private:
     std::string name = "management mode";
     int tag = GameMode::gameModesEnum ::managementMode;

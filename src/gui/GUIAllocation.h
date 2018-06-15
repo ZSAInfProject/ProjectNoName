@@ -6,7 +6,7 @@
 
 class ArchitectModeAllocation {
 public:
-    ArchitectModeAllocation(float scale) :
+    ArchitectModeAllocation(float scale, int windowWidth, int windowHeight) :
             GUIScale(scale),
             buttonSize(int(baseBlockSize * GUIScale)),
             blockScale(buttonSize / Chunk::TILE_SIZE),
@@ -14,19 +14,17 @@ public:
             categorySelectorWindowHeight(baseCategorySelectorWindowHeight * GUIScale),
             categorySelectorWindowWidth(buttonSize),
             categorySelectorWindowPositionX(windowsSpacing),
-            categorySelectorWindowPositionY(
-                    Settings::get<unsigned int>("resolution_y") - 1 - windowsSpacing - categorySelectorWindowHeight),
+            categorySelectorWindowPositionY(windowHeight - 1 - windowsSpacing - categorySelectorWindowHeight),
 
             categoryWindowsHeight(buttonSize),
             categoryWindowsWidth(baseCategoryWindowsWidth * GUIScale),
             categoryWindowsPositionX(categorySelectorWindowPositionX + 26 + buttonSize + windowsSpacing),
-            categoryWindowsPositionY(
-                    Settings::get<unsigned int>("resolution_y") - windowsSpacing - 26 - categoryWindowsHeight),
+            categoryWindowsPositionY(windowHeight - windowsSpacing - 26 - categoryWindowsHeight),
 
             tooltipHeight(baseTooltipHeight * GUIScale),
             tooltipWidth(baseTooltipWidth * GUIScale),
-            tooltipPositionX(Settings::get().get<unsigned int>("resolution_x") - windowsSpacing - tooltipWidth),
-            tooltipPositionY(Settings::get().get<unsigned int>("resolution_y") - windowsSpacing - tooltipHeight),
+            tooltipPositionX(windowWidth - windowsSpacing - tooltipWidth),
+            tooltipPositionY(windowHeight - windowsSpacing - tooltipHeight),
 
             boxSpacing(baseBoxSpacing * GUIScale) {}
 
@@ -72,7 +70,7 @@ private:
 
 class ModeSwitcherAllocation {
 public:
-    ModeSwitcherAllocation(float scale) :
+    ModeSwitcherAllocation(float scale, int windowWidth, int windowHeight) :
             GUIScale(scale),
             buttonWidth(GUIScale * baseButtonWidth),
             buttonHeight(GUIScale * baseButtonHeight),
@@ -110,10 +108,7 @@ class GUIAllocation {
 public:
     GUIAllocation(float scale) :
             GUIScale(scale),
-            fontSize(int(12 * GUIScale)) {
-        if (GUIScale < 1.f)
-            Log::warn("GUI", "Scale value is incorrect, expect GUI to have strange behaviour");
-    }
+            fontSize(int(12 * GUIScale)) {}
 
     const float GUIScale;
     const int fontSize;
