@@ -105,7 +105,10 @@ void Game::run() {
 
 void Game::render() {
     //Wait for imGui update
-    while(!imGuiUpdatedThisFrame);
+    while(!imGuiUpdatedThisFrame && renderMutex.try_lock()){
+        renderMutex.unlock();
+        sf::sleep(sf::microseconds(10));
+    }
     renderMutex.lock();
     auto now = std::chrono::system_clock::now();
     auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - previous_render);

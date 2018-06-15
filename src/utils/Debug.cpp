@@ -66,10 +66,12 @@ void Debug::updateMainDebug() {
 
         ImGui::Text("Entities: %.i", entityCount);
         ImGui::Text("Chunk cache: %.i", loadedChunks);
-        sf::Vector2f& playerPos = player->getComponent<PositionComponent>()->position;
-        ImGui::Value("X", playerPos.x);
-        ImGui::SameLine();
-        ImGui::Value("Y", playerPos.y);
+        if(player) {
+            sf::Vector2f &playerPos = player->getComponent<PositionComponent>()->position;
+            ImGui::Value("X", playerPos.x);
+            ImGui::SameLine();
+            ImGui::Value("Y", playerPos.y);
+        }
 
         if (ImGui::CollapsingHeader("Cheats")) {
             ImGui::SliderFloat("Speed", &player->getComponent<ControlComponent>()->speed, 100.0f, 10000.0f);
