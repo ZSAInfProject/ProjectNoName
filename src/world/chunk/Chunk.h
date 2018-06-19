@@ -99,7 +99,8 @@ public:
     void setTile(int x, int y, ChunkTile value);
     //! Set tile objectId at given coordinates to supplied objectId
     void setTileObject(int x, int y, short objectId);
-    void setTileNodes(int x, int y, short node, short node0, short node1);
+    void setTileNode(int x, int y, short node);
+    void setTilePath(int x, int y, short node0, short node1);
 
     Chunk();
     Chunk(Chunk const&) = delete;

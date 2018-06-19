@@ -152,12 +152,19 @@ bool Chunk::isInsideBoundaries(int x, int y) {
     return true;
 }
 
-void Chunk::setTileNodes(int x, int y, short node, short node0, short node1) {
+void Chunk::setTileNode(int x, int y, short node) {
     if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
         Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
         return;
     }
     tiles[y*SIDE_LENGTH + x].node = node;
+}
+
+void Chunk::setTilePath(int x, int y, short node0, short node1) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+        Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return;
+    }
     tiles[y*SIDE_LENGTH + x].node0 = node0;
     tiles[y*SIDE_LENGTH + x].node1 = node1;
 }

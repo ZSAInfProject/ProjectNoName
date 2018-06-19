@@ -43,8 +43,9 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     gui = std::make_shared<GUI>(gameMode->getTag(), 1.f);
 
     pathfinder.setWorld(&world);
-    pathfinder.load();
-    pathfinder.generate(0, 0);
+    if (!pathfinder.load()) {
+        pathfinder.generate(0, 0);
+    };
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {

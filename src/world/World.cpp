@@ -129,7 +129,7 @@ std::pair<sf::Vector2i, sf::Vector2i> World::getTileAndChunkCoordinates(int x, i
     return std::make_pair(tile, chunk);
 }
 
-void World::setTileNodes(int x, int y, short node, short node0, short node1) {
+void World::setTileNode(int x, int y, short node) {
     sf::Vector2i tile;
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
@@ -137,7 +137,17 @@ void World::setTileNodes(int x, int y, short node, short node0, short node1) {
     auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
-    chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNodes(tile.x, tile.y, node, node0, node1);
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNode(tile.x, tile.y, node);
+}
+void World::setTilePath(int x, int y, short node0, short node1) {
+    sf::Vector2i tile;
+    sf::Vector2i chunk;
+    chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
+    chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
+    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    tile.x = mod(x, Chunk::SIDE_LENGTH);
+    tile.y = mod(y, Chunk::SIDE_LENGTH);
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTilePath(tile.x, tile.y, node0, node1);
 }
 
 std::shared_ptr<Entity> World::getObject(int x, int y) {

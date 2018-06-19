@@ -24,7 +24,7 @@ Pathfinder::Pathfinder() {
 
 void Pathfinder::generate(int x, int y) {
     nodes.push_back({true, x, y, {0, 0, 0, 0}, {0, 0, 0, 0}});
-    world->setTileNodes(x, y, static_cast<short>(nodes.size() - 1), 0, 0);
+    world->setTileNode(x, y, static_cast<short>(nodes.size() - 1));
     branch_node(1);
 }
 
@@ -78,6 +78,8 @@ void Pathfinder::branch_node(short id) {
 
 void Pathfinder::branch(Direction direction, int x, int y, short id) {
 
+    std::vector<sf::Vector2i> tiles;
+
     bool end = false;
     Direction dir = direction;
 
@@ -112,6 +114,8 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
         int temp_x = x;
         int temp_y = y;
         Direction temp_dir = direction;
+        tiles.push_back({x, y});
+
         int count = 0;
 
         if (!solid[4] && (solid[6] || ladder[2] || direction == Up) && (solid[7] || (solid[10] && direction != Up) || ladder[3]) && direction != Left) {
@@ -135,12 +139,14 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
             temp_y++;
         }
 
-        Log::debug(TAG, "Step " + std::to_string(x) + " " + std::to_string(y));
+        Log::verbose(TAG, "Step " + std::to_string(x) + " " + std::to_string(y));
 
         if (count > 1 || count == 0) {
             end = true;
+            short newId;
 
             if (world->getTile(x, y).node != 0 && world->getTile(x, y).node < nodes.size()) {
+                newId = world->getTile(x, y).node;
                 switch (direction) {
                     case Up:
                         nodes[world->getTile(x, y).node].connections[Down] = id;
@@ -172,18 +178,21 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
                         arr1[Left] = id;
                         break;
                 }
-                Log::debug(TAG, "Node created " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(id));
+                Log::verbose(TAG, "Node created " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(id));
                 Node n = {true, x, y, {arr1[0], arr1[1], arr1[2], arr1[3]}, {arr2[0], arr2[1], arr2[2], arr2[3]}};
                 nodes.push_back(n);
+                newId = nodes.size() - 1;
 
-                world->setTileNodes(x, y, static_cast<short>(nodes.size() - 1), 0, 0);
+                world->setTileNode(x, y, static_cast<short>(nodes.size() - 1));
                 nodes[id].connections[dir] = static_cast<short>(nodes.size() - 1);
                 if (id != static_cast<short>(nodes.size() - 1)) {
                     branch_node(static_cast<short>(nodes.size() - 1));
                 }
             }
 
-
+            for (auto tile : tiles) {
+                world->setTilePath(tile.x, tile.y, id, newId);
+            }
 
         } else {
             x = temp_x;
@@ -218,7 +227,7 @@ void Pathfinder::save() {
     }
 }
 
-void Pathfinder::load() {
+bool Pathfinder::load() {
     std::ifstream file(Settings::get<std::string>("save_path") + "nodes.td");
     if(file.good()) {
         std::string line;
@@ -238,11 +247,18 @@ void Pathfinder::load() {
                 lenght = (short)std::stoi(line);
                 getline(file, line);
             }
+            nodes.push_back(node);
         }
+        return true;
+    }
+    else {
+        Log::debug(TAG, "Could not load graph file");
+        return false;
     }
 }
 
 Pathfinder::~Pathfinder() {
    save();
+   Log::debug(TAG, "Saving graph");
 }
 

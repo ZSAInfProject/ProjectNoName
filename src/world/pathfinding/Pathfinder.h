@@ -29,7 +29,7 @@ public:
     void generate(int x, int y);
     void setWorld(World* world);
     void save();
-    void load();
+    bool load();
 
     ~Pathfinder();
 

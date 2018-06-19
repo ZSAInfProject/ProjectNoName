@@ -38,7 +38,8 @@ public:
 
     //! Returns objects to be processed by systems
     std::vector<std::shared_ptr<Entity>> getObjectsForUpdate();
-    void setTileNodes(int x, int y, short node, short node0, short node1);
+    void setTileNode(int x, int y, short node);
+    void setTilePath(int x, int y, short node0, short node1);
 
     ChunkTile getLoadedTile(int x, int y);
 
