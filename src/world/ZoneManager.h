@@ -22,15 +22,15 @@ public:
     const Zone& getZone(int id);
 
     //! Replaces zone at supplied id with supplied zone
-    void setZone(int id, Zone zone);
+    void setZone(uint id, Zone zone);
 
     //! Adds zone
     int addZone(Zone zone);
 
     //! Checks if coordinates are inside zone with supplied id
-    bool isInZone(int id, int x, int y);
+    bool isInZone(uint id, int x, int y);
     //! Checks if coordinates are inside zone with supplied id
-    bool isInZone(int id, sf::Vector2i vector);
+    bool isInZone(uint id, sf::Vector2i vector);
     //! Checks if coordinates are inside any zone
     std::pair<bool, int> isInAnyZone(int x, int y);
     //! Checks if coordinates are inside any zone

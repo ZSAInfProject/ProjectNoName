@@ -16,10 +16,10 @@ enum bufferMode{
 
 class Buffer {
     int pointer;
-    int currentSize;
+    uint currentSize;
     char* data;
     enum bufferMode mode;
-    void resize(int size);
+    void resize(uint size);
 public:
     template<typename T>
     void io(T* ptr){

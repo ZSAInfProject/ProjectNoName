@@ -27,7 +27,7 @@ void TileDatabase::loadTile(nlohmann::json json) {
         Log::error(TAG, "Tile in file does not have an id. Tile not added");
     }
     else {
-        int id = json["id"];
+        uint id = json["id"];
         Tile tile(std::move(json));
         if (tiles.size() < id + 1) {
             tiles.resize(id + 1, Tile());
@@ -36,7 +36,7 @@ void TileDatabase::loadTile(nlohmann::json json) {
     }
 }
 
-Tile &TileDatabase::operator[](int index){
+Tile &TileDatabase::operator[](uint index){
     if (index >= tiles.size()) {
         Log::debug(TAG, "Id too big. Returning default tile");
         return tiles[0];

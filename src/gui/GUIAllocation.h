@@ -9,20 +9,20 @@ public:
     ArchitectModeAllocation(float scale, int windowWidth, int windowHeight) :
             GUIScale(scale),
             buttonSize(int(baseBlockSize * GUIScale)),
-            blockScale(buttonSize / Chunk::TILE_SIZE),
+            blockScale(static_cast<float>(buttonSize) / Chunk::TILE_SIZE),
 
-            categorySelectorWindowHeight(baseCategorySelectorWindowHeight * GUIScale),
+            categorySelectorWindowHeight(static_cast<int>(baseCategorySelectorWindowHeight * GUIScale)),
             categorySelectorWindowWidth(buttonSize),
             categorySelectorWindowPositionX(windowsSpacing),
             categorySelectorWindowPositionY(windowHeight - 1 - windowsSpacing - categorySelectorWindowHeight),
 
             categoryWindowsHeight(buttonSize),
-            categoryWindowsWidth(baseCategoryWindowsWidth * GUIScale),
+            categoryWindowsWidth(static_cast<int>(baseCategoryWindowsWidth * GUIScale)),
             categoryWindowsPositionX(categorySelectorWindowPositionX + 26 + buttonSize + windowsSpacing),
             categoryWindowsPositionY(windowHeight - windowsSpacing - 26 - categoryWindowsHeight),
 
-            tooltipHeight(baseTooltipHeight * GUIScale),
-            tooltipWidth(baseTooltipWidth * GUIScale),
+            tooltipHeight(static_cast<int>(baseTooltipHeight * GUIScale)),
+            tooltipWidth(static_cast<int>(baseTooltipWidth * GUIScale)),
             tooltipPositionX(windowWidth - windowsSpacing - tooltipWidth),
             tooltipPositionY(windowHeight - windowsSpacing - tooltipHeight),
 
@@ -65,17 +65,17 @@ private:
     static const int windowsSpacing = 15;
     static const int baseTooltipHeight = 200;
     static const int baseTooltipWidth = 125;
-    static const int baseBoxSpacing = 10.f;
+    static const int baseBoxSpacing = 10;
 };
 
 class ModeSwitcherAllocation {
 public:
     ModeSwitcherAllocation(float scale, int windowWidth, int windowHeight) :
             GUIScale(scale),
-            buttonWidth(GUIScale * baseButtonWidth),
-            buttonHeight(GUIScale * baseButtonHeight),
-            switchWindowHeight(GUIScale * baseSwitchWindowHeight),
-            switchWindowWidth(GUIScale * baseSwitchWindowWidth),
+            buttonWidth(static_cast<int>(GUIScale * baseButtonWidth)),
+            buttonHeight(static_cast<int>(GUIScale * baseButtonHeight)),
+            switchWindowHeight(static_cast<int>(GUIScale * baseSwitchWindowHeight)),
+            switchWindowWidth(static_cast<int>(GUIScale * baseSwitchWindowWidth)),
             switchWindowPositionX(baseSwitchWindowPositionX),
             switchWindowPositionY(windowSpacing),
             boxSpacing(GUIScale * baseBoxSpacing) {}
@@ -101,7 +101,7 @@ private:
     static const int baseSwitchWindowWidth = 123;
     static const int baseSwitchWindowPositionX = 350;
 
-    static const int baseBoxSpacing = 10.f;
+    static const int baseBoxSpacing = 10;
 };
 
 class GUIAllocation {

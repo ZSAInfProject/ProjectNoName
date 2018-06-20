@@ -65,7 +65,7 @@ void Chunk::save(const std::string& fileName) {
     if(objectData.good()) {
         nlohmann::json json;
         json["objects"] = nlohmann::json::array();
-        for(int i = 0; i < objects.size(); i++) {
+        for(uint i = 0; i < objects.size(); i++) {
             json["objects"][i] = objects[i]->serialize();
         }
         std::string data = json.dump();

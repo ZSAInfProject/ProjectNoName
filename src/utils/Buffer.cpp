@@ -1,6 +1,6 @@
 #include "Buffer.h"
 
-void Buffer::resize(int size) {
+void Buffer::resize(uint size) {
     auto* newData = new char[size];
     memcpy(newData, data, (size_t)currentSize);
     delete data;

@@ -6,7 +6,7 @@ const Zone& ZoneManager::getZone(int id) {
     return zones[id];
 }
 
-void ZoneManager::setZone(int id, Zone zone) {
+void ZoneManager::setZone(uint id, Zone zone) {
     if(id < zones.size()) {
         zones[id] = zone;
     }
@@ -18,17 +18,17 @@ int ZoneManager::addZone(Zone zone) {
 }
 
 
-bool ZoneManager::isInZone(int id, int x, int y) {
+bool ZoneManager::isInZone(uint id, int x, int y) {
     return x < zones[id].x && x > zones[id].x - zones[id].w &&
            y < zones[id].y && y > zones[id].y - zones[id].h;
 }
 
-bool ZoneManager::isInZone(int id, sf::Vector2i vector) {
+bool ZoneManager::isInZone(uint id, sf::Vector2i vector) {
     return isInZone(id, vector.x, vector.y);
 }
 
 std::pair<bool, int> ZoneManager::isInAnyZone(int x, int y) {
-    for(int i = 0; i < zones.size(); i++) {
+    for(uint i = 0; i < zones.size(); i++) {
         if(isInZone(i, x, y) && zones[i].enabled) return std::make_pair(true, i);
     }
     return std::make_pair(false, -1);

@@ -54,7 +54,7 @@ private:
     std::chrono::system_clock::time_point lastCacheCleanUp = std::chrono::system_clock::now();
     std::chrono::microseconds cleanUpPeriod = std::chrono::microseconds(50000);
     std::chrono::microseconds minimumCacheTime = std::chrono::microseconds(100000);
-    const int maxNumOfChunksBeforeCleanup = 10;
+    const uint maxNumOfChunksBeforeCleanup = 10;
     void cleanUpCache();
 
     std::chrono::system_clock::time_point lastAutoSave = std::chrono::system_clock::now();

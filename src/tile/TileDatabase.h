@@ -40,7 +40,7 @@ public:
     void loadTiles(std::string file);
     //! Loads texture map for tiles from file
     void loadTexture(std::string file);
-    Tile& operator[] (int index);
+    Tile& operator[](uint index);
     //! Returns size of tiles
     int size();
 
