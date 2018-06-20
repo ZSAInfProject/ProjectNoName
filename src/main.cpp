@@ -2,8 +2,7 @@
 #include "utils/Log.h"
 #include "utils/Settings.h"
 
-int main()
-{
+int main() {
     Settings::get().setFile("settings.json");
     Log::get().setLogFile(Settings::get<std::string>("logfile"));
     Log::get().setMode(Settings::get<std::string>("log_mode"));
@@ -12,7 +11,7 @@ int main()
         Game::get().run();
         return EXIT_SUCCESS;
     }
-    catch (...) {
+    catch(...) {
         Log::error("Main", "Fatal error. Exiting");
         return EXIT_FAILURE;
     }

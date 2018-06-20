@@ -1,7 +1,3 @@
-//
-// Created by zakrent on 6/5/18.
-//
-
 #ifndef NONAME_INVENTORY_H
 #define NONAME_INVENTORY_H
 
@@ -9,7 +5,7 @@
 #include "../../../deps/json.h"
 #include "../../utils/Resource.h"
 
-class InventoryComponent : public Component{
+class InventoryComponent : public Component {
 public:
     static const componentId Id = componentId::Inventory;
 
@@ -18,10 +14,10 @@ public:
     nlohmann::json serialize() override {
         nlohmann::json json;
         json["type"] = "Inventory";
-        for(auto& resource : resources){
+        for(auto& resource : resources) {
             nlohmann::json resData;
-            resData["type"]=getResourceType(resource.first);
-            resData["amount"]=resource.second;
+            resData["type"] = getResourceType(resource.first);
+            resData["amount"] = resource.second;
             json["resources"].push_back(resData);
         }
         return json;
@@ -32,10 +28,10 @@ public:
     }
 
     explicit InventoryComponent(nlohmann::json json) {
-        if(json.find("resources") != json.end()){
-            for(const auto &resource : json["resources"]){
-                Resource res{getResourceType(resource["type"].get<std::string>()), resource["amount"].get<unsigned int>()};
-                resources[getResourceType(resource["type"].get<std::string>())] = resource["amount"].get<unsigned int>();
+        if(json.find("resources") != json.end()) {
+            for(const auto& resource : json["resources"]) {
+                resources[getResourceType(
+                        resource["type"].get<std::string>())] = resource["amount"].get<unsigned int>();
             }
         }
     };

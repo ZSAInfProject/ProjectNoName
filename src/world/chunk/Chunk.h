@@ -12,16 +12,19 @@
 
 
 //! Representation of a tile in a chunk
-class ChunkTile{
+class ChunkTile {
+
 public:
+    static constexpr auto TAG = "ChunkTile";
+
     //! Tile id pointing to data in TileDatabase
     short tileId;
     //! Amount of material in one tile
     uint amount;
+    //! Id of object in tile. -1 if empty
     short objectId;
     void serialize(Buffer&);
 
-    static constexpr auto TAG = "ChunkTile";
     ChunkTile() = default;
     ChunkTile(short tileId, uint amount, short objectId = -1);
     explicit ChunkTile(nlohmann::json);
@@ -29,22 +32,15 @@ public:
 
 class Chunk {
 public:
+    static constexpr auto TAG = "Chunk";
+
+    //! Size of chunk in tiles
     static const int SIDE_LENGTH = 32;
+    //! Size of tile in pixels
     static const int TILE_SIZE = 16;
 
+    //! Vector of all objects inside a chunk
     std::vector<std::shared_ptr<Entity>> objects;
-private:
-    std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> tiles;
-
-    void generateVertices();
-    void changeQuad(int x, int y);
-    void updateQuads();
-    sf::VertexArray vertices = sf::VertexArray(sf::Quads, SIDE_LENGTH * SIDE_LENGTH * 4);
-
-    static constexpr auto TAG = "Chunk";
-public:
-    Chunk(Chunk const&) = delete;
-    void operator= (Chunk const&) = delete;
 
     //! Method used to render Chunk
     /*!
@@ -94,10 +90,25 @@ public:
      * @param value a new value of the tile
      */
     void setTile(int x, int y, ChunkTile value);
+    //! Set tile objectId at given coordinates to supplied objectId
     void setTileObject(int x, int y, short objectId);
 
     Chunk();
-    explicit Chunk(const std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH>& _tiles);
+    Chunk(Chunk const&) = delete;
+    void operator=(Chunk const&) = delete;
+    explicit Chunk(const std::array<ChunkTile, SIDE_LENGTH * SIDE_LENGTH>& tiles);
+
+private:
+    std::array<ChunkTile, SIDE_LENGTH * SIDE_LENGTH> tiles;
+
+    void generateVertices();
+    void changeQuad(int x, int y);
+    void updateQuads();
+    sf::VertexArray vertices = sf::VertexArray(sf::Quads, SIDE_LENGTH * SIDE_LENGTH * 4);
+
+    //! Returns true if tile is inside a chunk. Warns if otherwise
+    bool isInsideBoundaries(int x, int y);
+
 };
 
 

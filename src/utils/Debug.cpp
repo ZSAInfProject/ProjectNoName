@@ -22,7 +22,7 @@ void Debug::update() {
         toggled = false;
     }
 
-    if(Game::canUpdateimGui()){
+    if(Game::canUpdateImGui()){
         updateErrors();
         updateMainDebug();
     }

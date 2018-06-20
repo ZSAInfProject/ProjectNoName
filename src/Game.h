@@ -17,7 +17,10 @@
 class Game {
 
 public:
+    static constexpr auto TAG = "GameSingleton";
+
     Debug debug;
+
     //! Push state on stack.
     void pushState(std::shared_ptr<State> state);
     //! Pop state from stack.
@@ -31,7 +34,7 @@ public:
     //! Returns a reference to main render window
     static sf::RenderWindow& getRenderWindow();
 
-    static bool canUpdateimGui();
+    static bool canUpdateImGui();
 
     //! Minimum time for main loop iteration
     /*!
@@ -45,9 +48,8 @@ public:
      */
     std::chrono::microseconds tick_period = std::chrono::microseconds(1000000);
 
-    static constexpr auto TAG = "GameSingleton";
 private:
-    bool imGuiUpdatedThisFrame;
+    bool imGuiUpdatedThisFrame = false;
     std::mutex renderMutex;
 
     //! Stack containing all states.
@@ -72,10 +74,11 @@ public:
     }
 
     Game(Game const&) = delete;
-    void operator= (Game const&) = delete;
+    void operator=(Game const&) = delete;
 
 private:
     Game() = default;
+
 };
 
 #endif //NONAME_GAME_H

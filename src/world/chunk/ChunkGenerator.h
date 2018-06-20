@@ -8,8 +8,10 @@
 #include "../../utils/ThreadPool.h"
 #include "../../../deps/json.h"
 
-class SecondaryMaterial{
+class SecondaryMaterial {
 public:
+    static constexpr auto TAG = "SecondaryMaterial";
+
     ChunkTile tile;
     float minDepth;
     float maxDepth;
@@ -17,18 +19,18 @@ public:
     bool hasMaxDepth;
     bool isOre;
     float noiseMul;
-    static constexpr auto TAG = "SecondaryMaterial";
     explicit SecondaryMaterial(nlohmann::json);
 };
 
-class Biome{
+class Biome {
 public:
+    static constexpr auto TAG = "Biome";
+
     int biomeId;
     ChunkTile primaryTile;
     ChunkTile surfaceTile;
     ChunkTile subSurfaceTile;
     std::vector<SecondaryMaterial> secondaryMaterials;
-    static constexpr auto TAG = "Biome";
     explicit Biome(nlohmann::json);
 };
 
@@ -37,6 +39,25 @@ public:
  * This class generates new chunks based on chunk's position and world seed.
  */
 class ChunkGenerator {
+
+public:
+    static constexpr auto TAG = "ChunkGenerator";
+
+    //! Method used to generate new chunks
+    /*!
+     * generateChunk() is used to procedurally generate new chunks based on it's world cords and seed
+     * @param x X coordinate of new chunk
+     * @param y Y coordinate of new chunk
+     * @return a newly created chunk
+     */
+    std::unique_ptr<Chunk> generateChunk(int x, int y);
+
+    //! Loads biomes from file using supplied file name
+    void loadBiomes(std::string filename);
+
+    explicit ChunkGenerator(int seed);
+
+private:
     //! World seed
     /*!
      * generateChunk() will use this value for chunk generation
@@ -56,30 +77,20 @@ class ChunkGenerator {
 
     std::vector<Biome> biomes;
 
-    inline const float getWorldHeight(float x);
+    //! Returns terrain height at x coordinate
+    inline float getWorldHeight(float x);
+    //! Returns noise value for selected material at specified coordinates
+    inline float getMaterialNoise(int materialType, float x, float y);
+    //! Returns noise value for selected ore at specified coordinates
+    inline float getOreNoise(int oreType, float x, float y);
 
-    inline const float getMaterialNoise(int materialType, float x, float y);
-    inline const float getOreNoise(int oreType, float x, float y);
-
+    //! Returns biome at specified x coordinate
     Biome getBiome(float worldX);
+    //! Returns generated tile at specified coordinate using biome and height
     ChunkTile getTile(float worldX, float worldY, float worldHeight, Biome biome);
 
+    //! Loads biome definition from json
     void loadBiome(nlohmann::json json);
-
-    static constexpr auto TAG = "ChunkGenerator";
-public:
-    //! Method used to generate new chunks
-    /*!
-     * generateChunk() is used to procedurally generate new chunks based on it's world cords and seed
-     * @param x X coordinate of new chunk
-     * @param y Y coordinate of new chunk
-     * @return a newly created chunk
-     */
-    std::unique_ptr<Chunk> generateChunk(int x, int y);
-
-    void loadBiomes(std::string filename);
-
-    explicit ChunkGenerator(int _seed);
 };
 
 
