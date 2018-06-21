@@ -9,11 +9,10 @@
 #include <map>
 
 class Controls {
-    sf::Vector2f mousePos;
-    Controls() = default;
-    std::map<sf::Keyboard::Key, bool> keyboardMap;
-    std::map<sf::Mouse::Button, bool> mouseMap;
+
 public:
+    static constexpr auto TAG = "Controls";
+
     //! Checks if mouse button was pressed in last frame.
     static bool isMouseButtonPressed(sf::Mouse::Button);
     //! Checks if keyboard button was pressed in last frame.
@@ -36,7 +35,13 @@ public:
     }
 
     Controls(Controls const&) = delete;
-    void operator= (Controls const&) = delete;
+    void operator=(Controls const&) = delete;
+
+private:
+    sf::Vector2f mousePos;
+    Controls() = default;
+    std::map<sf::Keyboard::Key, bool> keyboardMap;
+    std::map<sf::Mouse::Button, bool> mouseMap;
 };
 
 

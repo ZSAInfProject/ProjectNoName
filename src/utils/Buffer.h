@@ -9,45 +9,51 @@
 #include <string>
 #include <fstream>
 
-enum bufferMode{
+enum bufferMode {
     store,
     load
 };
 
 class Buffer {
+
+public:
+    static constexpr auto TAG = "Buffer";
+
+private:
     int pointer;
     uint currentSize;
     char* data;
     enum bufferMode mode;
     void resize(uint size);
+
 public:
     template<typename T>
-    void io(T* ptr){
+    void io(T* ptr) {
         constexpr size_t size = sizeof(T);
-        switch(mode){
+        switch(mode) {
             case bufferMode::store:
-                if(pointer+size > currentSize){
-                    resize(currentSize+(int)size*3);
+                if(pointer + size > currentSize) {
+                    resize(currentSize + (int)size * 3);
                 }
-                memcpy(data+pointer, ptr, size);
-                pointer += size+1;
+                memcpy(data + pointer, ptr, size);
+                pointer += size + 1;
                 break;
             case bufferMode::load:
-                memcpy(ptr, data+pointer, size);
-                pointer += size+1;
+                memcpy(ptr, data + pointer, size);
+                pointer += size + 1;
                 break;
         }
     }
 
-    bool load(const std::string &filename);
-    bool save(const std::string &filename);
+    bool load(const std::string& filename);
+    bool save(const std::string& filename);
 
-    void setMode(enum bufferMode _mode){
+    void setMode(enum bufferMode _mode) {
         mode = _mode;
         pointer = 0;
     }
 
-    explicit Buffer(enum bufferMode _mode, int size = 1) {
+    explicit Buffer(enum bufferMode _mode, uint size = 1) {
         data = new char[size];
         currentSize = size;
         mode = _mode;

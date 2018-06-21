@@ -7,14 +7,14 @@
 
 #include <string>
 
-enum resourceType{
+enum resourceType {
     unknown,
     stone,
     ironOre,
     copperOre,
 };
 
-struct Resource{
+struct Resource {
     enum resourceType type;
     unsigned int amount = 0;
 };

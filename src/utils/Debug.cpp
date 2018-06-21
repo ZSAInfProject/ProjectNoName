@@ -1,4 +1,5 @@
 #include <imgui.h>
+#include <utility>
 #include "Debug.h"
 #include "../Game.h"
 #include "Log.h"
@@ -82,7 +83,7 @@ void Debug::updateMainDebug() {
         }
 
         if(ImGui::CollapsingHeader("Inventory")) {
-            InventoryComponent* inventory = player->getComponent<InventoryComponent>();
+            auto* inventory = player->getComponent<InventoryComponent>();
             for(const auto& item : inventory->resources) {
                 ImGui::Text("%s: %.i", getResourceType(item.first).c_str(), item.second);
             }
@@ -180,8 +181,8 @@ void Debug::reportEntityCount(int n) {
     entityCount = n;
 }
 
-void Debug::reportPlayerEntity(std::shared_ptr<Entity> _player) {
-    player = _player;
+void Debug::reportPlayerEntity(std::shared_ptr<Entity> player) {
+    this->player = std::move(player);
 }
 
 

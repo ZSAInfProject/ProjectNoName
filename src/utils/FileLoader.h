@@ -12,7 +12,7 @@ nlohmann::json loadJsonResource(const std::string& filename) {
             nlohmann::json json = nlohmann::json::parse(data);
             return json;
         }
-        catch (nlohmann::json::parse_error& parse_error) {
+        catch(nlohmann::json::parse_error& parse_error) {
             Log::error("FileLoader", "Could not parse json resource: res/" + filename);
             return nlohmann::json();
         }

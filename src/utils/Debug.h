@@ -11,22 +11,10 @@
 
 //! Class responsible for updating visual debug items
 class Debug : public LogSubscriber {
-    int loadedChunks;
-    int entityCount;
-    float ups;
-    float fps;
-    bool active;
-    bool toggled;
 
-    std::vector<float> fpsHistory;
-    std::vector<float> upsHistory;
-
-    std::shared_ptr<Entity> player;
-    std::vector<std::pair<enum Mode,std::string>> logMessages;
-    std::vector<std::string> errorMessages;
-    void updateErrors();
-    void updateMainDebug();
 public:
+    static constexpr auto TAG = "Debug";
+
     //! Method called every update
     void update();
     //! Method called every tick
@@ -46,6 +34,23 @@ public:
     void notify(enum Mode, std::string, std::string) override;
 
     Debug();
+
+private:
+    int loadedChunks;
+    int entityCount;
+    float ups;
+    float fps;
+    bool active;
+    bool toggled;
+
+    std::vector<float> fpsHistory;
+    std::vector<float> upsHistory;
+
+    std::shared_ptr<Entity> player;
+    std::vector<std::pair<enum Mode, std::string>> logMessages;
+    std::vector<std::string> errorMessages;
+    void updateErrors();
+    void updateMainDebug();
 };
 
 
