@@ -5,7 +5,7 @@
 #include "../utils/Log.h"
 
 Tile::Tile(nlohmann::json json) {
-    if (json.find("name") != json.end()) {
+    if(json.find("name") != json.end()) {
         name = json["name"].get<std::string>();
     }
     else {
@@ -13,7 +13,7 @@ Tile::Tile(nlohmann::json json) {
         name = "Default";
     }
 
-    if (json.find("terminal") != json.end()) {
+    if(json.find("terminal") != json.end()) {
         terminal_representation = json["terminal"].get<std::string>();
     }
     else {
@@ -21,7 +21,7 @@ Tile::Tile(nlohmann::json json) {
         terminal_representation = "?";
     }
 
-    if (json.find("hardness") != json.end()) {
+    if(json.find("hardness") != json.end()) {
         hardness = json["hardness"].get<float>();
     }
     else {
@@ -29,7 +29,7 @@ Tile::Tile(nlohmann::json json) {
         hardness = 1;
     }
 
-    if (json.find("texture") != json.end()) {
+    if(json.find("texture") != json.end()) {
         texture_x = json["texture"][0].get<int>();
         texture_y = json["texture"][1].get<int>();
     }
@@ -39,17 +39,17 @@ Tile::Tile(nlohmann::json json) {
         texture_y = 0;
     }
 
-    if (json.find("drop") != json.end()) {
+    if(json.find("drop") != json.end()) {
         std::string type = json["drop"]["type"];
         drop.type = getResourceType(type);
         drop.amount = json["drop"]["amount"];
     }
-    else{
+    else {
         drop.type = resourceType::unknown;
         drop.amount = 0;
     }
 
-    if (json.find("isSolid") != json.end()) {
+    if(json.find("isSolid") != json.end()) {
         isSolid = json["isSolid"].get<bool>();
     }
     else {
@@ -57,17 +57,17 @@ Tile::Tile(nlohmann::json json) {
         isSolid = true;
     }
 
-    if(json.find("buildCost") != json.end()){
+    if(json.find("buildCost") != json.end()) {
         std::string type = json["buildCost"]["type"];
         buildCost.type = getResourceType(type);
         buildCost.amount = json["buildCost"]["amount"];
     }
-    else{
+    else {
         buildCost.type = resourceType::unknown;
         buildCost.amount = 0;
     }
 
-    if(json.find("category") != json.end()){
+    if(json.find("category") != json.end()) {
         category = json["category"].get<int>();
     }
     else {
@@ -79,7 +79,8 @@ Tile::Tile(nlohmann::json json) {
 Tile::Tile(std::string name, float hardness, std::string terminal_representation,
            int texture_x, int texture_y, bool isSolid, int category)
         : name(std::move(name)), hardness(hardness), terminal_representation(std::move(terminal_representation)),
-          texture_x(texture_x), texture_y(texture_y), isSolid(isSolid), category(category) {}
+          texture_x(texture_x), texture_y(texture_y), isSolid(isSolid), category(category) {
+}
 
 Tile::Tile() {
     name = "Default";
