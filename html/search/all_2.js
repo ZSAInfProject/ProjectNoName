@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['cachedebug',['cacheDebug',['../classChunkDatabase.html#a859a5a44d31f8fa40fe8d7936b27b5f5',1,'ChunkDatabase']]],
   ['cacheentry',['CacheEntry',['../structCacheEntry.html',1,'']]],
   ['cameracomponent',['CameraComponent',['../classCameraComponent.html',1,'']]],
   ['camerasystem',['CameraSystem',['../classCameraSystem.html',1,'']]],
@@ -10,9 +9,9 @@ var searchData=
   ['categoryselectorwindowwidth',['categorySelectorWindowWidth',['../classArchitectModeAllocation.html#af786648054c9487ded00409b5c52bbc2',1,'ArchitectModeAllocation']]],
   ['categorywindowspositionx',['categoryWindowsPositionX',['../classArchitectModeAllocation.html#a96e2a5e6b9fa39d4717b5e594870a475',1,'ArchitectModeAllocation']]],
   ['categorywindowspositiony',['categoryWindowsPositionY',['../classArchitectModeAllocation.html#a4b42d6877c1e6429f970958eb786ca72',1,'ArchitectModeAllocation']]],
-  ['changemode',['changeMode',['../classGUI.html#a693d2446309a4e36f06ee778a313471b',1,'GUI::changeMode()'],['../classGUIModeSwitcher.html#a26547002840d8da94a1bf2e2254c8ed1',1,'GUIModeSwitcher::changeMode()']]],
+  ['changemode',['changeMode',['../classGUI.html#a693d2446309a4e36f06ee778a313471b',1,'GUI::changeMode()'],['../classGUIModeSwitcher.html#a107432263afafda110ede5a399c5db11',1,'GUIModeSwitcher::changeMode()']]],
   ['chunk',['Chunk',['../classChunk.html',1,'']]],
-  ['chunkdatabase',['ChunkDatabase',['../classChunkDatabase.html',1,'']]],
+  ['chunkdatabase',['ChunkDatabase',['../classChunkDatabase.html',1,'ChunkDatabase'],['../classChunkDatabase.html#ac679a24342adcd98d02c3318882651e4',1,'ChunkDatabase::ChunkDatabase()']]],
   ['chunkgenerator',['ChunkGenerator',['../classChunkGenerator.html',1,'']]],
   ['chunktile',['ChunkTile',['../classChunkTile.html',1,'']]],
   ['component',['Component',['../classComponent.html',1,'']]],

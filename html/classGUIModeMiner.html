@@ -107,22 +107,30 @@ Collaboration diagram for GUIModeMiner:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af36ccd84103f5e0ce83498069612a38f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af36ccd84103f5e0ce83498069612a38f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#af36ccd84103f5e0ce83498069612a38f">handleEvent</a> (sf::Event &amp;event) override</td></tr>
-<tr class="memdesc:af36ccd84103f5e0ce83498069612a38f"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns whether mouse click occured inside of any active window <br/></td></tr>
+<tr class="memdesc:af36ccd84103f5e0ce83498069612a38f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether mouse click occured inside of any active window. <br/></td></tr>
 <tr class="separator:af36ccd84103f5e0ce83498069612a38f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a6833450b35219d01d95e7586579d95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a6833450b35219d01d95e7586579d95"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#a0a6833450b35219d01d95e7586579d95">addWindows</a> (sfg::Desktop &amp;desktop) override</td></tr>
-<tr class="memdesc:a0a6833450b35219d01d95e7586579d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds windows to desktop <br/></td></tr>
+<tr class="memdesc:a0a6833450b35219d01d95e7586579d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds windows to desktop. <br/></td></tr>
 <tr class="separator:a0a6833450b35219d01d95e7586579d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac494c734e0e209548f7749edd8dfe4b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#ac494c734e0e209548f7749edd8dfe4b3">removeWindows</a> (sfg::Desktop &amp;desktop) override</td></tr>
 <tr class="separator:ac494c734e0e209548f7749edd8dfe4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78c53490f8f9ddeb6b5412a93c90d4f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78c53490f8f9ddeb6b5412a93c90d4f3"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#a78c53490f8f9ddeb6b5412a93c90d4f3">getTag</a> () override</td></tr>
-<tr class="memdesc:a78c53490f8f9ddeb6b5412a93c90d4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns tag of <a class="el" href="classGUIMode.html">GUIMode</a> <br/></td></tr>
+<tr class="memdesc:a78c53490f8f9ddeb6b5412a93c90d4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns tag of <a class="el" href="classGUIMode.html">GUIMode</a>. <br/></td></tr>
 <tr class="separator:a78c53490f8f9ddeb6b5412a93c90d4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a391b51f1090c5779716caa52dca00a88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a391b51f1090c5779716caa52dca00a88"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#a391b51f1090c5779716caa52dca00a88">getName</a> () override</td></tr>
-<tr class="memdesc:a391b51f1090c5779716caa52dca00a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns name of <a class="el" href="classGUIMode.html">GUIMode</a> <br/></td></tr>
+<tr class="memdesc:a391b51f1090c5779716caa52dca00a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns name of <a class="el" href="classGUIMode.html">GUIMode</a>. <br/></td></tr>
 <tr class="separator:a391b51f1090c5779716caa52dca00a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcfcea6c9e1c660f6d9d2ca991462079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcfcea6c9e1c660f6d9d2ca991462079"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#adcfcea6c9e1c660f6d9d2ca991462079">rescale</a> (float newScale) override</td></tr>
+<tr class="memdesc:adcfcea6c9e1c660f6d9d2ca991462079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescales <a class="el" href="classGUIMode.html">GUIMode</a> and relocates accordingly. <br/></td></tr>
+<tr class="separator:adcfcea6c9e1c660f6d9d2ca991462079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ae2dc0acda54d8c7e230c75c9932d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6ae2dc0acda54d8c7e230c75c9932d7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIModeMiner.html#ad6ae2dc0acda54d8c7e230c75c9932d7">resize</a> (int newWindowWidth, int newWindowHeight) override</td></tr>
+<tr class="memdesc:ad6ae2dc0acda54d8c7e230c75c9932d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relocates <a class="el" href="classGUIMode.html">GUIMode</a> according to new window dimensions. <br/></td></tr>
+<tr class="separator:ad6ae2dc0acda54d8c7e230c75c9932d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ac494c734e0e209548f7749edd8dfe4b3"></a>
@@ -146,7 +154,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </tr>
 </table>
 </div><div class="memdoc">
-<p>removes windows from desktop, note: due to SFGUI limitations, it only makes windows invisible instead of actually removing them </p>
+<p>Removes windows from desktop, note: due to SFGUI limitations, it only makes windows invisible instead of actually removing them </p>
 
 <p>Implements <a class="el" href="classGUIMode.html#a7214583ea056553d7274cb3b8d8a1925">GUIMode</a>.</p>
 

@@ -94,51 +94,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">enum</span> Mode{ VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5};</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">enum</span> Mode { VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5 };</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classLogSubscriber.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLogSubscriber.html">LogSubscriber</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classLogSubscriber.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLogSubscriber.html">LogSubscriber</a> {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLogSubscriber.html#a4ae9dd8b523ff8e8b5ee2d2380b78158">notify</a>(<span class="keyword">enum</span> Mode, std::string tag, std::string message) = 0;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classLog.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLog.html">Log</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> <a class="code" href="classLog.html">Log</a>&amp; <span class="keyword">get</span>(){</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">static</span> <a class="code" href="classLog.html">Log</a> instance;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> instance;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classLog.html">Log</a>(<a class="code" href="classLog.html">Log</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> operator=(<a class="code" href="classLog.html">Log</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;Log&quot;</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <a class="code" href="classLog.html">Log</a>&amp; <span class="keyword">get</span>() {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> <a class="code" href="classLog.html">Log</a> instance;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> error(std::string tag, std::string message);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> warn(std::string tag, std::string message);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> info(std::string tag, std::string message);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> debug(std::string tag, std::string message);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> verbose(std::string tag, std::string message);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLog.html#acd3bd9bd1f52f6e2c93d7d4322c56384">setLogFile</a>(std::string);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> getMode();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> setMode(std::string mode);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLog.html#ae8ab545617321078f7f4299dff9a9e26">subscribe</a>(<a class="code" href="classLogSubscriber.html">LogSubscriber</a>&amp; subscriber);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classLog.html">Log</a>(<a class="code" href="classLog.html">Log</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> operator=(<a class="code" href="classLog.html">Log</a> <span class="keyword">const</span>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> error(std::string tag, std::string message);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> warn(std::string tag, std::string message);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> info(std::string tag, std::string message);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> debug(std::string tag, std::string message);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> verbose(std::string tag, std::string message);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLog.html#acd3bd9bd1f52f6e2c93d7d4322c56384">setLogFile</a>(std::string);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> getMode();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> setMode(std::string mode);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::vector&lt;std::reference_wrapper&lt;LogSubscriber&gt;&gt; subscribers;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> notifyAll(<span class="keyword">enum</span> Mode, std::string, std::string);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::string logFileName;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::ofstream logFile;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    Mode loggingMode = VERBOSE;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classLog.html">Log</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    ~<a class="code" href="classLog.html">Log</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLog.html#ae8ab545617321078f7f4299dff9a9e26">subscribe</a>(<a class="code" href="classLogSubscriber.html">LogSubscriber</a>&amp; subscriber);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    std::vector&lt;std::reference_wrapper&lt;LogSubscriber&gt;&gt; subscribers;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> notifyAll(<span class="keyword">enum</span> Mode, std::string, std::string);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string logFileName;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::ofstream logFile;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Mode loggingMode = VERBOSE;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classLog.html">Log</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    ~<a class="code" href="classLog.html">Log</a>();</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif //NONAME_LOG_H</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif //NONAME_LOG_H</span></div>
 <div class="ttc" id="classLog_html_acd3bd9bd1f52f6e2c93d7d4322c56384"><div class="ttname"><a href="classLog.html#acd3bd9bd1f52f6e2c93d7d4322c56384">Log::setLogFile</a></div><div class="ttdeci">void setLogFile(std::string)</div><div class="ttdoc">Sets file to save logs to and logging level. </div><div class="ttdef"><b>Definition:</b> Log.cpp:5</div></div>
 <div class="ttc" id="classLogSubscriber_html_a4ae9dd8b523ff8e8b5ee2d2380b78158"><div class="ttname"><a href="classLogSubscriber.html#a4ae9dd8b523ff8e8b5ee2d2380b78158">LogSubscriber::notify</a></div><div class="ttdeci">virtual void notify(enum Mode, std::string tag, std::string message)=0</div><div class="ttdoc">Notify about a new message. </div></div>
 <div class="ttc" id="classLog_html"><div class="ttname"><a href="classLog.html">Log</a></div><div class="ttdoc">Singleton responsible for logging and saving logs. </div><div class="ttdef"><b>Definition:</b> Log.h:18</div></div>

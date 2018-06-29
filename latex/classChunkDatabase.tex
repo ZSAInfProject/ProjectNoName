@@ -15,16 +15,19 @@ Class that manages \hyperlink{classChunk}{Chunk} storage, loading and generation
 \item 
 \hyperlink{classChunk}{Chunk} $\ast$ \hyperlink{classChunkDatabase_abcf683d90bbfc79651f0ccc377037c64}{get\-Chunk} (int x, int y)
 \begin{DoxyCompactList}\small\item\em Gets \hyperlink{classChunk}{Chunk} from database. \end{DoxyCompactList}\item 
-std\-::string \hyperlink{classChunkDatabase_a859a5a44d31f8fa40fe8d7936b27b5f5}{cache\-Debug} (int x, int y)
-\begin{DoxyCompactList}\small\item\em Method for debugging cache. \end{DoxyCompactList}\item 
-\hypertarget{classChunkDatabase_ac679a24342adcd98d02c3318882651e4}{{\bfseries Chunk\-Database} (std\-::unique\-\_\-ptr$<$ \hyperlink{classChunkGenerator}{Chunk\-Generator} $>$)}\label{classChunkDatabase_ac679a24342adcd98d02c3318882651e4}
-
-\end{DoxyCompactItemize}
+\hyperlink{classChunkDatabase_ac679a24342adcd98d02c3318882651e4}{Chunk\-Database} (std\-::unique\-\_\-ptr$<$ \hyperlink{classChunkGenerator}{Chunk\-Generator} $>$)
+\begin{DoxyCompactList}\small\item\em Method for debugging cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classChunkDatabase_ad017d1f92ddf17b747a1ecc88e7343ad}{std\-::map$<$ std\-::tuple$<$ int, int $>$\\*
 , \hyperlink{structCacheEntry}{Cache\-Entry} $>$ {\bfseries chunk\-Cache}}\label{classChunkDatabase_ad017d1f92ddf17b747a1ecc88e7343ad}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classChunkDatabase_adb967e0a364d2e64dea766df6fd00720}{static constexpr auto {\bfseries T\-A\-G} = \char`\"{}Chunk\-Database\char`\"{}}\label{classChunkDatabase_adb967e0a364d2e64dea766df6fd00720}
 
 \end{DoxyCompactItemize}
 
@@ -34,15 +37,14 @@ Class that manages \hyperlink{classChunk}{Chunk} storage, loading and generation
 
 \hyperlink{classChunkDatabase}{Chunk\-Database} stores recently used chunks in cache and loads or generates new chunks if they are not in the cache. 
 
-\subsection{Member Function Documentation}
-\hypertarget{classChunkDatabase_a859a5a44d31f8fa40fe8d7936b27b5f5}{\index{Chunk\-Database@{Chunk\-Database}!cache\-Debug@{cache\-Debug}}
-\index{cache\-Debug@{cache\-Debug}!ChunkDatabase@{Chunk\-Database}}
-\subsubsection[{cache\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Chunk\-Database\-::cache\-Debug (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classChunkDatabase_ac679a24342adcd98d02c3318882651e4}{\index{Chunk\-Database@{Chunk\-Database}!Chunk\-Database@{Chunk\-Database}}
+\index{Chunk\-Database@{Chunk\-Database}!ChunkDatabase@{Chunk\-Database}}
+\subsubsection[{Chunk\-Database}]{\setlength{\rightskip}{0pt plus 5cm}Chunk\-Database\-::\-Chunk\-Database (
 \begin{DoxyParamCaption}
-\item[{int}]{x, }
-\item[{int}]{y}
+\item[{std\-::unique\-\_\-ptr$<$ {\bf Chunk\-Generator} $>$}]{\-\_\-chunk\-Generator}
 \end{DoxyParamCaption}
-)}}\label{classChunkDatabase_a859a5a44d31f8fa40fe8d7936b27b5f5}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classChunkDatabase_ac679a24342adcd98d02c3318882651e4}
 
 
 Method for debugging cache. 
@@ -57,6 +59,9 @@ Returns string representation of cache (what chunks are loaded).
 \begin{DoxyReturn}{Returns}
 string representation of cache 
 \end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
 \hypertarget{classChunkDatabase_abcf683d90bbfc79651f0ccc377037c64}{\index{Chunk\-Database@{Chunk\-Database}!get\-Chunk@{get\-Chunk}}
 \index{get\-Chunk@{get\-Chunk}!ChunkDatabase@{Chunk\-Database}}
 \subsubsection[{get\-Chunk}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Chunk} $\ast$ Chunk\-Database\-::get\-Chunk (

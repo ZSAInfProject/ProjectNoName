@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classGameState-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GameState Class Reference</div>  </div>
@@ -117,27 +118,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa4061260f4ca0acc7d1833dbb6691f0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called every screen refresh.  <a href="#aa4061260f4ca0acc7d1833dbb6691f0f">More...</a><br/></td></tr>
 <tr class="separator:aa4061260f4ca0acc7d1833dbb6691f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">tick</a> () override</td></tr>
-<tr class="memdesc:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called periodicaly.  <a href="#ae9ff24d75f36ef56daa6a180d4b38a09">More...</a><br/></td></tr>
+<tr class="memdesc:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function called periodically.  <a href="#ae9ff24d75f36ef56daa6a180d4b38a09">More...</a><br/></td></tr>
 <tr class="separator:ae9ff24d75f36ef56daa6a180d4b38a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a087e01d3abb44eaa7064aa94d8ee5933"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087e01d3abb44eaa7064aa94d8ee5933"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (sf::Event event)</td></tr>
-<tr class="separator:a087e01d3abb44eaa7064aa94d8ee5933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092b43966ce6ccab5e55bf3854bf4180"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a092b43966ce6ccab5e55bf3854bf4180"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEvent</b> (sf::Event event) override</td></tr>
+<tr class="separator:a092b43966ce6ccab5e55bf3854bf4180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a945e9dfe15e3708799977ed8133f7678"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a945e9dfe15e3708799977ed8133f7678"></a>
 sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">screen_to_global_offset</a> (sf::Vector2f in)</td></tr>
-<tr class="memdesc:a945e9dfe15e3708799977ed8133f7678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts screen to world coordinates. <br/></td></tr>
+<tr class="memdesc:a945e9dfe15e3708799977ed8133f7678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts screen to world coordinates using player camera. <br/></td></tr>
 <tr class="separator:a945e9dfe15e3708799977ed8133f7678"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fa0a2bf50315c4a35a3890a0adcee5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a> ()</td></tr>
 <tr class="separator:a4fa0a2bf50315c4a35a3890a0adcee5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebc076f9bcec0aa4317eff9e9a8d566e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aebc076f9bcec0aa4317eff9e9a8d566e"></a>
-<a class="el" href="classWorld.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getWorld</b> ()</td></tr>
+<a class="el" href="classWorld.html">World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#aebc076f9bcec0aa4317eff9e9a8d566e">getWorld</a> ()</td></tr>
+<tr class="memdesc:aebc076f9bcec0aa4317eff9e9a8d566e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns reference to world. <br/></td></tr>
 <tr class="separator:aebc076f9bcec0aa4317eff9e9a8d566e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45607b8a0473073090740500826268c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a45607b8a0473073090740500826268c0"></a>
 sf::View &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getCamera</b> ()</td></tr>
 <tr class="separator:a45607b8a0473073090740500826268c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ec39ca6754c9a78e5142772208b1a6"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classGameMode.html">GameMode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a20ec39ca6754c9a78e5142772208b1a6">getGameMode</a> ()</td></tr>
 <tr class="separator:a20ec39ca6754c9a78e5142772208b1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52d8b4a7e3f778f0858ff53554c89eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a52d8b4a7e3f778f0858ff53554c89eda">setGameMode</a> (int newMode)</td></tr>
-<tr class="separator:a52d8b4a7e3f778f0858ff53554c89eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d102a871c42f92805105b3a4783932"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a78d102a871c42f92805105b3a4783932">setGameMode</a> (uint newMode)</td></tr>
+<tr class="separator:a78d102a871c42f92805105b3a4783932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64c8327f5ca1d060867381ecfbfd81c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64c8327f5ca1d060867381ecfbfd81c3"></a>
 std::shared_ptr&lt; <a class="el" href="classGUI.html">GUI</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html#a64c8327f5ca1d060867381ecfbfd81c3">getGUI</a> ()</td></tr>
 <tr class="memdesc:a64c8327f5ca1d060867381ecfbfd81c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to a <a class="el" href="classGUI.html">GUI</a> object. <br/></td></tr>
@@ -149,6 +151,12 @@ std::shared_ptr&lt; <a class="el" href="classGUI.html">GUI</a> &gt;&#160;</td><t
 <tr class="memitem:a7ac6cc4de6723746df3dfb183b8eb84f inherit pub_methods_classState"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ac6cc4de6723746df3dfb183b8eb84f"></a>
 <a class="el" href="classState.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classState.html">State</a> &amp;other)=delete</td></tr>
 <tr class="separator:a7ac6cc4de6723746df3dfb183b8eb84f inherit pub_methods_classState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a22e7fe397c8c5e5a687d06a68515a877"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22e7fe397c8c5e5a687d06a68515a877"></a>
+static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>TAG</b> = &quot;GameState&quot;</td></tr>
+<tr class="separator:a22e7fe397c8c5e5a687d06a68515a877"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classState.html" title="Base class for program states. ">State</a> when actual gameplay is present. </p>
@@ -222,14 +230,14 @@ std::shared_ptr&lt; <a class="el" href="classGUI.html">GUI</a> &gt;&#160;</td><t
 
 </div>
 </div>
-<a class="anchor" id="a52d8b4a7e3f778f0858ff53554c89eda"></a>
+<a class="anchor" id="a78d102a871c42f92805105b3a4783932"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void GameState::setGameMode </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">uint&#160;</td>
           <td class="paramname"><em>newMode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -266,8 +274,8 @@ std::shared_ptr&lt; <a class="el" href="classGUI.html">GUI</a> &gt;&#160;</td><t
 </table>
 </div><div class="memdoc">
 
-<p>Function called periodicaly. </p>
-<p><a class="el" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09" title="Function called periodicaly. ">tick()</a> is called periodicaly. Period is set in <a class="el" href="classGame.html" title="Main program class. ">Game</a> singleton. Can be used for stuff that doesn't need to run very often, for example recalculating AI path. </p>
+<p>Function called periodically. </p>
+<p><a class="el" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09" title="Function called periodically. ">tick()</a> is called periodically. Period is set in <a class="el" href="classGame.html" title="Main program class. ">Game</a> singleton. Can be used for stuff that doesn't need to run very often, for example recalculating AI path. </p>
 
 <p>Implements <a class="el" href="classState.html#a1cdec36e9ffad91ba7af560770601017">State</a>.</p>
 

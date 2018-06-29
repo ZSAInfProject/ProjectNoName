@@ -93,12 +93,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a698770d828a0a5b98250ce52a8576f4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a698770d828a0a5b98250ce52a8576f4c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (<a class="el" href="classChunk.html">Chunk</a> const &amp;)=delete</td></tr>
-<tr class="separator:a698770d828a0a5b98250ce52a8576f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a739049c7e4b9e6b8d501ff9959e73cee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a739049c7e4b9e6b8d501ff9959e73cee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classChunk.html">Chunk</a> const &amp;)=delete</td></tr>
-<tr class="separator:a739049c7e4b9e6b8d501ff9959e73cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0353e35c14d4f576542660bb762db51f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a0353e35c14d4f576542660bb762db51f">render</a> (sf::RenderWindow &amp;window, const sf::Vector2f &amp;translation, const sf::Vector2f &amp;scale)</td></tr>
 <tr class="memdesc:a0353e35c14d4f576542660bb762db51f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to render <a class="el" href="classChunk.html">Chunk</a>.  <a href="#a0353e35c14d4f576542660bb762db51f">More...</a><br/></td></tr>
 <tr class="separator:a0353e35c14d4f576542660bb762db51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,26 +112,39 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a cla
 <tr class="memdesc:ab5533469c17720e23b3b83d219536fc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tile to given ID.  <a href="#ab5533469c17720e23b3b83d219536fc5">More...</a><br/></td></tr>
 <tr class="separator:ab5533469c17720e23b3b83d219536fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56ac4e5e5095c8675b8b87403a26bb65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56ac4e5e5095c8675b8b87403a26bb65"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTileObject</b> (int x, int y, short objectId)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a56ac4e5e5095c8675b8b87403a26bb65">setTileObject</a> (int x, int y, short objectId)</td></tr>
+<tr class="memdesc:a56ac4e5e5095c8675b8b87403a26bb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set tile objectId at given coordinates to supplied objectId. <br/></td></tr>
 <tr class="separator:a56ac4e5e5095c8675b8b87403a26bb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39d2b4d73d01932ad31dbb0b4c2597ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39d2b4d73d01932ad31dbb0b4c2597ea"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (const std::array&lt; <a class="el" href="classChunkTile.html">ChunkTile</a>, SIDE_LENGTH *SIDE_LENGTH &gt; &amp;_tiles)</td></tr>
-<tr class="separator:a39d2b4d73d01932ad31dbb0b4c2597ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a698770d828a0a5b98250ce52a8576f4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a698770d828a0a5b98250ce52a8576f4c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (<a class="el" href="classChunk.html">Chunk</a> const &amp;)=delete</td></tr>
+<tr class="separator:a698770d828a0a5b98250ce52a8576f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a739049c7e4b9e6b8d501ff9959e73cee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a739049c7e4b9e6b8d501ff9959e73cee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classChunk.html">Chunk</a> const &amp;)=delete</td></tr>
+<tr class="separator:a739049c7e4b9e6b8d501ff9959e73cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3eb272e46bad4bef4d09b904f6c864"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd3eb272e46bad4bef4d09b904f6c864"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Chunk</b> (const std::array&lt; <a class="el" href="classChunkTile.html">ChunkTile</a>, <a class="el" href="classChunk.html#a219c57f40ca72814048045f066adc46e">SIDE_LENGTH</a> *<a class="el" href="classChunk.html#a219c57f40ca72814048045f066adc46e">SIDE_LENGTH</a> &gt; &amp;tiles)</td></tr>
+<tr class="separator:afd3eb272e46bad4bef4d09b904f6c864"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a23f2f1a52a505eb94fa489028e4553f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23f2f1a52a505eb94fa489028e4553f4"></a>
 std::vector&lt; std::shared_ptr<br class="typebreak"/>
-&lt; <a class="el" href="classEntity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>objects</b></td></tr>
+&lt; <a class="el" href="classEntity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a23f2f1a52a505eb94fa489028e4553f4">objects</a></td></tr>
+<tr class="memdesc:a23f2f1a52a505eb94fa489028e4553f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of all objects inside a chunk. <br/></td></tr>
 <tr class="separator:a23f2f1a52a505eb94fa489028e4553f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:ab47530604eb11421e705977217dbd129"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab47530604eb11421e705977217dbd129"></a>
+static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>TAG</b> = &quot;Chunk&quot;</td></tr>
+<tr class="separator:ab47530604eb11421e705977217dbd129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a219c57f40ca72814048045f066adc46e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a219c57f40ca72814048045f066adc46e"></a>
-static const int&#160;</td><td class="memItemRight" valign="bottom"><b>SIDE_LENGTH</b> = 32</td></tr>
+static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a219c57f40ca72814048045f066adc46e">SIDE_LENGTH</a> = 32</td></tr>
+<tr class="memdesc:a219c57f40ca72814048045f066adc46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of chunk in tiles. <br/></td></tr>
 <tr class="separator:a219c57f40ca72814048045f066adc46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49f5a883393d976a0d8bbc0123e751d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49f5a883393d976a0d8bbc0123e751d1"></a>
-static const int&#160;</td><td class="memItemRight" valign="bottom"><b>TILE_SIZE</b> = 16</td></tr>
+static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChunk.html#a49f5a883393d976a0d8bbc0123e751d1">TILE_SIZE</a> = 16</td></tr>
+<tr class="memdesc:a49f5a883393d976a0d8bbc0123e751d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of tile in pixels. <br/></td></tr>
 <tr class="separator:a49f5a883393d976a0d8bbc0123e751d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>

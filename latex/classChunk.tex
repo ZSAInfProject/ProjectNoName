@@ -4,12 +4,6 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classChunk_a698770d828a0a5b98250ce52a8576f4c}{{\bfseries Chunk} (\hyperlink{classChunk}{Chunk} const \&)=delete}\label{classChunk_a698770d828a0a5b98250ce52a8576f4c}
-
-\item 
-\hypertarget{classChunk_a739049c7e4b9e6b8d501ff9959e73cee}{void {\bfseries operator=} (\hyperlink{classChunk}{Chunk} const \&)=delete}\label{classChunk_a739049c7e4b9e6b8d501ff9959e73cee}
-
-\item 
 void \hyperlink{classChunk_a0353e35c14d4f576542660bb762db51f}{render} (sf\-::\-Render\-Window \&window, const sf\-::\-Vector2f \&translation, const sf\-::\-Vector2f \&scale)
 \begin{DoxyCompactList}\small\item\em Method used to render \hyperlink{classChunk}{Chunk}. \end{DoxyCompactList}\item 
 void \hyperlink{classChunk_aa794fcda8fe859680cbfe4a2bcd5d097}{update} (std\-::chrono\-::microseconds delta\-Time)
@@ -22,28 +16,37 @@ bool \hyperlink{classChunk_afa9fe7d9713cbf4fbe75520dd760880a}{load} (const std\-
 \begin{DoxyCompactList}\small\item\em Get tile from chunk. \end{DoxyCompactList}\item 
 void \hyperlink{classChunk_ab5533469c17720e23b3b83d219536fc5}{set\-Tile} (int x, int y, \hyperlink{classChunkTile}{Chunk\-Tile} value)
 \begin{DoxyCompactList}\small\item\em Set tile to given I\-D. \end{DoxyCompactList}\item 
-\hypertarget{classChunk_a56ac4e5e5095c8675b8b87403a26bb65}{void {\bfseries set\-Tile\-Object} (int x, int y, short object\-Id)}\label{classChunk_a56ac4e5e5095c8675b8b87403a26bb65}
+\hypertarget{classChunk_a56ac4e5e5095c8675b8b87403a26bb65}{void \hyperlink{classChunk_a56ac4e5e5095c8675b8b87403a26bb65}{set\-Tile\-Object} (int x, int y, short object\-Id)}\label{classChunk_a56ac4e5e5095c8675b8b87403a26bb65}
+
+\begin{DoxyCompactList}\small\item\em Set tile object\-Id at given coordinates to supplied object\-Id. \end{DoxyCompactList}\item 
+\hypertarget{classChunk_a698770d828a0a5b98250ce52a8576f4c}{{\bfseries Chunk} (\hyperlink{classChunk}{Chunk} const \&)=delete}\label{classChunk_a698770d828a0a5b98250ce52a8576f4c}
 
 \item 
-\hypertarget{classChunk_a39d2b4d73d01932ad31dbb0b4c2597ea}{{\bfseries Chunk} (const std\-::array$<$ \hyperlink{classChunkTile}{Chunk\-Tile}, S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H $\ast$S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H $>$ \&\-\_\-tiles)}\label{classChunk_a39d2b4d73d01932ad31dbb0b4c2597ea}
+\hypertarget{classChunk_a739049c7e4b9e6b8d501ff9959e73cee}{void {\bfseries operator=} (\hyperlink{classChunk}{Chunk} const \&)=delete}\label{classChunk_a739049c7e4b9e6b8d501ff9959e73cee}
+
+\item 
+\hypertarget{classChunk_afd3eb272e46bad4bef4d09b904f6c864}{{\bfseries Chunk} (const std\-::array$<$ \hyperlink{classChunkTile}{Chunk\-Tile}, \hyperlink{classChunk_a219c57f40ca72814048045f066adc46e}{S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H} $\ast$\hyperlink{classChunk_a219c57f40ca72814048045f066adc46e}{S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H} $>$ \&tiles)}\label{classChunk_afd3eb272e46bad4bef4d09b904f6c864}
 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classChunk_a23f2f1a52a505eb94fa489028e4553f4}{std\-::vector$<$ std\-::shared\-\_\-ptr\\*
-$<$ \hyperlink{classEntity}{Entity} $>$ $>$ {\bfseries objects}}\label{classChunk_a23f2f1a52a505eb94fa489028e4553f4}
+$<$ \hyperlink{classEntity}{Entity} $>$ $>$ \hyperlink{classChunk_a23f2f1a52a505eb94fa489028e4553f4}{objects}}\label{classChunk_a23f2f1a52a505eb94fa489028e4553f4}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Vector of all objects inside a chunk. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classChunk_a219c57f40ca72814048045f066adc46e}{static const int {\bfseries S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H} = 32}\label{classChunk_a219c57f40ca72814048045f066adc46e}
+\hypertarget{classChunk_ab47530604eb11421e705977217dbd129}{static constexpr auto {\bfseries T\-A\-G} = \char`\"{}Chunk\char`\"{}}\label{classChunk_ab47530604eb11421e705977217dbd129}
 
 \item 
-\hypertarget{classChunk_a49f5a883393d976a0d8bbc0123e751d1}{static const int {\bfseries T\-I\-L\-E\-\_\-\-S\-I\-Z\-E} = 16}\label{classChunk_a49f5a883393d976a0d8bbc0123e751d1}
+\hypertarget{classChunk_a219c57f40ca72814048045f066adc46e}{static const int \hyperlink{classChunk_a219c57f40ca72814048045f066adc46e}{S\-I\-D\-E\-\_\-\-L\-E\-N\-G\-T\-H} = 32}\label{classChunk_a219c57f40ca72814048045f066adc46e}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Size of chunk in tiles. \end{DoxyCompactList}\item 
+\hypertarget{classChunk_a49f5a883393d976a0d8bbc0123e751d1}{static const int \hyperlink{classChunk_a49f5a883393d976a0d8bbc0123e751d1}{T\-I\-L\-E\-\_\-\-S\-I\-Z\-E} = 16}\label{classChunk_a49f5a883393d976a0d8bbc0123e751d1}
+
+\begin{DoxyCompactList}\small\item\em Size of tile in pixels. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}

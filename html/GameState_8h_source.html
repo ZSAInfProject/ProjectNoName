@@ -103,42 +103,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classGameState.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGameState.html">GameState</a> : <span class="keyword">public</span> <a class="code" href="classState.html">State</a>{</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> saveEntities();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> createSavePath();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> loadSystems();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> loadEntities();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;GameState&quot;</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">update</a>(std::chrono::microseconds deltaTime) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f">render</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">tick</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> handleEvent(sf::Event event);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    sf::Vector2f <a class="code" href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">screen_to_global_offset</a>(sf::Vector2f in);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ~<a class="code" href="classGameState.html">GameState</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> constexpr <span class="keyword">auto</span> TAG = <span class="stringliteral">&quot;GameState&quot;</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">update</a>(std::chrono::microseconds deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f">render</a>(<span class="keywordtype">float</span> deltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">tick</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> handleEvent(sf::Event event) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    sf::Vector2f <a class="code" href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">screen_to_global_offset</a>(sf::Vector2f in);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ~<a class="code" href="classGameState.html">GameState</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classWorld.html">World</a>&amp; <a class="code" href="classGameState.html#aebc076f9bcec0aa4317eff9e9a8d566e">getWorld</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    sf::View&amp; getCamera();</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classWorld.html">World</a>&amp; getWorld();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    sf::View&amp; getCamera();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::shared_ptr&lt;GameMode&gt; <a class="code" href="classGameState.html#a20ec39ca6754c9a78e5142772208b1a6">getGameMode</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a52d8b4a7e3f778f0858ff53554c89eda">setGameMode</a>(<span class="keywordtype">int</span> newMode);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::shared_ptr&lt;GameMode&gt; <a class="code" href="classGameState.html#a20ec39ca6754c9a78e5142772208b1a6">getGameMode</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a78d102a871c42f92805105b3a4783932">setGameMode</a>(uint newMode);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::shared_ptr&lt;GUI&gt; <a class="code" href="classGameState.html#a64c8327f5ca1d060867381ecfbfd81c3">getGUI</a>();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::shared_ptr&lt;GUI&gt; <a class="code" href="classGameState.html#a64c8327f5ca1d060867381ecfbfd81c3">getGUI</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classWorld.html">World</a> world;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classWorld.html">World</a> world;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; entities;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; entities;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::vector&lt;std::unique_ptr&lt;System&gt;&gt; systems;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::vector&lt;std::unique_ptr&lt;System&gt;&gt; systems;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::shared_ptr&lt;Entity&gt; player;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::shared_ptr&lt;Entity&gt; player;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    sf::View camera;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classEntityFactory.html">EntityFactory</a> entityFactory;</div>
@@ -148,21 +144,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::shared_ptr&lt;GameMode&gt; gameMode;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::vector&lt;std::shared_ptr&lt;GameMode&gt;&gt; gameModes;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif //NONAME_GAMESTATE_H</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> saveEntities();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">bool</span> loadEntities();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> createSavePath();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> loadSystems();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif //NONAME_GAMESTATE_H</span></div>
 <div class="ttc" id="classGameState_html_a20ec39ca6754c9a78e5142772208b1a6"><div class="ttname"><a href="classGameState.html#a20ec39ca6754c9a78e5142772208b1a6">GameState::getGameMode</a></div><div class="ttdeci">std::shared_ptr&lt; GameMode &gt; getGameMode()</div><div class="ttdef"><b>Definition:</b> GameState.cpp:174</div></div>
 <div class="ttc" id="classEntityFactory_html"><div class="ttname"><a href="classEntityFactory.html">EntityFactory</a></div><div class="ttdef"><b>Definition:</b> EntityFactory.h:4</div></div>
 <div class="ttc" id="classWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdef"><b>Definition:</b> World.h:9</div></div>
-<div class="ttc" id="classGameState_html_ae9ff24d75f36ef56daa6a180d4b38a09"><div class="ttname"><a href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">GameState::tick</a></div><div class="ttdeci">void tick() override</div><div class="ttdoc">Function called periodicaly. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:77</div></div>
-<div class="ttc" id="classGameState_html_a945e9dfe15e3708799977ed8133f7678"><div class="ttname"><a href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">GameState::screen_to_global_offset</a></div><div class="ttdeci">sf::Vector2f screen_to_global_offset(sf::Vector2f in)</div><div class="ttdoc">Converts screen to world coordinates. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:90</div></div>
-<div class="ttc" id="classGameState_html_a4fa0a2bf50315c4a35a3890a0adcee5c"><div class="ttname"><a href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState::GameState</a></div><div class="ttdeci">GameState()</div><div class="ttdef"><b>Definition:</b> GameState.cpp:23</div></div>
+<div class="ttc" id="classGameState_html_ae9ff24d75f36ef56daa6a180d4b38a09"><div class="ttname"><a href="classGameState.html#ae9ff24d75f36ef56daa6a180d4b38a09">GameState::tick</a></div><div class="ttdeci">void tick() override</div><div class="ttdoc">Function called periodically. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:76</div></div>
+<div class="ttc" id="classGameState_html_a945e9dfe15e3708799977ed8133f7678"><div class="ttname"><a href="classGameState.html#a945e9dfe15e3708799977ed8133f7678">GameState::screen_to_global_offset</a></div><div class="ttdeci">sf::Vector2f screen_to_global_offset(sf::Vector2f in)</div><div class="ttdoc">Converts screen to world coordinates using player camera. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:89</div></div>
+<div class="ttc" id="classGameState_html_a4fa0a2bf50315c4a35a3890a0adcee5c"><div class="ttname"><a href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState::GameState</a></div><div class="ttdeci">GameState()</div><div class="ttdef"><b>Definition:</b> GameState.cpp:22</div></div>
 <div class="ttc" id="classState_html"><div class="ttname"><a href="classState.html">State</a></div><div class="ttdoc">Base class for program states. </div><div class="ttdef"><b>Definition:</b> State.h:11</div></div>
-<div class="ttc" id="classGameState_html_a52d8b4a7e3f778f0858ff53554c89eda"><div class="ttname"><a href="classGameState.html#a52d8b4a7e3f778f0858ff53554c89eda">GameState::setGameMode</a></div><div class="ttdeci">void setGameMode(int newMode)</div><div class="ttdef"><b>Definition:</b> GameState.cpp:167</div></div>
-<div class="ttc" id="classGameState_html_aba059d7ab1a53b8f5d795292ed37abac"><div class="ttname"><a href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">GameState::update</a></div><div class="ttdeci">void update(std::chrono::microseconds deltaTime) override</div><div class="ttdoc">Function called every loop iteration. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:43</div></div>
+<div class="ttc" id="classGameState_html_aba059d7ab1a53b8f5d795292ed37abac"><div class="ttname"><a href="classGameState.html#aba059d7ab1a53b8f5d795292ed37abac">GameState::update</a></div><div class="ttdeci">void update(std::chrono::microseconds deltaTime) override</div><div class="ttdoc">Function called every loop iteration. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:42</div></div>
+<div class="ttc" id="classGameState_html_aebc076f9bcec0aa4317eff9e9a8d566e"><div class="ttname"><a href="classGameState.html#aebc076f9bcec0aa4317eff9e9a8d566e">GameState::getWorld</a></div><div class="ttdeci">World &amp; getWorld()</div><div class="ttdoc">Returns reference to world. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:115</div></div>
 <div class="ttc" id="classGameState_html"><div class="ttname"><a href="classGameState.html">GameState</a></div><div class="ttdoc">State when actual gameplay is present. </div><div class="ttdef"><b>Definition:</b> GameState.h:19</div></div>
+<div class="ttc" id="classGameState_html_a78d102a871c42f92805105b3a4783932"><div class="ttname"><a href="classGameState.html#a78d102a871c42f92805105b3a4783932">GameState::setGameMode</a></div><div class="ttdeci">void setGameMode(uint newMode)</div><div class="ttdef"><b>Definition:</b> GameState.cpp:167</div></div>
 <div class="ttc" id="classGameState_html_a64c8327f5ca1d060867381ecfbfd81c3"><div class="ttname"><a href="classGameState.html#a64c8327f5ca1d060867381ecfbfd81c3">GameState::getGUI</a></div><div class="ttdeci">std::shared_ptr&lt; GUI &gt; getGUI()</div><div class="ttdoc">Returns a pointer to a GUI object. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:178</div></div>
-<div class="ttc" id="classGameState_html_aa4061260f4ca0acc7d1833dbb6691f0f"><div class="ttname"><a href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f">GameState::render</a></div><div class="ttdeci">void render(float deltaTime) override</div><div class="ttdoc">Function called every screen refresh. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:59</div></div>
+<div class="ttc" id="classGameState_html_aa4061260f4ca0acc7d1833dbb6691f0f"><div class="ttname"><a href="classGameState.html#aa4061260f4ca0acc7d1833dbb6691f0f">GameState::render</a></div><div class="ttdeci">void render(float deltaTime) override</div><div class="ttdoc">Function called every screen refresh. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:58</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

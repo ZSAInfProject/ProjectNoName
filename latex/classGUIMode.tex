@@ -20,18 +20,24 @@ Inheritance diagram for G\-U\-I\-Mode\-:
 \item 
 \hypertarget{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}{virtual bool \hyperlink{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}{handle\-Event} (sf\-::\-Event \&event)=0}\label{classGUIMode_a00eae8004dac30abe03e6fd1e53fc849}
 
-\begin{DoxyCompactList}\small\item\em returns whether mouse click occured inside of any active window \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns whether mouse click occured inside of any active window. \end{DoxyCompactList}\item 
 \hypertarget{classGUIMode_a1d1fec81001a6bf807760243d76de01c}{virtual void \hyperlink{classGUIMode_a1d1fec81001a6bf807760243d76de01c}{add\-Windows} (sfg\-::\-Desktop \&desktop)=0}\label{classGUIMode_a1d1fec81001a6bf807760243d76de01c}
 
-\begin{DoxyCompactList}\small\item\em adds windows to desktop \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds windows to desktop. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{remove\-Windows} (sfg\-::\-Desktop \&desktop)=0
 \item 
 \hypertarget{classGUIMode_ae96374e78394931314c1d36b61c4389c}{virtual int \hyperlink{classGUIMode_ae96374e78394931314c1d36b61c4389c}{get\-Tag} ()=0}\label{classGUIMode_ae96374e78394931314c1d36b61c4389c}
 
-\begin{DoxyCompactList}\small\item\em returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
 \hypertarget{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}{virtual std\-::string \hyperlink{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}{get\-Name} ()=0}\label{classGUIMode_a0514db00b52d0d6f5d48b31bdbbac17c}
 
-\begin{DoxyCompactList}\small\item\em returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
+\hypertarget{classGUIMode_a240e8c9185c17e61280d4e698c2baf89}{virtual void \hyperlink{classGUIMode_a240e8c9185c17e61280d4e698c2baf89}{rescale} (float new\-Scale)=0}\label{classGUIMode_a240e8c9185c17e61280d4e698c2baf89}
+
+\begin{DoxyCompactList}\small\item\em Rescales \hyperlink{classGUIMode}{G\-U\-I\-Mode} and relocates accordingly. \end{DoxyCompactList}\item 
+\hypertarget{classGUIMode_a5f0f55fac706ae0c1123cbc8fe0b35d5}{virtual void \hyperlink{classGUIMode_a5f0f55fac706ae0c1123cbc8fe0b35d5}{resize} (int new\-Window\-Width, int new\-Window\-Height)=0}\label{classGUIMode_a5f0f55fac706ae0c1123cbc8fe0b35d5}
+
+\begin{DoxyCompactList}\small\item\em Relocates \hyperlink{classGUIMode}{G\-U\-I\-Mode} according to new window dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -45,7 +51,7 @@ Base gui class for every game mode
 \item[{sfg\-::\-Desktop \&}]{desktop}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}
-removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
+Removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
 
 Implemented in \hyperlink{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{G\-U\-I\-Mode\-Switcher}, \hyperlink{classGUIModeArchitect_aea6eeeba6cf9597beb326d38e63af49d}{G\-U\-I\-Mode\-Architect}, \hyperlink{classGUIModeManagement_a1c1602738b2628a7f31d7ccd0201a99a}{G\-U\-I\-Mode\-Management}, and \hyperlink{classGUIModeMiner_ac494c734e0e209548f7749edd8dfe4b3}{G\-U\-I\-Mode\-Miner}.
 

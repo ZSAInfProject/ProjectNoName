@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            miningComponent-&gt;miningLeft -= 1;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">if</span>(miningComponent-&gt;miningLeft &lt;= 0){</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                miningComponent-&gt;miningInProgress = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordtype">int</span> <span class="keywordtype">id</span> = gameState.getWorld().<a class="code" href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">mineTile</a>(miningComponent-&gt;miningTarget.x, miningComponent-&gt;miningTarget.y);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordtype">int</span> <span class="keywordtype">id</span> = gameState.<a class="code" href="classGameState.html#aebc076f9bcec0aa4317eff9e9a8d566e">getWorld</a>().<a class="code" href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">mineTile</a>(miningComponent-&gt;miningTarget.x, miningComponent-&gt;miningTarget.y);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="structResource.html">Resource</a> res = TileDatabase::get()[id].drop;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">if</span> (res.type != unknown) {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    inventoryComponent-&gt;resources[res.type] += res.amount;</div>
@@ -138,9 +138,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classMiningSystem_html"><div class="ttname"><a href="classMiningSystem.html">MiningSystem</a></div><div class="ttdef"><b>Definition:</b> MiningSystem.h:18</div></div>
 <div class="ttc" id="classSystem_html"><div class="ttname"><a href="classSystem.html">System</a></div><div class="ttdef"><b>Definition:</b> System.h:12</div></div>
 <div class="ttc" id="structResource_html"><div class="ttname"><a href="structResource.html">Resource</a></div><div class="ttdef"><b>Definition:</b> Resource.h:17</div></div>
-<div class="ttc" id="classInventoryComponent_html"><div class="ttname"><a href="classInventoryComponent.html">InventoryComponent</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:12</div></div>
+<div class="ttc" id="classInventoryComponent_html"><div class="ttname"><a href="classInventoryComponent.html">InventoryComponent</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:8</div></div>
+<div class="ttc" id="classGameState_html_aebc076f9bcec0aa4317eff9e9a8d566e"><div class="ttname"><a href="classGameState.html#aebc076f9bcec0aa4317eff9e9a8d566e">GameState::getWorld</a></div><div class="ttdeci">World &amp; getWorld()</div><div class="ttdoc">Returns reference to world. </div><div class="ttdef"><b>Definition:</b> GameState.cpp:115</div></div>
 <div class="ttc" id="classGameState_html"><div class="ttname"><a href="classGameState.html">GameState</a></div><div class="ttdoc">State when actual gameplay is present. </div><div class="ttdef"><b>Definition:</b> GameState.h:19</div></div>
-<div class="ttc" id="classWorld_html_a1bbfac1b517a991c30aa96b57d04d265"><div class="ttname"><a href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">World::mineTile</a></div><div class="ttdeci">short mineTile(int x, int y)</div><div class="ttdoc">Mines given tile. </div><div class="ttdef"><b>Definition:</b> World.cpp:52</div></div>
+<div class="ttc" id="classWorld_html_a1bbfac1b517a991c30aa96b57d04d265"><div class="ttname"><a href="classWorld.html#a1bbfac1b517a991c30aa96b57d04d265">World::mineTile</a></div><div class="ttdeci">short mineTile(int x, int y)</div><div class="ttdoc">Mines given tile. </div><div class="ttdef"><b>Definition:</b> World.cpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

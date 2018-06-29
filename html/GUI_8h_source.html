@@ -107,25 +107,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGUI.html#a693d2446309a4e36f06ee778a313471b">changeMode</a>(<span class="keywordtype">int</span> newMode);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::shared_ptr&lt;GUIMode&gt; <a class="code" href="classGUI.html#a6cd2962793721d6da4ad88ef5969ce6f">getGUIMode</a>(<span class="keywordtype">int</span> guiMode);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    sf::Event* <a class="code" href="classGUI.html#ac534ec18b718ce0021f608929d234473">getEvent</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    sfg::Desktop desktop;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    sfg::SFGUI sfgui;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::unique_ptr&lt;GUIAllocation&gt; alloc;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGUI.html#abbb8b583368de30292fd555f269a45ac">rescale</a>(<span class="keywordtype">float</span> newScale);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    sfg::Desktop desktop;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    sfg::SFGUI sfgui;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    sf::Event event;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::vector&lt;std::shared_ptr&lt;GUIMode&gt;&gt; GUIModes;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif //NONAME_GUI_H</span></div>
-<div class="ttc" id="classGUI_html_ac534ec18b718ce0021f608929d234473"><div class="ttname"><a href="classGUI.html#ac534ec18b718ce0021f608929d234473">GUI::getEvent</a></div><div class="ttdeci">sf::Event * getEvent()</div><div class="ttdoc">Returns a pointer to last event (allows GUIModes to access event. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:51</div></div>
-<div class="ttc" id="classGUI_html_a693d2446309a4e36f06ee778a313471b"><div class="ttname"><a href="classGUI.html#a693d2446309a4e36f06ee778a313471b">GUI::changeMode</a></div><div class="ttdeci">void changeMode(int newMode)</div><div class="ttdoc">Changes gui mode, do not call without changing game mode. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:35</div></div>
-<div class="ttc" id="classGUI_html_a61360fb51a703e35f86530bb8fb00b42"><div class="ttname"><a href="classGUI.html#a61360fb51a703e35f86530bb8fb00b42">GUI::display</a></div><div class="ttdeci">void display(sf::RenderWindow &amp;renderWindow, float deltaTime)</div><div class="ttdoc">Refreshes gui. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:30</div></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::unique_ptr&lt;GUIAllocation&gt; alloc;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    sf::Event event;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::vector&lt;std::shared_ptr&lt;GUIMode&gt;&gt; GUIModes;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif //NONAME_GUI_H</span></div>
+<div class="ttc" id="classGUI_html_ac534ec18b718ce0021f608929d234473"><div class="ttname"><a href="classGUI.html#ac534ec18b718ce0021f608929d234473">GUI::getEvent</a></div><div class="ttdeci">sf::Event * getEvent()</div><div class="ttdoc">Returns a pointer to last event (allows GUIModes to access event. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:54</div></div>
+<div class="ttc" id="classGUI_html_a693d2446309a4e36f06ee778a313471b"><div class="ttname"><a href="classGUI.html#a693d2446309a4e36f06ee778a313471b">GUI::changeMode</a></div><div class="ttdeci">void changeMode(int newMode)</div><div class="ttdoc">Changes gui mode, do not call without changing game mode. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:38</div></div>
+<div class="ttc" id="classGUI_html_a61360fb51a703e35f86530bb8fb00b42"><div class="ttname"><a href="classGUI.html#a61360fb51a703e35f86530bb8fb00b42">GUI::display</a></div><div class="ttdeci">void display(sf::RenderWindow &amp;renderWindow, float deltaTime)</div><div class="ttdoc">Refreshes gui. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:33</div></div>
 <div class="ttc" id="classGUI_html"><div class="ttname"><a href="classGUI.html">GUI</a></div><div class="ttdef"><b>Definition:</b> GUI.h:16</div></div>
 <div class="ttc" id="classGUI_html_a43b90b8b0773bf9d3e9f2ac85a83b0a4"><div class="ttname"><a href="classGUI.html#a43b90b8b0773bf9d3e9f2ac85a83b0a4">GUI::GUI</a></div><div class="ttdeci">GUI(int mode)</div><div class="ttdoc">GUI with default scale. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:5</div></div>
 <div class="ttc" id="classGUI_html_ade522dd36065824fb0b1196e288906a8"><div class="ttname"><a href="classGUI.html#ade522dd36065824fb0b1196e288906a8">GUI::handleEvent</a></div><div class="ttdeci">bool handleEvent(sf::Event &amp;event)</div><div class="ttdef"><b>Definition:</b> GUI.cpp:19</div></div>
-<div class="ttc" id="classGUI_html_a6cd2962793721d6da4ad88ef5969ce6f"><div class="ttname"><a href="classGUI.html#a6cd2962793721d6da4ad88ef5969ce6f">GUI::getGUIMode</a></div><div class="ttdeci">std::shared_ptr&lt; GUIMode &gt; getGUIMode(int guiMode)</div><div class="ttdoc">Returns a pointer to a gui mode. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:47</div></div>
+<div class="ttc" id="classGUI_html_abbb8b583368de30292fd555f269a45ac"><div class="ttname"><a href="classGUI.html#abbb8b583368de30292fd555f269a45ac">GUI::rescale</a></div><div class="ttdeci">void rescale(float newScale)</div><div class="ttdoc">Rescales GUI. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:58</div></div>
+<div class="ttc" id="classGUI_html_a6cd2962793721d6da4ad88ef5969ce6f"><div class="ttname"><a href="classGUI.html#a6cd2962793721d6da4ad88ef5969ce6f">GUI::getGUIMode</a></div><div class="ttdeci">std::shared_ptr&lt; GUIMode &gt; getGUIMode(int guiMode)</div><div class="ttdoc">Returns a pointer to a gui mode. </div><div class="ttdef"><b>Definition:</b> GUI.cpp:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

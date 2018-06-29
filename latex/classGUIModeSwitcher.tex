@@ -26,23 +26,29 @@ Collaboration diagram for G\-U\-I\-Mode\-Switcher\-:
 \item 
 \hyperlink{classGUIModeSwitcher_aac580eabe162e7f8a8ba88ad3b2e3ebc}{G\-U\-I\-Mode\-Switcher} (std\-::string mode\-Name, float scale)
 \item 
-\hypertarget{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}{void \hyperlink{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}{change\-Mode} (int new\-Mode) const }\label{classGUIModeSwitcher_a26547002840d8da94a1bf2e2254c8ed1}
+\hypertarget{classGUIModeSwitcher_a107432263afafda110ede5a399c5db11}{void \hyperlink{classGUIModeSwitcher_a107432263afafda110ede5a399c5db11}{change\-Mode} (int new\-Mode)}\label{classGUIModeSwitcher_a107432263afafda110ede5a399c5db11}
 
 \begin{DoxyCompactList}\small\item\em Makes changes to its windows when changing modes, do not call without changing gui mode. \end{DoxyCompactList}\item 
 \hypertarget{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}{bool \hyperlink{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}{handle\-Event} (sf\-::\-Event \&event) override}\label{classGUIModeSwitcher_aeb0fb8ccf08088ddb6a32fbfc20459e5}
 
-\begin{DoxyCompactList}\small\item\em returns whether mouse click occured inside of any active window \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns whether mouse click occured inside of any active window. \end{DoxyCompactList}\item 
 \hypertarget{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}{void \hyperlink{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}{add\-Windows} (sfg\-::\-Desktop \&desktop) override}\label{classGUIModeSwitcher_ab0bf3051862cf606baf6ac0f45f4aa0d}
 
-\begin{DoxyCompactList}\small\item\em adds windows to desktop \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds windows to desktop. \end{DoxyCompactList}\item 
 void \hyperlink{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{remove\-Windows} (sfg\-::\-Desktop \&desktop) override
 \item 
 \hypertarget{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}{int \hyperlink{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}{get\-Tag} () override}\label{classGUIModeSwitcher_a23caeac2d6450aeb7e4d4c418394cf01}
 
-\begin{DoxyCompactList}\small\item\em returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
 \hypertarget{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}{std\-::string \hyperlink{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}{get\-Name} () override}\label{classGUIModeSwitcher_ad783c4a401ad3486a19fb4c0623aed43}
 
-\begin{DoxyCompactList}\small\item\em returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeSwitcher_a81ce8d2dd8200041f42e54282868db5d}{void \hyperlink{classGUIModeSwitcher_a81ce8d2dd8200041f42e54282868db5d}{rescale} (float new\-Scale) override}\label{classGUIModeSwitcher_a81ce8d2dd8200041f42e54282868db5d}
+
+\begin{DoxyCompactList}\small\item\em Rescales \hyperlink{classGUIMode}{G\-U\-I\-Mode} and relocates accordingly. \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeSwitcher_a09e967cfbcc649b7346af3631a1ea5e6}{void \hyperlink{classGUIModeSwitcher_a09e967cfbcc649b7346af3631a1ea5e6}{resize} (int new\-Window\-Width, int new\-Window\-Height) override}\label{classGUIModeSwitcher_a09e967cfbcc649b7346af3631a1ea5e6}
+
+\begin{DoxyCompactList}\small\item\em Relocates \hyperlink{classGUIMode}{G\-U\-I\-Mode} according to new window dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -69,7 +75,7 @@ void \hyperlink{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}{remove\-
 \item[{sfg\-::\-Desktop \&}]{desktop}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIModeSwitcher_a68909a312720fa4eaaa4fa99ce0e5d64}
-removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
+Removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
 
 Implements \hyperlink{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{G\-U\-I\-Mode}.
 

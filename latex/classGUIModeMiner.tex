@@ -26,18 +26,24 @@ Collaboration diagram for G\-U\-I\-Mode\-Miner\-:
 \item 
 \hypertarget{classGUIModeMiner_af36ccd84103f5e0ce83498069612a38f}{bool \hyperlink{classGUIModeMiner_af36ccd84103f5e0ce83498069612a38f}{handle\-Event} (sf\-::\-Event \&event) override}\label{classGUIModeMiner_af36ccd84103f5e0ce83498069612a38f}
 
-\begin{DoxyCompactList}\small\item\em returns whether mouse click occured inside of any active window \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns whether mouse click occured inside of any active window. \end{DoxyCompactList}\item 
 \hypertarget{classGUIModeMiner_a0a6833450b35219d01d95e7586579d95}{void \hyperlink{classGUIModeMiner_a0a6833450b35219d01d95e7586579d95}{add\-Windows} (sfg\-::\-Desktop \&desktop) override}\label{classGUIModeMiner_a0a6833450b35219d01d95e7586579d95}
 
-\begin{DoxyCompactList}\small\item\em adds windows to desktop \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds windows to desktop. \end{DoxyCompactList}\item 
 void \hyperlink{classGUIModeMiner_ac494c734e0e209548f7749edd8dfe4b3}{remove\-Windows} (sfg\-::\-Desktop \&desktop) override
 \item 
 \hypertarget{classGUIModeMiner_a78c53490f8f9ddeb6b5412a93c90d4f3}{int \hyperlink{classGUIModeMiner_a78c53490f8f9ddeb6b5412a93c90d4f3}{get\-Tag} () override}\label{classGUIModeMiner_a78c53490f8f9ddeb6b5412a93c90d4f3}
 
-\begin{DoxyCompactList}\small\item\em returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Returns tag of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
 \hypertarget{classGUIModeMiner_a391b51f1090c5779716caa52dca00a88}{std\-::string \hyperlink{classGUIModeMiner_a391b51f1090c5779716caa52dca00a88}{get\-Name} () override}\label{classGUIModeMiner_a391b51f1090c5779716caa52dca00a88}
 
-\begin{DoxyCompactList}\small\item\em returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns name of \hyperlink{classGUIMode}{G\-U\-I\-Mode}. \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeMiner_adcfcea6c9e1c660f6d9d2ca991462079}{void \hyperlink{classGUIModeMiner_adcfcea6c9e1c660f6d9d2ca991462079}{rescale} (float new\-Scale) override}\label{classGUIModeMiner_adcfcea6c9e1c660f6d9d2ca991462079}
+
+\begin{DoxyCompactList}\small\item\em Rescales \hyperlink{classGUIMode}{G\-U\-I\-Mode} and relocates accordingly. \end{DoxyCompactList}\item 
+\hypertarget{classGUIModeMiner_ad6ae2dc0acda54d8c7e230c75c9932d7}{void \hyperlink{classGUIModeMiner_ad6ae2dc0acda54d8c7e230c75c9932d7}{resize} (int new\-Window\-Width, int new\-Window\-Height) override}\label{classGUIModeMiner_ad6ae2dc0acda54d8c7e230c75c9932d7}
+
+\begin{DoxyCompactList}\small\item\em Relocates \hyperlink{classGUIMode}{G\-U\-I\-Mode} according to new window dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
@@ -48,7 +54,7 @@ void \hyperlink{classGUIModeMiner_ac494c734e0e209548f7749edd8dfe4b3}{remove\-Win
 \item[{sfg\-::\-Desktop \&}]{desktop}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{classGUIModeMiner_ac494c734e0e209548f7749edd8dfe4b3}
-removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
+Removes windows from desktop, note\-: due to S\-F\-G\-U\-I limitations, it only makes windows invisible instead of actually removing them 
 
 Implements \hyperlink{classGUIMode_a7214583ea056553d7274cb3b8d8a1925}{G\-U\-I\-Mode}.
 

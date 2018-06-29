@@ -102,22 +102,30 @@ Inheritance diagram for GUIMode:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a00eae8004dac30abe03e6fd1e53fc849"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00eae8004dac30abe03e6fd1e53fc849"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a00eae8004dac30abe03e6fd1e53fc849">handleEvent</a> (sf::Event &amp;event)=0</td></tr>
-<tr class="memdesc:a00eae8004dac30abe03e6fd1e53fc849"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns whether mouse click occured inside of any active window <br/></td></tr>
+<tr class="memdesc:a00eae8004dac30abe03e6fd1e53fc849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether mouse click occured inside of any active window. <br/></td></tr>
 <tr class="separator:a00eae8004dac30abe03e6fd1e53fc849"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1fec81001a6bf807760243d76de01c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d1fec81001a6bf807760243d76de01c"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a1d1fec81001a6bf807760243d76de01c">addWindows</a> (sfg::Desktop &amp;desktop)=0</td></tr>
-<tr class="memdesc:a1d1fec81001a6bf807760243d76de01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds windows to desktop <br/></td></tr>
+<tr class="memdesc:a1d1fec81001a6bf807760243d76de01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds windows to desktop. <br/></td></tr>
 <tr class="separator:a1d1fec81001a6bf807760243d76de01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7214583ea056553d7274cb3b8d8a1925"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a7214583ea056553d7274cb3b8d8a1925">removeWindows</a> (sfg::Desktop &amp;desktop)=0</td></tr>
 <tr class="separator:a7214583ea056553d7274cb3b8d8a1925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae96374e78394931314c1d36b61c4389c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae96374e78394931314c1d36b61c4389c"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#ae96374e78394931314c1d36b61c4389c">getTag</a> ()=0</td></tr>
-<tr class="memdesc:ae96374e78394931314c1d36b61c4389c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns tag of <a class="el" href="classGUIMode.html">GUIMode</a> <br/></td></tr>
+<tr class="memdesc:ae96374e78394931314c1d36b61c4389c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns tag of <a class="el" href="classGUIMode.html">GUIMode</a>. <br/></td></tr>
 <tr class="separator:ae96374e78394931314c1d36b61c4389c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0514db00b52d0d6f5d48b31bdbbac17c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0514db00b52d0d6f5d48b31bdbbac17c"></a>
 virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a0514db00b52d0d6f5d48b31bdbbac17c">getName</a> ()=0</td></tr>
-<tr class="memdesc:a0514db00b52d0d6f5d48b31bdbbac17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns name of <a class="el" href="classGUIMode.html">GUIMode</a> <br/></td></tr>
+<tr class="memdesc:a0514db00b52d0d6f5d48b31bdbbac17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns name of <a class="el" href="classGUIMode.html">GUIMode</a>. <br/></td></tr>
 <tr class="separator:a0514db00b52d0d6f5d48b31bdbbac17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a240e8c9185c17e61280d4e698c2baf89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a240e8c9185c17e61280d4e698c2baf89"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a240e8c9185c17e61280d4e698c2baf89">rescale</a> (float newScale)=0</td></tr>
+<tr class="memdesc:a240e8c9185c17e61280d4e698c2baf89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rescales <a class="el" href="classGUIMode.html">GUIMode</a> and relocates accordingly. <br/></td></tr>
+<tr class="separator:a240e8c9185c17e61280d4e698c2baf89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f0f55fac706ae0c1123cbc8fe0b35d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f0f55fac706ae0c1123cbc8fe0b35d5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUIMode.html#a5f0f55fac706ae0c1123cbc8fe0b35d5">resize</a> (int newWindowWidth, int newWindowHeight)=0</td></tr>
+<tr class="memdesc:a5f0f55fac706ae0c1123cbc8fe0b35d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relocates <a class="el" href="classGUIMode.html">GUIMode</a> according to new window dimensions. <br/></td></tr>
+<tr class="separator:a5f0f55fac706ae0c1123cbc8fe0b35d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base gui class for every game mode </p>
@@ -143,7 +151,7 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class=
   </tr>
 </table>
 </div><div class="memdoc">
-<p>removes windows from desktop, note: due to SFGUI limitations, it only makes windows invisible instead of actually removing them </p>
+<p>Removes windows from desktop, note: due to SFGUI limitations, it only makes windows invisible instead of actually removing them </p>
 
 <p>Implemented in <a class="el" href="classGUIModeSwitcher.html#a68909a312720fa4eaaa4fa99ce0e5d64">GUIModeSwitcher</a>, <a class="el" href="classGUIModeArchitect.html#aea6eeeba6cf9597beb326d38e63af49d">GUIModeArchitect</a>, <a class="el" href="classGUIModeManagement.html#a1c1602738b2628a7f31d7ccd0201a99a">GUIModeManagement</a>, and <a class="el" href="classGUIModeMiner.html#ac494c734e0e209548f7749edd8dfe4b3">GUIModeMiner</a>.</p>
 
