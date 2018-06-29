@@ -30,6 +30,7 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     camera.setCenter(sf::Vector2f(0, 0));
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
+    world.setGameState(this);
 
     if(!loadEntities()) {
         entities.push_back(entityFactory.get("Player"));
@@ -61,6 +62,11 @@ void GameState::update(std::chrono::microseconds deltaTime) {
                 system->processEntity(object, deltaTime);
             }
         }
+    }
+    if (Controls::isKeyboardButtonPressed(sf::Keyboard::R))
+    {
+        Log::debug(TAG, "Cleared");
+        world.clearCache();
     }
 }
 

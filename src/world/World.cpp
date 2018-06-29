@@ -6,8 +6,10 @@
 #include "../Game.h"
 #include "../entity/components/ObjectPosition.h"
 #include "../tile/TileDatabase.h"
+#include "../state/GameState.h"
 
-World::World(int seed) : chunkDatabase(std::make_unique<ChunkGenerator>(seed)) {}
+World::World(int seed) : chunkDatabase(std::make_unique<ChunkGenerator>(seed)) {
+}
 
 void World::render(sf::View camera) {
     int chunkSideLengthInWorldCord = Chunk::SIDE_LENGTH * Chunk::TILE_SIZE;
@@ -38,10 +40,13 @@ ChunkTile World::getLoadedTile(int x, int y) {
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
     chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
-    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    auto mod = [](int a, int b) -> int {
+        int ret = a % b;
+        return ret >= 0 ? ret : ret + b;
+    };
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
-    if (!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
+    if(!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
         ChunkTile chunkTile(0, 0);
         chunkTile.tileId = 0;
         return chunkTile;
@@ -57,7 +62,18 @@ void World::setTile(int x, int y, ChunkTile value) {
     auto tile = coordinates.first;
     auto chunk = coordinates.second;
 
-    chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
+    if(TileDatabase::get()[value.tileId].isSolid != TileDatabase::get()[getTile(x, y).tileId].isSolid) {
+        chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
+
+        if(getTile(x, y).node0 != 0) gameState->pathfinder.update_branch(x, y);
+        if(getTile(x + 1, y).node0 != 0) gameState->pathfinder.update_branch(x + 1, y);
+        if(getTile(x - 1, y).node0 != 0) gameState->pathfinder.update_branch(x - 1, y);
+        if(getTile(x, y + 1).node0 != 0) gameState->pathfinder.update_branch(x, y + 1);
+        if(getTile(x, y - 1).node0 != 0) gameState->pathfinder.update_branch(x, y - 1);
+    }
+    else {
+        chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
+    }
 }
 
 short World::mineTile(int x, int y) {
@@ -134,17 +150,24 @@ void World::setTileNode(int x, int y, short node) {
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
     chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
-    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    auto mod = [](int a, int b) -> int {
+        int ret = a % b;
+        return ret >= 0 ? ret : ret + b;
+    };
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNode(tile.x, tile.y, node);
 }
+
 void World::setTilePath(int x, int y, short node0, short node1) {
     sf::Vector2i tile;
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
     chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
-    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    auto mod = [](int a, int b) -> int {
+        int ret = a % b;
+        return ret >= 0 ? ret : ret + b;
+    };
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTilePath(tile.x, tile.y, node0, node1);
@@ -155,15 +178,28 @@ std::shared_ptr<Entity> World::getObject(int x, int y) {
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
     chunk.y = static_cast<int>(floor(1.0f * y / Chunk::SIDE_LENGTH));
-    auto mod = [](int a, int b)->int{int ret = a%b; return ret>=0? ret: ret+b;};
+    auto mod = [](int a, int b) -> int {
+        int ret = a % b;
+        return ret >= 0 ? ret : ret + b;
+    };
     tile.x = mod(x, Chunk::SIDE_LENGTH);
     tile.y = mod(y, Chunk::SIDE_LENGTH);
-    if (!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
+    if(!chunkDatabase.isChunkGenerated(chunk.x, chunk.y)) {
         return nullptr;
     }
     auto index = chunkDatabase.getChunk(chunk.x, chunk.y)->getTile(tile.x, tile.y).objectId;
-    if (index == -1) {
+    if(index == -1) {
         return nullptr;
     }
     return chunkDatabase.getChunk(chunk.x, chunk.y)->objects[index];
+}
+
+void World::setGameState(GameState* gameState) {
+    this->gameState = gameState;
+}
+
+void World::clearCache() {
+    chunkDatabase.saveCache(true);
+    chunkDatabase.chunkCache.clear();
+
 }

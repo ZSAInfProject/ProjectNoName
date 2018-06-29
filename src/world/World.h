@@ -6,6 +6,8 @@
 #include "chunk/ChunkDatabase.h"
 #include "../tile/Tile.h"
 
+class GameState;
+
 class World {
 
 public:
@@ -43,10 +45,16 @@ public:
 
     ChunkTile getLoadedTile(int x, int y);
 
+    void clearCache();
+
+    void setGameState(GameState* gameState);
+
     explicit World(int seed);
 
 private:
     ChunkDatabase chunkDatabase;
+
+    GameState* gameState;
 
     //! Returns coordinates of tile (0,0 at bottom-left chunk corner) and chunk coordinates
     std::pair<sf::Vector2i, sf::Vector2i> getTileAndChunkCoordinates(int x, int y);

@@ -46,6 +46,8 @@ public:
     bool isChunkLoaded(int x, int y);
     bool isChunkGenerated(int x, int y);
 
+    void saveCache(bool ignoreAutoSavePeriod = false);
+
     explicit ChunkDatabase(std::unique_ptr<ChunkGenerator>);
     ~ChunkDatabase();
 private:
@@ -62,7 +64,7 @@ private:
 
     std::chrono::system_clock::time_point lastAutoSave = std::chrono::system_clock::now();
     std::chrono::seconds autoSavePeriod = std::chrono::seconds(10);
-    void saveCache(bool ignoreAutoSavePeriod = false);
+
 
     std::string getChunkFilename(int x, int y);
 };

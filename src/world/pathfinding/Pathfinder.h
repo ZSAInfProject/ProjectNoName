@@ -30,10 +30,13 @@ public:
     void setWorld(World* world);
     void save();
     bool load();
+    void update_branch(int x, int y);
+    void update_node(int x, int y);
 
     ~Pathfinder();
 
 private:
+    void delete_branch(int x, int y, short node0, short node1);
     void branch_node(short id);
     void branch(Direction direction, int x, int y, short id);
     std::vector<Node> nodes;

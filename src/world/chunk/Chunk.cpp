@@ -129,6 +129,9 @@ void Chunk::changeQuad(int x, int y) {
     sf::Vertex* quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
     int tile_id = getTile(x, y).tileId;
+    if (getTile(x, y).node0 != 0) {
+        tile_id = 0;
+    }
 
     int tx = TileDatabase::get()[tile_id].texture_x;
     int ty = TileDatabase::get()[tile_id].texture_y;

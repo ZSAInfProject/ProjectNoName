@@ -53,6 +53,7 @@ public:
     std::shared_ptr<GUI> getGUI();
 
     EntityFactory& getEntityFactory();
+    Pathfinder pathfinder;
 
   private:
     World world;
@@ -78,8 +79,6 @@ public:
 
     //! Container for every game mode
     std::vector<std::shared_ptr<GameMode>> gameModes;
-
-    Pathfinder pathfinder;
 
     //! Saves all entities to a file
     void saveEntities();
