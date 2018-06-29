@@ -2,14 +2,14 @@
 #include "Log.h"
 
 void ThreadPool::threadMain() {
-    std::function<void (void)> job;
-    while(true){
+    std::function<void(void)> job;
+    while(true) {
         {
             std::unique_lock<std::mutex> lock(jobsMut);
-            while (jobs.empty() && !shouldTerminate)
+            while(jobs.empty() && !shouldTerminate)
                 jobsCV.wait(lock);
 
-            if(jobs.empty()){
+            if(jobs.empty()) {
                 Log::verbose(TAG, "Thread terminating...");
                 return;
             }
@@ -26,7 +26,7 @@ void ThreadPool::threadMain() {
 }
 
 void ThreadPool::addJob(std::function<void(void)> job) {
-    std::unique_lock <std::mutex> lock(jobsMut);
+    std::unique_lock<std::mutex> lock(jobsMut);
     jobs.emplace(std::move(job));
     std::unique_lock<std::mutex> lock2(scheduledJobsMut);
     scheduledJobs++;
@@ -36,8 +36,8 @@ void ThreadPool::addJob(std::function<void(void)> job) {
 ThreadPool::ThreadPool(int numberOfThreads) {
     scheduledJobs = 0;
     shouldTerminate = false;
-    for(int i = 0; i < numberOfThreads; i++){
-        threads.emplace_back([this](){threadMain();});
+    for(int i = 0; i < numberOfThreads; i++) {
+        threads.emplace_back([this]() { threadMain(); });
     }
     Log::debug(TAG, "Spawned " + std::to_string(numberOfThreads) + " threads");
 }
@@ -52,7 +52,7 @@ ThreadPool::~ThreadPool() {
 
 void ThreadPool::wait() {
     std::unique_lock<std::mutex> lock(scheduledJobsMut);
-    while(scheduledJobs > 0){
+    while(scheduledJobs > 0) {
         scheduledJobsCV.wait(lock);
     }
 }

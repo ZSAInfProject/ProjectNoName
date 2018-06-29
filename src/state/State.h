@@ -24,9 +24,9 @@ public:
      * @param renderWindow SFML render window reference
      */
     virtual void render(float deltaTime) = 0;
-    //! Function called periodicaly
+    //! Function called periodically
     /*!
-     *  tick() is called periodicaly. Period is set in Game singleton.
+     *  tick() is called periodically. Period is set in Game singleton.
      *  Can be used for stuff that doesn't need to run very often, for example recalculating AI path.
      */
     virtual void tick() = 0;
@@ -35,7 +35,7 @@ public:
 
 
     State(State& other) = delete;
-    State& operator= (State& other) = delete;
+    State& operator=(State& other) = delete;
     virtual ~State() = default;
 };
 

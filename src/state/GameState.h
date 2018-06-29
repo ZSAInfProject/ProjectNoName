@@ -18,25 +18,22 @@
  */
 class GameState : public State{
 
-    void saveEntities();
-    void createSavePath();
-    void loadSystems();
-    bool loadEntities();
+public:
     static constexpr auto TAG = "GameState";
 
-  
 public:
     void update(std::chrono::microseconds deltaTime) override;
     void render(float deltaTime) override;
     void tick() override;
-    void handleEvent(sf::Event event);
+    void handleEvent(sf::Event event) override;
 
-    //! Converts screen to world coordinates
+    //! Converts screen to world coordinates using player camera
     sf::Vector2f screen_to_global_offset(sf::Vector2f in);
 
     GameState();
-    ~GameState();
+    ~GameState() override;
 
+    //! Returns reference to world
     World& getWorld();
     sf::View& getCamera();
 
@@ -49,7 +46,7 @@ public:
      * Changes game mode, for list of game modes see GameMode
      * @param newMode Get newMode value from GameMode::gameModesEnum
      */
-    void setGameMode(int newMode);
+    void setGameMode(uint newMode);
 
     //! Returns a pointer to a GUI object
     std::shared_ptr<GUI> getGUI();
@@ -60,10 +57,13 @@ public:
     //! Vector containing all the entities currently active
     std::vector<std::shared_ptr<Entity>> entities;
 
+    //! Vector containing entity/object systems
     std::vector<std::unique_ptr<System>> systems;
 
+    //! Pointer to player entity
     std::shared_ptr<Entity> player;
 
+    //! Camera centered at player
     sf::View camera;
 
     EntityFactory entityFactory;
@@ -75,6 +75,17 @@ public:
 
     //! Container for every game mode
     std::vector<std::shared_ptr<GameMode>> gameModes;
+
+    //! Saves all entities to a file
+    void saveEntities();
+    //! Loads all entities from file \return True if succeeds
+    bool loadEntities();
+
+    //! Creates directory for save
+    void createSavePath();
+    //! Pushes all entity/object systems to system vector
+    void loadSystems();
+
 };
 
 #endif //NONAME_GAMESTATE_H

@@ -7,8 +7,11 @@
 #include "../tile/Tile.h"
 
 class World {
-    ChunkDatabase chunkDatabase;
+
 public:
+    static constexpr auto TAG = "World";
+
+    //! Renders all chunks visible by the camera
     void render(sf::View camera);
 
     //!Gets chunkTile using global coordinates of the world
@@ -25,14 +28,21 @@ public:
      */
     short mineTile(int x, int y);
 
+    //! Adds object to world
     void addObject(std::shared_ptr<Entity> object);
+    //! Removes object at supplied coordinates
     void removeObject(int x, int y);
 
+    //! Returns objects to be processed by systems
     std::vector<std::shared_ptr<Entity>> getObjectsForUpdate();
 
     explicit World(int seed);
 
-    static constexpr auto TAG = "World";
+private:
+    ChunkDatabase chunkDatabase;
+
+    //! Returns coordinates of tile (0,0 at bottom-left chunk corner) and chunk coordinates
+    std::pair<sf::Vector2i, sf::Vector2i> getTileAndChunkCoordinates(int x, int y);
 };
 
 

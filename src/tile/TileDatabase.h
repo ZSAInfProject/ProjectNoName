@@ -20,6 +20,8 @@ enum categoriesEnum{
 class TileDatabase {
 
 public:
+    static constexpr auto TAG = "TileDatabase";
+
     static TileDatabase& get() {
         static TileDatabase instance;
         return instance;
@@ -40,7 +42,7 @@ public:
     void loadTiles(std::string file);
     //! Loads texture map for tiles from file
     void loadTexture(std::string file);
-    Tile& operator[] (int index);
+    Tile& operator[](uint index);
     //! Returns size of tiles
     int size();
 
@@ -54,8 +56,6 @@ private:
     //! order of category names corresponds to categoriesEnum's order
     const std::shared_ptr<std::vector<std::string>> categoryNames = std::make_shared<std::vector<std::string>>
             (std::vector<std::string> {"unusable", "plain blocks", "ores"});
-
-    static constexpr auto TAG = "TileDatabase";
 };
 
 

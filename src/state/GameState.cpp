@@ -1,6 +1,7 @@
 #include <SFML/Window/Mouse.hpp>
 #include <iostream>
 #include <SFML/Window/Keyboard.hpp>
+#include <memory>
 #include "GameState.h"
 #include "../tile/TileDatabase.h"
 #include "../utils/Controls.h"
@@ -18,8 +19,6 @@
 #error "System not supported."
 #endif
 
-long mod(long a, long b) { return (a % b + b) % b; }
-
 GameState::GameState() : State(), world(10), entityFactory("entities/entities.json") {
     camera.setSize(sf::Vector2f(800, -600));
     createSavePath();
@@ -28,7 +27,7 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     TileDatabase::get().loadTiles("tiles.json");
     TileDatabase::get().loadTexture("texture.png");
 
-    if (!loadEntities()) {
+    if(!loadEntities()) {
         entities.push_back(entityFactory.get("Player"));
     }
 
@@ -37,19 +36,19 @@ GameState::GameState() : State(), world(10), entityFactory("entities/entities.js
     gameModes.push_back(std::shared_ptr<GameMode>(new ArchitectMode()));
     gameModes.push_back(std::shared_ptr<GameMode>(new ManagementMode()));
     gameMode = gameModes.at(GameMode::architectMode);
-    gui = std::shared_ptr<GUI>(new GUI(gameMode->getTag(), 1.f));
+    gui = std::make_shared<GUI>(gameMode->getTag(), 1.f);
 }
 
 void GameState::update(std::chrono::microseconds deltaTime) {
     Game::get().debug.reportEntityCount(static_cast<int>(entities.size()));
     auto objects = world.getObjectsForUpdate();
-    for (auto &system : systems) {
-        if (system->getStage() == stageEnum::update) {
-            for (auto &entity : entities) {
+    for(auto& system : systems) {
+        if(system->getStage() == stageEnum::update) {
+            for(auto& entity : entities) {
                 system->processEntity(entity, deltaTime);
 
             }
-            for (auto &object : objects) {
+            for(auto& object : objects) {
                 system->processEntity(object, deltaTime);
             }
         }
@@ -57,15 +56,15 @@ void GameState::update(std::chrono::microseconds deltaTime) {
 }
 
 void GameState::render(float deltaTime) {
-    auto &renderWindow = Game::getRenderWindow();
+    auto& renderWindow = Game::getRenderWindow();
     renderWindow.setView(camera);
     world.render(camera);
     auto objects = world.getObjectsForUpdate();
-    for (auto &system : systems) {
-        if (system->getStage() == stageEnum::render) {
-            for (auto &entity : entities)
+    for(auto& system : systems) {
+        if(system->getStage() == stageEnum::render) {
+            for(auto& entity : entities)
                 system->processEntity(entity);
-            for (auto &object : objects) {
+            for(auto& object : objects) {
                 system->processEntity(object);
             }
         }
@@ -76,11 +75,11 @@ void GameState::render(float deltaTime) {
 
 void GameState::tick() {
     auto objects = world.getObjectsForUpdate();
-    for (auto &system : systems) {
-        if (system->getStage() == stageEnum::tick) {
-            for (auto &entity : entities)
+    for(auto& system : systems) {
+        if(system->getStage() == stageEnum::tick) {
+            for(auto& entity : entities)
                 system->processEntity(entity);
-            for (auto &object : objects) {
+            for(auto& object : objects) {
                 system->processEntity(object);
             }
         }
@@ -99,8 +98,8 @@ sf::Vector2f GameState::screen_to_global_offset(sf::Vector2f in) {
 
 void GameState::createSavePath() {
 #ifdef __unix__
-    auto makeDir = [](const char *path) {
-        if (mkdir(path, 0777) && errno != EEXIST) {
+    auto makeDir = [](const char* path) {
+        if(mkdir(path, 0777) && errno != EEXIST) {
             Log::error(TAG, "Failed to create save directory " + std::to_string(errno));
         }
     };
@@ -113,11 +112,11 @@ void GameState::createSavePath() {
 #endif
 }
 
-World &GameState::getWorld() {
+World& GameState::getWorld() {
     return world;
 }
 
-sf::View &GameState::getCamera() {
+sf::View& GameState::getCamera() {
     return camera;
 }
 
@@ -132,16 +131,17 @@ void GameState::loadSystems() {
 
 void GameState::saveEntities() {
     nlohmann::json json;
-    for (int i = 0; i < entities.size(); i++) {
+    for(unsigned int i = 0; i < entities.size(); i++) {
         json["entities"][i] = entities[i]->serialize();
     }
     std::string filename = Settings::get<std::string>("save_path") + "entities.json";
     std::ofstream entityDate(filename);
     std::string data = json.dump();
     entityDate.write(data.c_str(), data.size());
-    if (entityDate.fail()) {
+    if(entityDate.fail()) {
         Log::error(TAG, "Failed to save entities");
-    } else {
+    }
+    else {
         Log::info(TAG, "Entities saved");
     }
 }
@@ -153,10 +153,10 @@ GameState::~GameState() {
 bool GameState::loadEntities() {
     std::string filename = Settings::get<std::string>("save_path") + "entities.json";
     std::ifstream ifs(filename);
-    if (ifs.is_open()) {
+    if(ifs.is_open()) {
         nlohmann::json j = nlohmann::json::parse(ifs);
         std::vector<nlohmann::json> entityData = j["entities"];
-        for (auto entity : entityData) {
+        for(auto entity : entityData) {
             entities.push_back(std::make_shared<Entity>(entity));
         }
         return true;
@@ -164,8 +164,8 @@ bool GameState::loadEntities() {
     return false;
 }
 
-void GameState::setGameMode(int newMode) {
-    if (gameMode->getTag() == newMode)
+void GameState::setGameMode(uint newMode) {
+    if(gameMode->getTag() == newMode)
         return;
     gui->changeMode(newMode);
     gameMode = gameModes.at(newMode);

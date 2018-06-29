@@ -7,7 +7,7 @@
 #include <iostream>
 
 void Chunk::render(sf::RenderWindow& window, const sf::Vector2f& translation, const sf::Vector2f& scale) {
-    if(vertices.getVertexCount() == 0){
+    if(vertices.getVertexCount() == 0) {
         generateVertices();
         updateQuads();
     }
@@ -23,44 +23,49 @@ Chunk::Chunk() {
     generateVertices();
 }
 
-Chunk::Chunk(const std::array<ChunkTile, SIDE_LENGTH*SIDE_LENGTH> &_tiles) {
-    tiles = _tiles;
+Chunk::Chunk(const std::array<ChunkTile, SIDE_LENGTH * SIDE_LENGTH>& tiles) {
+    this->tiles = tiles;
     generateVertices();
     updateQuads();
 }
 
 ChunkTile Chunk::getTile(int x, int y) {
-    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
-        Log::error(TAG, "Tile get out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
-        return tiles[0];
+    if(isInsideBoundaries(x, y)) {
+        return tiles[y * SIDE_LENGTH + x];
     }
-    return tiles[y*SIDE_LENGTH + x];
+    else {
+        return tiles[0];
+    };
 }
 
 void Chunk::setTile(int x, int y, ChunkTile value) {
-    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
-        Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
-        return;
+    if(isInsideBoundaries(x, y)) {
+        tiles[y * SIDE_LENGTH + x] = value;
+        changeQuad(x, y);
     }
-    tiles[y*SIDE_LENGTH + x] = value;
-    changeQuad(x, y);
 }
 
-void Chunk::save(const std::string &fileName) {
+void Chunk::setTileObject(int x, int y, short objectId) {
+    if(isInsideBoundaries(x, y)) {
+        tiles[y * SIDE_LENGTH + x].objectId = objectId;
+    }
+}
+
+void Chunk::save(const std::string& fileName) {
 
     //Save tiles
     Buffer buffer(bufferMode::store);
     for(ChunkTile tile : tiles) {
         tile.serialize(buffer);
     }
-    buffer.save(fileName+".td");
+    buffer.save(fileName + ".td");
 
     //Save objects
-    std::ofstream objectData(fileName+".json");
+    std::ofstream objectData(fileName + ".json");
     if(objectData.good()) {
         nlohmann::json json;
         json["objects"] = nlohmann::json::array();
-        for(int i = 0; i < objects.size(); i++){
+        for(uint i = 0; i < objects.size(); i++) {
             json["objects"][i] = objects[i]->serialize();
         }
         std::string data = json.dump();
@@ -72,25 +77,25 @@ void Chunk::save(const std::string &fileName) {
     objectData.close();
 }
 
-bool Chunk::load(const std::string &filename){
-  
+bool Chunk::load(const std::string& filename) {
+
     Buffer buffer(bufferMode::load);
-    if(!buffer.load(filename+".td"))
+    if(!buffer.load(filename + ".td"))
         return false;
 
     //Load tiles
-    for(ChunkTile& tile : tiles){
+    for(ChunkTile& tile : tiles) {
         tile.serialize(buffer);
     }
 
     updateQuads();
 
     //Load objects
-    std::ifstream objectData(filename+".json");
-    if (objectData.is_open()) {
+    std::ifstream objectData(filename + ".json");
+    if(objectData.is_open()) {
         nlohmann::json j = nlohmann::json::parse(objectData);
         std::vector<nlohmann::json> objectVector = j["objects"];
-        for(auto object : objectVector){
+        for(auto object : objectVector) {
             objects.push_back(std::make_shared<Entity>(object));
         }
     }
@@ -98,62 +103,67 @@ bool Chunk::load(const std::string &filename){
 }
 
 void Chunk::generateVertices() {
-    for (unsigned int i=0; i<SIDE_LENGTH; i++) {
-        for (unsigned int j=0; j<SIDE_LENGTH; j++) {
-            sf::Vertex* quad = &vertices[(i+j*SIDE_LENGTH) * 4];
+    for(unsigned int i = 0; i < SIDE_LENGTH; i++) {
+        for(unsigned int j = 0; j < SIDE_LENGTH; j++) {
+            sf::Vertex* quad = &vertices[(i + j * SIDE_LENGTH) * 4];
 
-            quad[2].position = sf::Vector2f(i*TILE_SIZE, j*TILE_SIZE);
-            quad[3].position = sf::Vector2f((i+1)*TILE_SIZE, j*TILE_SIZE);
-            quad[0].position = sf::Vector2f((i+1)*TILE_SIZE, (j+1)*TILE_SIZE);
-            quad[1].position = sf::Vector2f(i*TILE_SIZE, (j+1)*TILE_SIZE);
+            quad[2].position = sf::Vector2f(i * TILE_SIZE, j * TILE_SIZE);
+            quad[3].position = sf::Vector2f((i + 1) * TILE_SIZE, j * TILE_SIZE);
+            quad[0].position = sf::Vector2f((i + 1) * TILE_SIZE, (j + 1) * TILE_SIZE);
+            quad[1].position = sf::Vector2f(i * TILE_SIZE, (j + 1) * TILE_SIZE);
         }
     }
     Log::verbose(TAG, "Generated new vertices");
 }
 
 void Chunk::updateQuads() {
-    for (unsigned int i=0; i<SIDE_LENGTH; i++) {
-        for (unsigned int j=0; j<SIDE_LENGTH; j++) {
+    for(unsigned int i = 0; i < SIDE_LENGTH; i++) {
+        for(unsigned int j = 0; j < SIDE_LENGTH; j++) {
             changeQuad(i, j);
         }
     }
 }
 
 void Chunk::changeQuad(int x, int y) {
-    sf::Vertex *quad = &vertices[(x + y * SIDE_LENGTH) * 4];
+    sf::Vertex* quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
     int tile_id = getTile(x, y).tileId;
 
     int tx = TileDatabase::get()[tile_id].texture_x;
     int ty = TileDatabase::get()[tile_id].texture_y;
 
-    quad[0].texCoords = sf::Vector2f(tx*TILE_SIZE, ty*TILE_SIZE);
-    quad[1].texCoords = sf::Vector2f((tx+1)*TILE_SIZE - 0.0075, ty*TILE_SIZE);
-    quad[2].texCoords = sf::Vector2f((tx+1)*TILE_SIZE - 0.0075, (ty+1)*TILE_SIZE - 0.0075);
-    quad[3].texCoords = sf::Vector2f(tx*TILE_SIZE, (ty+1)*TILE_SIZE - 0.0075);
+    quad[0].texCoords = sf::Vector2f(tx * TILE_SIZE, ty * TILE_SIZE);
+    quad[1].texCoords = sf::Vector2f(static_cast<float>((tx + 1) * TILE_SIZE - 0.0075), ty * TILE_SIZE);
+    quad[2].texCoords = sf::Vector2f(static_cast<float>((tx + 1) * TILE_SIZE - 0.0075),
+                                     static_cast<float>((ty + 1) * TILE_SIZE - 0.0075));
+    quad[3].texCoords = sf::Vector2f(tx * TILE_SIZE, static_cast<float>((ty + 1) * TILE_SIZE - 0.0075));
 }
 
-void Chunk::setTileObject(int x, int y, short objectId) {
-    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
-        Log::error(TAG, "Tile object set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
-        return;
+void Chunk::update(std::chrono::microseconds deltaTime) {
+
+}
+
+bool Chunk::isInsideBoundaries(int x, int y) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH) {
+        Log::warn(TAG, "Tile access out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
+        return false;
     }
-    tiles[y*SIDE_LENGTH + x].objectId = objectId;
+    return true;
 }
 
 
 ChunkTile::ChunkTile(nlohmann::json json) {
-    if(json.find("id") != json.end()){
+    if(json.find("id") != json.end()) {
         tileId = json["id"].get<short>();
     }
-    else{
+    else {
         Log::error(TAG, "No id data in json");
     }
 
-    if(json.find("amount") != json.end()){
+    if(json.find("amount") != json.end()) {
         amount = json["amount"].get<uint>();
     }
-    else{
+    else {
         Log::error(TAG, "No amount data in json");
     }
 }

@@ -1,7 +1,10 @@
 #ifndef NONAME_COMPONENT_H
 #define NONAME_COMPONENT_H
 
-enum componentId{
+#include <bits/unique_ptr.h>
+#include "../../../deps/json.h"
+
+enum componentId {
     Unknown,
     Position,
     Sprite,
@@ -12,18 +15,17 @@ enum componentId{
     Building
 };
 
-class Component{
+class Component {
 public:
     static const componentId id = componentId::Unknown;
     virtual ~Component() = default;
 
     virtual std::unique_ptr<Component> clone() = 0;
 
-    virtual  nlohmann::json serialize() = 0;
+    virtual nlohmann::json serialize() = 0;
 
     Component() = default;
-    Component(Component& old) = default;;
-    explicit Component(nlohmann::json json) {};
+    Component(Component& old) = default;
 };
 
 #endif //NONAME_COMPONENT_H

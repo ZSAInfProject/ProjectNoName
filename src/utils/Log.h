@@ -6,9 +6,9 @@
 #include <string>
 #include <vector>
 
-enum Mode{ VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5};
+enum Mode { VERBOSE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NOLOG = 5 };
 
-class LogSubscriber{
+class LogSubscriber {
 public:
     //! Notify about a new message
     virtual void notify(enum Mode, std::string tag, std::string message) = 0;
@@ -16,8 +16,11 @@ public:
 
 //! Singleton responsible for logging and saving logs.
 class Log {
+
 public:
-    static Log& get(){
+    static constexpr auto TAG = "Log";
+
+    static Log& get() {
         static Log instance;
         return instance;
     }

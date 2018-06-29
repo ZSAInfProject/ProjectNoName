@@ -77,7 +77,7 @@ void GUIModeArchitect::createCategorySelectorWindow() {
     box->SetId("categorySelectorBox");
 
     box->SetRequisition(sf::Vector2f(alloc->categorySelectorWindowWidth, alloc->categorySelectorWindowHeight));
-    for (int i = 0; i < categoryNames->size(); i++) {
+    for (uint i = 0; i < categoryNames->size(); i++) {
         auto button = sfg::Button::Create(refactorString(categoryNames->at(i), 10));
         if (button->GetLabel().getSize())
             button->SetId("category" + i);
@@ -95,7 +95,7 @@ void GUIModeArchitect::createCategorySelectorWindow() {
 
 void GUIModeArchitect::createCategoryWindow() {
     categoryWindows.clear();
-    for (int i = 0; i < categoryNames->size(); i++) {
+    for (uint i = 0; i < categoryNames->size(); i++) {
         categoryWindows.push_back(sfg::ScrolledWindow::Create());
         categoryWindows.at(i)->SetId("categoryWindow" + i);
         categoryWindows.at(i)->SetScrollbarPolicy(
@@ -109,7 +109,7 @@ void GUIModeArchitect::createCategoryWindow() {
 
 void GUIModeArchitect::createBlockButtons() {
     std::vector<sfg::Box::Ptr> blocks;
-    for (int i = 0; i < categoryNames->size(); i++) {
+    for (uint i = 0; i < categoryNames->size(); i++) {
         auto box = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, alloc->boxSpacing);
         box->SetAllocation(sf::FloatRect(sf::Vector2f(0, 0),
                                          sf::Vector2f(alloc->categoryWindowsWidth, alloc->categoryWindowsHeight)));
@@ -216,7 +216,7 @@ void GUIModeArchitect::moveFloatingTooltip(int id) {
 std::string GUIModeArchitect::refactorString(std::string str, int lineSize) {
     int lineLength = 0;
     int wordLength = 0;
-    for (int i = 0; i < str.length(); i++) {
+    for (uint i = 0; i < str.length(); i++) {
         if (str[i] != ' ' || str[i] != '\n')
             wordLength++;
         else

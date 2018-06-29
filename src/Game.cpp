@@ -11,12 +11,12 @@
 #include "utils/Controls.h"
 
 void Game::pushState(std::shared_ptr<State> state) {
-    Log::info(TAG , "New state pushed on stack");
+    Log::info(TAG, "New state pushed on stack");
     states.push(std::move(state));
 }
 
 void Game::popState() {
-    Log::info(TAG ,"State popped from stack");
+    Log::info(TAG, "State popped from stack");
     states.pop();
 }
 
@@ -29,24 +29,24 @@ sf::RenderWindow& Game::getRenderWindow() {
 }
 
 void Game::run() {
-    Log::info(TAG ,"Main loop started");
-    renderWindow.create({Settings::get<unsigned int>("resolution_x"), Settings::get<unsigned int>("resolution_y")}, "ProjectNoName",
-        sf::Style::Close);
+    Log::info(TAG, "Main loop started");
+    renderWindow.create({Settings::get<uint>("resolution_x"), Settings::get<uint>("resolution_y")}, "ProjectNoName",
+                        sf::Style::Close);
     pushState(std::make_shared<GameState>());
 
     renderWindow.setActive(false);
     imGuiUpdatedThisFrame = true;
 
-    std::thread renderThread([this](){
+    std::thread renderThread([this]() {
         ImGui::SFML::Init(renderWindow);
         ImGui::NewFrame();
         renderWindow.setVerticalSyncEnabled(true);
-        while(renderWindow.isOpen()){
+        while(renderWindow.isOpen()) {
             renderWindow.setActive(true);
             render();
             sf::Event event{};
-            while (renderWindow.pollEvent(event)) {
-                switch(event.type){
+            while(renderWindow.pollEvent(event)) {
+                switch(event.type) {
                     case sf::Event::Closed:
                         renderWindow.close();
                         break;
@@ -75,12 +75,11 @@ void Game::run() {
             }
             renderWindow.display();
         }
-        ImGui::SFML::Shutdown;
+        ImGui::SFML::Shutdown();
     });
 
     std::chrono::system_clock::time_point loopStart;
-    while (renderWindow.isOpen())
-    {
+    while(renderWindow.isOpen()) {
         loopStart = std::chrono::system_clock::now();
 
         renderMutex.lock();
@@ -96,7 +95,7 @@ void Game::run() {
 
         renderMutex.unlock();
 
-        if(loopTime < minimumLoopTime){
+        if(loopTime < minimumLoopTime) {
             sf::sleep(sf::microseconds(minimumLoopTime.count() - loopTime.count()));
         }
     }
@@ -105,7 +104,7 @@ void Game::run() {
 
 void Game::render() {
     //Wait for imGui update
-    while(!imGuiUpdatedThisFrame && renderMutex.try_lock()){
+    while(!imGuiUpdatedThisFrame && renderMutex.try_lock()) {
         renderMutex.unlock();
         sf::sleep(sf::microseconds(10));
     }
@@ -114,7 +113,7 @@ void Game::render() {
     auto deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(now - previous_render);
     previous_render = now;
     debug.reportRenderTime(deltaTime);
-    if (!states.empty()) {
+    if(!states.empty()) {
         getState().render(deltaTime.count());
     }
     ImGui::SFML::Render(renderWindow);
@@ -129,7 +128,7 @@ void Game::update() {
     previous_time = now;
     debug.reportUpdateTime(deltaTime);
     debug.update();
-    if (!states.empty()) {
+    if(!states.empty()) {
         getState().update(deltaTime);
     }
 }
@@ -138,17 +137,17 @@ void Game::tick() {
     Log::verbose(TAG, "tick");
     auto now = std::chrono::system_clock::now();
     auto time_elapsed = std::chrono::duration_cast<std::chrono::microseconds>(now - previous_tick);
-    if (time_elapsed >= tick_period) {
+    if(time_elapsed >= tick_period) {
         debug.tick();
         previous_tick = now - std::chrono::microseconds(time_elapsed - tick_period);
 
-        if (!states.empty()) {
+        if(!states.empty()) {
             getState().tick();
         }
 
     }
 }
 
-bool Game::canUpdateimGui() {
+bool Game::canUpdateImGui() {
     return !Game::get().imGuiUpdatedThisFrame;
 }

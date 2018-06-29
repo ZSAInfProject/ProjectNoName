@@ -11,7 +11,10 @@
  * Tile can be created passing all fields (for debug) or using a JSON object
  */
 class Tile {
+
 public:
+    static constexpr auto TAG = "Tile";
+
     explicit Tile(nlohmann::json json);
     Tile(std::string name, float hardness, std::string terminal_representation,
          int texture_x, int texture_y, bool isSolid, int category);
@@ -33,9 +36,6 @@ public:
     bool isSolid;
     //! Category of the tile
     int category;
-
-private:
-    static constexpr auto TAG = "Tile";
 };
 
 
