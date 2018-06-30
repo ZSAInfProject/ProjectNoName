@@ -82,7 +82,11 @@ void Pathfinder::branch_node(short id) {
     for (auto connection : nodes[id].connections) {
         if (connection != 0) count++;
     }
-    if (count == 0) nodes[id] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    if (count == 0) {
+        nodes[id] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
+        Log::debug(TAG, "Node deleted in branch_node");
+    };
+
 }
 
 void Pathfinder::branch(Direction direction, int x, int y, short id) {
@@ -127,7 +131,7 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
         int temp_x = x;
         int temp_y = y;
         Direction temp_dir = direction;
-        tiles.push_back({x, y});
+        tiles.emplace_back(x, y);
 
         int count = 0;
 
@@ -259,7 +263,7 @@ void Pathfinder::update_branch(int x, int y) {
 void Pathfinder::update_node(int x, int y) {
     auto tile = world->getLoadedTile(x, y);
     auto node = tile.node;
-    auto* connections = nodes[node].connections;
+    auto connections = nodes[node].connections;
     for(short connection : nodes[node].connections) {
         delete_branch(x, y, node, connection);
         delete_branch(x, y, connection, node);
@@ -279,8 +283,10 @@ void Pathfinder::update_node(int x, int y) {
             }
         }
     }
+    Log::debug(TAG, "Node deleted in update_node");
     nodes[node] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
     for(int i = 0; i < 4; i++) {
+        Log::debug(TAG, std::to_string(connections[i]));
         branch_node(connections[i]);
     }
 }
@@ -300,7 +306,7 @@ void Pathfinder::save() {
             for(auto connection : node.connections) {
                 output += std::to_string(connection) + "\n";
             }
-            for(auto length : node.lenghts) {
+            for(auto length : node.lengths) {
                 output += std::to_string(length) + "\n";
             }
             output += "\n";
@@ -326,7 +332,7 @@ bool Pathfinder::load() {
                 connection = (short)std::stoi(line);
                 getline(file, line);
             }
-            for(short& lenght : node.lenghts) {
+            for(short& lenght : node.lengths) {
                 lenght = (short)std::stoi(line);
                 getline(file, line);
             }

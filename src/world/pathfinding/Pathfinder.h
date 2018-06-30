@@ -10,8 +10,8 @@ struct Node {
     bool enabled;
     int x;
     int y;
-    short connections[4];
-    short lenghts[4];
+    std::array<short, 4> connections;
+    std::array<short, 4> lengths;
 };
 
 enum Direction {

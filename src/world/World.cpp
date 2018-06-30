@@ -65,11 +65,30 @@ void World::setTile(int x, int y, ChunkTile value) {
     if(TileDatabase::get()[value.tileId].isSolid != TileDatabase::get()[getTile(x, y).tileId].isSolid) {
         chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
 
-        if(getTile(x, y).node0 != 0) gameState->pathfinder.update_branch(x, y);
-        if(getTile(x + 1, y).node0 != 0) gameState->pathfinder.update_branch(x + 1, y);
-        if(getTile(x - 1, y).node0 != 0) gameState->pathfinder.update_branch(x - 1, y);
-        if(getTile(x, y + 1).node0 != 0) gameState->pathfinder.update_branch(x, y + 1);
-        if(getTile(x, y - 1).node0 != 0) gameState->pathfinder.update_branch(x, y - 1);
+        std::vector<std::pair<short, short>> already_updated;
+
+        auto check = [&](int x, int y) {
+            auto tile_to_check = getTile(x, y);
+            if(tile_to_check.node0 != 0 && std::find(already_updated.begin(), already_updated.end(),
+                                                     std::make_pair(tile_to_check.node0, tile_to_check.node1)) ==
+                                           already_updated.end()) {
+                gameState->pathfinder.update_branch(x, y);
+                already_updated.emplace_back(tile_to_check.node0, tile_to_check.node1);
+            }
+            if(tile_to_check.node != 0) {
+                gameState->pathfinder.update_node(x, y);
+            }
+        };
+
+        check(x - 1, y + 1);
+        check(x, y + 1);
+        check(x + 1, y + 1);
+        check(x - 1, y);
+        check(x, y);
+        check(x + 1, y);
+        check(x - 1, y - 1);
+        check(x, y - 1);
+        check(x + 1, y - 1);
     }
     else {
         chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
