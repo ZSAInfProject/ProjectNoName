@@ -2,6 +2,7 @@
 #include "../../tile/TileDatabase.h"
 #include "../../utils/Log.h"
 #include "../../utils/Buffer.h"
+#include "../../utils/Settings.h"
 
 #include <fstream>
 #include <iostream>
@@ -129,8 +130,13 @@ void Chunk::changeQuad(int x, int y) {
     sf::Vertex* quad = &vertices[(x + y * SIDE_LENGTH) * 4];
 
     int tile_id = getTile(x, y).tileId;
-    if (getTile(x, y).node0 != 0) {
-        tile_id = 0;
+    if(Settings::get<bool>("debug_path")) {
+        if(getTile(x, y).node0 != 0) {
+            tile_id = 9;
+        }
+        if(getTile(x, y).node != 0) {
+            tile_id = 8;
+        }
     }
 
     int tx = TileDatabase::get()[tile_id].texture_x;
@@ -155,21 +161,21 @@ bool Chunk::isInsideBoundaries(int x, int y) {
     return true;
 }
 
-void Chunk::setTileNode(int x, int y, short node) {
-    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+void Chunk::setTileNode(int x, int y, ushort node) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH) {
         Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
         return;
     }
-    tiles[y*SIDE_LENGTH + x].node = node;
+    tiles[y * SIDE_LENGTH + x].node = node;
 }
 
-void Chunk::setTilePath(int x, int y, short node0, short node1) {
-    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH){
+void Chunk::setTilePath(int x, int y, ushort node0, ushort node1) {
+    if(x >= SIDE_LENGTH || y >= SIDE_LENGTH) {
         Log::error(TAG, "Tile set out of bounds at x = " + std::to_string(x) + " y = " + std::to_string(y));
         return;
     }
-    tiles[y*SIDE_LENGTH + x].node0 = node0;
-    tiles[y*SIDE_LENGTH + x].node1 = node1;
+    tiles[y * SIDE_LENGTH + x].node0 = node0;
+    tiles[y * SIDE_LENGTH + x].node1 = node1;
 }
 
 ChunkTile::ChunkTile(nlohmann::json json) {
@@ -199,8 +205,8 @@ void ChunkTile::serialize(Buffer& buffer) {
     buffer.io<short>(&tileId);
     buffer.io<uint>(&amount);
     buffer.io<short>(&objectId);
-    buffer.io<short>(&node);
-    buffer.io<short>(&node0);
-    buffer.io<short>(&node1);
+    buffer.io<ushort>(&node);
+    buffer.io<ushort>(&node0);
+    buffer.io<ushort>(&node1);
 }
 

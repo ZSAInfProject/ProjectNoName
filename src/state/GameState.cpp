@@ -63,11 +63,6 @@ void GameState::update(std::chrono::microseconds deltaTime) {
             }
         }
     }
-    if (Controls::isKeyboardButtonPressed(sf::Keyboard::R))
-    {
-        Log::debug(TAG, "Cleared");
-        world.clearCache();
-    }
 }
 
 void GameState::render(float deltaTime) {
@@ -85,7 +80,6 @@ void GameState::render(float deltaTime) {
         }
     }
 
-    pathfinder.render(Game::getRenderWindow());
     renderWindow.setView(Game::getRenderWindow().getDefaultView());
     gui->display(renderWindow, deltaTime);
 }

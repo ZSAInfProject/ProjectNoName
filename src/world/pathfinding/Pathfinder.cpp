@@ -1,4 +1,6 @@
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <set>
+#include <zconf.h>
 #include "Pathfinder.h"
 #include "../chunk/Chunk.h"
 #include "../../tile/TileDatabase.h"
@@ -6,28 +8,17 @@
 #include "../../utils/Settings.h"
 #include "../../entity/components/Ladder.h"
 
-void Pathfinder::render(sf::RenderWindow& window) {
-    for(int i = 1; i < nodes.size(); i++) {
-        if(nodes[i].enabled) {
-            sf::RectangleShape rectangle;
-            rectangle.setPosition(sf::Vector2f(nodes[i].x * Chunk::TILE_SIZE, nodes[i].y * Chunk::TILE_SIZE));
-            rectangle.setSize(sf::Vector2f(Chunk::TILE_SIZE, Chunk::TILE_SIZE));
-            rectangle.setFillColor(sf::Color::Blue);
-            window.draw(rectangle);
-        }
-    }
+Pathfinder::Pathfinder() {
 }
-
-Pathfinder::Pathfinder() {}
 
 void Pathfinder::generate(int x, int y) {
     nodes.push_back({false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}});
     nodes.push_back({true, x, y, {0, 0, 0, 0}, {0, 0, 0, 0}});
-    world->setTileNode(x, y, static_cast<short>(nodes.size() - 1));
+    world->setTileNode(x, y, static_cast<ushort>(nodes.size() - 1));
     branch_node(1);
 }
 
-void Pathfinder::branch_node(short id) {
+void Pathfinder::branch_node(ushort id) {
     if(!nodes[id].enabled)
         return;
     int x = nodes[id].x;
@@ -79,17 +70,16 @@ void Pathfinder::branch_node(short id) {
     }
 
     int count = 0;
-    for (auto connection : nodes[id].connections) {
-        if (connection != 0) count++;
+    for(auto connection : nodes[id].connections) {
+        if(connection != 0) count++;
     }
-    if (count == 0) {
+    if(count == 0) {
         nodes[id] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
-        Log::debug(TAG, "Node deleted in branch_node");
     };
 
 }
 
-void Pathfinder::branch(Direction direction, int x, int y, short id) {
+void Pathfinder::branch(Direction direction, int x, int y, ushort id) {
 
     std::vector<sf::Vector2i> tiles;
 
@@ -135,13 +125,13 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
 
         int count = 0;
 
-        if(!solid[4] && (solid[6] || ladder[2] || direction == Up) &&
+        if(!solid[4] && (solid[6] || (ladder[2] && solid[7]) || direction == Up || (solid[7] && solid[9])) &&
            (solid[7] || (solid[10] && direction != Up) || ladder[3]) && direction != Left) {
             count++;
             temp_dir = Right;
             temp_x++;
         }
-        if(!solid[3] && (solid[6] || ladder[2] || direction == Up) &&
+        if(!solid[3] && (solid[6] || (ladder[2] && solid[5]) || direction == Up || (solid[5] && solid[9])) &&
            (solid[5] || (solid[8] && direction != Up) || ladder[1]) && direction != Right) {
             count++;
             temp_dir = Left;
@@ -159,11 +149,9 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
             temp_y++;
         }
 
-        Log::verbose(TAG, "Step " + std::to_string(x) + " " + std::to_string(y));
-
         if(count > 1 || count == 0) {
             end = true;
-            short newId;
+            ushort newId;
             if(world->getTile(x, y).node != 0 && world->getTile(x, y).node < nodes.size()) {
                 newId = world->getTile(x, y).node;
                 switch(direction) {
@@ -180,10 +168,11 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
                         nodes[world->getTile(x, y).node].connections[Left] = id;
                         break;
                 }
+                nodes[id].connections[dir] = newId;
             }
             else {
-                short arr1[4] = {0, 0, 0, 0};
-                short arr2[4] = {0, 0, 0, 0};
+                ushort arr1[4] = {0, 0, 0, 0};
+                ushort arr2[4] = {0, 0, 0, 0};
                 switch(direction) {
                     case Up:
                         arr1[Down] = id;
@@ -198,16 +187,14 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
                         arr1[Left] = id;
                         break;
                 }
-                Log::verbose(TAG,
-                             "Node created " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(id));
                 Node n = {true, x, y, {arr1[0], arr1[1], arr1[2], arr1[3]}, {arr2[0], arr2[1], arr2[2], arr2[3]}};
                 nodes.push_back(n);
                 newId = nodes.size() - 1;
 
-                world->setTileNode(x, y, static_cast<short>(nodes.size() - 1));
-                nodes[id].connections[dir] = static_cast<short>(nodes.size() - 1);
+                world->setTileNode(x, y, static_cast<ushort>(nodes.size() - 1));
+                nodes[id].connections[dir] = static_cast<ushort>(nodes.size() - 1);
                 if(id != static_cast<short>(nodes.size() - 1)) {
-                    branch_node(static_cast<short>(nodes.size() - 1));
+                    branch_node(static_cast<ushort>(nodes.size() - 1));
                 }
             }
 
@@ -222,11 +209,13 @@ void Pathfinder::branch(Direction direction, int x, int y, short id) {
             direction = temp_dir;
         }
     }
+    if(Settings::get<bool>("debug_path")) world->clearCache();
 }
 
 
-void Pathfinder::delete_branch(int x, int y, short node0, short node1) {
-    if(world->getLoadedTile(x, y).node0 == node0 && world->getLoadedTile(x, y).node1 == node1) {
+void Pathfinder::delete_branch(int x, int y, ushort node0, ushort node1) {
+    if((world->getLoadedTile(x, y).node0 == node0 && world->getLoadedTile(x, y).node1 == node1)
+       || (world->getLoadedTile(x, y).node0 == node1 && world->getLoadedTile(x, y).node1 == node0)) {
         world->setTilePath(x, y, 0, 0);
         delete_branch(x - 1, y, node0, node1);
         delete_branch(x + 1, y, node0, node1);
@@ -235,61 +224,61 @@ void Pathfinder::delete_branch(int x, int y, short node0, short node1) {
     }
 }
 
-void Pathfinder::update_branch(int x, int y) {
-    auto tile = world->getLoadedTile(x, y);
-    auto node = tile.node;
-    if (node == 0) {
-        auto node0 = tile.node0;
-        auto node1 = tile.node1;
-        delete_branch(x, y, node0, node1);
-        for(int i = 0; i < 4; i++) {
-            if(nodes[node0].connections[i] == node1) {
-                nodes[node0].connections[i] = 0;
-            }
+void Pathfinder::updated_block(int x, int y) {
 
-            if(nodes[node1].connections[i] == node0) {
-                nodes[node1].connections[i] = 0;
+    std::set<ushort> nodes_to_branch;
+    std::set<ushort> nodes_to_delete;
+
+    auto check = [&](int x, int y) {
+        if(world->getTile(x, y).node != 0) {
+            auto node = world->getTile(x, y).node;
+            nodes_to_delete.insert(node);
+            for(auto connection : nodes[node].connections) {
+                if(connection != 0) {
+                    nodes_to_branch.insert(connection);
+                    delete_branch(x - 1, y, node, connection);
+                    delete_branch(x + 1, y, node, connection);
+                    delete_branch(x, y + 1, node, connection);
+                    delete_branch(x, y - 1, node, connection);
+                }
+            }
+            nodes[node] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
+            world->setTileNode(x, y, 0);
+        }
+        if(world->getTile(x, y).node0 != 0) {
+            nodes_to_branch.insert(world->getTile(x, y).node0);
+            nodes_to_branch.insert(world->getTile(x, y).node1);
+            nodes_to_delete.insert(world->getTile(x, y).node0);
+            nodes_to_delete.insert(world->getTile(x, y).node1);
+            delete_branch(x, y, world->getTile(x, y).node0, world->getTile(x, y).node1);
+        }
+    };
+
+    check(x, y + 2);
+    check(x - 1, y + 1);
+    check(x, y + 1);
+    check(x + 1, y + 1);
+    check(x - 1, y);
+    check(x, y);
+    check(x + 1, y);
+    check(x - 1, y - 1);
+    check(x, y - 1);
+    check(x + 1, y - 1);
+
+    for(auto node : nodes_to_branch) {
+        for(auto& connection : nodes[node].connections) {
+            for(auto node_d : nodes_to_delete) {
+                if(connection == node_d) {
+                    connection = 0;
+                }
             }
         }
-        branch_node(node0);
-        branch_node(node1);
     }
-    else {
-        update_node(x, y);
-    }
-
-}
-
-void Pathfinder::update_node(int x, int y) {
-    auto tile = world->getLoadedTile(x, y);
-    auto node = tile.node;
-    auto connections = nodes[node].connections;
-    for(short connection : nodes[node].connections) {
-        delete_branch(x, y, node, connection);
-        delete_branch(x, y, connection, node);
-        delete_branch(x+1, y, node, connection);
-        delete_branch(x+1, y, connection, node);
-        delete_branch(x-1, y, node, connection);
-        delete_branch(x-1, y, connection, node);
-        delete_branch(x, y+1, node, connection);
-        delete_branch(x, y+1, connection, node);
-        delete_branch(x, y-1, node, connection);
-        delete_branch(x, y-1, connection, node);
-    }
-    for(int i = 0; i < 4; i++) {
-        for(short& connection : nodes[connections[i]].connections) {
-            if(connection == node) {
-                connection = 0;
-            }
-        }
-    }
-    Log::debug(TAG, "Node deleted in update_node");
-    nodes[node] = {false, 0, 0, {0, 0, 0, 0}, {0, 0, 0, 0}};
-    for(int i = 0; i < 4; i++) {
-        Log::debug(TAG, std::to_string(connections[i]));
-        branch_node(connections[i]);
+    for(auto node : nodes_to_branch) {
+        branch_node(node);
     }
 }
+
 
 void Pathfinder::setWorld(World* world) {
     this->world = world;
@@ -328,12 +317,12 @@ bool Pathfinder::load() {
             getline(file, line);
             node.y = std::stoi(line);
             getline(file, line);
-            for(short& connection : node.connections) {
-                connection = (short)std::stoi(line);
+            for(ushort& connection : node.connections) {
+                connection = (ushort)std::stoi(line);
                 getline(file, line);
             }
-            for(short& lenght : node.lengths) {
-                lenght = (short)std::stoi(line);
+            for(ushort& lenght : node.lengths) {
+                lenght = (ushort)std::stoi(line);
                 getline(file, line);
             }
             nodes.push_back(node);

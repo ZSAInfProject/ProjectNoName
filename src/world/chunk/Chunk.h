@@ -6,6 +6,7 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <vector>
 #include <chrono>
+#include <zconf.h>
 #include "../../../deps/json.h"
 #include "../../entity/Entity.h"
 #include "../../utils/Buffer.h"
@@ -27,10 +28,10 @@ public:
 
     void serialize(Buffer&);
 
-    short node = 0;
+    ushort node = 0;
 
-    short node0 = 0;
-    short node1 = 0;
+    ushort node0 = 0;
+    ushort node1 = 0;
 
     ChunkTile() = default;
     ChunkTile(short tileId, uint amount, short objectId = -1);
@@ -99,8 +100,8 @@ public:
     void setTile(int x, int y, ChunkTile value);
     //! Set tile objectId at given coordinates to supplied objectId
     void setTileObject(int x, int y, short objectId);
-    void setTileNode(int x, int y, short node);
-    void setTilePath(int x, int y, short node0, short node1);
+    void setTileNode(int x, int y, ushort node);
+    void setTilePath(int x, int y, ushort node0, ushort node1);
 
     Chunk();
     Chunk(Chunk const&) = delete;

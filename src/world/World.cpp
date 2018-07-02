@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include "World.h"
 #include "../tile/Tile.h"
 #include "../utils/Log.h"
@@ -7,6 +8,7 @@
 #include "../entity/components/ObjectPosition.h"
 #include "../tile/TileDatabase.h"
 #include "../state/GameState.h"
+#include "../entity/components/Ladder.h"
 
 World::World(int seed) : chunkDatabase(std::make_unique<ChunkGenerator>(seed)) {
 }
@@ -62,37 +64,11 @@ void World::setTile(int x, int y, ChunkTile value) {
     auto tile = coordinates.first;
     auto chunk = coordinates.second;
 
-    if(TileDatabase::get()[value.tileId].isSolid != TileDatabase::get()[getTile(x, y).tileId].isSolid) {
-        chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
+    auto should_notify_pathfinder = TileDatabase::get()[value.tileId].isSolid != TileDatabase::get()[getTile(x, y).tileId].isSolid;
 
-        std::vector<std::pair<short, short>> already_updated;
+    chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
 
-        auto check = [&](int x, int y) {
-            auto tile_to_check = getTile(x, y);
-            if(tile_to_check.node0 != 0 && std::find(already_updated.begin(), already_updated.end(),
-                                                     std::make_pair(tile_to_check.node0, tile_to_check.node1)) ==
-                                           already_updated.end()) {
-                gameState->pathfinder.update_branch(x, y);
-                already_updated.emplace_back(tile_to_check.node0, tile_to_check.node1);
-            }
-            if(tile_to_check.node != 0) {
-                gameState->pathfinder.update_node(x, y);
-            }
-        };
-
-        check(x - 1, y + 1);
-        check(x, y + 1);
-        check(x + 1, y + 1);
-        check(x - 1, y);
-        check(x, y);
-        check(x + 1, y);
-        check(x - 1, y - 1);
-        check(x, y - 1);
-        check(x + 1, y - 1);
-    }
-    else {
-        chunkDatabase.getChunk(chunk.x, chunk.y)->setTile(tile.x, tile.y, value);
-    }
+    if (should_notify_pathfinder) gameState->pathfinder.updated_block(x, y);
 }
 
 short World::mineTile(int x, int y) {
@@ -130,14 +106,18 @@ void World::addObject(std::shared_ptr<Entity> object) {
     auto tile = coordinates.first;
     auto chunk = coordinates.second;
 
-    if(getTile(tile.x, tile.y).objectId != -1) {
+    if(getTile(opc->position.x, opc->position.y).objectId != -1) {
         Log::info(TAG, "Added object in place of another. Aborting");
         return;
     }
 
+    auto should_notify_pathfinder = object->getComponent<LadderComponent>() != nullptr;
+
     chunkDatabase.getChunk(chunk.x, chunk.y)->objects.push_back(object);
     auto id = static_cast<short>(chunkDatabase.getChunk(chunk.x, chunk.y)->objects.size() - 1);
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTileObject(tile.x, tile.y, id);
+
+    if (should_notify_pathfinder) gameState->pathfinder.updated_block(opc->position.x, opc->position.y);
 }
 
 void World::removeObject(int x, int y) {
@@ -164,7 +144,7 @@ std::pair<sf::Vector2i, sf::Vector2i> World::getTileAndChunkCoordinates(int x, i
     return std::make_pair(tile, chunk);
 }
 
-void World::setTileNode(int x, int y, short node) {
+void World::setTileNode(int x, int y, ushort node) {
     sf::Vector2i tile;
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));
@@ -178,7 +158,7 @@ void World::setTileNode(int x, int y, short node) {
     chunkDatabase.getChunk(chunk.x, chunk.y)->setTileNode(tile.x, tile.y, node);
 }
 
-void World::setTilePath(int x, int y, short node0, short node1) {
+void World::setTilePath(int x, int y, ushort node0, ushort node1) {
     sf::Vector2i tile;
     sf::Vector2i chunk;
     chunk.x = static_cast<int>(floor(1.0f * x / Chunk::SIDE_LENGTH));

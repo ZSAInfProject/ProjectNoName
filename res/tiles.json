@@ -80,5 +80,23 @@
     "texture": [7, 0],
     "isSolid": true,
     "category": 2
+  },
+  {
+    "id": 8,
+    "name": "Node",
+    "terminal": "*",
+    "hardness": 0,
+    "texture": [8, 0],
+    "isSolid": false,
+    "category": 0
+  },
+  {
+    "id": 9,
+    "name": "Path",
+    "terminal": "-",
+    "hardness": 0,
+    "texture": [9, 0],
+    "isSolid": false,
+    "category": 0
   }
 ]

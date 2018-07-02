@@ -3,5 +3,6 @@
   "resolution_y": 720,
   "log_mode": "DEBUG",
   "logfile": "Log.txt",
-  "save_path": "saves/1/"
+  "save_path": "saves/1/",
+  "debug_path": false
 }

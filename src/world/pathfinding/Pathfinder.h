@@ -10,8 +10,8 @@ struct Node {
     bool enabled;
     int x;
     int y;
-    std::array<short, 4> connections;
-    std::array<short, 4> lengths;
+    std::array<ushort, 4> connections;
+    std::array<ushort, 4> lengths;
 };
 
 enum Direction {
@@ -25,20 +25,17 @@ class Pathfinder {
 public:
 
     Pathfinder();
-    void render(sf::RenderWindow& window);
     void generate(int x, int y);
     void setWorld(World* world);
     void save();
     bool load();
-    void update_branch(int x, int y);
-    void update_node(int x, int y);
-
+    void updated_block(int x, int y);
     ~Pathfinder();
 
 private:
-    void delete_branch(int x, int y, short node0, short node1);
-    void branch_node(short id);
-    void branch(Direction direction, int x, int y, short id);
+    void delete_branch(int x, int y, ushort node0, ushort node1);
+    void branch_node(ushort id);
+    void branch(Direction direction, int x, int y, ushort id);
     std::vector<Node> nodes;
     World* world;
 
